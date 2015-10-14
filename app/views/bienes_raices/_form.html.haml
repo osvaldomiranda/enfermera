@@ -1,0 +1,13 @@
+= simple_form_for(@bienes_raice) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo
+    = f.input :direccion
+    = f.input :valor_comercial
+    = f.input :rol
+    = f.input :hipoteca_banco
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

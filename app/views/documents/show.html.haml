@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @document.name
+%p
+  %b File:
+  = @document.file
+%p
+  %b Person:
+  = @document.person
+
+= link_to 'Edit', edit_document_path(@document)
+\|
+= link_to 'Back', documents_path

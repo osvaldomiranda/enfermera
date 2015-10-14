@@ -1,0 +1,45 @@
+%h1 Listing direccions
+
+%table
+  %thead
+    %tr
+      %th Tipo
+      %th Calle num depto
+      %th Comuna
+      %th Ciudad
+      %th Telefono
+      %th Celular
+      %th Codigo postal
+      %th Tipo vivienda
+      %th Dividendo arriendo
+      %th Casilla
+      %th Num correo
+      %th Ciudad
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @direccions.each do |direccion|
+      %tr
+        %td= direccion.tipo
+        %td= direccion.calle_num_depto
+        %td= direccion.comuna
+        %td= direccion.ciudad
+        %td= direccion.telefono
+        %td= direccion.celular
+        %td= direccion.codigo_postal
+        %td= direccion.tipo_vivienda
+        %td= direccion.dividendo_arriendo
+        %td= direccion.casilla
+        %td= direccion.num_correo
+        %td= direccion.ciudad
+        %td= direccion.person
+        %td= link_to 'Show', direccion
+        %td= link_to 'Edit', edit_direccion_path(direccion)
+        %td= link_to 'Destroy', direccion, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Direccion', new_direccion_path

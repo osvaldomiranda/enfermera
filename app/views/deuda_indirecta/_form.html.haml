@@ -1,0 +1,13 @@
+= simple_form_for(@deuda_indirectum) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo
+    = f.input :institucion
+    = f.input :deuda_vigente
+    = f.input :razon_social
+    = f.input :rut
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,17 @@
+= simple_form_for(@dependent) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :empleador
+    = f.input :rut_empleador
+    = f.input :giro_empresa
+    = f.input :direccion_empresa
+    = f.input :tipo_contrato
+    = f.input :cargo
+    = f.input :fecha_ingreso
+    = f.input :fecha_ingreso_anterior
+    = f.input :fecha_termino_anterior
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

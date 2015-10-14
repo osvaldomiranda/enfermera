@@ -1,0 +1,16 @@
+= simple_form_for(@ingreso) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :sueldo_fijo_mes
+    = f.input :sueldo_variable_mes
+    = f.input :arriendo
+    = f.input :vtas_anuales
+    = f.input :declaracion_renta
+    = f.input :honorarios_mes
+    = f.input :cta_cte
+    = f.input :banco
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

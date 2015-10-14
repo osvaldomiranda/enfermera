@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Sueldo fijo mes:
+  = @ingreso.sueldo_fijo_mes
+%p
+  %b Sueldo variable mes:
+  = @ingreso.sueldo_variable_mes
+%p
+  %b Arriendo:
+  = @ingreso.arriendo
+%p
+  %b Vtas anuales:
+  = @ingreso.vtas_anuales
+%p
+  %b Declaracion renta:
+  = @ingreso.declaracion_renta
+%p
+  %b Honorarios mes:
+  = @ingreso.honorarios_mes
+%p
+  %b Cta cte:
+  = @ingreso.cta_cte
+%p
+  %b Banco:
+  = @ingreso.banco
+%p
+  %b Person:
+  = @ingreso.person
+
+= link_to 'Edit', edit_ingreso_path(@ingreso)
+\|
+= link_to 'Back', ingresos_path

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-CapistranoDeploy::Application.load_tasks
+Hikerdata::Application.load_tasks

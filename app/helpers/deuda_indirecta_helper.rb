@@ -1,0 +1,2 @@
+module DeudaIndirectaHelper
+end

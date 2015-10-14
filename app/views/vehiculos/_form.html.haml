@@ -1,0 +1,15 @@
+= simple_form_for(@vehiculo) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo
+    = f.input :marca
+    = f.input :modelo
+    = f.input :agno
+    = f.input :patente
+    = f.input :valor_comercia
+    = f.input :prenda_afavor
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

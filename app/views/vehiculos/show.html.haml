@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Tipo:
+  = @vehiculo.tipo
+%p
+  %b Marca:
+  = @vehiculo.marca
+%p
+  %b Modelo:
+  = @vehiculo.modelo
+%p
+  %b Agno:
+  = @vehiculo.agno
+%p
+  %b Patente:
+  = @vehiculo.patente
+%p
+  %b Valor comercia:
+  = @vehiculo.valor_comercia
+%p
+  %b Prenda afavor:
+  = @vehiculo.prenda_afavor
+%p
+  %b Person:
+  = @vehiculo.person
+
+= link_to 'Edit', edit_vehiculo_path(@vehiculo)
+\|
+= link_to 'Back', vehiculos_path

@@ -1,0 +1,14 @@
+= simple_form_for(@deuda_directum) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo
+    = f.input :institucion
+    = f.input :cupo_aprobado
+    = f.input :deuda_vigente
+    = f.input :pago_mensual
+    = f.input :vencimineto
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

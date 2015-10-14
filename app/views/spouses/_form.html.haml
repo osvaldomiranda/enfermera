@@ -1,0 +1,22 @@
+= simple_form_for(@spouse) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :rut
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :gender
+    = f.input :nationality
+    = f.input :economic_activity
+    = f.input :education
+    = f.input :origin_country
+    = f.input :resident_country
+    = f.input :profession
+    = f.input :dependents
+    = f.input :university
+    = f.input :number_of_children
+    = f.input :date_birth
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

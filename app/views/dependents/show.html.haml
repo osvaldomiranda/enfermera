@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Empleador:
+  = @dependent.empleador
+%p
+  %b Rut empleador:
+  = @dependent.rut_empleador
+%p
+  %b Giro empresa:
+  = @dependent.giro_empresa
+%p
+  %b Direccion empresa:
+  = @dependent.direccion_empresa
+%p
+  %b Tipo contrato:
+  = @dependent.tipo_contrato
+%p
+  %b Cargo:
+  = @dependent.cargo
+%p
+  %b Fecha ingreso:
+  = @dependent.fecha_ingreso
+%p
+  %b Fecha ingreso anterior:
+  = @dependent.fecha_ingreso_anterior
+%p
+  %b Fecha termino anterior:
+  = @dependent.fecha_termino_anterior
+%p
+  %b Person:
+  = @dependent.person
+
+= link_to 'Edit', edit_dependent_path(@dependent)
+\|
+= link_to 'Back', dependents_path

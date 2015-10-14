@@ -1,0 +1,35 @@
+%h1 Listing vehiculos
+
+%table
+  %thead
+    %tr
+      %th Tipo
+      %th Marca
+      %th Modelo
+      %th Agno
+      %th Patente
+      %th Valor comercia
+      %th Prenda afavor
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @vehiculos.each do |vehiculo|
+      %tr
+        %td= vehiculo.tipo
+        %td= vehiculo.marca
+        %td= vehiculo.modelo
+        %td= vehiculo.agno
+        %td= vehiculo.patente
+        %td= vehiculo.valor_comercia
+        %td= vehiculo.prenda_afavor
+        %td= vehiculo.person
+        %td= link_to 'Show', vehiculo
+        %td= link_to 'Edit', edit_vehiculo_path(vehiculo)
+        %td= link_to 'Destroy', vehiculo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Vehiculo', new_vehiculo_path

@@ -1,0 +1,1 @@
+json.extract! @independent, :id, :tipo_rentista, :tipo_actividad, :giro_actividad, :fecha_inicio_rubro, :fecha_inicio_actividad, :nombre_empleador_anterior, :cargo, :antiguedad, :person_id, :created_at, :updated_at

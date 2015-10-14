@@ -1,0 +1,31 @@
+%h1 Listing sociedads
+
+%table
+  %thead
+    %tr
+      %th Tipo
+      %th Porcentaje
+      %th Capital
+      %th Nombre
+      %th Rut
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @sociedads.each do |sociedad|
+      %tr
+        %td= sociedad.tipo
+        %td= sociedad.porcentaje
+        %td= sociedad.capital
+        %td= sociedad.nombre
+        %td= sociedad.rut
+        %td= sociedad.person
+        %td= link_to 'Show', sociedad
+        %td= link_to 'Edit', edit_sociedad_path(sociedad)
+        %td= link_to 'Destroy', sociedad, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Sociedad', new_sociedad_path

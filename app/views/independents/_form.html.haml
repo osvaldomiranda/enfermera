@@ -1,0 +1,16 @@
+= simple_form_for(@independent) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo_rentista
+    = f.input :tipo_actividad
+    = f.input :giro_actividad
+    = f.input :fecha_inicio_rubro
+    = f.input :fecha_inicio_actividad
+    = f.input :nombre_empleador_anterior
+    = f.input :cargo
+    = f.input :antiguedad
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

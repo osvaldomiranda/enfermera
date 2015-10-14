@@ -1,0 +1,37 @@
+%h1 Listing ingresos
+
+%table
+  %thead
+    %tr
+      %th Sueldo fijo mes
+      %th Sueldo variable mes
+      %th Arriendo
+      %th Vtas anuales
+      %th Declaracion renta
+      %th Honorarios mes
+      %th Cta cte
+      %th Banco
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ingresos.each do |ingreso|
+      %tr
+        %td= ingreso.sueldo_fijo_mes
+        %td= ingreso.sueldo_variable_mes
+        %td= ingreso.arriendo
+        %td= ingreso.vtas_anuales
+        %td= ingreso.declaracion_renta
+        %td= ingreso.honorarios_mes
+        %td= ingreso.cta_cte
+        %td= ingreso.banco
+        %td= ingreso.person
+        %td= link_to 'Show', ingreso
+        %td= link_to 'Edit', edit_ingreso_path(ingreso)
+        %td= link_to 'Destroy', ingreso, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ingreso', new_ingreso_path

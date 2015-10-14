@@ -1,0 +1,15 @@
+= simple_form_for(@universitario) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :email
+    = f.input :universidad
+    = f.input :carrera
+    = f.input :encurso
+    = f.input :renta_familiar
+    = f.input :nombre_padre
+    = f.input :rut_padre
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

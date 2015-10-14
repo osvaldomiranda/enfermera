@@ -1,0 +1,39 @@
+%h1 Listing dependents
+
+%table
+  %thead
+    %tr
+      %th Empleador
+      %th Rut empleador
+      %th Giro empresa
+      %th Direccion empresa
+      %th Tipo contrato
+      %th Cargo
+      %th Fecha ingreso
+      %th Fecha ingreso anterior
+      %th Fecha termino anterior
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @dependents.each do |dependent|
+      %tr
+        %td= dependent.empleador
+        %td= dependent.rut_empleador
+        %td= dependent.giro_empresa
+        %td= dependent.direccion_empresa
+        %td= dependent.tipo_contrato
+        %td= dependent.cargo
+        %td= dependent.fecha_ingreso
+        %td= dependent.fecha_ingreso_anterior
+        %td= dependent.fecha_termino_anterior
+        %td= dependent.person
+        %td= link_to 'Show', dependent
+        %td= link_to 'Edit', edit_dependent_path(dependent)
+        %td= link_to 'Destroy', dependent, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Dependent', new_dependent_path

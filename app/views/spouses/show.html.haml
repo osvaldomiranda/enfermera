@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Rut:
+  = @spouse.rut
+%p
+  %b First name:
+  = @spouse.first_name
+%p
+  %b Last name:
+  = @spouse.last_name
+%p
+  %b Gender:
+  = @spouse.gender
+%p
+  %b Nationality:
+  = @spouse.nationality
+%p
+  %b Economic activity:
+  = @spouse.economic_activity
+%p
+  %b Education:
+  = @spouse.education
+%p
+  %b Origin country:
+  = @spouse.origin_country
+%p
+  %b Resident country:
+  = @spouse.resident_country
+%p
+  %b Profession:
+  = @spouse.profession
+%p
+  %b Dependents:
+  = @spouse.dependents
+%p
+  %b University:
+  = @spouse.university
+%p
+  %b Number of children:
+  = @spouse.number_of_children
+%p
+  %b Date birth:
+  = @spouse.date_birth
+%p
+  %b Person:
+  = @spouse.person
+
+= link_to 'Edit', edit_spouse_path(@spouse)
+\|
+= link_to 'Back', spouses_path

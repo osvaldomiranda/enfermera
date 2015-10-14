@@ -1,0 +1,31 @@
+%h1 Listing deuda_indirecta
+
+%table
+  %thead
+    %tr
+      %th Tipo
+      %th Institucion
+      %th Deuda vigente
+      %th Razon social
+      %th Rut
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @deuda_indirecta.each do |deuda_indirectum|
+      %tr
+        %td= deuda_indirectum.tipo
+        %td= deuda_indirectum.institucion
+        %td= deuda_indirectum.deuda_vigente
+        %td= deuda_indirectum.razon_social
+        %td= deuda_indirectum.rut
+        %td= deuda_indirectum.person
+        %td= link_to 'Show', deuda_indirectum
+        %td= link_to 'Edit', edit_deuda_indirectum_path(deuda_indirectum)
+        %td= link_to 'Destroy', deuda_indirectum, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Deuda indirectum', new_deuda_indirectum_path

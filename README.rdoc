@@ -135,12 +135,12 @@ end
 </code>
 
 == Fresh start
-If you want to make a new rails project, I recommend to clone this repository and replace the words "capistrano_deploy" and "CapistranoDeploy" with the name of your project.
+If you want to make a new rails project, I recommend to clone this repository and replace the words "capistrano_deploy" and "Hikerdata" with the name of your project.
 
 For instance if the name of your project is MyRailsApp, then you should do the following replacements:
 
 capistrano_deploy -> my_rails_app
-CapistranoDeploy  -> MyRailsApp
+Hikerdata  -> MyRailsApp
 
 Make sure to make a case sensitive replacement
 

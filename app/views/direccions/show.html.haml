@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %b Tipo:
+  = @direccion.tipo
+%p
+  %b Calle num depto:
+  = @direccion.calle_num_depto
+%p
+  %b Comuna:
+  = @direccion.comuna
+%p
+  %b Ciudad:
+  = @direccion.ciudad
+%p
+  %b Telefono:
+  = @direccion.telefono
+%p
+  %b Celular:
+  = @direccion.celular
+%p
+  %b Codigo postal:
+  = @direccion.codigo_postal
+%p
+  %b Tipo vivienda:
+  = @direccion.tipo_vivienda
+%p
+  %b Dividendo arriendo:
+  = @direccion.dividendo_arriendo
+%p
+  %b Casilla:
+  = @direccion.casilla
+%p
+  %b Num correo:
+  = @direccion.num_correo
+%p
+  %b Ciudad:
+  = @direccion.ciudad
+%p
+  %b Person:
+  = @direccion.person
+
+= link_to 'Edit', edit_direccion_path(@direccion)
+\|
+= link_to 'Back', direccions_path

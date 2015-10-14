@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Tipo:
+  = @sociedad.tipo
+%p
+  %b Porcentaje:
+  = @sociedad.porcentaje
+%p
+  %b Capital:
+  = @sociedad.capital
+%p
+  %b Nombre:
+  = @sociedad.nombre
+%p
+  %b Rut:
+  = @sociedad.rut
+%p
+  %b Person:
+  = @sociedad.person
+
+= link_to 'Edit', edit_sociedad_path(@sociedad)
+\|
+= link_to 'Back', sociedads_path

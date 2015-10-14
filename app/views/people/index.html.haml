@@ -1,0 +1,53 @@
+%h1 Listing people
+
+%table
+  %thead
+    %tr
+      %th Email
+      %th Rut
+      %th First name
+      %th Last name
+      %th Gender
+      %th Nationality
+      %th Economic activity
+      %th Education
+      %th Origin country
+      %th Resident country
+      %th Profession
+      %th Dependents
+      %th University
+      %th Number of children
+      %th Marital status
+      %th Matrimonial regime
+      %th Date birth
+      %th
+      %th
+      %th
+
+  %tbody
+    - @people.each do |person|
+      %tr
+        %td= person.email
+        %td= person.rut
+        %td= person.first_name
+        %td= person.last_name
+        %td= person.gender
+        %td= person.nationality
+        %td= person.economic_activity
+        %td= person.education
+        %td= person.origin_country
+        %td= person.resident_country
+        %td= person.profession
+        %td= person.dependents
+        %td= person.university
+        %td= person.number_of_children
+        %td= person.marital_status
+        %td= person.matrimonial_regime
+        %td= person.date_birth
+        %td= link_to 'Show', person
+        %td= link_to 'Edit', edit_person_path(person)
+        %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Person', new_person_path

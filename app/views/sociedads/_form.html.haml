@@ -1,0 +1,13 @@
+= simple_form_for(@sociedad) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tipo
+    = f.input :porcentaje
+    = f.input :capital
+    = f.input :nombre
+    = f.input :rut
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

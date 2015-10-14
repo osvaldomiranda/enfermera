@@ -1,0 +1,35 @@
+%h1 Listing universitarios
+
+%table
+  %thead
+    %tr
+      %th Email
+      %th Universidad
+      %th Carrera
+      %th Encurso
+      %th Renta familiar
+      %th Nombre padre
+      %th Rut padre
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @universitarios.each do |universitario|
+      %tr
+        %td= universitario.email
+        %td= universitario.universidad
+        %td= universitario.carrera
+        %td= universitario.encurso
+        %td= universitario.renta_familiar
+        %td= universitario.nombre_padre
+        %td= universitario.rut_padre
+        %td= universitario.person
+        %td= link_to 'Show', universitario
+        %td= link_to 'Edit', edit_universitario_path(universitario)
+        %td= link_to 'Destroy', universitario, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Universitario', new_universitario_path
