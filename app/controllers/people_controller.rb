@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :picture]
 
   respond_to :html
 
@@ -14,10 +14,16 @@ class PeopleController < ApplicationController
 
   def new
     @person = Person.new
-    respond_with(@person)
+    respond_modal_with(@person)
+  end
+
+
+  def picture
+    respond_modal_with(@person)
   end
 
   def edit
+    respond_modal_with(@person)
   end
 
   def create
@@ -28,7 +34,7 @@ class PeopleController < ApplicationController
 
   def update
     @person.update(person_params)
-    respond_with(@person)
+    render "/dashboard/index"
   end
 
   def destroy
@@ -36,12 +42,13 @@ class PeopleController < ApplicationController
     respond_with(@person)
   end
 
+
   private
     def set_person
       @person = Person.find(params[:id])
     end
 
     def person_params
-      params.require(:person).permit(:email, :rut, :first_name, :last_name, :gender, :nationality, :economic_activity, :education, :origin_country, :resident_country, :profession, :dependents, :university, :number_of_children, :marital_status, :matrimonial_regime, :date_birth)
+      params.require(:person).permit(:email, :rut, :first_name, :last_name, :gender, :nationality, :economic_activity, :education, :origin_country, :resident_country, :profession, :dependents, :university, :number_of_children, :marital_status, :matrimonial_regime, :date_birth, :picture)
     end
 end

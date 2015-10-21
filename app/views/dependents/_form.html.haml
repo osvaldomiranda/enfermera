@@ -1,17 +1,47 @@
-= simple_form_for(@dependent) do |f|
-  = f.error_notification
+.container-fluid
+  %h2 Situación Laboral
+  .container-fluid
+    .row
+      .col-md-12
+        = simple_form_for(@dependent, html: { class: 'form-horizontal' }) do |f|
+          .form-inputs
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Empleador
+            .col-sm-4
+              = f.input :empleador, label: false
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Rut Empleador
+            .col-sm-4
+              = f.input :rut_empleador, label: false, placeholder: "99.999.999-9"
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Giro
+            .col-sm-4
+              = f.input :giro_empresa, label: false
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato
+            .col-sm-4
+              = f.input :tipo_contrato, label: false, collection: Dependent.tipocargo_options_for_select                                          
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Cargo
+            .col-sm-4
+              = f.input :cargo, label: false
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              .pull-right
+                %button.btn.btn-success{:type => "submit"} Guardar
 
-  .form-inputs
-    = f.input :empleador
-    = f.input :rut_empleador
-    = f.input :giro_empresa
-    = f.input :direccion_empresa
-    = f.input :tipo_contrato
-    = f.input :cargo
-    = f.input :fecha_ingreso
-    = f.input :fecha_ingreso_anterior
-    = f.input :fecha_termino_anterior
-    = f.association :person
 
-  .form-actions
-    = f.button :submit
+  / .form-inputs
+  /   = f.input :empleador
+  /   = f.input :rut_empleador
+  /   = f.input :giro_empresa
+  /   = f.input :direccion_empresa
+  /   = f.input :tipo_contrato
+  /   = f.input :cargo
+  /   = f.input :fecha_ingreso
+  /   = f.input :fecha_ingreso_anterior
+  /   = f.input :fecha_termino_anterior
+  /   = f.association :person
+
+  / .form-actions
+  /   = f.button :submit

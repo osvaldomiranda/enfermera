@@ -4,7 +4,8 @@ class SociedadsController < ApplicationController
   respond_to :html
 
   def index
-    @sociedads = Sociedad.all
+    @person = Person.find_by_email(current_user.email)
+    @sociedads = @person.sociedads
     respond_with(@sociedads)
   end
 
@@ -14,21 +15,27 @@ class SociedadsController < ApplicationController
 
   def new
     @sociedad = Sociedad.new
-    respond_with(@sociedad)
+    respond_modal_with(@sociedad)
   end
 
   def edit
+    respond_modal_with(@sociedad)
   end
 
   def create
+    @person = Person.find_by_email(current_user.email)
     @sociedad = Sociedad.new(sociedad_params)
+    @sociedad.person_id = @person.id
     @sociedad.save
-    respond_with(@sociedad)
+    @sociedads = @person.sociedads
+    render "index"
   end
 
   def update
     @sociedad.update(sociedad_params)
-    respond_with(@sociedad)
+    @person = Person.find_by_email(current_user.email)
+    @sociedads = @person.sociedads
+    render "index"
   end
 
   def destroy

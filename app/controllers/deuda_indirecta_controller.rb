@@ -18,6 +18,7 @@ class DeudaIndirectaController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@deuda_indirectum)
   end
 
   def create
@@ -28,7 +29,8 @@ class DeudaIndirectaController < ApplicationController
 
   def update
     @deuda_indirectum.update(deuda_indirectum_params)
-    respond_with(@deuda_indirectum)
+    @person = Person.find(@deuda_indirectum.person_id)
+    render "/dashboard/index"
   end
 
   def destroy

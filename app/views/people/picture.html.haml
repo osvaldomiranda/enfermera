@@ -1,0 +1,21 @@
+.container-fluid
+  %h2 Datos Básicos
+  .container-fluid
+    .row
+      .col-md-12
+        %form.form-horizontal{:role => "form"}
+        = simple_form_for(@person, html: { class: 'form-horizontal' }) do |f|
+          .form-inputs
+            Seleccionar Foto
+            .fileinput.fileinput-new{"data-provides" => "fileinput"}
+              .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+              %div
+                %span.btn.btn-default.btn-file
+                  %span.fileinput-new Seleccionar imagen
+                  %span.fileinput-exists Cambiar
+                  =f.file_field :picture
+                %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .pull-right
+                  %button.btn.btn-success{:type => "submit"} Guardar

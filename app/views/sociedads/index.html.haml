@@ -1,31 +1,32 @@
-%h1 Listing sociedads
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Sociedades
+    .panel-body
 
-%table
-  %thead
-    %tr
-      %th Tipo
-      %th Porcentaje
-      %th Capital
-      %th Nombre
-      %th Rut
-      %th Person
-      %th
-      %th
-      %th
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Tipo
+            %th Porcentaje
+            %th Capital
+            %th Nombre
+            %th Rut
+            %th
+            %th
 
-  %tbody
-    - @sociedads.each do |sociedad|
-      %tr
-        %td= sociedad.tipo
-        %td= sociedad.porcentaje
-        %td= sociedad.capital
-        %td= sociedad.nombre
-        %td= sociedad.rut
-        %td= sociedad.person
-        %td= link_to 'Show', sociedad
-        %td= link_to 'Edit', edit_sociedad_path(sociedad)
-        %td= link_to 'Destroy', sociedad, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %tbody
+          - @sociedads.each do |sociedad|
+            %tr
+              %td= sociedad.tipo
+              %td= sociedad.porcentaje
+              %td= sociedad.capital
+              %td= sociedad.nombre
+              %td= sociedad.rut
+              %td= link_to 'Modificar', "/sociedads/#{sociedad.id}/edit",data: { modal: true }
+              %td= link_to 'Eliminar', sociedad, :method => :delete, :data => { :confirm => 'Estas Seguro?' }
 
-%br
+      %br
 
-= link_to 'New Sociedad', new_sociedad_path
+      = link_to '<< Volver', "/dashboard/index", class: 'btn btn-success' 
+      = link_to 'Nueva Sociedad', "/sociedads/new" , data: { modal: true },class: 'btn btn-success' 

@@ -4,7 +4,8 @@ class VehiculosController < ApplicationController
   respond_to :html
 
   def index
-    @vehiculos = Vehiculo.all
+    @person = Person.find_by_email(current_user.email)
+    @vehiculos = @person.vehiculos
     respond_with(@vehiculos)
   end
 
@@ -14,21 +15,27 @@ class VehiculosController < ApplicationController
 
   def new
     @vehiculo = Vehiculo.new
-    respond_with(@vehiculo)
+    respond_modal_with(@vehiculo)
   end
 
   def edit
+    respond_modal_with(@vehiculo)
   end
 
   def create
+    @person = Person.find_by_email(current_user.email)
     @vehiculo = Vehiculo.new(vehiculo_params)
+    @vehiculo.person_id = @person.id
     @vehiculo.save
-    respond_with(@vehiculo)
+    @vehiculos = @person.vehiculos
+    render "index"
   end
 
   def update
     @vehiculo.update(vehiculo_params)
-    respond_with(@vehiculo)
+    @person = Person.find_by_email(current_user.email)
+    @vehiculos = @person.vehiculos
+    render "index"
   end
 
   def destroy

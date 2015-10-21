@@ -1,10 +1,22 @@
-= simple_form_for(@document) do |f|
-  = f.error_notification
+.container-fluid
+  .row-fluid
+    %h3 Agregar Documento
+    %br
+    = simple_form_for(@document) do |f|
+      = f.error_notification
 
-  .form-inputs
-    = f.input :name
-    = f.input :file
-    = f.association :person
+      .form-inputs
+        = f.input :name, placeholder: "Nombre Archivo", label: false
+        %br
+        .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+          .form-control{"data-trigger" => "fileinput"}
+            %i.glyphicon.glyphicon-file.fileinput-exists
+            %span.fileinput-filename
+          %span.input-group-addon.btn.btn-default.btn-file
+            %span.fileinput-new Archivo Adjunto
+            %span.fileinput-exists Cambiar
+            =f.file_field :file
+          %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
 
-  .form-actions
-    = f.button :submit
+      .form-actions
+        = f.submit "Guardar Documento"

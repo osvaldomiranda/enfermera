@@ -1,0 +1,7 @@
+.row
+  .col-sm-12
+    = link_to '<', area_path(@area, month: @month.to_i-1 == 0 ? 1 : @month.to_i - 1, year: @year), class: "btn btn-default"
+    .btn-group{role: 'group', aria: {label: 'Month Picker'}}
+      - months.each_with_index do |month, index|
+        = link_to month, area_path(@area, month: index+1, year: @year), class: "btn #{index+1 == @month ? 'btn-primary' : 'btn-default'}"
+    = link_to '>', area_path(@area, month: @month.to_i+1 == 13 ? 12 : @month.to_i + 1, year: @year), class: 'btn btn-default'

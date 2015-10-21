@@ -1,0 +1,5 @@
+.row
+  .center
+    = link_to '<', area_path(@area, month: @month, year: @year.to_i-1), class: 'btn btn-default inline-block'
+    %h1.inline-block= @year
+    = link_to '>', area_path(@area, month: @month, year: @year.to_i+1), class: 'inline-block btn btn-default'

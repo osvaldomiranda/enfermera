@@ -18,6 +18,7 @@ class IngresosController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@ingreso)
   end
 
   def create
@@ -28,7 +29,8 @@ class IngresosController < ApplicationController
 
   def update
     @ingreso.update(ingreso_params)
-    respond_with(@ingreso)
+    @person = Person.find(@ingreso.person_id)
+    render "/dashboard/index"
   end
 
   def destroy

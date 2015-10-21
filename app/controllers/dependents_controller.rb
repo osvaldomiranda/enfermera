@@ -4,7 +4,7 @@ class DependentsController < ApplicationController
   respond_to :html
 
   def index
-    @dependents = Dependent.all
+    @dependents = Dependent.where(email: current_user.email)
     respond_with(@dependents)
   end
 
@@ -18,17 +18,18 @@ class DependentsController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@dependent)
   end
 
   def create
     @dependent = Dependent.new(dependent_params)
     @dependent.save
-    respond_with(@dependent)
   end
 
   def update
     @dependent.update(dependent_params)
-    respond_with(@dependent)
+    @person = Person.find(@dependent.person_id)
+    render "/dashboard/index"
   end
 
   def destroy

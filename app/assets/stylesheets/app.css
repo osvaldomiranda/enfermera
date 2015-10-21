@@ -1,0 +1,100 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+  background-color: #ccc;
+    /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+.navbar-inverse {
+    background-color: #2B3F50;
+    border-color: #2B3F50;
+}
+
+.navbar-brand {
+    padding: 10px 15px 0 15px;
+
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #2B3F50;
+  color: #fff;
+  padding: 18px 0;
+  text-align: center;
+}
+
+/*Color Paneles*/
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #2B3F50;
+    border-color: #2B3F50;
+}
+
+.panel-primary {
+    border-color: #2B3F50;
+}
+
+.panel-primary a {
+    color: #2B3F50;
+}
+
+.panel-default>.panel-heading {
+    color: #fff;
+    background-color: #00BDCD;
+    border-color: #00BDCD;
+}
+
+/*Color Botones*/
+.btn-success {
+    color: #fff;
+    background-color: #00BDCD !important;
+    border-color: #00BDCD !important;
+}
+
+/*Modal*/
+.modal-header {
+	color: #fff;
+    background-color: #00BDCD;
+}
+
+hr {
+    margin-top: 45px;
+    margin-bottom: 10px;
+    /* border: 0; */
+    border-top: 1px solid #eee;
+}
+
+.border-right {
+    border-right: 1px solid #f4f4f4;
+}
+
+.border-bottom {
+    border-right: 1px solid #f4f4f4;
+}
+
+.alert-info {
+    color: #fff;
+    background-color: #2B3F50;
+    border-color: #2B3F50;
+}
+
+.alert-info a {
+    color: #00BDCD;
+
+}

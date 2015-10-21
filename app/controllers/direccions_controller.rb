@@ -4,7 +4,8 @@ class DireccionsController < ApplicationController
   respond_to :html
 
   def index
-    @direccions = Direccion.all
+    @person = Person.find_by_email(current_user.email)
+    @direccions = @person.direccions
     respond_with(@direccions)
   end
 
@@ -14,21 +15,27 @@ class DireccionsController < ApplicationController
 
   def new
     @direccion = Direccion.new
-    respond_with(@direccion)
+    respond_modal_with(@direccion)
   end
 
   def edit
+    respond_modal_with(@direccion)
   end
 
   def create
+    @person = Person.find_by_email(current_user.email)
     @direccion = Direccion.new(direccion_params)
+    @direccion.person_id = @person.id
     @direccion.save
-    respond_with(@direccion)
+    @direccions = @person.direccions
+    render "index"
   end
 
   def update
     @direccion.update(direccion_params)
-    respond_with(@direccion)
+    @person = Person.find_by_email(current_user.email)
+    @direccions = @person.direccions
+    render "index"
   end
 
   def destroy

@@ -1,31 +1,31 @@
-%h1 Listing bienes_raices
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Bienes Raices
+    .panel-body
 
-%table
-  %thead
-    %tr
-      %th Tipo
-      %th Direccion
-      %th Valor comercial
-      %th Rol
-      %th Hipoteca banco
-      %th Person
-      %th
-      %th
-      %th
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Tipo
+            %th Direccion
+            %th Valor comercial
+            %th Rol
+            %th Hipoteca banco
+            %th
+            %th
 
-  %tbody
-    - @bienes_raices.each do |bienes_raice|
-      %tr
-        %td= bienes_raice.tipo
-        %td= bienes_raice.direccion
-        %td= bienes_raice.valor_comercial
-        %td= bienes_raice.rol
-        %td= bienes_raice.hipoteca_banco
-        %td= bienes_raice.person
-        %td= link_to 'Show', bienes_raice
-        %td= link_to 'Edit', edit_bienes_raice_path(bienes_raice)
-        %td= link_to 'Destroy', bienes_raice, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %tbody
+          - @bienes_raices.each do |bienes_raice|
+            %tr
+              %td= bienes_raice.tipo
+              %td= bienes_raice.direccion
+              %td= bienes_raice.valor_comercial
+              %td= bienes_raice.rol
+              %td= bienes_raice.hipoteca_banco
+              %td= link_to 'Modificar', "/bienes_raices/#{bienes_raice.id}/edit",data: { modal: true }
+              %td= link_to 'Eliminar', bienes_raice, :method => :delete, :data => { :confirm => 'Estas seguro?' }
 
-%br
-
-= link_to 'New Bienes raice', new_bienes_raice_path
+      %br
+      = link_to '<< Volver', "/dashboard/index", class: 'btn btn-success' 
+      = link_to 'Nuevo Bien raiz',"/bienes_raices/new" , data: { modal: true },class: 'btn btn-success' 

@@ -4,7 +4,8 @@ class BienesRaicesController < ApplicationController
   respond_to :html
 
   def index
-    @bienes_raices = BienesRaice.all
+    @person = Person.find_by_email(current_user.email)
+    @bienes_raices = @person.bienes_raices
     respond_with(@bienes_raices)
   end
 
@@ -14,21 +15,28 @@ class BienesRaicesController < ApplicationController
 
   def new
     @bienes_raice = BienesRaice.new
-    respond_with(@bienes_raice)
+    respond_modal_with(@bienes_raice)
   end
 
   def edit
+    respond_modal_with(@bienes_raice)
   end
 
   def create
+    @person = Person.find_by_email(current_user.email)
     @bienes_raice = BienesRaice.new(bienes_raice_params)
+    @bienes_raice.person_id = @person.id
     @bienes_raice.save
-    respond_with(@bienes_raice)
+
+    @bienes_raices = @person.bienes_raices
+    render "index"
   end
 
   def update
     @bienes_raice.update(bienes_raice_params)
-    respond_with(@bienes_raice)
+    @person = Person.find_by_email(current_user.email)
+    @bienes_raices = @person.bienes_raices
+    render "index"
   end
 
   def destroy

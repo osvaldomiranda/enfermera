@@ -1,35 +1,35 @@
-%h1 Listing vehiculos
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Bienes Raices
+    .panel-body
 
-%table
-  %thead
-    %tr
-      %th Tipo
-      %th Marca
-      %th Modelo
-      %th Agno
-      %th Patente
-      %th Valor comercia
-      %th Prenda afavor
-      %th Person
-      %th
-      %th
-      %th
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Tipo
+            %th Marca
+            %th Modelo
+            %th Agno
+            %th Patente
+            %th Valor comercia
+            %th Prenda afavor
+            %th
+            %th
 
-  %tbody
-    - @vehiculos.each do |vehiculo|
-      %tr
-        %td= vehiculo.tipo
-        %td= vehiculo.marca
-        %td= vehiculo.modelo
-        %td= vehiculo.agno
-        %td= vehiculo.patente
-        %td= vehiculo.valor_comercia
-        %td= vehiculo.prenda_afavor
-        %td= vehiculo.person
-        %td= link_to 'Show', vehiculo
-        %td= link_to 'Edit', edit_vehiculo_path(vehiculo)
-        %td= link_to 'Destroy', vehiculo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %tbody
+          - @vehiculos.each do |vehiculo|
+            %tr
+              %td= vehiculo.tipo
+              %td= vehiculo.marca
+              %td= vehiculo.modelo
+              %td= vehiculo.agno
+              %td= vehiculo.patente
+              %td= vehiculo.valor_comercia
+              %td= vehiculo.prenda_afavor
+              %td= link_to 'Modificar', "/vehiculos/#{vehiculo.id}/edit",data: { modal: true }
+              %td= link_to 'Eliminar', vehiculo, :method => :delete, :data => { :confirm => 'Está seguro?' }
 
-%br
-
-= link_to 'New Vehiculo', new_vehiculo_path
+      %br
+      = link_to '<< Volver', "/dashboard/index", class: 'btn btn-success' 
+      = link_to 'Nuevo Vehiculo',"/vehiculos/new" , data: { modal: true },class: 'btn btn-success' 

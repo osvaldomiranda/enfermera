@@ -14,10 +14,11 @@ class SpousesController < ApplicationController
 
   def new
     @spouse = Spouse.new
-    respond_with(@spouse)
+    respond_modal_with(@spouse)
   end
 
   def edit
+    respond_modal_with(@spouse)
   end
 
   def create
@@ -28,7 +29,8 @@ class SpousesController < ApplicationController
 
   def update
     @spouse.update(spouse_params)
-    respond_with(@spouse)
+    @person = Person.find(@spouse.person_id)
+    render "/dashboard/index"
   end
 
   def destroy

@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
   respond_to :html
 
   def index
+    @person = Person.where(email: current_user.email)
     @documents = Document.all
     respond_with(@documents)
   end
@@ -14,16 +15,20 @@ class DocumentsController < ApplicationController
 
   def new
     @document = Document.new
-    respond_with(@document)
+    respond_modal_with(@document)
   end
 
   def edit
   end
 
   def create
+    person = Person.find_by_email(current_user.email)
     @document = Document.new(document_params)
+    @document.person_id = person.id
     @document.save
-    respond_with(@document)
+
+    @documents = Document.all
+    render "index"
   end
 
   def update

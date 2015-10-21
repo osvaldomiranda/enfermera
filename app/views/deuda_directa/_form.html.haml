@@ -1,14 +1,49 @@
-= simple_form_for(@deuda_directum) do |f|
-  = f.error_notification
+.container-fluid
+  %h2 Deuda directa
+  .container-fluid
+    .row
+      .col-md-12
+        %form.form-horizontal{:role => "form"}
+        = simple_form_for(@deuda_directum, html: { class: 'form-horizontal' }) do |f|
+          .form-inputs
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Tipo
+              .col-sm-4
+                = f.input :tipo, label: false
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Institucion
+              .col-sm-4
+                = f.input :institucion, label: false
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Cupo aprobado
+              .col-sm-4
+                = f.input :cupo_aprobado, label: false
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Pago mensual
+              .col-sm-4
+                = f.input :pago_mensual, label: false
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Vencimineto
+              .col-sm-4
+                = f.input :vencimineto, label: false
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .pull-right
+                  %button.btn.btn-success{:type => "submit"} Guardar
 
-  .form-inputs
-    = f.input :tipo
-    = f.input :institucion
-    = f.input :cupo_aprobado
-    = f.input :deuda_vigente
-    = f.input :pago_mensual
-    = f.input :vencimineto
-    = f.association :person
 
-  .form-actions
-    = f.button :submit
+
+/ = simple_form_for(@deuda_directum) do |f|
+/   = f.error_notification
+
+/   .form-inputs
+/     = f.input :tipo
+/     = f.input :institucion
+/     = f.input :cupo_aprobado
+/     = f.input :deuda_vigente
+/     = f.input :pago_mensual
+/     = f.input :vencimineto
+/     = f.association :person
+
+/   .form-actions
+/     = f.button :submit
