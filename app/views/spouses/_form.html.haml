@@ -19,7 +19,7 @@
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
             .col-sm-4
-              = f.input :nationality, label: false
+              = f.input :nationality, label: false, collection: Spouse.country_options_for_select
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Profesión
             .col-sm-4

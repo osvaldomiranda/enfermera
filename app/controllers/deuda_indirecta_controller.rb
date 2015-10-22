@@ -28,9 +28,12 @@ class DeudaIndirectaController < ApplicationController
   end
 
   def update
-    @deuda_indirectum.update(deuda_indirectum_params)
     @person = Person.find(@deuda_indirectum.person_id)
-    render "/dashboard/index"
+    if @deuda_indirectum.update(deuda_indirectum_params)
+      render "/dashboard/index"
+    else
+      render "error"  
+    end
   end
 
   def destroy

@@ -28,9 +28,12 @@ class SpousesController < ApplicationController
   end
 
   def update
-    @spouse.update(spouse_params)
     @person = Person.find(@spouse.person_id)
-    render "/dashboard/index"
+    if @spouse.update(spouse_params)
+      render "/dashboard/index"
+    else
+      render "error"
+    end    
   end
 
   def destroy

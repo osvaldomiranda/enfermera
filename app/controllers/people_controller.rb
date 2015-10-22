@@ -33,8 +33,11 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person.update(person_params)
-    render "/dashboard/index"
+    if @person.update(person_params)
+      render "/dashboard/index"
+    else
+      render "error"
+    end
   end
 
   def destroy

@@ -1,6 +1,8 @@
 class Dependent < ActiveRecord::Base
   belongs_to :person
 
+  validates :rut_empleador, :rut_format => true
+
   TIPOCARGO = ['Plazo Fijo', 'Indefinido'] 
   
   def self.tipocargo_options_for_select

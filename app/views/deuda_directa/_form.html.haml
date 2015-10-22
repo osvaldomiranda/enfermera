@@ -9,7 +9,7 @@
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Tipo
               .col-sm-4
-                = f.input :tipo, label: false
+                = f.input :tipo, label: false, collection: DeudaDirectum.tipodeuda_options_for_select
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Institucion
               .col-sm-4

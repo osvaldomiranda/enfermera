@@ -5,6 +5,7 @@
       .col-md-12
         %form.form-horizontal{:role => "form"}
         = simple_form_for(@person, html: { class: 'form-horizontal' }) do |f|
+          = f.error_notification
           .form-inputs
             / Seleccionar Foto
             / .fileinput.fileinput-new{"data-provides" => "fileinput"}
@@ -35,7 +36,7 @@
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Estado Civíl
               .col-sm-4
-                = f.input :marital_status, label: false
+                = f.input :marital_status, label: false, collection: Person.maritalstatus_options_for_select
               %label.col-sm-2.control-label{:for => "textinput"} Separación de Bienes
               .col-sm-4
                 = f.input :matrimonial_regime, collection: Person.maritalregime_options_for_select, label: false

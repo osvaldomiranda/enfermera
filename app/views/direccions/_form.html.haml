@@ -3,24 +3,23 @@
   .container-fluid
     .row
       .col-md-12
-        %form.form-horizontal{:role => "form"}
         = simple_form_for(@direccion, html: { class: 'form-horizontal' }) do |f|
           .form-inputs
 
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Tipo
             .col-sm-4
-              = f.input :tipo, label: false
+              = f.input :tipo, label: false, collection: Direccion.tipodireccion_options_for_select
             %label.col-sm-2.control-label{:for => "textinput"} Calle num depto
             .col-sm-4
               = f.input :calle_num_depto, label: false
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Comuna
             .col-sm-4
-              = f.input :comuna, label: false
+              = f.input :comuna, label: false, collection: Direccion.comuna_options_for_select
             %label.col-sm-2.control-label{:for => "textinput"} Ciudad
             .col-sm-4
-              = f.input :ciudad, label: false
+              = f.input :ciudad, label: false, collection: Direccion.ciudad_options_for_select
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Telefono
             .col-sm-4
@@ -35,7 +34,7 @@
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Tipo vivienda
             .col-sm-4
-              = f.input :tipo_vivienda, label: false
+              = f.input :tipo_vivienda, label: false, collection: Direccion.tipovivienda_options_for_select
             %label.col-sm-2.control-label{:for => "textinput"} Dividendo arriendo
             .col-sm-4
               = f.input :dividendo_arriendo, label: false

@@ -32,10 +32,13 @@ class SociedadsController < ApplicationController
   end
 
   def update
-    @sociedad.update(sociedad_params)
     @person = Person.find_by_email(current_user.email)
     @sociedads = @person.sociedads
-    render "index"
+    if @sociedad.update(sociedad_params)
+      render "index"
+    else
+      render "error"
+    end  
   end
 
   def destroy

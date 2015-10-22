@@ -27,9 +27,12 @@ class DependentsController < ApplicationController
   end
 
   def update
-    @dependent.update(dependent_params)
     @person = Person.find(@dependent.person_id)
-    render "/dashboard/index"
+    if @dependent.update(dependent_params)
+      render "/dashboard/index"
+    else
+      render "error"
+    end    
   end
 
   def destroy
