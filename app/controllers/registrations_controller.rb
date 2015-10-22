@@ -12,8 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
     user.password_confirmation = params[:user][:password_confirmation]
     user.save
 
-    sign_in(user)
-
     person = Person.new
     person.email = params[:user][:email]
     person.save
@@ -37,6 +35,8 @@ class RegistrationsController < Devise::RegistrationsController
     deuda_indirectum = DeudaIndirectum.new
     deuda_indirectum.person_id = person.id
     deuda_indirectum.save
+
+    sign_in(user)
 
     render "home/index"
   end

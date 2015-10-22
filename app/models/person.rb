@@ -25,7 +25,6 @@ class Person < ActiveRecord::Base
 
 
   # validates :email, :first_name, :last_name, presence: true
-  validates :rut, presence: true, :uniqueness => {:scope => :rut}
   validates :rut, :rut_format => true
 
   def fullname
