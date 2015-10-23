@@ -1,65 +1,52 @@
 .container{:role => "main"}
-  .panel.panel-default
-    .panel-heading
-      %h3.panel-title DATOS BASICOS
-    .panel-body
-      .row
-        .col-md-2
-          %a.thumbnail{:href => "/people/picture/#{@person.id}", data: { modal: true } }
-            - if @person.picture.present?
-              %img.img-circle{:alt => "...", :src =>"#{@person.picture_url}"}
-            - else  
-              %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+  .col-md-12
 
-        .col-md-10
-          = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'  
-        .col-md-10      
-        .col-sm-2.col-xs-6.border-right
-          %h5.description-header  
-            = @person.fullname
-        / /.col
-        .col-sm-2.col-xs-6.border-right
-          %h5.description-header 
-            = @person.nationality
-        / /.col
-        .col-sm-2.col-xs-6.border-right
-          %h5.description-header 
-            = @person.economic_activity
-        / /.col
-        .col-sm-2.col-xs-6.border-right
-          %h5.description-header 
-            = @person.profession
-        / /.col
-        .col-sm-2.col-xs-6
-          %h5.description-header 
-            = @person.university
-        / /.col
-        %hr
-          .col-sm-2.col-xs-6.border-right
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title DATOS BASICOS
+      .panel-body
+        .row
+          .col-md-2
+            %a.thumbnail{:href => "#"}
+              - if @person.picture.present?
+                %img.img-circle{:alt => "...", :src =>"#{@person.picture_url}"}
+              - else  
+                %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.fullname
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.nationality
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.profession
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.economic_activity
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.university
+          .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               = @person.rut
-          / /.col
-          .col-sm-2.col-xs-6.border-right
+          .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               = @person.marital_status
-          / /.col
-          .col-sm-2.col-xs-6.border-right
-            %h5.description-header 
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header     
               - if @person.matrimonial_regime.present?
                 = @person.matrimonial_regime.gsub('_', ' ')
-          / /.col
-          .col-sm-2.col-xs-6.border-right
+          .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               - if @person.number_of_children.present?
                 = "#{@person.number_of_children} hijos"
-          / /.col
-          .col-sm-2.col-xs-6
+          .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               = @person.email
-          / /.col
-
-   
-
+          .col-sm-12.col-xs-12.editar.text-center
+            %hr
+              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'  
 .col-md-12
   .panel.panel-default
     .panel-heading
@@ -80,7 +67,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Situación Laboral
+                %strong SITUACIÓN LABORAL
                 |
                 %a{:href => "/dependents/#{@person.dependent.id}/edit", data: { modal: true }}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -89,7 +76,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Ingresos
+                %strong INGRESOS
                 |
                 %a{:href => "/ingresos/#{@person.ingreso.id}/edit", data: { modal: true }}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -98,7 +85,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Sociedades
+                %strong SOCIEDADES
                 |
                 %a{:href => "/sociedads"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -107,7 +94,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Direcciones
+                %strong DIRECCIONES
                 |
                 %a{:href => "/direccions"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -116,7 +103,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Bienes Raíces
+                %strong BIENES RAÍCES
                 |
                 %a{:href => "/bienes_raices"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -125,7 +112,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Vehículos
+                %strong VEHÍCULOS
                 |
                 %a{:href => "/vehiculos"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -134,7 +121,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Deuda Directa
+                %strong DEUDA DIRECTA
                 |
                 %a{:href => "/deuda_directa/#{@person.deuda_directum.id}/edit", data: { modal: true }}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -143,7 +130,7 @@
           .col-xs-12.col-lg-4
             .alert.alert-info{:role => "alert"}
               %p
-                %strong Deuda Indirecta
+                %strong DEUDA INDIRECTA
                 |
                 %a{:href => "/deuda_indirecta/#{@person.deuda_indirectum.id}/edit", data: { modal: true }}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
@@ -153,82 +140,6 @@
       = link_to 'Ver Resúmen', "/summary/index", class: "btn btn-warning"
       = link_to 'Agregar Documentos', "/documents", class: "btn btn-info"
 
-/ /container
 
-
-
-
-
-
-/ .container{:role => "main"}
-/   .jumbotron
-/     %h3 Datos Básicos
-/     %hr
-/       .col-lg-3
-/         %a.thumbnail{:href => "#"}
-/           %img{:alt => "...", :src => "http://placehold.it/140x140"}
-/       .row
-/         .col-lg-8
-/           %table.table.table-striped
-/             %thead
-/               %tr
-/             %tbody
-/               %tr
-/                 %td= @person.email
-/           %table.table.table-striped
-/             %thead
-/               %tr
-/             %tbody
-/               %tr
-/                 %td= @person.fullname
-/                 %td= @person.nationality
-/                 %td= @person.economic_activity
-/                 %td= @person.profession
-/                 %td= @person.university
-/           %table.table.table-striped
-/             %thead
-/               %tr
-/             %tbody
-/               %tr
-/                 %td= @person.rut
-/                 %td= @person.marital_status
-/                 %td= @person.matrimonial_regime
-/                 - if @person.number_of_children.present?
-/                   %td= "#{@person.number_of_children} hijos"
-/       .row          
-/         .col-lg-3
-/           = link_to 'Editar', "/people/#{@person.id}/edit", data: { modal: true } , class: "btn btn-primary"            
-/   .col-lg-12
-/     .panel.panel-default
-/       .panel-heading Estado Situación
-/       .panel-body
-/         .col-lg-8
-/           %table.table
-/             %tbody
-/               %tr
-/                 %td
-/                   = link_to 'Datos Cónyuge', "/spouses/new", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Situación Laboral', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Ingresos', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Sociedades', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Direcciones', "", data: { modal: true } , class: "btn btn-primary"
-/               %tr
-/                 %td
-/                   = link_to 'Bienes Raíces', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Vehículos', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Sociedades', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Deuda Indirecta', "", data: { modal: true } , class: "btn btn-primary"
-/                 %td
-/                   = link_to 'Deuda Directa', "", data: { modal: true } , class: "btn btn-primary"
-/       .panel-footer
-/         = link_to 'Ver Resúmen', "", data: { modal: true } , class: "btn btn-primary"
-/         = link_to 'Agregar Documentos', "/documents/new", data: { modal: true } , class: "btn btn-primary"
 
 

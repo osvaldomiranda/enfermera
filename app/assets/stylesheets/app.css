@@ -98,3 +98,31 @@ hr {
     color: #00BDCD;
 
 }
+
+.editar{
+  padding: 8px 0;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+    /* border: 0; */
+    border-top: 1px solid #eee;
+}
+
+.panel-body {
+    padding-top: 15px;
+    padding-bottom: 0;
+}
+
+.thumbnail {
+    margin-bottom: 0;
+}
+
+.borders {
+    border: 1px solid #f4f4f4;
+}
+
+.alto {
+    height: 37px;
+}

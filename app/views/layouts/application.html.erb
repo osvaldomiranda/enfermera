@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "alert alert-info" %>
-<% end %>
-
 <head>
   <title>Estado de Situación</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
