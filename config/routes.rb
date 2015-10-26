@@ -25,5 +25,9 @@ Hikerdata::Application.routes.draw do
   resources :dependents
   resources :independents
   resources :spouses
-  resources :people
+
+  resources :people do
+    collection { post :import }
+  end
+
 end

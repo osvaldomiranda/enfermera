@@ -64,6 +64,57 @@ class Person < ActiveRecord::Base
     COUNTRY.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end
 
+  def self.import(file)
+      CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+        rowHash = row.to_hash
+
+        person = Person.new
+        person.email = rowHash["email"]
+        person.first_name = rowHash["first_name"]
+        person.last_name = rowHash["last_name"]
+        person.rut = rowHash["rut"]
+        person.phone = rowHash["phone"]
+       
+        if person.save
+
+          user = User.new
+          user.email = rowHash["email"]
+          user.password = rowHash["password"]
+          user.password_confirmation = rowHash["password"]
+          user.save
+
+          spouse = Spouse.new
+          spouse.person_id = person.id
+          spouse.save
+
+          dependent = Dependent.new
+          dependent.person_id = person.id
+          dependent.save
+
+          ingreso = Ingreso.new
+          ingreso.person_id = person.id
+          ingreso.save
+
+          deuda_directum = DeudaDirectum.new
+          deuda_directum.person_id = person.id
+          deuda_directum.save
+
+          deuda_indirectum = DeudaIndirectum.new
+          deuda_indirectum.person_id = person.id
+          deuda_indirectum.save
+        else
+          puts "************************"  
+          puts "************************"  
+          puts   rowHash
+          puts "************************"  
+          puts "************************"  
+        end  
+      end  
+  end    
+
+
+
+
   def summary_to_pdf(email)
     @people  = Person.where(email: email)
     p = @people.first

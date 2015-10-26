@@ -46,6 +46,21 @@ class PeopleController < ApplicationController
   end
 
 
+  def import
+    @people = Person.all
+    @msg = Person.import(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Clientes Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end
+
+
   private
     def set_person
       @person = Person.find(params[:id])
