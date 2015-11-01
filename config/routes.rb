@@ -8,6 +8,7 @@ Hikerdata::Application.routes.draw do
   get "summary/csv_me/:id", to: 'summary#csv_me'
 
   get "/people/picture/:id", to: 'people#picture'
+  get "/people/terms/:id", to: 'people#terms'
   # devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
   devise_for :users, :controllers => {:registrations => "registrations"}
 

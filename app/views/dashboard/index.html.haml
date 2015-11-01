@@ -46,7 +46,11 @@
               = @person.email
           .col-sm-12.col-xs-12.editar.text-center
             %hr
-              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'  
+              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'
+              - if @person.terms.present?
+                = link_to 'Has aceptado nuestros Teminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-info' 
+              - else
+                = link_to 'Aceptar Teminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
 .col-md-12
   .panel.panel-default
     .panel-heading
@@ -123,7 +127,7 @@
               %p
                 %strong DEUDA DIRECTA
                 |
-                %a{:href => "/deuda_directa/#{@person.deuda_directum.id}/edit", data: { modal: true }}
+                %a{:href => "/deuda_directa"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
                   Editar Datos 
 
@@ -132,14 +136,13 @@
               %p
                 %strong DEUDA INDIRECTA
                 |
-                %a{:href => "/deuda_indirecta/#{@person.deuda_indirectum.id}/edit", data: { modal: true }}
+                %a{:href => "/deuda_indirecta"}
                   %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
                   Editar Datos 
 
     .panel-footer
       = link_to 'Ver Resúmen', "/summary/index", class: "btn btn-warning"
       = link_to 'Agregar Documentos', "/documents", class: "btn btn-info"
-
 
 
 
