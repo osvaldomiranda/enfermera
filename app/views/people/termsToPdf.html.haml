@@ -162,30 +162,4 @@
       %p
         - if @person.terms.present?
           = "Este mandato ha sido firmado electrónicamente por #{@person.fullname} , cédula de identidad #{@person.rut}, el día #{ @person.dia(@person.fechaterms.wday)} #{@person.fechaterms.day} de #{@person.mes(@person.fechaterms.month)} de #{@person.fechaterms.year}."
-        -else
-          = "Este mandato ha sido firmado electrónicamente por #{@person.fullname} , cédula de identidad #{@person.rut}, el día #{ @person.dia(Time.now.wday)} #{Time.now.day} de #{@person.mes(Time.now.month)} de #{Time.now.year}."
-      %br
-      %br  
-- if !@person.terms.present?
-  .container-fluid
-    .container-fluid
-      .row
-        .col-md-12
-          = simple_form_for(@person, html: { class: 'form-horizontal' }) do |f|
-            = f.error_notification
-            .form-inputs
-              .form-group
-                = f.input :terms, :as => :hidden, :input_html => { :value => "OK" } 
-                = f.input :fechaterms, :as => :hidden, :input_html => { :value => Time.now }   
-              .form-group
-                .col-sm-offset-2.col-sm-10
-                  .pull-right
-                    %button.btn.btn-success{:type => "submit"} Acepto Términos y Conciciones
-- else
-  .container-fluid
-    .container-fluid
-      .row
-        = link_to 'Ver Condiciones', "/people/termstopdf/#{@person.id}", class: 'btn btn-success'
-        %br
-        %br
 

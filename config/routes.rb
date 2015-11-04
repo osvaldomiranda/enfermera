@@ -9,6 +9,7 @@ Hikerdata::Application.routes.draw do
 
   get "/people/picture/:id", to: 'people#picture'
   get "/people/terms/:id", to: 'people#terms'
+  get "/people/termstopdf/:id", to: 'people#termsToPdf'
   # devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
   devise_for :users, :controllers => {:registrations => "registrations"}
 

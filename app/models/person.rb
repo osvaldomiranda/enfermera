@@ -1017,8 +1017,14 @@ class Person < ActiveRecord::Base
     end
   end
 
+  DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 
+  def dia(numdia)
+    dia = DIA[numdia-1]
+  end
 
-
-
+  MES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+  def mes(nummes)
+    mes = MES[nummes-1]
+  end
 
 end

@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :picture, :terms]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :picture, :terms, :termsToPdf]
 
   respond_to :html
 
@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    if !person_params[:rut].present?
+    if !@person.rut.present?
       if person_params[:terms].present?
         render "error_terms" 
       else   
@@ -61,6 +61,11 @@ class PeopleController < ApplicationController
     respond_modal_with(@person)
   end
 
+  def termsToPdf
+
+    render pdf: "terms", formats: :html, encoding: 'utf8'   # Excluding ".pdf" extension.
+  end
+
 
   def import
     @people = Person.all
@@ -83,6 +88,6 @@ class PeopleController < ApplicationController
     end
 
     def person_params
-      params.require(:person).permit(:email, :rut, :first_name, :last_name, :gender, :nationality, :economic_activity, :education, :origin_country, :resident_country, :profession, :dependents, :university, :number_of_children, :marital_status, :matrimonial_regime, :date_birth, :picture, :terms)
+      params.require(:person).permit(:email, :rut, :first_name, :last_name, :gender, :nationality, :economic_activity, :education, :origin_country, :resident_country, :profession, :dependents, :university, :number_of_children, :marital_status, :matrimonial_regime, :date_birth, :picture, :terms, :fechaterms)
     end
 end

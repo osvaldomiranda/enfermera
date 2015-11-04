@@ -48,9 +48,9 @@
             %hr
               = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'
               - if @person.terms.present?
-                = link_to 'Has aceptado nuestros Teminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-info' 
+                = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
               - else
-                = link_to 'Aceptar Teminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
+                = link_to 'Aceptar Téminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
 .col-md-12
   .panel.panel-default
     .panel-heading
