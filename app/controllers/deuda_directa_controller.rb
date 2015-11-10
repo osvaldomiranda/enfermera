@@ -14,7 +14,7 @@ class DeudaDirectaController < ApplicationController
 
   def new
     @deuda_directum = DeudaDirectum.new
-    respond_with(@deuda_directum)
+    respond_modal_with(@deuda_directum)
   end
 
   def edit

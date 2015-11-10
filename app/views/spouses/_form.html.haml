@@ -20,11 +20,29 @@
             %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
             .col-sm-4
               = f.input :nationality, label: false, collection: Spouse.country_options_for_select
-          .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Profesión
             .col-sm-4
               = f.input :profession, label: false
           .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Empresa
+            .col-sm-4
+              = f.input :economic_activity, label: false
+            %label.col-sm-2.control-label{:for => "textinput"} Renta Mensual
+            .col-sm-4
+              = f.input :renta, label: false
+            %label.col-sm-2.control-label{:for => "textinput"} Fecha Ingreso
+            .col-sm-4
+              = f.input :fechaingreso, label: false              
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Dirección
+            .col-sm-4
+              = f.input :adress, label: false 
+            %label.col-sm-2.control-label{:for => "textinput"} Teléfono
+            .col-sm-4
+              = f.input :phone, label: false               
+          .form-group
             .col-sm-offset-2.col-sm-10
               .pull-right
                 %button.btn.btn-success{:type => "submit"} Guardar
+
+

@@ -14,20 +14,12 @@
               .col-sm-4
                 = f.input :sueldo_variable_mes, label: false
             .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Arriendo
+              %label.col-sm-2.control-label{:for => "textinput"} Arriendos
               .col-sm-4
-                = f.input :arriendo, label: false
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Ventas Anuales
+                = f.input :arriendo, label: false  
+              %label.col-sm-2.control-label{:for => "textinput"} Otros Ingresos
               .col-sm-4
-                = f.input :vtas_anuales, label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Horarios Mes
-              .col-sm-4
-                = f.input :honorarios_mes, label: false   
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Declaración de Renta
-              .col-sm-4
-                = f.input :declaracion_renta, label: false 
+                = f.input :otros, label: false 
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Cuenta Corriente
               .col-sm-4

@@ -1,33 +1,33 @@
-%h1 Listing deuda_directa
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Deuda Directa
+    .panel-body
 
-%table
-  %thead
-    %tr
-      %th Tipo
-      %th Institucion
-      %th Cupo aprobado
-      %th Deuda vigente
-      %th Pago mensual
-      %th Vencimineto
-      %th Person
-      %th
-      %th
-      %th
+      %table.table.table-striped
 
-  %tbody
-    - @deuda_directa.each do |deuda_directum|
-      %tr
-        %td= deuda_directum.tipo
-        %td= deuda_directum.institucion
-        %td= deuda_directum.cupo_aprobado
-        %td= deuda_directum.deuda_vigente
-        %td= deuda_directum.pago_mensual
-        %td= deuda_directum.vencimineto
-        %td= deuda_directum.person
-        %td= link_to 'Show', deuda_directum
-        %td= link_to 'Edit', edit_deuda_directum_path(deuda_directum)
-        %td= link_to 'Destroy', deuda_directum, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %thead
+          %tr
+            %th Tipo
+            %th Institucion
+            %th Cupo aprobado
+            %th Deuda vigente
+            %th Pago mensual
+            %th Vencimineto
+            %th
+        %tbody
+          - @deuda_directa.each do |deuda_directum|
+            %tr
+              %td= deuda_directum.tipo
+              %td= deuda_directum.institucion
+              %td= deuda_directum.cupo_aprobado
+              %td= deuda_directum.deuda_vigente
+              %td= deuda_directum.pago_mensual
+              %td= deuda_directum.vencimineto
+              %td= link_to 'Eliminar', deuda_directum, :method => :delete, :data => { :confirm => 'Estas seguro?' }
 
-%br
-
-= link_to 'New Deuda directum', new_deuda_directum_path
+      %br
+      = link_to '<< Volver', "/dashboard/index", class: 'btn btn-success' 
+      = link_to 'Nueva Deuda Directa', "/deuda_directa/new", data: { modal: true },  class: 'btn btn-success'
+      %br
+      %br

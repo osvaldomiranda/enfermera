@@ -33,22 +33,27 @@ class PeopleController < ApplicationController
   end
 
   def update
-    if !@person.rut.present?
-      if person_params[:terms].present?
-        render "error_terms" 
-      else   
-        render "error"
-      end  
-    else  
-      if @person.update(person_params)
-        render "/dashboard/index"
-      else
+    if !person_params[:picture].present?
+      if !person_params[:rut].present?
         if person_params[:terms].present?
           render "error_terms" 
         else   
           render "error"
-        end  
-      end
+        end 
+      else  
+        if @person.update(person_params)
+          render "/dashboard/index"
+        else
+          if person_params[:terms].present?
+            render "error_terms" 
+          else   
+            render "error"
+          end  
+        end
+      end  
+    else
+      @person.update(person_params)
+      render "/dashboard/index"
     end  
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104134218) do
+ActiveRecord::Schema.define(version: 20151109144537) do
 
   create_table "bienes_raices", force: true do |t|
     t.string   "tipo"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20151104134218) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "otros"
   end
 
   add_index "ingresos", ["person_id"], name: "index_ingresos_on_person_id"
@@ -167,6 +168,8 @@ ActiveRecord::Schema.define(version: 20151104134218) do
     t.string   "phone"
     t.string   "terms"
     t.date     "fechaterms"
+    t.string   "completeeduc"
+    t.string   "employmentsituation"
   end
 
   create_table "sociedads", force: true do |t|
@@ -200,6 +203,10 @@ ActiveRecord::Schema.define(version: 20151104134218) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "adress"
+    t.string   "phone"
+    t.integer  "renta"
+    t.date     "fechaingreso"
   end
 
   add_index "spouses", ["person_id"], name: "index_spouses_on_person_id"

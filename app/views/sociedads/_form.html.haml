@@ -6,9 +6,9 @@
         = simple_form_for(@sociedad, html: { class: 'form-horizontal' }) do |f|
           .form-inputs
             .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Tipo
+              %label.col-sm-2.control-label{:for => "textinput"} Nombre
               .col-sm-4
-                = f.input :tipo, label: false
+                = f.input :nombre, label: false
               %label.col-sm-2.control-label{:for => "textinput"} RUT
               .col-sm-4
                 = f.input :rut, placeholder: "99999999-9", label: false                
@@ -16,29 +16,9 @@
               %label.col-sm-2.control-label{:for => "textinput"} Porcentaje
               .col-sm-4
                 = f.input :porcentaje, label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Capital
-              .col-sm-4
-                = f.input :capital, label: false
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Nombre
-              .col-sm-4
-                = f.input :nombre, label: false
             .form-group
               .col-sm-offset-2.col-sm-10
                 .pull-right
                   %button.btn.btn-success{:type => "submit"} Guardar
                                                               
 
-/ = simple_form_for(@sociedad) do |f|
-/   = f.error_notification
-
-/   .form-inputs
-/     = f.input :tipo
-/     = f.input :porcentaje
-/     = f.input :capital
-/     = f.input :nombre
-/     = f.input :rut
-/     = f.association :person
-
-/   .form-actions
-/     = f.button :submit

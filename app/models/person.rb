@@ -32,11 +32,12 @@ class Person < ActiveRecord::Base
   end
 
   GENDERS      = ['Masculino', 'Femenino']
-  EDUCATION    = ['Basica','Media','Tecnica', 'Universitaria']
+  EDUCATION    = ['Primaria','Secundaria','Tecnica', 'Universitaria']
+  COMPLETEDUC  = ['Completos', 'Incompletos']
   MARITALSTATUS= ['Soltero','Casado','Separado','Divorciado','Viudo']
   MRITALREGIME = ['Con Separacion de Bienes', 'Sin Separacion de Bienes','Con Participacion en los Ganaciales'] 
   COUNTRY      = ['Chilena'] 
-
+  EMPLOYMENT   = ['Dependiente', 'Independiente', 'Jubilado']
 
   
   def self.gender_options_for_select
@@ -47,6 +48,11 @@ class Person < ActiveRecord::Base
   def self.education_options_for_select
     #EDUCATION.to_enum.with_index(0).to_a
     EDUCATION.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end
+
+  def self.completeduc_options_for_select
+    #EDUCATION.to_enum.with_index(0).to_a
+    COMPLETEDUC.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end
 
   def self.maritalstatus_options_for_select
@@ -62,6 +68,11 @@ class Person < ActiveRecord::Base
   def self.country_options_for_select
     #MRITALREGIME.to_enum.with_index(0).to_a
     COUNTRY.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end
+
+  def self.employment_options_for_select
+    #MRITALREGIME.to_enum.with_index(0).to_a
+    EMPLOYMENT.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end
 
   def self.import(file)
