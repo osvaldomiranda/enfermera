@@ -1,2 +1,0 @@
-module BienesRaicesHelper
-end

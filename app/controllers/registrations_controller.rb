@@ -16,26 +16,6 @@ class RegistrationsController < Devise::RegistrationsController
     person.email = params[:user][:email]
     person.save
 
-    spouse = Spouse.new
-    spouse.person_id = person.id
-    spouse.save
-
-    dependent = Dependent.new
-    dependent.person_id = person.id
-    dependent.save
-
-    ingreso = Ingreso.new
-    ingreso.person_id = person.id
-    ingreso.save
-
-    deuda_directum = DeudaDirectum.new
-    deuda_directum.person_id = person.id
-    deuda_directum.save
-
-    deuda_indirectum = DeudaIndirectum.new
-    deuda_indirectum.person_id = person.id
-    deuda_indirectum.save
-
     sign_in(user)
 
     render "home/index"

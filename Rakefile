@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Hikerdata::Application.load_tasks
+Enfermera::Application.load_tasks

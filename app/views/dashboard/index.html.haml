@@ -51,98 +51,10 @@
                 = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
               - else
                 = link_to 'Aceptar Téminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
-.col-md-12
-  .panel.panel-default
-    .panel-heading
-      %h3.panel-title ESTADO SITUACION
-    .panel-body
-      .col-xs-12
-        .row
 
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong DATOS CÓNYUGE
-                |
-                %a{:href => "/spouses/#{@person.spouse.id}/edit", data: { modal: true }}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-                    
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong SITUACIÓN LABORAL
-                |
-                %a{:href => "/dependents/#{@person.dependent.id}/edit", data: { modal: true }}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong INGRESOS
-                |
-                %a{:href => "/ingresos/#{@person.ingreso.id}/edit", data: { modal: true }}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong SOCIEDADES
-                |
-                %a{:href => "/sociedads"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong DIRECCIONES
-                |
-                %a{:href => "/direccions"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong BIENES RAÍCES
-                |
-                %a{:href => "/bienes_raices"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong VEHÍCULOS
-                |
-                %a{:href => "/vehiculos"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos
- 
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong DEUDA DIRECTA
-                |
-                %a{:href => "/deuda_directa"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos 
-
-          .col-xs-12.col-lg-4
-            .alert.alert-info{:role => "alert"}
-              %p
-                %strong DEUDA INDIRECTA
-                |
-                %a{:href => "/deuda_indirecta"}
-                  %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-                  Editar Datos 
 
     .panel-footer
-      = link_to 'Ver Resúmen', "/summary/index", class: "btn btn-warning"
-      = link_to 'Agregar Documentos', "/documents", class: "btn btn-info"
+
 
 
 

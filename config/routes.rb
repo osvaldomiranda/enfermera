@@ -1,4 +1,4 @@
-Hikerdata::Application.routes.draw do
+Enfermera::Application.routes.draw do
   get "summary/index"
   root to: "home#index"
   get "home/index"
@@ -14,19 +14,7 @@ Hikerdata::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
 
-  resources :documents
-  resources :direccions
-  resources :vehiculos
-  resources :bienes_raices
-  resources :ingresos
-  resources :deuda_indirecta
-  resources :deuda_directa
-  resources :sociedads
-  resources :jubilados
-  resources :universitarios
-  resources :dependents
-  resources :independents
-  resources :spouses
+
 
   resources :people do
     collection { post :import }
