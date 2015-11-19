@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109144537) do
+ActiveRecord::Schema.define(version: 20151118195259) do
 
   create_table "bienes_raices", force: true do |t|
     t.string   "tipo"
@@ -147,21 +147,6 @@ ActiveRecord::Schema.define(version: 20151109144537) do
   create_table "people", force: true do |t|
     t.string   "email"
     t.string   "rut"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.string   "nationality"
-    t.string   "economic_activity"
-    t.string   "education"
-    t.string   "origin_country"
-    t.string   "resident_country"
-    t.string   "profession"
-    t.integer  "dependents"
-    t.string   "university"
-    t.integer  "number_of_children"
-    t.string   "marital_status"
-    t.string   "matrimonial_regime"
-    t.string   "date_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "picture"
@@ -169,8 +154,47 @@ ActiveRecord::Schema.define(version: 20151109144537) do
     t.string   "terms"
     t.date     "fechaterms"
     t.string   "completeeduc"
-    t.string   "employmentsituation"
+    t.string   "nombres"
+    t.integer  "nro_registro"
+    t.string   "apellido_paterno"
+    t.string   "apellido_materno"
+    t.string   "sexo"
+    t.string   "nacionalidad"
+    t.date     "fecha_inscripcion"
+    t.string   "direccion"
+    t.string   "ciudad"
+    t.string   "universidad"
+    t.date     "fecha_titulo"
+    t.string   "lugar_trabajo"
+    t.string   "tipo_contrato"
+    t.integer  "workplase_id"
   end
+
+  add_index "people", ["workplase_id"], name: "index_people_on_workplase_id"
+
+  create_table "persondocuments", force: true do |t|
+    t.string   "nombre"
+    t.string   "tipo"
+    t.string   "documento"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "persondocuments", ["person_id"], name: "index_persondocuments_on_person_id"
+
+  create_table "previousjobs", force: true do |t|
+    t.string   "establecimiento"
+    t.string   "ciudad"
+    t.string   "region"
+    t.date     "desde"
+    t.date     "hasta"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "previousjobs", ["person_id"], name: "index_previousjobs_on_person_id"
 
   create_table "sociedads", force: true do |t|
     t.string   "tipo"
@@ -258,5 +282,24 @@ ActiveRecord::Schema.define(version: 20151109144537) do
   end
 
   add_index "vehiculos", ["person_id"], name: "index_vehiculos_on_person_id"
+
+  create_table "workplaces", force: true do |t|
+    t.string   "nombre"
+    t.string   "ciudad"
+    t.string   "region"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wpdocuments", force: true do |t|
+    t.string   "nombre"
+    t.string   "tipo"
+    t.string   "documento"
+    t.integer  "workplace_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wpdocuments", ["workplace_id"], name: "index_wpdocuments_on_workplace_id"
 
 end

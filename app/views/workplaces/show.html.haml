@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @workplace.nombre
+%p
+  %b Ciudad:
+  = @workplace.ciudad
+%p
+  %b Region:
+  = @workplace.region
+
+= link_to 'Edit', edit_workplace_path(@workplace)
+\|
+= link_to 'Back', workplaces_path

@@ -1,0 +1,27 @@
+%h1 Listing persondocuments
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Tipo
+      %th Documento
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @persondocuments.each do |persondocument|
+      %tr
+        %td= persondocument.nombre
+        %td= persondocument.tipo
+        %td= persondocument.documento
+        %td= persondocument.person
+        %td= link_to 'Show', persondocument
+        %td= link_to 'Edit', edit_persondocument_path(persondocument)
+        %td= link_to 'Destroy', persondocument, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Persondocument', new_persondocument_path

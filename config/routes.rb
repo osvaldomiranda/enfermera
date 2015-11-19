@@ -1,4 +1,12 @@
 Enfermera::Application.routes.draw do
+  resources :wpdocuments
+
+  resources :persondocuments
+
+  resources :workplaces
+
+  resources :previousjobs
+
   get "summary/index"
   root to: "home#index"
   get "home/index"

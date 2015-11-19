@@ -1,0 +1,11 @@
+= simple_form_for(@persondocument) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :tipo
+    = f.input :documento
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

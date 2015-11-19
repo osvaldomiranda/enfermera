@@ -17,30 +17,25 @@
               = @person.fullname
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
-              = @person.nationality
+              = @person.nro_registro
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
-              = @person.profession
+              = @person.sexo
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
-              = @person.economic_activity
+              = @person.nacionalidad
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
-              = @person.university
+              = @person.universidad
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               = @person.rut
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
-              = @person.marital_status
+              = @person.direccion
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header     
-              - if @person.matrimonial_regime.present?
-                = @person.matrimonial_regime.gsub('_', ' ')
-          .col-sm-3.col-xs-12.borders.alto
-            %h5.description-header 
-              - if @person.number_of_children.present?
-                = "#{@person.number_of_children} hijos"
+              = @person.ciudad
           .col-sm-3.col-xs-12.borders.alto
             %h5.description-header 
               = @person.email

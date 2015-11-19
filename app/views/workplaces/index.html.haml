@@ -1,0 +1,25 @@
+%h1 Listing workplaces
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Ciudad
+      %th Region
+      %th
+      %th
+      %th
+
+  %tbody
+    - @workplaces.each do |workplace|
+      %tr
+        %td= workplace.nombre
+        %td= workplace.ciudad
+        %td= workplace.region
+        %td= link_to 'Show', workplace
+        %td= link_to 'Edit', edit_workplace_path(workplace)
+        %td= link_to 'Destroy', workplace, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Workplace', new_workplace_path

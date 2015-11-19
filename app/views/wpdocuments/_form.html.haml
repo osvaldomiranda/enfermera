@@ -1,0 +1,11 @@
+= simple_form_for(@wpdocument) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :tipo
+    = f.input :documento
+    = f.association :workplace
+
+  .form-actions
+    = f.button :submit

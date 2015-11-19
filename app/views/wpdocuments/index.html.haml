@@ -1,0 +1,27 @@
+%h1 Listing wpdocuments
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Tipo
+      %th Documento
+      %th Workplace
+      %th
+      %th
+      %th
+
+  %tbody
+    - @wpdocuments.each do |wpdocument|
+      %tr
+        %td= wpdocument.nombre
+        %td= wpdocument.tipo
+        %td= wpdocument.documento
+        %td= wpdocument.workplace
+        %td= link_to 'Show', wpdocument
+        %td= link_to 'Edit', edit_wpdocument_path(wpdocument)
+        %td= link_to 'Destroy', wpdocument, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Wpdocument', new_wpdocument_path

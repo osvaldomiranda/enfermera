@@ -1,0 +1,31 @@
+%h1 Listing previousjobs
+
+%table
+  %thead
+    %tr
+      %th Establecimiento
+      %th Ciudad
+      %th Region
+      %th Desde
+      %th Hasta
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @previousjobs.each do |previousjob|
+      %tr
+        %td= previousjob.establecimiento
+        %td= previousjob.ciudad
+        %td= previousjob.region
+        %td= previousjob.desde
+        %td= previousjob.hasta
+        %td= previousjob.person
+        %td= link_to 'Show', previousjob
+        %td= link_to 'Edit', edit_previousjob_path(previousjob)
+        %td= link_to 'Destroy', previousjob, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Previousjob', new_previousjob_path

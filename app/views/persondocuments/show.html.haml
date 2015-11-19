@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @persondocument.nombre
+%p
+  %b Tipo:
+  = @persondocument.tipo
+%p
+  %b Documento:
+  = @persondocument.documento
+%p
+  %b Person:
+  = @persondocument.person
+
+= link_to 'Edit', edit_persondocument_path(@persondocument)
+\|
+= link_to 'Back', persondocuments_path

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Establecimiento:
+  = @previousjob.establecimiento
+%p
+  %b Ciudad:
+  = @previousjob.ciudad
+%p
+  %b Region:
+  = @previousjob.region
+%p
+  %b Desde:
+  = @previousjob.desde
+%p
+  %b Hasta:
+  = @previousjob.hasta
+%p
+  %b Person:
+  = @previousjob.person
+
+= link_to 'Edit', edit_previousjob_path(@previousjob)
+\|
+= link_to 'Back', previousjobs_path

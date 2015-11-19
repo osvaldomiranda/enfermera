@@ -1,0 +1,10 @@
+= simple_form_for(@workplace) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :ciudad
+    = f.input :region
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,13 @@
+= simple_form_for(@previousjob) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :establecimiento
+    = f.input :ciudad
+    = f.input :region
+    = f.input :desde
+    = f.input :hasta
+    = f.association :person
+
+  .form-actions
+    = f.button :submit
