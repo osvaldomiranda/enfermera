@@ -7,6 +7,8 @@ gem 'rails', '4.0.1'
 gem 'sass',  '~> 3.2.0'
 #gem 'sass',  '~> 3.3.0'
 
+gem 'bootstrap-sass'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 #gem 'sass-rails', '~> 5.0.0'

@@ -48,7 +48,8 @@
                 = f.input :universidad, label: false
               %label.col-sm-2.control-label{:for => "textinput"} Fecha de Titulación
               .col-sm-4
-                = f.input :fecha_titulo, label: false     
+                = f.input :fecha_titulo, as: :bootstrap_datepicker, input_html: { format: :long }
+                / = f.input :fecha_titulo, label: false     
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato 
               .col-sm-4
