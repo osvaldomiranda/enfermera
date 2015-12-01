@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Nro registro:
+  = @inscription.nro_registro
+%p
+  %b Rut:
+  = @inscription.rut
+%p
+  %b Nombres:
+  = @inscription.nombres
+%p
+  %b Apellido paterno:
+  = @inscription.apellido_paterno
+%p
+  %b Apellido materno:
+  = @inscription.apellido_materno
+%p
+  %b Sexo:
+  = @inscription.sexo
+%p
+  %b Nacionalidad:
+  = @inscription.nacionalidad
+%p
+  %b Fecha inscripcion:
+  = @inscription.fecha_inscripcion
+%p
+  %b Direccion:
+  = @inscription.direccion
+%p
+  %b Ciudad:
+  = @inscription.ciudad
+%p
+  %b Universidad:
+  = @inscription.universidad
+%p
+  %b Fecha titulo:
+  = @inscription.fecha_titulo
+%p
+  %b Tipo contrato:
+  = @inscription.tipo_contrato
+%p
+  %b Estado:
+  = @inscription.estado
+%p
+  %b Fecha solicitud:
+  = @inscription.fecha_solicitud
+
+= link_to 'Edit', edit_inscription_path(@inscription)
+\|
+= link_to 'Back', inscriptions_path

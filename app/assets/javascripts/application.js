@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require jasny-bootstrap
+//= require bootstrap-datepicker
 //= require_tree .
+
 
