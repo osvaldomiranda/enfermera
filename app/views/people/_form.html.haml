@@ -11,16 +11,19 @@
               %label.col-sm-2.control-label{:for => "textinput"} RUT
               .col-sm-4
                 = f.input :rut, placeholder: "99999999-9", label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Situación Laboral
+              %label.col-sm-2.control-label{:for => "textinput"} 
               .col-sm-4
                 = f.input :employmentsituation, label: false, collection: Person.employment_options_for_select
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Nombres
               .col-sm-4
-                = f.input :first_name, label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Apellidos
+                = f.input :nombres, label: false
+              %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
               .col-sm-4
-                = f.input :last_name, label: false
+                = f.input :apellido_materno, label: false
+              %label.col-sm-2.control-label{:for => "textinput"} Apellido Materno
+              .col-sm-4
+                = f.input :apellido_paterno, label: false
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
               .col-sm-4
