@@ -1,4 +1,6 @@
 Enfermera::Application.routes.draw do
+  resources :inscriptions
+
   resources :wpdocuments
 
   resources :persondocuments

@@ -1,0 +1,49 @@
+%h1 Listing inscriptions
+
+%table
+  %thead
+    %tr
+      %th Nro registro
+      %th Rut
+      %th Nombres
+      %th Apellido paterno
+      %th Apellido materno
+      %th Sexo
+      %th Nacionalidad
+      %th Fecha inscripcion
+      %th Direccion
+      %th Ciudad
+      %th Universidad
+      %th Fecha titulo
+      %th Tipo contrato
+      %th Estado
+      %th Fecha solicitud
+      %th
+      %th
+      %th
+
+  %tbody
+    - @inscriptions.each do |inscription|
+      %tr
+        %td= inscription.nro_registro
+        %td= inscription.rut
+        %td= inscription.nombres
+        %td= inscription.apellido_paterno
+        %td= inscription.apellido_materno
+        %td= inscription.sexo
+        %td= inscription.nacionalidad
+        %td= inscription.fecha_inscripcion
+        %td= inscription.direccion
+        %td= inscription.ciudad
+        %td= inscription.universidad
+        %td= inscription.fecha_titulo
+        %td= inscription.tipo_contrato
+        %td= inscription.estado
+        %td= inscription.fecha_solicitud
+        %td= link_to 'Show', inscription
+        %td= link_to 'Edit', edit_inscription_path(inscription)
+        %td= link_to 'Destroy', inscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Inscription', new_inscription_path
