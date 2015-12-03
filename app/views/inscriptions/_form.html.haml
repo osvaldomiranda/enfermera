@@ -1,5 +1,5 @@
 .container-fluid
-  %h2 Datos Básicos
+  %h2 Formulario de Inscripción
   .container-fluid
     .row
       .col-md-12
@@ -52,14 +52,16 @@
               = f.input :telefono, label: false
             %label.col-sm-2.control-label{:for => "textinput"} Celular
             .col-sm-4
-              = f.input :celular, label: false                             
+              = f.input :celular, label: false  
+          %h3 Información Académica                                           
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Universidad
             .col-sm-4
               = f.input :universidad, label: false
             %label.col-sm-2.control-label{:for => "textinput"} Fecha de Titulación
             .col-sm-4
-              = f.text_field :fecha_titulo, label: false, :class => 'datepicker'     
+              = f.text_field :fecha_titulo, label: false, :class => 'datepicker'   
+          %h3 Información Laboral      
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato 
             .col-sm-4

@@ -14,7 +14,7 @@ class PreviousjobsController < ApplicationController
 
   def new
     @previousjob = Previousjob.new
-    respond_with(@previousjob)
+    respond_modal_with @previousjob
   end
 
   def edit
