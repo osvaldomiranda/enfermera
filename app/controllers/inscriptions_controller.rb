@@ -23,7 +23,20 @@ class InscriptionsController < ApplicationController
   def create
     @inscription = Inscription.new(inscription_params)
     @inscription.save
-    respond_with(@inscription)
+    
+    user = User.new
+    user.email = params[:user][:email]
+    user.password = params[:user][:password]
+    user.password_confirmation = params[:user][:password_confirmation]
+    user.save
+
+    person = Person.new
+    person.email = params[:user][:email]
+    person.save
+
+    sign_in(user)
+
+    render "home/index"
   end
 
   def update
