@@ -11,54 +11,46 @@
               %label.col-sm-2.control-label{:for => "textinput"} RUT
               .col-sm-4
                 = f.input :rut, placeholder: "99999999-9", label: false
-              %label.col-sm-2.control-label{:for => "textinput"} 
-              .col-sm-4
-                = f.input :employmentsituation, label: false, collection: Person.employment_options_for_select
-            .form-group
+
               %label.col-sm-2.control-label{:for => "textinput"} Nombres
               .col-sm-4
-                = f.input :nombres, label: false
+                = f.input :nombres, label: false  
+            .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
               .col-sm-4
-                = f.input :apellido_materno, label: false
+                = f.input :apellido_paterno, label: false    
               %label.col-sm-2.control-label{:for => "textinput"} Apellido Materno
+              .col-sm-4  
+                = f.input :apellido_materno, label: false  
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} Email
               .col-sm-4
-                = f.input :apellido_paterno, label: false
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
-              .col-sm-4
-                = f.input :nationality, label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Sexo
-              .col-sm-4
-                = f.input :gender, label: false, collection: Person.gender_options_for_select
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Estado Civíl
-              .col-sm-4
-                = f.input :marital_status, label: false, collection: Person.maritalstatus_options_for_select
-              %label.col-sm-2.control-label{:for => "textinput"} Separación de Bienes
-              .col-sm-4
-                = f.input :matrimonial_regime, collection: Person.maritalregime_options_for_select, label: false
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Número de Hijos
-              .col-sm-4
-                = f.input :number_of_children, label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Teléfono
+                = f.input :email, label: false  
+              %label.col-sm-2.control-label{:for => "textinput"} Telefono
               .col-sm-4
                 = f.input :phone, label: false 
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Estudios
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} Sexo
               .col-sm-4
-                = f.input :education, label: false, collection: Person.education_options_for_select
-              %label.col-sm-2.control-label{:for => "textinput"} Estudios/Completos
+                = f.input :sexo, label: false , collection: Person.gender_options_for_select 
+              %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
+              .col-sm-4  
+                = f.input :nacionalidad, label: false, collection: Person.nacionalidad_options_for_select  
+            .form-group     
+              %label.col-sm-2.control-label{:for => "textinput"} Direccion
               .col-sm-4
-                = f.input :completeeduc, label: false, collection: Person.completeduc_options_for_select   
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Profesión
-              .col-sm-4
-                = f.input :profession, label: false
+                = f.input :direccion, label: false  
+            .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} Universidad
               .col-sm-4
-                = f.input :university, label: false
+                = f.input :universidad, label: false
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} Lugar Trabajo
+              .col-sm-4
+                = f.input :workplase_id, label: false
+              %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato
+              .col-sm-4
+                = f.input :tipo_contrato, label: false, collection: Person.tipocontrato_options_for_select 
             .form-group
               .col-sm-offset-2.col-sm-10
                 .pull-right

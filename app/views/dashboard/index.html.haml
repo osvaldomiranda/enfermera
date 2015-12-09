@@ -1,6 +1,5 @@
 .container{:role => "main"}
   .col-md-12
-
     .panel.panel-default
       .panel-heading
         %h3.panel-title DATOS BASICOS
@@ -42,14 +41,67 @@
           .col-sm-12.col-xs-12.editar.text-center
             %hr
               = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Credencial', "/credential/index", data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Documentos', "/persondocuments", class: 'btn btn-info'
+              = link_to 'Registrar Pago', "", class: 'btn btn-warning'
               - if @person.terms.present?
                 = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
               - else
                 = link_to 'Aceptar Téminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
 
-
     .panel-footer
-
-
-
-
+      %h3 Registro de pagos últimos 6 meses
+      .panel-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Intitución
+              %th Mes
+              %th Fecha Pago
+              %th Estado
+              %th Monto
+          %tbody
+            %tr
+              %td Hospital Militar Santiago
+              %td Julio 
+              %td 10/07/2015
+              %td PAGADO
+              %td $5.020.-
+            %tr
+              %td Hospital Militar Santiago
+              %td Agosto
+              %td 10/08/2015
+              %td PAGADO
+              %td $5.020.-
+            %tr
+              %td Hospital Militar Santiago
+              %td Septiembre
+              %td 10/09/2015
+              %td PAGADO
+              %td $5.020.-
+            %tr
+              %td Hospital Militar Santiago
+              %td Octubre
+              %td 10/10/2015
+              %td 
+                %font{:color => "red"}
+                  DESCONTADO
+              %td $5.020.-
+            %tr
+              %td Hospital Militar Santiago
+              %td Noviembre
+              %td 10/11/2015
+              %td
+                %font{:color => "red"} 
+                  DESCONTADO
+              %td $5.020.-
+            %tr
+              %td Hospital Militar Santiago
+              %td Diciembre
+              %td 05/12/2015
+              %td 
+                %font{:color => "red"}
+                  DESCONTADO
+              %td $5.020.-  
+  
+  

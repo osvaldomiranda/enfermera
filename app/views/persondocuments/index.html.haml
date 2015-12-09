@@ -1,27 +1,28 @@
-%h1 Listing persondocuments
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Documentos
+    .panel-body
 
-%table
-  %thead
-    %tr
-      %th Nombre
-      %th Tipo
-      %th Documento
-      %th Person
-      %th
-      %th
-      %th
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Nombre
+            %th Tipo
+            %th
+            %th
+            %th
+        %tbody
+          - @persondocuments.each do |persondocument|
+            %tr
+              %td= persondocument.nombre
+              %td= persondocument.tipo
 
-  %tbody
-    - @persondocuments.each do |persondocument|
-      %tr
-        %td= persondocument.nombre
-        %td= persondocument.tipo
-        %td= persondocument.documento
-        %td= persondocument.person
-        %td= link_to 'Show', persondocument
-        %td= link_to 'Edit', edit_persondocument_path(persondocument)
-        %td= link_to 'Destroy', persondocument, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %td= link_to 'Ver', persondocument.documento_url, class: "btn btn-primary" 
+              %td= link_to 'Descargar', "/persondocuments/send/#{persondocument.id}", class: "btn btn-primary"  
+              %td= link_to 'Eliminar', persondocument, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-warning'  
 
-%br
-
-= link_to 'New Persondocument', new_persondocument_path
+        %br
+      = link_to 'Nuevo Documento', new_persondocument_path, data: { modal: true }, class: 'btn btn-warning'  
+      %br
+      %br

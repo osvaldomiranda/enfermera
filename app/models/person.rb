@@ -22,12 +22,25 @@ class Person < ActiveRecord::Base
   end
 
   GENDERS      = ['Masculino', 'Femenino']
-  
-  
   def self.gender_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     GENDERS.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
+
+
+  NACIONALIDAD      = ['Clilena', 'Extranjero']
+  def self.nacionalidad_options_for_select
+    #GENDERS.to_enum.with_index(0).to_a
+    NACIONALIDAD.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end 
+
+  TIPOCONTRATO      = ['Planta', 'Palzo Fijo', 'Honorarios']
+  def self.tipocontrato_options_for_select
+    #GENDERS.to_enum.with_index(0).to_a
+    TIPOCONTRATO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end 
+
+
 
   
   def self.import(file)

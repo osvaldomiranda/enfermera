@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201022247) do
+ActiveRecord::Schema.define(version: 20151201024918) do
 
   create_table "bienes_raices", force: true do |t|
     t.string   "tipo"
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 20151201022247) do
     t.string   "telefono"
     t.string   "celular"
     t.string   "email"
+    t.string   "password"
+    t.string   "password_confirmation"
   end
 
   create_table "jubilados", force: true do |t|

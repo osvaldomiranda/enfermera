@@ -1,11 +1,52 @@
-= simple_form_for(@persondocument) do |f|
-  = f.error_notification
+.container-fluid
+  %h3 Nuevo Documento
+  .row
+    .col-md-12
+      = simple_form_for(@persondocument) do |f|
+        = f.error_notification
 
-  .form-inputs
-    = f.input :nombre
-    = f.input :tipo
-    = f.input :documento
-    = f.association :person
+        .form-inputs
+          = f.input :person, :as => :hidden, :input_html => { :value => current_user.id }
 
-  .form-actions
-    = f.button :submit
+          .form-group
+            %label.col-sm-2.control-label{:for => "textinput"} Nombre
+            .col-sm-4
+              = f.input :nombre, label: false
+
+          
+            %label.col-sm-2.control-label{:for => "textinput"} Tipo
+            .col-sm-4
+              = f.input :tipo, label: false, collection: Persondocument.tipo_options_for_select
+
+              
+        .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+          .form-control{"data-trigger" => "fileinput"}
+            %i.glyphicon.glyphicon-file.fileinput-exists
+            %span.fileinput-filename
+          %span.input-group-addon.btn.btn-default.btn-file
+            %span.fileinput-new Documento
+            %span.fileinput-exists Cambiar
+            =f.file_field :documento
+          %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
+      
+
+
+        .form-actions
+          = f.button :submit, "Guardar Documento" , class: 'btn btn-warning' 
+
+      %br
+      %br
+
+
+
+/ = simple_form_for(@persondocument) do |f|
+/   = f.error_notification
+
+/   .form-inputs
+/     = f.input :nombre
+/     = f.input :tipo
+/     = f.input :documento
+/     = f.association :person
+
+/   .form-actions
+/     = f.button :submit

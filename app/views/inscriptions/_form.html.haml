@@ -1,97 +1,76 @@
-.container-fluid
-  %h2 Formulario de Inscripción
-  .container-fluid
-    .row
-      .col-md-12
-        %form.form-horizontal{:role => "form"}
-        = simple_form_for(@inscription, html: { class: 'form-horizontal' }) do |f|
-          = f.error_notification
-          .form-inputs
-          %h3 Información de Registro
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Correo Electrónico
-            .col-sm-4
-              = f.input :email, label: false, required: true
-            %label.col-sm-2.control-label{:for => "textinput"} Contraseña
-            .col-sm-4
-              = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Confirmar Contraseña
-            .col-sm-4 
-              = f.input :password_confirmation, label: false, required: true  
-          %h3 Información Básica       
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} RUT
-            .col-sm-4
-              = f.input :rut, placeholder: "99999999-9", label: false
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Nombres
-            .col-sm-4
-              = f.input :nombres, label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
-            .col-sm-4
-              = f.input :apellido_paterno, label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
-            .col-sm-4 
-              = f.input :apellido_materno, label: false
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Sexo
-            .col-sm-4
-              = f.input :sexo, label: false, collection: Inscription.gender_options_for_select
-            %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
-            .col-sm-4
-              = f.input :nacionalidad, label: false           
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Direccion
-            .col-sm-4
-              = f.input :direccion, label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Cuidad
-            .col-sm-4
-              = f.input :ciudad, label: false               
-            %label.col-sm-2.control-label{:for => "textinput"} Telefono
-            .col-sm-4
-              = f.input :telefono, label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Celular
-            .col-sm-4
-              = f.input :celular, label: false  
-          %h3 Información Académica                                           
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Universidad
-            .col-sm-4
-              = f.input :universidad, label: false
-            %label.col-sm-2.control-label{:for => "textinput"} Fecha de Titulación
-            .col-sm-4
-              = f.text_field :fecha_titulo, label: false, :class => 'datepicker'   
-          %h3 Información Laboral      
-          .form-group
-            %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato 
-            .col-sm-4
-              = f.input :tipo_contrato, label: false              
-          .form-group
-            .col-sm-offset-2.col-sm-10
-              .pull-right
-                %button.btn.btn-success{:type => "submit"} Guardar
-
-
-
-/ = simple_form_for(@inscription) do |f|
-/   = f.error_notification
-
-/   .form-inputs
-/     = f.input :nro_registro
-/     = f.input :rut
-/     = f.input :nombres
-/     = f.input :apellido_paterno
-/     = f.input :apellido_materno
-/     = f.input :sexo
-/     = f.input :nacionalidad
-/     = f.input :fecha_inscripcion
-/     = f.input :direccion
-/     = f.input :ciudad
-/     = f.input :universidad
-/     = f.input :fecha_titulo
-/     = f.input :tipo_contrato
-/     = f.input :estado
-/     = f.input :fecha_solicitud
-
-/   .form-actions
-/     = f.button :submit
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Formulario de Inscripción
+    .panel-body
+      .container-fluid
+        .container-fluid
+          .row
+            .col-md-12
+              %form.form-horizontal{:role => "form"}
+              = simple_form_for(@inscription, html: { class: 'form-horizontal' }) do |f|
+                = f.error_notification
+                .form-inputs
+                %h3 Información de Registro
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Correo Electrónico
+                  .col-sm-4
+                    = f.input :email, label: false, required: true
+                  %label.col-sm-2.control-label{:for => "textinput"} Contraseña
+                  .col-sm-4
+                    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Confirmar Contraseña
+                  .col-sm-4 
+                    = f.input :password_confirmation, label: false, required: true  
+                %h3 Información Básica       
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} RUT
+                  .col-sm-4
+                    = f.input :rut, placeholder: "99999999-9", label: false
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Nombres
+                  .col-sm-4
+                    = f.input :nombres, label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
+                  .col-sm-4
+                    = f.input :apellido_paterno, label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
+                  .col-sm-4 
+                    = f.input :apellido_materno, label: false
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Sexo
+                  .col-sm-4
+                    = f.input :sexo, label: false, collection: Inscription.gender_options_for_select
+                  %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
+                  .col-sm-4
+                    = f.input :nacionalidad, label: false           
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Direccion
+                  .col-sm-4
+                    = f.input :direccion, label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Cuidad
+                  .col-sm-4
+                    = f.input :ciudad, label: false               
+                  %label.col-sm-2.control-label{:for => "textinput"} Telefono
+                  .col-sm-4
+                    = f.input :telefono, label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Celular
+                  .col-sm-4
+                    = f.input :celular, label: false  
+                %h3 Información Académica                                           
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Universidad
+                  .col-sm-4
+                    = f.input :universidad, label: false
+                  %label.col-sm-2.control-label{:for => "textinput"} Fecha de Titulación
+                  .col-sm-4
+                    = f.text_field :fecha_titulo, label: false, :class => 'datepicker'   
+                %h3 Información Laboral      
+                .form-group
+                  %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato 
+                  .col-sm-4
+                    = f.input :tipo_contrato, label: false              
+                .form-group
+                  .col-sm-offset-2.col-sm-10
+                    .pull-right
+                      %button.btn.btn-success{:type => "submit"} Guardar

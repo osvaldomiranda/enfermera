@@ -14,7 +14,7 @@ class PersondocumentsController < ApplicationController
 
   def new
     @persondocument = Persondocument.new
-    respond_with(@persondocument)
+    respond_modal_with(@persondocument)
   end
 
   def edit
@@ -34,6 +34,11 @@ class PersondocumentsController < ApplicationController
   def destroy
     @persondocument.destroy
     respond_with(@persondocument)
+  end
+
+  def sendfile
+    @document = Persondocument.find(params[:id])
+    send_file "#{Rails.root}/public#{@document.documento_url}"
   end
 
   private
