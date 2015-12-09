@@ -28,7 +28,7 @@ class Person < ActiveRecord::Base
   end 
 
 
-  NACIONALIDAD      = ['Clilena', 'Extranjero']
+  NACIONALIDAD      = ['Chilena', 'Extranjero']
   def self.nacionalidad_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     NACIONALIDAD.each.map { |t| [t, t.upcase.gsub(' ', '_')] }

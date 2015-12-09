@@ -25,13 +25,13 @@ class InscriptionsController < ApplicationController
     @inscription.save
     
     user = User.new
-    user.email = params[:user][:email]
-    user.password = params[:user][:password]
-    user.password_confirmation = params[:user][:password_confirmation]
+    user.email = params[:inscription][:email]
+    user.password = params[:inscription][:password]
+    user.password_confirmation = params[:inscription][:password_confirmation]
     user.save
 
     person = Person.new
-    person.email = params[:user][:email]
+    person.email = params[:inscription][:email]
     person.save
 
     sign_in(user)
