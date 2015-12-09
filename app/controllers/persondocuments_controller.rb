@@ -23,7 +23,11 @@ class PersondocumentsController < ApplicationController
   def create
     @persondocument = Persondocument.new(persondocument_params)
     @persondocument.save
-    respond_with(@persondocument)
+
+    @persondocuments = Persondocument.all
+
+    @person = Person.where(email:current_user.email).first
+    render "index"
   end
 
   def update

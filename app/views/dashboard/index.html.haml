@@ -48,7 +48,25 @@
                 = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
               - else
                 = link_to 'Aceptar Téminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
+    .panel-footer
+      %h3 Documentos
+      .panel-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Nombre
+              %th Tipo
+              %th
+              %th
+          %tbody
+            - @persondocuments.each do |persondocument|
+              %tr
+                %td= persondocument.nombre
+                %td= persondocument.tipo
 
+                %td= link_to 'Ver', persondocument.documento_url, class: "btn btn-primary btn-xs" 
+                %td= link_to 'Descargar', "/persondocuments/send/#{persondocument.id}", class: "btn btn-primary btn-xs"  
+    %br            
     .panel-footer
       %h3 Registro de pagos últimos 6 meses
       .panel-body
