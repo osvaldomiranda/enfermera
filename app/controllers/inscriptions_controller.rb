@@ -22,21 +22,24 @@ class InscriptionsController < ApplicationController
 
   def create
     @inscription = Inscription.new(inscription_params)
-    @inscription.save
-    
-    user = User.new
-    user.email = params[:inscription][:email]
-    user.password = params[:inscription][:password]
-    user.password_confirmation = params[:inscription][:password_confirmation]
-    user.save
+    if @inscription.save
 
-    person = Person.new
-    person.email = params[:inscription][:email]
-    person.save
+      user = User.new
+      user.email = params[:inscription][:email]
+      user.password = params[:inscription][:password]
+      user.password_confirmation = params[:inscription][:password_confirmation]
+      user.save
 
-    sign_in(user)
+      person = Person.new
+      person.email = params[:inscription][:email]
+      person.save
 
-    render "home/index"
+      redirect_to validation_path
+    else  
+    #sign_in(user)
+      render  action: 'new'  
+      #{}"home/index"
+    end
   end
 
   def update
