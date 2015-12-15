@@ -1,9 +1,9 @@
 en:
   simple_form:
-    "yes": 'Si'
+    "yes": 'Yes'
     "no": 'No'
     required:
-      text: 'requerido'
+      text: 'required'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
