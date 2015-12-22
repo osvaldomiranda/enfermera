@@ -6,7 +6,7 @@ class Persondocument < ActiveRecord::Base
 
 
 
-  TIPO      = ['Curriculum', 'Curso Perfeccionamiento', 'Magister', 'Diplomado', 'Otro']
+  TIPO      = ['Curriculum', 'Curso Perfeccionamiento','Doctorado', 'Magister', 'Especialidad', 'Licenciatura', 'Diplomado', 'Otro']
   def self.tipo_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     TIPO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }

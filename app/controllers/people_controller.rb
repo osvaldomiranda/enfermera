@@ -23,16 +23,21 @@ class PeopleController < ApplicationController
   end
 
   def edit
+
     respond_modal_with(@person)
   end
 
   def create
     @person = Person.new(person_params)
     @person.save
+
     respond_with(@person)
   end
 
   def update
+
+    @persondocuments = Persondocument.all
+    
     if !person_params[:picture].present?
       if !person_params[:rut].present?
         if person_params[:terms].present?
