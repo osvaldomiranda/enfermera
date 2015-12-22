@@ -1,4 +1,3 @@
-
 class RutFormatValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
 

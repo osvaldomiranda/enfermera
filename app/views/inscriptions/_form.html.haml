@@ -10,6 +10,12 @@
               %form.form-horizontal{:role => "form"}
               = simple_form_for(@inscription, html: { class: 'form-horizontal' }) do |f|
                 = f.error_notification
+                / - if @inscription.errors.any?
+                /   #error_explanation
+                /   %h2{:style => "color:brown"}= "#{pluralize(@inscription.errors.count, "error")} has being found:"
+                /   %ul
+                / - @inscription.errors.full_messages.each do |msg|
+                /   %li{:style => "color:brown"}= msg
                 .form-inputs
                 %h3 Información de Registro
                 .form-group
@@ -34,7 +40,7 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
                   .col-sm-4
                     = f.input :apellido_paterno, label: false
-                  %label.col-sm-2.control-label{:for => "textinput"} Apellido Paterno
+                  %label.col-sm-2.control-label{:for => "textinput"} Apellido Materno
                   .col-sm-4 
                     = f.input :apellido_materno, label: false
                 .form-group
@@ -51,9 +57,9 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Cuidad
                   .col-sm-4
                     = f.input :ciudad, label: false               
-                  %label.col-sm-2.control-label{:for => "textinput"} Telefono
+                  %label.col-sm-2.control-label{:for => "textinput"} Teléfono
                   .col-sm-4
-                    = f.input :telefono, label: false
+                    = f.input :telefono, label: false, :numericality => {:only_integer => true}
                   %label.col-sm-2.control-label{:for => "textinput"} Celular
                   .col-sm-4
                     = f.input :celular, label: false  
