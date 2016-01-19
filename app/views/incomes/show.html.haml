@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Fecha:
+  = @income.fecha
+%p
+  %b Monto:
+  = @income.monto
+%p
+  %b Tipo:
+  = @income.tipo
+%p
+  %b Document:
+  = @income.document
+%p
+  %b Banco:
+  = @income.banco
+%p
+  %b Mediopago:
+  = @income.mediopago
+%p
+  %b Person:
+  = @income.person
+%p
+  %b Workplace:
+  = @income.workplace
+%p
+  %b User:
+  = @income.user
+
+= link_to 'Edit', edit_income_path(@income)
+\|
+= link_to 'Back', incomes_path

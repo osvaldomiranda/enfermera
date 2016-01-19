@@ -35,7 +35,6 @@ class PeopleController < ApplicationController
   end
 
   def update
-
     @persondocuments = Persondocument.all
     
     if !person_params[:picture].present?
@@ -72,7 +71,6 @@ class PeopleController < ApplicationController
   end
 
   def termsToPdf
-
     render pdf: "terms", formats: :html, encoding: 'utf8'   # Excluding ".pdf" extension.
   end
 
@@ -89,6 +87,15 @@ class PeopleController < ApplicationController
         end  
       }
     end   
+  end
+
+  def payregister
+    @income = Income.new
+    respond_modal_with(@income)
+  end
+
+  def pay
+    bla
   end
 
 

@@ -1,10 +1,16 @@
-= simple_form_for(@workplace) do |f|
-  = f.error_notification
+.container-fluid
+  %h2 
+  .container-fluid
+    .row
+      .col-md-12
 
-  .form-inputs
-    = f.input :nombre
-    = f.input :ciudad
-    = f.input :region
+        = simple_form_for(@workplace) do |f|
+          = f.error_notification
 
-  .form-actions
-    = f.button :submit
+          .form-inputs
+            = f.input :nombre
+            = f.input :ciudad
+            = f.input :region
+
+          .form-actions
+            = f.button :submit

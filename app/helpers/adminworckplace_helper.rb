@@ -1,0 +1,2 @@
+module AdminworckplaceHelper
+end

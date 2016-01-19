@@ -1,0 +1,42 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Administración
+      .panel-body
+        %br
+          .row
+            .col-md-6.text-center
+              = line_chart User.group_by_month(:created_at).count
+            .col-md-6.text-center
+              %img{:alt => "...", :src =>"/assets/egresos.png"}  
+        %br
+        %br
+        .row
+          .col-xs-12
+ 
+            .row     
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center= @incomes.count
+                  .panel-body.text-center
+                    Ingresos Mes en Curso
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center="$255.580.-"
+                  .panel-body.text-center
+                    Egresos Mes en Curso  
+
+       
+        %br
+        %hr
+        .row
+          .col-sm-12.col-xs-12.editar.text-center
+            = link_to 'Colegiadas', "/admincolegiada/index",  class: 'btn btn-warning'
+            = link_to 'Lugares Tragajo', "/adminworckplace/index",  class: 'btn btn-warning'
+            = link_to 'Remesas', "/adminconsignment/index", class: 'btn btn-warning'
+            = link_to 'Gastos',"/adminspending/index", class: 'btn btn-warning'
+        %br
+        %br  
+  

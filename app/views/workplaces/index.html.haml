@@ -1,25 +1,33 @@
-%h1 Listing workplaces
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Lugares de trabajo
+      .panel-body
 
-%table
-  %thead
-    %tr
-      %th Nombre
-      %th Ciudad
-      %th Region
-      %th
-      %th
-      %th
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Nombre
+              %th Ciudad
+              %th Region
+              %th
+              %th
 
-  %tbody
-    - @workplaces.each do |workplace|
-      %tr
-        %td= workplace.nombre
-        %td= workplace.ciudad
-        %td= workplace.region
-        %td= link_to 'Show', workplace
-        %td= link_to 'Edit', edit_workplace_path(workplace)
-        %td= link_to 'Destroy', workplace, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
+          %tbody
+            - @workplaces.each do |workplace|
+              %tr
+                %td= workplace.nombre
+                %td= workplace.ciudad
+                %td= workplace.region
+                %td= link_to 'Editar', edit_workplace_path(workplace),  class: 'btn btn-info', data: { modal: true }
+                %td= link_to 'Eliminar', workplace, :method => :delete, :data => { :confirm => 'Are you sure?' },  class: 'btn btn-info'
 
-= link_to 'New Workplace', new_workplace_path
+        %br
+
+        = link_to 'Nuevo Lugar de trabajo', new_workplace_path,  class: 'btn btn-info', data: { modal: true }
+
+        %br
+        %br
+

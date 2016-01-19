@@ -1,0 +1,40 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Envío Manual Planillas de Descuento
+      .panel-body
+
+        .row
+          .col-md-12
+            = simple_form_for(workplaces_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-2
+                  = f.input :nombre, label: false,  collection: Workplace.workplaces_option_for_select, :input_html => {:style=> 'width: 180px'}
+                  / = f.input :nombre, as: :boolean, checked_value: true, unchecked_value: false
+  
+                .col-sm-2  
+                  = f.button :submit, "Buscar",  class: "btn btn-primary"
+
+            = link_to "Limpiar Busqueda","/documentos",  class: 'btn btn-info'
+            = link_to "Enviar Todos","/documentos",  class: 'btn btn-info'
+        %br
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Nombre
+              %th Ciudad
+              %th Region
+              %th
+              %th
+
+
+          %tbody
+            - @workplaces.each do |workplace|
+              %tr
+                %td= workplace.nombre
+                %td= workplace.ciudad
+                %td= workplace.region
+                %td= link_to 'Enviar', "/senddiscount/sendemail", class: 'btn btn-info'
+ 

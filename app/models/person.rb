@@ -5,10 +5,10 @@ class Person < ActiveRecord::Base
   require 'prawn'
   require 'prawn/table'
 
-  has_one :workplace
 
   has_many :previousjob, dependent: :destroy
   has_many :persondocument, dependent: :destroy
+  has_many :fees, dependent: :destroy
 
 
   mount_uploader :picture, PictureUploader

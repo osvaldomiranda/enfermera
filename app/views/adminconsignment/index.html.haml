@@ -1,0 +1,16 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Remesas
+      .panel-body
+        %br
+        = link_to '<< Administración', "/management/index",  class: 'btn btn-info'
+        %br
+        %br
+        %hr
+        .row
+          .col-sm-12.col-xs-12.editar.text-center
+            = link_to 'Administrar Regionales', "",  class: 'btn btn-info'
+            = link_to 'Enviar Remesas', "",  class: 'btn btn-info'
+            = link_to 'Consulta Remesas por Regional', "",  class: 'btn btn-info'

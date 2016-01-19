@@ -14,7 +14,7 @@ class WorkplacesController < ApplicationController
 
   def new
     @workplace = Workplace.new
-    respond_with(@workplace)
+    respond_modal_with(@workplace)
   end
 
   def edit
@@ -28,7 +28,7 @@ class WorkplacesController < ApplicationController
 
   def update
     @workplace.update(workplace_params)
-    respond_with(@workplace)
+    respond_modal_with(@workplace)
   end
 
   def destroy

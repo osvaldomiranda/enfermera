@@ -1,0 +1,2 @@
+module AdminconsignmentHelper
+end

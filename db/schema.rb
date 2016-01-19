@@ -11,126 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201024918) do
+ActiveRecord::Schema.define(version: 20160118193531) do
 
-  create_table "bienes_raices", force: true do |t|
-    t.string   "tipo"
-    t.string   "direccion"
-    t.string   "valor_comercial"
-    t.string   "rol"
-    t.string   "hipoteca_banco"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  add_index "bienes_raices", ["person_id"], name: "index_bienes_raices_on_person_id"
-
-  create_table "dependents", force: true do |t|
-    t.string   "empleador"
-    t.string   "rut_empleador"
-    t.string   "giro_empresa"
-    t.string   "direccion_empresa"
-    t.string   "tipo_contrato"
-    t.string   "cargo"
-    t.string   "fecha_ingreso"
-    t.string   "fecha_ingreso_anterior"
-    t.string   "fecha_termino_anterior"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "dependents", ["person_id"], name: "index_dependents_on_person_id"
-
-  create_table "deuda_directa", force: true do |t|
-    t.string   "tipo"
-    t.string   "institucion"
-    t.string   "cupo_aprobado"
-    t.string   "deuda_vigente"
-    t.string   "pago_mensual"
-    t.string   "vencimineto"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "deuda_directa", ["person_id"], name: "index_deuda_directa_on_person_id"
-
-  create_table "deuda_indirecta", force: true do |t|
-    t.string   "tipo"
-    t.string   "institucion"
-    t.string   "deuda_vigente"
-    t.string   "razon_social"
+  create_table "fees", force: true do |t|
     t.string   "rut"
+    t.string   "email"
+    t.date     "fecha_pago"
+    t.string   "mes"
+    t.float    "monto"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "deuda_indirecta", ["person_id"], name: "index_deuda_indirecta_on_person_id"
+  add_index "fees", ["person_id"], name: "index_fees_on_person_id", using: :btree
 
-  create_table "direccions", force: true do |t|
+  create_table "incomes", force: true do |t|
+    t.datetime "fecha"
+    t.float    "monto"
     t.string   "tipo"
-    t.string   "calle_num_depto"
-    t.string   "comuna"
-    t.string   "ciudad"
-    t.string   "telefono"
-    t.string   "celular"
-    t.string   "codigo_postal"
-    t.string   "tipo_vivienda"
-    t.string   "dividendo_arriendo"
-    t.string   "casilla"
-    t.string   "num_correo"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "direccions", ["person_id"], name: "index_direccions_on_person_id"
-
-  create_table "documents", force: true do |t|
-    t.string   "name"
-    t.string   "file"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "documents", ["person_id"], name: "index_documents_on_person_id"
-
-  create_table "independents", force: true do |t|
-    t.string   "tipo_rentista"
-    t.string   "tipo_actividad"
-    t.string   "giro_actividad"
-    t.string   "fecha_inicio_rubro"
-    t.string   "fecha_inicio_actividad"
-    t.string   "nombre_empleador_anterior"
-    t.string   "cargo"
-    t.string   "antiguedad"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "independents", ["person_id"], name: "index_independents_on_person_id"
-
-  create_table "ingresos", force: true do |t|
-    t.string   "sueldo_fijo_mes"
-    t.string   "sueldo_variable_mes"
-    t.string   "arriendo"
-    t.string   "vtas_anuales"
-    t.string   "declaracion_renta"
-    t.string   "honorarios_mes"
-    t.string   "cta_cte"
+    t.string   "document"
     t.string   "banco"
+    t.string   "mediopago"
     t.integer  "person_id"
+    t.integer  "workplace_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "otros"
   end
 
-  add_index "ingresos", ["person_id"], name: "index_ingresos_on_person_id"
+  add_index "incomes", ["person_id"], name: "index_incomes_on_person_id", using: :btree
+  add_index "incomes", ["user_id"], name: "index_incomes_on_user_id", using: :btree
+  add_index "incomes", ["workplace_id"], name: "index_incomes_on_workplace_id", using: :btree
 
   create_table "inscriptions", force: true do |t|
     t.string   "nro_registro"
@@ -157,18 +72,6 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.string   "password_confirmation"
   end
 
-  create_table "jubilados", force: true do |t|
-    t.string   "ultimo_empleador"
-    t.string   "institucion_pagadora"
-    t.string   "afp"
-    t.string   "cia_seguro"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "jubilados", ["person_id"], name: "index_jubilados_on_person_id"
-
   create_table "people", force: true do |t|
     t.string   "email"
     t.string   "rut"
@@ -193,9 +96,11 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.string   "lugar_trabajo"
     t.string   "tipo_contrato"
     t.integer  "workplase_id"
+    t.integer  "workplace_id"
   end
 
-  add_index "people", ["workplase_id"], name: "index_people_on_workplase_id"
+  add_index "people", ["workplace_id"], name: "index_people_on_workplace_id", using: :btree
+  add_index "people", ["workplase_id"], name: "index_people_on_workplase_id", using: :btree
 
   create_table "persondocuments", force: true do |t|
     t.string   "nombre"
@@ -206,7 +111,7 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.datetime "updated_at"
   end
 
-  add_index "persondocuments", ["person_id"], name: "index_persondocuments_on_person_id"
+  add_index "persondocuments", ["person_id"], name: "index_persondocuments_on_person_id", using: :btree
 
   create_table "previousjobs", force: true do |t|
     t.string   "establecimiento"
@@ -219,61 +124,7 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.datetime "updated_at"
   end
 
-  add_index "previousjobs", ["person_id"], name: "index_previousjobs_on_person_id"
-
-  create_table "sociedads", force: true do |t|
-    t.string   "tipo"
-    t.string   "porcentaje"
-    t.string   "capital"
-    t.string   "nombre"
-    t.string   "rut"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sociedads", ["person_id"], name: "index_sociedads_on_person_id"
-
-  create_table "spouses", force: true do |t|
-    t.string   "rut"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.string   "nationality"
-    t.string   "economic_activity"
-    t.string   "education"
-    t.string   "origin_country"
-    t.string   "resident_country"
-    t.string   "profession"
-    t.string   "dependents"
-    t.string   "university"
-    t.integer  "number_of_children"
-    t.string   "date_birth"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "adress"
-    t.string   "phone"
-    t.integer  "renta"
-    t.date     "fechaingreso"
-  end
-
-  add_index "spouses", ["person_id"], name: "index_spouses_on_person_id"
-
-  create_table "universitarios", force: true do |t|
-    t.string   "email"
-    t.string   "universidad"
-    t.string   "carrera"
-    t.string   "encurso"
-    t.string   "renta_familiar"
-    t.string   "nombre_padre"
-    t.string   "rut_padre"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "universitarios", ["person_id"], name: "index_universitarios_on_person_id"
+  add_index "previousjobs", ["person_id"], name: "index_previousjobs_on_person_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -290,23 +141,8 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "vehiculos", force: true do |t|
-    t.string   "tipo"
-    t.string   "marca"
-    t.string   "modelo"
-    t.string   "agno"
-    t.string   "patente"
-    t.string   "valor_comercia"
-    t.string   "prenda_afavor"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "vehiculos", ["person_id"], name: "index_vehiculos_on_person_id"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "workplaces", force: true do |t|
     t.string   "nombre"
@@ -325,6 +161,6 @@ ActiveRecord::Schema.define(version: 20151201024918) do
     t.datetime "updated_at"
   end
 
-  add_index "wpdocuments", ["workplace_id"], name: "index_wpdocuments_on_workplace_id"
+  add_index "wpdocuments", ["workplace_id"], name: "index_wpdocuments_on_workplace_id", using: :btree
 
 end

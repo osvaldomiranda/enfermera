@@ -1,0 +1,73 @@
+.container-fluid
+  %h2 Registro de pago
+  .container-fluid
+    .row
+      .col-md-12
+        %form.form-horizontal{:role => "form"}
+        = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
+          = f.error_notification
+          .form-inputs
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Fecha
+              .col-sm-4
+                = f.input :fecha, placeholder: "99999999-9", label: false
+
+              %label.col-sm-2.control-label{:for => "textinput"} Monto
+              .col-sm-4
+                = f.input :monto, label: false  
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} tipo
+              .col-sm-4
+                = f.input :tipo, label: false    
+              %label.col-sm-2.control-label{:for => "textinput"} banco
+              .col-sm-4  
+                = f.input :banco, label: false  
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} mediopago
+              .col-sm-4
+                = f.input :mediopago, label: false  
+              %label.col-sm-2.control-label{:for => "textinput"} person
+              .col-sm-4
+                = f.input :person, label: false 
+            .form-group    
+              %label.col-sm-2.control-label{:for => "textinput"} workplace
+              .col-sm-4
+                = f.input :workplace, label: false 
+              %label.col-sm-2.control-label{:for => "textinput"} user
+              .col-sm-4  
+                = f.input :user, label: false  
+            .row   
+              .col-md-8 
+                .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                  .form-control{"data-trigger" => "fileinput"}
+                    %i.glyphicon.glyphicon-file.fileinput-exists
+                    %span.fileinput-filename
+                  %span.input-group-addon.btn.btn-default.btn-file
+                    %span.fileinput-new Comprobante de Deposito
+                    %span.fileinput-exists Cambiar
+                    =f.file_field :document
+                  %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+         
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .pull-right
+                  %button.btn.btn-success{:type => "submit"} Guardar
+
+
+/ = simple_form_for(@income) do |f|
+/   = f.error_notification
+
+/   .form-inputs
+/     = f.input :fecha
+/     = f.input :monto
+/     = f.input :tipo
+/     = f.input :document
+/     = f.input :banco
+/     = f.input :mediopago
+/     = f.association :person
+/     = f.association :workplace
+/     = f.association :user
+
+/   .form-actions
+/     = f.button :submit

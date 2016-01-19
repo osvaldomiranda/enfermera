@@ -73,6 +73,10 @@ gem 'wkhtmltopdf-binary'
 #for datetimepicker
 gem 'bootstrap-datepicker-rails'
 
+# for charts
+gem "chartkick"
+gem 'groupdate'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

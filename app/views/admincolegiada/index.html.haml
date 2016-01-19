@@ -1,0 +1,48 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Colegiadas
+      .panel-body
+        %br
+        = link_to '<< Administración', "/management/index",  class: 'btn btn-info'
+        %br
+        %br
+        .row
+          .col-md-12.text-center
+            %img.img-circle{:alt => "...", :src =>"/assets/graficocolegiadas.png"}
+        %br
+        %br    
+        .row
+          .col-xs-12
+            .row
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center="32"
+                  .panel-body.text-center
+                    Total de Colegiadas
+
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center="10"
+                  .panel-body.text-center
+                    Nuevas Colegiadas Mes en Curso  
+            .row     
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center="5"
+                  .panel-body.text-center
+                    Cantidad Cuotas Registradas 
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center="$55.800.-"
+                  .panel-body.text-center
+                    Total Cuotas Registradas 
+        %br
+        %hr
+        .row
+          .col-sm-12.col-xs-12.editar.text-center
+            = link_to 'Consulta Colegiada', "/people",  class: 'btn btn-info'
+            = link_to 'Informe Superintendencia Salud', "",  class: 'btn btn-info'
+            = link_to 'Aprobar Registro de Colegiatura', "",  class: 'btn btn-info'
+           

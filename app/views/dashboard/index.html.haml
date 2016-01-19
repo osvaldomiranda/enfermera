@@ -43,7 +43,7 @@
               = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'
               = link_to 'Credencial', "/credential/index", data: { modal: true }, class: 'btn btn-info'
               = link_to 'Documentos', "/persondocuments", class: 'btn btn-info'
-              = link_to 'Registrar Pago', "/", class: 'btn btn-warning'
+              = link_to 'Registrar Pago', "/people/pay/payregister",data: { modal: true }, class: 'btn btn-warning'
               - if @person.terms.present?
                 = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
               - else

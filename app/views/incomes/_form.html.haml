@@ -1,0 +1,16 @@
+= simple_form_for(@income) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :fecha
+    = f.input :monto
+    = f.input :tipo
+    = f.input :document
+    = f.input :banco
+    = f.input :mediopago
+    = f.association :person
+    = f.association :workplace
+    = f.association :user
+
+  .form-actions
+    = f.button :submit

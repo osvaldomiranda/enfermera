@@ -1,0 +1,13 @@
+= simple_form_for(@fee) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :rut
+    = f.input :email
+    = f.input :fecha_pago
+    = f.input :mes
+    = f.input :monto
+    = f.association :person
+
+  .form-actions
+    = f.button :submit
