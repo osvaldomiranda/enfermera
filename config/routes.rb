@@ -1,9 +1,10 @@
 Enfermera::Application.routes.draw do
   
 
+  resources :offices
+
   resources :fees
 
-  get "senddiscount/index"
   resources :incomes
 
   resources :inscriptions
@@ -31,9 +32,10 @@ Enfermera::Application.routes.draw do
   get "adminspending/index"
   get "adminconsignment/index"
   get "admincolegiada/index"
+  get "admincolegiada/superintendencia"
   get "adminworckplace/index"
   get "/adminworckplace/wppayregister", to: "adminworckplace#wppayregister"
-  post "/adminworckplace/wppay", to: "adminworckplace#wppay"
+  get "/adminworckplace/wppay", to: "adminworckplace#wppay"
   get "home/index"
   get "dashboard/index"
   get "credential/index"

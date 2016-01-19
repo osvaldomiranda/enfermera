@@ -95,7 +95,8 @@ class PeopleController < ApplicationController
   end
 
   def pay
-    bla
+    @income = Income.new
+    render "/adminworckplace/wppayregister"
   end
 
 

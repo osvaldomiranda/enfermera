@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @office.nombre
+%p
+  %b Region:
+  = @office.region
+%p
+  %b Ciudad:
+  = @office.ciudad
+%p
+  %b Email:
+  = @office.email
+%p
+  %b Contacto:
+  = @office.contacto
+
+= link_to 'Edit', edit_office_path(@office)
+\|
+= link_to 'Back', offices_path

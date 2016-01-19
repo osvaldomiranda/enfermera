@@ -1,0 +1,17 @@
+.container-fluid
+  %h2 Datos Básicos
+  .container-fluid
+    .row
+      .col-md-12
+        = simple_form_for(@office) do |f|
+          = f.error_notification
+
+          .form-inputs
+            = f.input :nombre
+            = f.input :region
+            = f.input :ciudad
+            = f.input :email
+            = f.input :contacto
+
+          .form-actions
+            = f.button :submit

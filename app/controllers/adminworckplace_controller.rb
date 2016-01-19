@@ -6,9 +6,11 @@ class AdminworckplaceController < ApplicationController
 
   def wppayregister
   	@income = Income.new
-    respond_modal_with(@income)
+    respond_with(@income)
   end	
 
   def wppay
+  	@income = Income.new
+    respond_with(@income)
   end
 end

@@ -51,6 +51,16 @@
         %hr
         %h3 Registrar cuotas      
         %hr
+        .container-fluid
+          .row
+            %h4 Importar Colegiadas
+            = form_tag import_people_path, multipart: true do 
+              = file_field_tag :file 
+              %br
+              = submit_tag "Importar" 
+
+            %br
+            %hr
         %table.table.table-striped
           %thead
             %tr
