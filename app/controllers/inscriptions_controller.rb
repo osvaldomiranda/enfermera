@@ -21,8 +21,17 @@ class InscriptionsController < ApplicationController
   end
 
   def create
+
+    
+
     @inscription = Inscription.new(inscription_params)
+    
     if @inscription.save
+      
+      url = ""
+      certificado_html = ""
+
+      
 
       user = User.new
       user.email = params[:inscription][:email]
@@ -32,9 +41,27 @@ class InscriptionsController < ApplicationController
 
       person = Person.new
       person.email = params[:inscription][:email]
+      person.rut = params[:inscription][:rut]
+      person.nombres = params[:inscription][:nombres]
+      person.apellido_paterno = params[:inscription][:apellido_paterno]
+      person.apellido_materno = params[:inscription][:apellido_materno]
+      person.nro_registro = params[:inscription][:nro_registro]
+      person.sexo = params[:inscription][:sexo]
+      person.nacionalidad = params[:inscription][:nacionalidad]
+      person.fecha_inscripcion = params[:inscription][:fecha_inscripcion] 
+      person.direccion = params[:inscription][:direccion]
+      person.ciudad = params[:inscription][:ciudad]
+      person.universidad = params[:inscription][:universidad]
+      person.fecha_titulo = params[:inscription][:fecha_titulo]
+      person.tipo_contrato = params[:inscription][:tipo_contrato]
+      person.url = url
+      person.certificado_html = certificado_html
       person.save
 
-      redirect_to validation_path
+      Inscription.BuscarCertificado(params[:inscription][:rut])
+
+      respond_with(@inscription)
+      #redirect_to validation_path
     else  
     #sign_in(user)
       render  action: 'new'  

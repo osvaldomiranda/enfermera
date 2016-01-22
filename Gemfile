@@ -77,6 +77,13 @@ gem 'bootstrap-datepicker-rails'
 gem "chartkick"
 gem 'groupdate'
 
+#for autoincrement field
+gem "auto_increment"
+
+#for scraping
+gem "nokogiri"
+gem 'rest-client'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
