@@ -83,4 +83,8 @@ class Person < ActiveRecord::Base
     mes = MES[nummes-1]
   end
 
+  def workplace
+    workplace = Workplace.find(self.workplace_id)
+  end
+
 end
