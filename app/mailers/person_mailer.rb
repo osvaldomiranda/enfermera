@@ -1,9 +1,10 @@
 class PersonMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def send_discount
+  def send_discount(workplace_id)
     begin
 
+      @workplace = Workplace.find(workplace_id)
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
