@@ -1,1 +1,23 @@
-%h3 Prueba mail colegio enfermeras
+%h3= "Estimados Señores: #{@workplace.nombre}"
+%h3= "Adjunto nomina de descuentos para el mes de: Enero 2015"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Nro.Registro
+      %th Nombre
+      %th Rut
+      %th Email
+      %th Cuota
+  %tbody
+    - @workplace.people.each do |person|
+      %tr
+        %td= person.id
+        %td= person.fullname  
+        %td= person.rut
+        %td= person.email
+        %td= "$5050.-"
+
+
+
+
