@@ -60,8 +60,9 @@ class InscriptionsController < ApplicationController
 
       Inscription.BuscarCertificado(params[:inscription][:rut])
 
-      respond_with(@inscription)
+      #respond_with(@inscription)
       #redirect_to validation_path
+      sign_in(user.email)
     else  
     #sign_in(user)
       render  action: 'new'  
