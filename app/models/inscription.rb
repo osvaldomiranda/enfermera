@@ -51,15 +51,19 @@ class Inscription < ActiveRecord::Base
     url = "http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/%28searchAll2%29/Search?SearchView&Query=%28FIELD%20rut_pres=#{numero_rut}%29&Start=1&count=10"
 
     response = Nokogiri::HTML(RestClient.get url)
+
     
     puts response
     puts ' '
     puts '----****----'
     puts ' '
+    #puts response.css('td')[0].text
 
     #puts '***' + response.css('td')[0].text + '***'
 
-    unless response.css('td')[0].text != ""
+
+
+    unless response.css('td')[0].nil?
 
 
       sTexto1 = response.css("a").first.attr('href').split("/").last
@@ -78,7 +82,7 @@ class Inscription < ActiveRecord::Base
 
       p=Person.find_by_rut(rut)
       p.url = url
-      p.certificado_html = response.url
+      p.certificado_html = response
       p.estado = "OK"
       
       p.save

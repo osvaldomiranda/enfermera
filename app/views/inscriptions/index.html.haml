@@ -40,9 +40,11 @@
         %td= inscription.tipo_contrato
         %td= inscription.estado
         %td= inscription.fecha_solicitud
-        %td= link_to 'Show', inscription
-        %td= link_to 'Edit', edit_inscription_path(inscription)
-        %td= link_to 'Destroy', inscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if inscription.estado == "OK"
+          %td= link_to 'Show', inscription
+        - else
+          %td= link_to 'Edit', edit_inscription_path(inscription)
+        / %td= link_to 'Destroy', inscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
