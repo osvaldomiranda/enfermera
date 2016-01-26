@@ -1,33 +1,42 @@
-%h2 Clientes
+/%h2 Efermeras
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h2.panel-title Listado de enfermeras registradas
+    .panel-body
+      .container-fluid
+        .container-fluid
 
-%br
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Email
+              %th Rut
+              %th Nombres
+              %th Apellido Paterno
+              %th Apellido Materno
+              %th Fecha Creación
+              %th 
+              %th
 
-%h3 Importar Clientes
-= form_tag import_people_path, multipart: true do 
-  = file_field_tag :file 
-  = submit_tag "Importar" 
+          %tbody
+            - @people.each do |person|
+              %tr
+                %td= person.email
+                %td= person.rut
+                %td= person.nombres
+                %td= person.apellido_paterno
+                %td= person.apellido_materno
+                %td= person.created_at
+                - if person.estado == "OK"
+                  %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: "btn btn-primary btn-md active"
+                - else
+                  %td= link_to 'Confirmar Suscripción', edit_person_path(person), data: { modal: true }, :class => "btn btn-primary btn-md active" #data: { modal: true }, class: "btm btn-info btn-xs"   
+                %td= link_to 'Cancelar Suscripción', edit_person_path(person), class: "btn btn-primary btn-md active"    
+                         
+                / %td= link_to 'Edit', edit_person_path(person)
+                / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }
 
+        %br
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Email
-      %th Rut
-      %th First name
-      %th Last name
-      %th
-      %th
-
-  %tbody
-    - @people.each do |person|
-      %tr
-        %td= person.email
-        %td= person.rut
-        %td= person.first_name
-        %td= person.last_name
-        %td= link_to 'Edit', edit_person_path(person)
-        %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }
-
-%br
-
-= link_to 'Nuevo Cliente', new_person_path
+        /= link_to 'Nuevo Cliente', new_person_path

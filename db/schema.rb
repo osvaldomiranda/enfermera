@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119201215) do
+ActiveRecord::Schema.define(version: 20160126012935) do
 
   create_table "inscriptions", force: true do |t|
     t.string   "nro_registro"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160119201215) do
     t.integer  "workplase_id"
     t.text     "url"
     t.text     "certificado_html"
+    t.string   "estado"
   end
 
   add_index "people", ["workplase_id"], name: "index_people_on_workplase_id"

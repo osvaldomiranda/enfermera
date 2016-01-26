@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :picture, :terms, :termsToPdf]
+  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termsToPdf]
 
   respond_to :html
 
