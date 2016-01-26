@@ -1,6 +1,7 @@
 Enfermera::Application.routes.draw do
   
 
+  
   resources :offices
 
   resources :fees
@@ -26,6 +27,7 @@ Enfermera::Application.routes.draw do
 
   root to: "home#index"
 
+  post "report/export"
   get "senddiscount/index"
   get "senddiscount/sendemail"
   get "management/index"

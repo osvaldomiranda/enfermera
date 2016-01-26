@@ -8,9 +8,9 @@
         %br
           .row
             .col-md-6.text-center
-              = line_chart User.group_by_month(:created_at).count
+              = line_chart Income.select("date_trunc( 'month', created_at ) as month, sum(monto) as monto").group('month')
             .col-md-6.text-center
-              %img{:alt => "...", :src =>"/assets/egresos.png"}  
+              = line_chart Income.select("date_trunc( 'month', created_at ) as month, sum(monto) as monto").group('month')
         %br
         %br
         .row
@@ -19,12 +19,12 @@
             .row     
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center= @incomes.count
+                  .panel-heading.text-center= Income.where("created_at >= ?", Time.zone.now.beginning_of_month).sum(:monto)
                   .panel-body.text-center
                     Ingresos Mes en Curso
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center="$255.580.-"
+                  .panel-heading.text-center= Income.where("created_at >= ?", Time.zone.now.beginning_of_month).sum(:monto)
                   .panel-body.text-center
                     Egresos Mes en Curso  
 

@@ -1,0 +1,16 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Nro.Registro
+      %th Nombre
+      %th Rut
+      %th Email
+      %th Fecha Registro
+  %tbody
+    - Person.all.each do |person|
+      %tr
+        %td= person.id
+        %td= person.fullname  
+        %td= person.rut
+        %td= person.email
+        %td= person.created_at.strftime('%d/%m/%Y %H:%M')

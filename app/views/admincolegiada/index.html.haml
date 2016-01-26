@@ -1,3 +1,4 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
@@ -10,7 +11,7 @@
         %br
         .row
           .col-md-12.text-center
-            %img.img-circle{:alt => "...", :src =>"/assets/graficocolegiadas.png"}
+            = pie_chart Person.group(:ciudad).count 
         %br
         %br    
         .row
@@ -18,24 +19,24 @@
             .row
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center="32"
+                  .panel-heading.text-center= Person.count
                   .panel-body.text-center
                     Total de Colegiadas
 
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center="10"
+                  .panel-heading.text-center= Person.where("created_at >= ?", Time.zone.now.beginning_of_month).count
                   .panel-body.text-center
                     Nuevas Colegiadas Mes en Curso  
             .row     
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center="5"
+                  .panel-heading.text-center= Fee.where("created_at >= ?", Time.zone.now.beginning_of_month).count
                   .panel-body.text-center
                     Cantidad Cuotas Registradas 
               .col-xs-6
                 .panel.panel-default
-                  .panel-heading.text-center="$55.800.-"
+                  .panel-heading.text-center= Fee.where("created_at >= ?", Time.zone.now.beginning_of_month).sum(:monto) 
                   .panel-body.text-center
                     Total Cuotas Registradas 
         %br

@@ -4,5 +4,6 @@ class SenddiscountController < ApplicationController
   end
 
   def sendemail
+  	PersonMailer.send_discount.deliver
   end
 end
