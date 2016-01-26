@@ -34,6 +34,13 @@ class PeopleController < ApplicationController
     respond_with(@person)
   end
 
+  def cancel
+    @person = Person.find(params[:id])
+    @person.estado = "CANCELADO"
+    @person.save
+    respond_with(@person)
+  end
+  
   def update
     @persondocuments = Persondocument.all
     
