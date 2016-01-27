@@ -23,7 +23,6 @@ class PeopleController < ApplicationController
   end
 
   def edit
-
     respond_modal_with(@person)
   end
 

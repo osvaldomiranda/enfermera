@@ -6,4 +6,8 @@ class SenddiscountController < ApplicationController
   def sendemail
   	PersonMailer.send_discount(params[:id]).deliver
   end
+
+  def sendretrieve
+  	PersonMailer.send_retrieve(params[:id]).deliver
+  end
 end

@@ -30,6 +30,7 @@ Enfermera::Application.routes.draw do
   post "report/export"
   get "senddiscount/index"
   get "/senddiscount/sendemail/:id", to:  "senddiscount#sendemail"
+  get "/senddiscount/sendretrieve/:id", to:  "senddiscount#sendretrieve"
   get "management/index"
   get "adminspending/index"
   get "adminconsignment/index"

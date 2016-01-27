@@ -32,5 +32,7 @@
                 %td= workplace.nombre
                 %td= workplace.ciudad
                 %td= workplace.region
-                %td= link_to 'Enviar', "/senddiscount/sendemail/#{workplace.id}", class: 'btn btn-info'
+                %td= link_to 'Enviar Decuento', "/senddiscount/sendemail/#{workplace.id}", class: 'btn btn-info'
+                %td= link_to 'Enviar Cobranza', "/senddiscount/sendretrieve/#{workplace.id}", class: 'btn btn-info'
+
  

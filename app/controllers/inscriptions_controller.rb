@@ -22,8 +22,6 @@ class InscriptionsController < ApplicationController
 
   def create
 
-    
-
     @inscription = Inscription.new(inscription_params)
     
     if @inscription.save
@@ -39,34 +37,33 @@ class InscriptionsController < ApplicationController
       user.password_confirmation = params[:inscription][:password_confirmation]
       user.save
 
-      person = Person.new
-      person.email = params[:inscription][:email]
-      person.rut = params[:inscription][:rut]
-      person.nombres = params[:inscription][:nombres]
-      person.apellido_paterno = params[:inscription][:apellido_paterno]
-      person.apellido_materno = params[:inscription][:apellido_materno]
-      person.nro_registro = params[:inscription][:nro_registro]
-      person.sexo = params[:inscription][:sexo]
-      person.nacionalidad = params[:inscription][:nacionalidad]
-      person.fecha_inscripcion = params[:inscription][:fecha_inscripcion] 
-      person.direccion = params[:inscription][:direccion]
-      person.ciudad = params[:inscription][:ciudad]
-      person.universidad = params[:inscription][:universidad]
-      person.fecha_titulo = params[:inscription][:fecha_titulo]
-      person.tipo_contrato = params[:inscription][:tipo_contrato]
-      person.url = url
-      person.certificado_html = certificado_html
-      person.save
+      @person = Person.new
+      @person.email = params[:inscription][:email]
+      @person.rut = params[:inscription][:rut]
+      @person.nombres = params[:inscription][:nombres]
+      @person.apellido_paterno = params[:inscription][:apellido_paterno]
+      @person.apellido_materno = params[:inscription][:apellido_materno]
+      @person.nro_registro = params[:inscription][:nro_registro]
+      @person.sexo = params[:inscription][:sexo]
+      @person.nacionalidad = params[:inscription][:nacionalidad]
+      @person.fecha_inscripcion = params[:inscription][:fecha_inscripcion] 
+      @person.direccion = params[:inscription][:direccion]
+      @person.ciudad = params[:inscription][:ciudad]
+      @person.universidad = params[:inscription][:universidad]
+      @person.fecha_titulo = params[:inscription][:fecha_titulo]
+      @person.tipo_contrato = params[:inscription][:tipo_contrato]
+      @person.url = url
+      @person.certificado_html = certificado_html
+      @person.save
 
       Inscription.BuscarCertificado(params[:inscription][:rut])
 
-      #respond_with(@inscription)
-      #redirect_to validation_path
+      @persondocuments = Persondocument.all
+
       sign_in(user.email)
+      render  "/dashboard/index"
     else  
-    #sign_in(user)
-      render  action: 'new'  
-      #{}"home/index"
+      redirect_to "/"
     end
   end
 

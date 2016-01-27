@@ -7,35 +7,25 @@
         = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
           = f.error_notification
           .form-inputs
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Fecha
-              .col-sm-4
-                = f.input :fecha, placeholder: "99999999-9", label: false
+            = f.input :fecha, :as => :hidden, :input_html => { :value => "#{DateTime.now}" }
+            = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
+            = f.input :person, :as => :hidden, :input_html => { :value => 1 } 
+            = f.input :workplace, :as => :hidden, :input_html => { :value => 1 } 
+            = f.input :user, :as => :hidden, :input_html => { :value => 1 } 
 
+            .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Monto
               .col-sm-4
                 = f.input :monto, label: false  
             .form-group    
-              %label.col-sm-2.control-label{:for => "textinput"} tipo
-              .col-sm-4
-                = f.input :tipo, label: false    
               %label.col-sm-2.control-label{:for => "textinput"} banco
               .col-sm-4  
                 = f.input :banco, label: false  
             .form-group    
-              %label.col-sm-2.control-label{:for => "textinput"} mediopago
+              %label.col-sm-2.control-label{:for => "textinput"} Medio Pago
               .col-sm-4
                 = f.input :mediopago, label: false  
-              %label.col-sm-2.control-label{:for => "textinput"} person
-              .col-sm-4
-                = f.input :person, label: false 
-            .form-group    
-              %label.col-sm-2.control-label{:for => "textinput"} workplace
-              .col-sm-4
-                = f.input :workplace, label: false 
-              %label.col-sm-2.control-label{:for => "textinput"} user
-              .col-sm-4  
-                = f.input :user, label: false  
+ 
             .row   
               .col-md-8 
                 .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}

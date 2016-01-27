@@ -40,7 +40,7 @@
               = @person.email
           .col-sm-12.col-xs-12.editar.text-center
             %hr
-              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit", data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit",data: { modal: true }, class: 'btn btn-info'
               = link_to 'Credencial', "/credential/index", data: { modal: true }, class: 'btn btn-info'
               = link_to 'Documentos', "/persondocuments", class: 'btn btn-info'
               = link_to 'Registrar Pago', "/people/pay/payregister",data: { modal: true }, class: 'btn btn-warning'
@@ -83,7 +83,7 @@
               %tr
                 %td= pago.pagador
                 %td= pago.mes_cuota
-                %td= pago.created_at
+                %td= pago.created_at.strftime('%d/%m/%Y %H:%M')
                 %td= pago.estado
                 %td= pago.monto
       
