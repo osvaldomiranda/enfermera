@@ -46,12 +46,24 @@
             .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} Lugar Trabajo
               .col-sm-4
-                = f.input :workplase_id, label: false
+                = f.input :workplase_id, label: false, collection: Workplace.workplaces_option_for_select   
               %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato
               .col-sm-4
-                = f.input :tipo_contrato, label: false, collection: Person.tipocontrato_options_for_select 
+                = f.input :tipo_contrato, label: false, collection: Person.tipocontrato_options_for_select
+            %h3 Forma pago cuota social   
+            %p= "Actualmente nuestra cuota social es de $#{@valorcuota}."
+            %p Pago directo inplica que usted deberá realizar el pago en nuestra cuenta corriente,
+            %p luego registrar su pago en su pagina de inicio, o enviar el comprobante vía email.   
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Forma de Pago 
+              .col-sm-4
+                = f.input :forma_pago, label: false, collection: Person.formapago_options_for_select 
               %br
               %br
+              %br
+              %br
+            %h3 Certificado de titulo  
+            .form-group   
               %label.col-sm-2.control-label{:for => "textinput"}  Importar Certificado
               = form_tag import_people_path, multipart: true do 
                 = file_field_tag :file 

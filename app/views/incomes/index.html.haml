@@ -1,37 +1,42 @@
-%h1 Listing incomes
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Pagos 
 
-%table
-  %thead
-    %tr
-      %th Fecha
-      %th Monto
-      %th Tipo
-      %th Document
-      %th Banco
-      %th Mediopago
-      %th Person
-      %th Workplace
-      %th User
-      %th
-      %th
-      %th
+      .panel-body
+        .container-fluid
+          .table-responsive
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Fecha
+                  %th Monto
+                  %th Tipo
+                  %th Documento
+                  %th Banco
+                  %th Medio Pago
+                  %th Pagador
+                  %th Lugar de Trabajo
+                  %th Usuario Transaccion
+                  %th Confirmar en Cta.Cte.
 
-  %tbody
-    - @incomes.each do |income|
-      %tr
-        %td= income.fecha
-        %td= income.monto
-        %td= income.tipo
-        %td= income.document
-        %td= income.banco
-        %td= income.mediopago
-        %td= income.person
-        %td= income.workplace
-        %td= income.user
-        %td= link_to 'Show', income
-        %td= link_to 'Edit', edit_income_path(income)
-        %td= link_to 'Destroy', income, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %tbody
+                - @incomes.each do |income|
+                  %tr
+                    %td= income.fecha.strftime('%d/%m/%Y %H:%M')
+                    %td= income.monto
+                    %td= income.tipo
+                    %td= link_to "Comprobante", income.document_url, class: 'btn btn-info'
+                    %td= income.banco
+                    %td= income.mediopago
+                    - if income.person.present?
+                      %td= income.person.fullname
+                    - else
+                      %td= income.workplace.nombre  
+                    %td= income.workplace.nombre
+                    %td= income.user.email
+                    %td= link_to "#{income.estado}", "", class: 'btn btn-info'
+                    %td= link_to "Cuotas", "/incomes/feeforincome/#{income.id}", data: { modal: true },class: 'btn btn-info'
+            %br
 
-%br
-
-= link_to 'New Income', new_income_path

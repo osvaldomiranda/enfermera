@@ -18,6 +18,7 @@ class WorkplacesController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@workplace)
   end
 
   def create
@@ -35,6 +36,54 @@ class WorkplacesController < ApplicationController
     @workplace.destroy
     respond_with(@workplace)
   end
+
+
+  def payregister
+    @workplace = Workplace.find(params[:income][:workplace_id])
+    @income = Income.new
+    respond_modal_with(@income)
+  end
+
+  def pay
+
+    @income = Income.new
+    @income.monto       =  params[:income][:monto]
+    @income.person_id   =  nil
+    @income.workplace_id=  params[:income][:workplace_id]
+    @income.tipo        = "Descuento Planilla"
+    @income.user_id     =  params[:income][:user_id]
+    @income.document    =  params[:income][:document]
+    @income.banco       =  params[:income][:banco]
+    @income.mediopago   =  params[:income][:mediopago]
+    @income.fecha       =  DateTime.now
+    @income.estado      = "CONFIRMADO"
+
+    if @income.save
+
+      valorcuota = Currentfee.last.valor
+      n = params[:income][:monto].to_i/valorcuota
+
+      @workplace = Workplace.find(params[:income][:workplace_id])
+      
+      @workplace.people.each do |person|
+        fee = Fee.new
+        fee.rut = person.rut
+        fee.email = person.email
+        fee.fecha_pago = params[:income][:fecha]
+        fee.mes = 1
+        fee.monto = valorcuota
+        fee.person_id = person.id
+        fee.pagador = "Descuento Planilla"
+        fee.mes_cuota =  1
+        fee.estado = "Confirmado"
+        fee.income_id = @income.id
+        fee.save
+      end
+    end
+
+    render "/adminworckplace/index"
+  end
+
 
   private
     def set_workplace

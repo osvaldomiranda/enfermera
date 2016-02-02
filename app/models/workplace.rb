@@ -5,7 +5,8 @@ class Workplace < ActiveRecord::Base
 
  
   def self.workplaces_option_for_select
-    Workplace.all.order(nombre: :asc).map {|t| t.nombre}
+  	# filtrar por ciudad
+    Workplace.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
   end  
  
 

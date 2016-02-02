@@ -8,15 +8,15 @@
           .row
             .col-md-12
               %form.form-horizontal{:role => "form"}
-              = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
+              = simple_form_for(@income, :url => "/workplaces/pay/payregister", :method => :get, html: { class: 'form-horizontal' }) do |f|
                 = f.error_notification
                 .form-inputs
                   .form-group    
                     %label.col-sm-2.control-label{:for => "textinput"} Lugar de trabajo
                     .col-sm-4
-                      = f.input :workplace, label: false, collection: Workplace.workplaces_option_for_select, :input_html => {:style=> 'width: 180px'} 
+                      = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_select, :input_html => {:style=> 'width: 180px'} 
                   .form-group
                     .col-sm-offset-2.col-sm-10
                       .pull-right
-                        %button.btn.btn-success{:type => "submit"} Hacer Pago
+                        %button.btn.btn-success{:type => "submit"} Registrar Pago
 

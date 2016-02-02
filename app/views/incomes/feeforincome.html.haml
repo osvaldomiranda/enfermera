@@ -1,0 +1,21 @@
+.panel-body
+  .container-fluid
+    .table-responsive
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Rut
+            %th Email
+            %th Fecha pago
+            %th Mes
+            %th Monto
+            %th Person
+        %tbody
+          - @income.fees.each do |fee|
+            %tr
+              %td= fee.rut
+              %td= fee.email
+              %td= fee.fecha_pago
+              %td= fee.mes
+              %td= fee.monto
+              %td= fee.person.fullname

@@ -48,20 +48,23 @@ class Inscription < ActiveRecord::Base
 
     puts numero_rut
 
-    url = "http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/%28searchAll2%29/Search?SearchView&Query=%28FIELD%20rut_pres=#{numero_rut}%29&Start=1&count=10"
+    begin
 
-    response = Nokogiri::HTML(RestClient.get url)
+      url = "http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/%28searchAll2%29/Search?SearchView&Query=%28FIELD%20rut_pres=#{numero_rut}%29&Start=1&count=10"
 
-    
-    puts response
-    puts ' '
-    puts '----****----'
-    puts ' '
-    #puts response.css('td')[0].text
+      response = Nokogiri::HTML(RestClient.get url)
 
-    #puts '***' + response.css('td')[0].text + '***'
+      
+      puts response
+      puts ' '
+      puts '----****----'
+      puts ' '
+      #puts response.css('td')[0].text
 
+      #puts '***' + response.css('td')[0].text + '***'
 
+    rescue
+    end
 
     unless response.css('td')[0].nil?
 

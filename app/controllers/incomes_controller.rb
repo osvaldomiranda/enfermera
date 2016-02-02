@@ -31,6 +31,11 @@ class IncomesController < ApplicationController
     respond_with(@income)
   end
 
+  def feeforincome
+    @income = Income.find(params[:id])
+    respond_modal_with(@income)
+  end
+
   def destroy
     @income.destroy
     respond_with(@income)

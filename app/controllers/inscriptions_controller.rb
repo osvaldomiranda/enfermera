@@ -13,6 +13,7 @@ class InscriptionsController < ApplicationController
   end
 
   def new
+    @valorcuota = Currentfee.last.valor
     @inscription = Inscription.new
     respond_with(@inscription)
   end
@@ -28,8 +29,6 @@ class InscriptionsController < ApplicationController
       
       url = ""
       certificado_html = ""
-
-      
 
       user = User.new
       user.email = params[:inscription][:email]
@@ -52,6 +51,7 @@ class InscriptionsController < ApplicationController
       @person.universidad = params[:inscription][:universidad]
       @person.fecha_titulo = params[:inscription][:fecha_titulo]
       @person.tipo_contrato = params[:inscription][:tipo_contrato]
+      @person.workplace_id = params[:inscription][:workplace_id]
       @person.url = url
       @person.certificado_html = certificado_html
       @person.save
@@ -83,6 +83,6 @@ class InscriptionsController < ApplicationController
     end
 
     def inscription_params
-      params.require(:inscription).permit(:nro_registro, :rut, :nombres, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :tipo_contrato, :estado, :fecha_solicitud)
+      params.require(:inscription).permit(:nro_registro, :rut, :nombres, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :tipo_contrato, :estado, :fecha_solicitud, :workplace_id, :forma_pago)
     end
 end

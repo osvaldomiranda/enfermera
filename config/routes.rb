@@ -2,6 +2,14 @@ Enfermera::Application.routes.draw do
   
 
   
+  resources :currentfees
+
+  resources :rols
+
+  resources :regions
+
+  get "sensomatica/index"
+  get "sensomatica/calltemp"
   resources :offices
 
   resources :fees
@@ -42,10 +50,14 @@ Enfermera::Application.routes.draw do
   get "home/index"
   get "dashboard/index"
   get "credential/index"
+  get "/incomes/feeforincome/:id", to: 'incomes#feeforincome'
 
   get "/people/picture/:id", to: 'people#picture'
-  get "/people/pay/payregister", to: 'people#payregister'
+  get "/people/pay/payregister/:id", to: 'people#payregister'
   post "/people/pay/pay", to: 'people#pay'
+
+  get "/workplaces/pay/payregister", to: 'workplaces#payregister'
+  post "/workplaces/pay/pay", to: 'workplaces#pay'
 
   get "/people/terms/:id", to: 'people#terms'
   get "/people/termstopdf/:id", to: 'people#termsToPdf'

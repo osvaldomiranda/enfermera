@@ -35,4 +35,5 @@ Enfermera::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.allow_concurrency = false
+
 end

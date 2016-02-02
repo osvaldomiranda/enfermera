@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termsToPdf]
+  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termsToPdf, :payregister]
 
   respond_to :html
 
@@ -23,6 +23,7 @@ class PeopleController < ApplicationController
   end
 
   def edit
+    @valorcuota = Currentfee.last.valor
     respond_modal_with(@person)
   end
 
@@ -101,8 +102,42 @@ class PeopleController < ApplicationController
   end
 
   def pay
+
     @income = Income.new
-    render "/adminworckplace/wppayregister"
+    @income.monto       =  params[:income][:monto]
+    @income.person_id   =  params[:income][:person_id]
+    @income.workplace_id=  params[:income][:workplace_id]
+    @income.tipo        = "Colegiada"
+    @income.user_id     =  params[:income][:user_id]
+    @income.document    =  params[:income][:document]
+    @income.banco       =  params[:income][:banco]
+    @income.mediopago   =  params[:income][:mediopago]
+    @income.fecha       =  DateTime.now
+    @income.estado      = "POR CONFIRMAR"
+
+    if @income.save
+      valorcuota = Currentfee.last.valor
+      n = params[:income][:monto].to_i/valorcuota
+      @person = Person.find(params[:income][:person_id])
+      (1..n).each do |i|
+        fee = Fee.new
+        fee.rut = @person.rut
+        fee.email = @person.email
+        fee.fecha_pago = params[:income][:fecha]
+        fee.mes = i
+        fee.monto = valorcuota
+        fee.person_id = @person.id
+        fee.pagador = "Pago Directo Colegiada"
+        fee.mes_cuota =  i
+        fee.estado = "Por Confirmar"
+        fee.income_id = @income.id
+        fee.save
+      end
+    end
+
+    @persondocuments = Persondocument.all
+
+    render "/dashboard/index"
   end
 
 
@@ -112,6 +147,11 @@ class PeopleController < ApplicationController
     end
 
     def person_params
-      params.require(:person).permit( :email, :rut, :created_at, :updated_at, :picture, :phone, :terms, :fechaterms, :completeeduc, :nombres, :nro_registro, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :lugar_trabajo, :tipo_contrato, :workplase_id )
+      params.require(:person).permit( :email, :rut, :created_at, :updated_at, :picture, :phone, :terms, :fechaterms, :completeeduc, :nombres, :nro_registro, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :lugar_trabajo, :tipo_contrato, :workplase_id, :forma_pago )
     end
+    def income_params
+      params.require(:income).permit( :fecha, :tipo, :person_id, :workplace_id, :user_id, :monto , :banco, :mediopago, :document )
+    end
+
+ 
 end

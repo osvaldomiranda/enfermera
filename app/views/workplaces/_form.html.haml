@@ -10,7 +10,13 @@
           .form-inputs
             = f.input :nombre
             = f.input :ciudad
-            = f.input :region
+            = f.input :region, collection: Office.region_options_for_select, :input_html => {:style=> 'width: 180px'}
+            = f.input :codigo  
+            = f.input :telefono
+            = f.input :email
+            = f.input :calle
+            = f.input :numero
+            = f.input :office_id, collection: Office.office_option_for_select, :input_html => {:style=> 'width: 180px'}
 
           .form-actions
             = f.button :submit

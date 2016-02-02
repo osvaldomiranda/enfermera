@@ -7,24 +7,23 @@
         = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
           = f.error_notification
           .form-inputs
-            = f.input :fecha, :as => :hidden, :input_html => { :value => "#{DateTime.now}" }
-            = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
-            = f.input :person, :as => :hidden, :input_html => { :value => 1 } 
-            = f.input :workplace, :as => :hidden, :input_html => { :value => 1 } 
-            = f.input :user, :as => :hidden, :input_html => { :value => 1 } 
+            / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
+            = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
+            = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id } 
+            = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Monto
               .col-sm-4
-                = f.input :monto, label: false  
+                = f.input :monto, label: false  , collection: Income.cuouas_options_for_select
             .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} banco
               .col-sm-4  
-                = f.input :banco, label: false  
+                = f.input :banco, label: false , collection: Income.banco_options_for_select 
             .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} Medio Pago
               .col-sm-4
-                = f.input :mediopago, label: false  
+                = f.input :mediopago, label: false, collection: Income.mediopago_options_for_select  
  
             .row   
               .col-md-8 
@@ -43,21 +42,3 @@
               .col-sm-offset-2.col-sm-10
                 .pull-right
                   %button.btn.btn-success{:type => "submit"} Guardar
-
-
-/ = simple_form_for(@income) do |f|
-/   = f.error_notification
-
-/   .form-inputs
-/     = f.input :fecha
-/     = f.input :monto
-/     = f.input :tipo
-/     = f.input :document
-/     = f.input :banco
-/     = f.input :mediopago
-/     = f.association :person
-/     = f.association :workplace
-/     = f.association :user
-
-/   .form-actions
-/     = f.button :submit

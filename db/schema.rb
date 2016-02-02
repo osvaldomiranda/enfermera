@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126133054) do
+ActiveRecord::Schema.define(version: 20160202020757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "currentfees", force: true do |t|
+    t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fees", force: true do |t|
     t.string   "rut"
@@ -28,8 +34,10 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.string   "pagador"
     t.string   "mes_cuota"
     t.string   "estado"
+    t.integer  "income_id"
   end
 
+  add_index "fees", ["income_id"], name: "index_fees_on_income_id", using: :btree
   add_index "fees", ["person_id"], name: "index_fees_on_person_id", using: :btree
 
   create_table "incomes", force: true do |t|
@@ -44,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "estado"
   end
 
   add_index "incomes", ["person_id"], name: "index_incomes_on_person_id", using: :btree
@@ -73,7 +82,11 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.string   "email"
     t.string   "password"
     t.string   "password_confirmation"
+    t.integer  "workplace_id"
+    t.string   "forma_pago"
   end
+
+  add_index "inscriptions", ["workplace_id"], name: "index_inscriptions_on_workplace_id", using: :btree
 
   create_table "offices", force: true do |t|
     t.string   "nombre"
@@ -83,6 +96,10 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.string   "contacto"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "codigo"
+    t.string   "calle"
+    t.string   "numero"
+    t.string   "telefono"
   end
 
   create_table "people", force: true do |t|
@@ -113,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.text     "url"
     t.text     "certificado_html"
     t.string   "estado"
+    t.string   "forma_pago"
   end
 
   add_index "people", ["workplace_id"], name: "index_people_on_workplace_id", using: :btree
@@ -142,6 +160,23 @@ ActiveRecord::Schema.define(version: 20160126133054) do
 
   add_index "previousjobs", ["person_id"], name: "index_previousjobs_on_person_id", using: :btree
 
+  create_table "regions", force: true do |t|
+    t.string   "codigo"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rols", force: true do |t|
+    t.string   "nombre"
+    t.integer  "user_id"
+    t.string   "region"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rols", ["user_id"], name: "index_rols_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -166,7 +201,15 @@ ActiveRecord::Schema.define(version: 20160126133054) do
     t.string   "region"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "codigo"
+    t.string   "telefono"
+    t.string   "email"
+    t.string   "calle"
+    t.string   "numero"
+    t.integer  "office_id"
   end
+
+  add_index "workplaces", ["office_id"], name: "index_workplaces_on_office_id", using: :btree
 
   create_table "wpdocuments", force: true do |t|
     t.string   "nombre"

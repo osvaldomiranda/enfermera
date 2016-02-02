@@ -1,0 +1,21 @@
+%h1 Listing currentfees
+
+%table
+  %thead
+    %tr
+      %th Valor
+      %th
+      %th
+      %th
+
+  %tbody
+    - @currentfees.each do |currentfee|
+      %tr
+        %td= currentfee.valor
+        %td= link_to 'Show', currentfee
+        %td= link_to 'Edit', edit_currentfee_path(currentfee)
+        %td= link_to 'Destroy', currentfee, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Currentfee', new_currentfee_path

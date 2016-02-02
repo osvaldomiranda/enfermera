@@ -1,0 +1,25 @@
+%h1 Listing rols
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th User
+      %th Region
+      %th
+      %th
+      %th
+
+  %tbody
+    - @rols.each do |rol|
+      %tr
+        %td= rol.nombre
+        %td= rol.user
+        %td= rol.region
+        %td= link_to 'Show', rol
+        %td= link_to 'Edit', edit_rol_path(rol)
+        %td= link_to 'Destroy', rol, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Rol', new_rol_path

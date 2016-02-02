@@ -40,6 +40,11 @@ class Person < ActiveRecord::Base
     TIPOCONTRATO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
+  FORMAPAGO  = ['Pago Directo', 'Descuento por planilla']
+  def self.formapago_options_for_select
+    #GENDERS.to_enum.with_index(0).to_a
+    FORMAPAGO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end 
 
 
   def self.import(file)

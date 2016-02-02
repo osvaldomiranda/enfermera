@@ -1,0 +1,87 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Registrar Pago de Descuento de Cuotas
+      .panel-body
+        .container-fluid
+          .row
+            .col-md-12
+              %form.form-horizontal{:role => "form"}
+              = simple_form_for(@income, :url => "/workplaces/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
+                = f.error_notification
+                .form-inputs
+                  = f.input :workplace_id, :as => :hidden, :input_html => { :value => @workplace.id } 
+                  = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
+
+                  .form-group    
+                    %label.col-sm-2.control-label{:for => "textinput"} Lugar de trabajo
+                    .col-sm-4
+                      = f.input :workplace, label: false, readonly: true,  :input_html => {:style=> 'width: 230px', :value => @workplace.nombre}  
+                  .form-group
+                    %label.col-sm-2.control-label{:for => "textinput"} Monto
+                    .col-sm-4
+                      = f.input :monto, label: false,  :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
+                    %label.col-sm-2.control-label{:for => "textinput"} tipo 
+                    .col-sm-4
+                      = f.input :tipo, label: false, collection:  Income.tipopago_options_for_select  
+                  .form-group
+                    %label.col-sm-2.control-label{:for => "textinput"} banco
+                    .col-sm-4  
+                      = f.input :banco, label: false, collection:  Income.banco_options_for_select    
+                    %label.col-sm-2.control-label{:for => "textinput"} mediopago
+                    .col-sm-4
+                      = f.input :mediopago, label: false, collection:  Income.mediopago_options_for_select    
+                  .form-group 
+                    %label.col-sm-2.control-label{:for => "textinput"}  
+                    .col-sm-12 
+                      .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                        .form-control{"data-trigger" => "fileinput"}
+                          %i.glyphicon.glyphicon-file.fileinput-exists
+                          %span.fileinput-filename
+                        %span.input-group-addon.btn.btn-default.btn-file
+                          %span.fileinput-new Comprobante de Deposito
+                          %span.fileinput-exists Cambiar
+                          =f.file_field :document
+                        %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+               
+                  .form-group
+                    .col-sm-offset-2.col-sm-10
+                      .pull-right
+                        %button.btn.btn-success{:type => "submit"} Guardar
+
+        %hr
+        %h3 Registrar cuotas      
+        / %hr
+        / .container-fluid
+        /   .row
+        /     %h4 Importar Colegiadas
+        /     = form_tag import_people_path, multipart: true do 
+        /       = file_field_tag :file 
+        /       %br
+        /       = submit_tag "Importar" 
+
+        /     %br
+        /     %hr
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Registrar Cuota
+              %th Nombre
+              %th Rut
+              %th Email
+              %th Cuota
+
+
+          %tbody
+            - @workplace.people.each do |person|
+              %tr
+                %td.boolean
+                  %input{ name: "ksk_mandatory", type: "checkbox", checked: "checked"}
+                %td= person.fullname  
+                %td= person.rut
+                %td= person.email
+                %td= "$#{Currentfee.last.valor}"
+
+        %br

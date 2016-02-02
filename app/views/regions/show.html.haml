@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Codigo:
+  = @region.codigo
+%p
+  %b Nombre:
+  = @region.nombre
+
+= link_to 'Edit', edit_region_path(@region)
+\|
+= link_to 'Back', regions_path

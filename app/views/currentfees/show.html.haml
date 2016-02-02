@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Valor:
+  = @currentfee.valor
+
+= link_to 'Edit', edit_currentfee_path(@currentfee)
+\|
+= link_to 'Back', currentfees_path
