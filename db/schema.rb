@@ -11,16 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202020757) do
+ActiveRecord::Schema.define(version: 20160202155226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: true do |t|
+    t.string   "titulo"
+    t.text     "descripcion"
+    t.string   "imagen"
+    t.string   "documento"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "currentfees", force: true do |t|
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "expenses", force: true do |t|
+    t.datetime "fecha"
+    t.float    "monto"
+    t.string   "tipo"
+    t.string   "document"
+    t.string   "descripcion"
+    t.string   "mediopago"
+    t.integer  "office_id"
+    t.integer  "user_id_id"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "expenses", ["office_id"], name: "index_expenses_on_office_id", using: :btree
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
+  add_index "expenses", ["user_id_id"], name: "index_expenses_on_user_id_id", using: :btree
 
   create_table "fees", force: true do |t|
     t.string   "rut"
@@ -87,6 +116,27 @@ ActiveRecord::Schema.define(version: 20160202020757) do
   end
 
   add_index "inscriptions", ["workplace_id"], name: "index_inscriptions_on_workplace_id", using: :btree
+
+  create_table "officeaccounts", force: true do |t|
+    t.date     "fecha"
+    t.string   "tipo"
+    t.float    "monto"
+    t.string   "codigo"
+    t.string   "account"
+    t.integer  "user_id"
+    t.integer  "office_id"
+    t.integer  "income_id"
+    t.integer  "expense_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "incomevalue"
+    t.float    "expensevalue"
+  end
+
+  add_index "officeaccounts", ["expense_id"], name: "index_officeaccounts_on_expense_id", using: :btree
+  add_index "officeaccounts", ["income_id"], name: "index_officeaccounts_on_income_id", using: :btree
+  add_index "officeaccounts", ["office_id"], name: "index_officeaccounts_on_office_id", using: :btree
+  add_index "officeaccounts", ["user_id"], name: "index_officeaccounts_on_user_id", using: :btree
 
   create_table "offices", force: true do |t|
     t.string   "nombre"

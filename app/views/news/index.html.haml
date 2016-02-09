@@ -1,0 +1,20 @@
+
+- @blogs.each do |blog|
+  .container{:role => "main"}
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title= "Actividad: #{blog.titulo}" 
+        .panel-body
+          %h3= "#{blog.titulo}"
+          .row
+            .col-md-12
+              .col-md-2
+                %a.thumbnail{:href => ""}
+                  - if blog.imagen.present?
+                    %img{:alt => "...", :src =>"#{blog.imagen_url}"}
+              .col-sm-8
+                %p= blog.descripcion
+              = link_to "Ver Documento",blog.documento_url,  class: 'btn btn-info'
+          %br
+          %br   

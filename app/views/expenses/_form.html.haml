@@ -1,0 +1,15 @@
+= simple_form_for(@expense) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :fecha
+    = f.input :monto
+    = f.input :tipo
+    = f.input :document
+    = f.input :descripcion
+    = f.input :mediopago
+    = f.association :office
+    = f.input :estado
+
+  .form-actions
+    = f.button :submit

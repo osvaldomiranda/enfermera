@@ -2,6 +2,14 @@ Enfermera::Application.routes.draw do
   
 
   
+  resources :blogs
+
+  get "news/index"
+  get "consignment/index"
+  resources :officeaccounts
+
+  resources :expenses
+
   resources :currentfees
 
   resources :rols

@@ -1,0 +1,33 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Noticias
+      .panel-body
+        .container-fluid
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Titulo
+                %th Descripcion
+                %th Imagen
+                %th Documento
+                %th Estado
+                %th
+                %th
+                %th
+
+            %tbody
+              - @blogs.each do |blog|
+                %tr
+                  %td= blog.titulo
+                  %td= blog.descripcion
+                  %td= link_to "Imagen",blog.imagen_url
+                  %td= link_to "Documento",blog.documento_url
+                  %td= blog.estado
+                  %td= link_to 'Editar', edit_blog_path(blog)
+                  %td= link_to 'Eliminar', blog, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+          %br
+
+          = link_to 'Nueva Noticia', new_blog_path

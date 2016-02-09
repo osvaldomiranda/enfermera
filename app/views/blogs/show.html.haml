@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @blog.titulo
+%p
+  %b Descripcion:
+  = @blog.descripcion
+%p
+  %b Imagen:
+  = @blog.imagen
+%p
+  %b Documento:
+  = @blog.documento
+%p
+  %b Estado:
+  = @blog.estado
+
+= link_to 'Edit', edit_blog_path(@blog)
+\|
+= link_to 'Back', blogs_path

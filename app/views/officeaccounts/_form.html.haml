@@ -1,0 +1,16 @@
+= simple_form_for(@officeaccount) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :fecha
+    = f.input :tipo
+    = f.input :monto
+    = f.input :codigo
+    = f.input :account
+    = f.association :user
+    = f.association :office
+    = f.association :income
+    = f.association :expense
+
+  .form-actions
+    = f.button :submit

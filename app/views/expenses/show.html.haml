@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Fecha:
+  = @expense.fecha
+%p
+  %b Monto:
+  = @expense.monto
+%p
+  %b Tipo:
+  = @expense.tipo
+%p
+  %b Document:
+  = @expense.document
+%p
+  %b Descripcion:
+  = @expense.descripcion
+%p
+  %b Mediopago:
+  = @expense.mediopago
+%p
+  %b Office:
+  = @expense.office
+%p
+  %b User:
+  = @expense.user_id
+%p
+  %b Estado:
+  = @expense.estado
+
+= link_to 'Edit', edit_expense_path(@expense)
+\|
+= link_to 'Back', expenses_path

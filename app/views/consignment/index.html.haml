@@ -2,20 +2,15 @@
   .col-md-12
     .panel.panel-default
       .panel-heading
-        %h3.panel-title Colegiadas
+        %h3.panel-title Remesa
       .panel-body
-
+        %h3= "Total pagado: $#{@total}.-"
+        %h3= "Remesa 35% : $#{@remesa}.-"
+        %h4= "Pagos considerados para esta remesa: #{@incomes.count}"
+        %p Se consideran solo los pagos que se encuentren confirmados como efectivamente depositados en Cta.Cte. 
         .row
-          .col-md-12
-            = simple_form_for(people_path,:method => :get ) do |f|
-              .form-group  
-                .col-sm-2
-                  = f.input :nombre, label: false,  :input_html => {:style=> 'width: 180px'}
-  
-                .col-sm-2  
-                  = f.button :submit, "Buscar",  class: "btn btn-primary"
-
-            = link_to "Limpiar Busqueda","",  class: 'btn btn-info'
+          .container-fluid
+            = link_to "Enviar Remesa","",  class: 'btn btn-info'
         %br
         %br
 
@@ -23,7 +18,7 @@
   .col-md-12
     .panel.panel-default
       .panel-heading
-        %h3.panel-title Pagos 
+        %h3.panel-title Detalle 
 
       .panel-body
         .container-fluid
@@ -40,9 +35,7 @@
                   %th Pagador
                   %th Lugar de Trabajo
                   %th Usuario Transaccion
-                  %th Confirmar en Cta.Cte.
-                  %th Cuotas de este pago
-
+                  %th Cuotas
               %tbody
                 - @incomes.each do |income|
                   %tr
@@ -58,7 +51,6 @@
                       %td= income.workplace.nombre  
                     %td= income.workplace.nombre
                     %td= income.user.email
-                    %td= link_to "#{income.estado}", "", class: 'btn btn-info'
                     %td= link_to "Ver", "/incomes/feeforincome/#{income.id}", data: { modal: true },class: 'btn btn-info'
+                     
             %br
-

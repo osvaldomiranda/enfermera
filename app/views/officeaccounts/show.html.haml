@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Fecha:
+  = @officeaccount.fecha
+%p
+  %b Tipo:
+  = @officeaccount.tipo
+%p
+  %b Monto:
+  = @officeaccount.monto
+%p
+  %b Codigo:
+  = @officeaccount.codigo
+%p
+  %b Account:
+  = @officeaccount.account
+%p
+  %b User:
+  = @officeaccount.user
+%p
+  %b Office:
+  = @officeaccount.office
+%p
+  %b Income:
+  = @officeaccount.income
+%p
+  %b Expense:
+  = @officeaccount.expense
+
+= link_to 'Edit', edit_officeaccount_path(@officeaccount)
+\|
+= link_to 'Back', officeaccounts_path
