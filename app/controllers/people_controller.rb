@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termsToPdf, :payregister]
 
   respond_to :html

@@ -72,6 +72,8 @@ Enfermera::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+
+  config.gem "cancan"
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
@@ -79,6 +81,7 @@ Enfermera::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.raise_delivery_errors = true
+
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

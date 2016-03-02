@@ -30,15 +30,19 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <% if user_signed_in? %> 
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/news/index">Atividades</a></li>
-          </ul> 
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/dashboard/index">Colegiada</a></li>
-          </ul>      
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/management/index">Administración</a></li>
-          </ul>
+          <% if current_user.role? :member %>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/news/index">Atividades</a></li>
+            </ul> 
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/dashboard/index">Colegiada</a></li>
+            </ul>  
+          <% end %>    
+          <% if current_user.role? :national_admin %>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/management/index">Administración</a></li>
+            </ul>
+          <% end %>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/dashboard/index">Informes</a></li>
           </ul>

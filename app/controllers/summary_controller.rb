@@ -1,5 +1,5 @@
 class SummaryController < ApplicationController
-  
+  before_filter :authenticate_user!
   def index
     @person  = Person.find_by_email(current_user.email)
   end
