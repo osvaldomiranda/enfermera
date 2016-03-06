@@ -2,12 +2,12 @@ class SensomaticaController < ApplicationController
   require 'rest-client'
     
   def index
-    @temp = 'hola'
+    @temp = RestClient.get 'http://192.168.1.41:3000/'
   end
 
   def calltemp
   	
-    @temp = RestClient.get 'http://192.168.0.22:3000/temp'
+    @temp = RestClient.get 'http://192.168.1.41:3000/temp'
 
     render 'index'
   end
