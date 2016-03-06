@@ -8,6 +8,8 @@ class Ability
       can :login, User
     elsif user.role? :observer
       can :read, :all
+    else 
+      can :manage, :inscription
     # elsif user.role? :realtor
     #   can :reservation, Reserva
     # elsif user.role? :logistics
