@@ -21,7 +21,9 @@ class Ability
     # elsif user.role? :invoice
     #   can :manage, Invoice
     # elsif user.role? :invoice_admin  
-    #   can :manage, Invoice      
+    #   can :manage, Invoice 
+    else
+      can :manage, :inscription     
     end
   end
 end
