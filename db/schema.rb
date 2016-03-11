@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301185930) do
+ActiveRecord::Schema.define(version: 20160310010932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: true do |t|
+    t.string   "codigo"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blogs", force: true do |t|
     t.string   "titulo"
@@ -26,11 +33,58 @@ ActiveRecord::Schema.define(version: 20160301185930) do
     t.datetime "updated_at"
   end
 
+  create_table "cost_centers", force: true do |t|
+    t.string   "codigo"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "currentfees", force: true do |t|
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "detail_expenses", force: true do |t|
+    t.string   "numcomprobante"
+    t.float    "debe"
+    t.float    "haber"
+    t.string   "paguesea"
+    t.string   "por"
+    t.string   "observacion"
+    t.integer  "account_id"
+    t.integer  "cost_center_id"
+    t.integer  "expense_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "detail_expenses", ["account_id"], name: "index_detail_expenses_on_account_id", using: :btree
+  add_index "detail_expenses", ["cost_center_id"], name: "index_detail_expenses_on_cost_center_id", using: :btree
+  add_index "detail_expenses", ["expense_id"], name: "index_detail_expenses_on_expense_id", using: :btree
+
+  create_table "detail_incomes", force: true do |t|
+    t.string   "pcontable"
+    t.string   "fcontable"
+    t.string   "tipo_comprobante"
+    t.string   "mescuota"
+    t.string   "detalle"
+    t.float    "debe"
+    t.float    "haber"
+    t.string   "obeservacion"
+    t.integer  "account_id"
+    t.integer  "workplace_id"
+    t.integer  "cost_center_id"
+    t.integer  "income_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "detail_incomes", ["account_id"], name: "index_detail_incomes_on_account_id", using: :btree
+  add_index "detail_incomes", ["cost_center_id"], name: "index_detail_incomes_on_cost_center_id", using: :btree
+  add_index "detail_incomes", ["income_id"], name: "index_detail_incomes_on_income_id", using: :btree
+  add_index "detail_incomes", ["workplace_id"], name: "index_detail_incomes_on_workplace_id", using: :btree
 
   create_table "expenses", force: true do |t|
     t.datetime "fecha"

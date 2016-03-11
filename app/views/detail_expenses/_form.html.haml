@@ -1,0 +1,16 @@
+= simple_form_for(@detail_expense) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :numcomprobante
+    = f.input :debe
+    = f.input :haber
+    = f.input :paguesea
+    = f.input :por
+    = f.input :observacion
+    = f.association :account
+    = f.association :cost_center
+    = f.association :expense
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,2 @@
+module DetailIncomesHelper
+end

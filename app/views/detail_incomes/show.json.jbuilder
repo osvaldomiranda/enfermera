@@ -1,0 +1,1 @@
+json.extract! @detail_income, :id, :pcontable, :fcontable, :tipo_comprobante, :mescuota, :detalle, :debe, :haber, :obeservacion, :account_id, :workplace_id, :cost_center_id, :income_id, :created_at, :updated_at

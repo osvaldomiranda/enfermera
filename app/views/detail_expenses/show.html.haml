@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Numcomprobante:
+  = @detail_expense.numcomprobante
+%p
+  %b Debe:
+  = @detail_expense.debe
+%p
+  %b Haber:
+  = @detail_expense.haber
+%p
+  %b Paguesea:
+  = @detail_expense.paguesea
+%p
+  %b Por:
+  = @detail_expense.por
+%p
+  %b Observacion:
+  = @detail_expense.observacion
+%p
+  %b Account:
+  = @detail_expense.account
+%p
+  %b Cost center:
+  = @detail_expense.cost_center
+%p
+  %b Expense:
+  = @detail_expense.expense
+
+= link_to 'Edit', edit_detail_expense_path(@detail_expense)
+\|
+= link_to 'Back', detail_expenses_path

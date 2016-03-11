@@ -1,0 +1,43 @@
+%h1 Listing detail_incomes
+
+%table
+  %thead
+    %tr
+      %th Pcontable
+      %th Fcontable
+      %th Tipo comprobante
+      %th Mescuota
+      %th Detalle
+      %th Debe
+      %th Haber
+      %th Obeservacion
+      %th Account
+      %th Workplace
+      %th Cost center
+      %th Income
+      %th
+      %th
+      %th
+
+  %tbody
+    - @detail_incomes.each do |detail_income|
+      %tr
+        %td= detail_income.pcontable
+        %td= detail_income.fcontable
+        %td= detail_income.tipo_comprobante
+        %td= detail_income.mescuota
+        %td= detail_income.detalle
+        %td= detail_income.debe
+        %td= detail_income.haber
+        %td= detail_income.obeservacion
+        %td= detail_income.account
+        %td= detail_income.workplace
+        %td= detail_income.cost_center
+        %td= detail_income.income
+        %td= link_to 'Show', detail_income
+        %td= link_to 'Edit', edit_detail_income_path(detail_income)
+        %td= link_to 'Destroy', detail_income, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Detail income', new_detail_income_path
