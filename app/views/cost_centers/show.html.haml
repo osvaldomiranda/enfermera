@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Codigo:
+  = @cost_center.codigo
+%p
+  %b Nombre:
+  = @cost_center.nombre
+
+= link_to 'Edit', edit_cost_center_path(@cost_center)
+\|
+= link_to 'Back', cost_centers_path

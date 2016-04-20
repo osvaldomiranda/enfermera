@@ -1,76 +1,129 @@
 Enfermera::Application.routes.draw do
-  
 
-  
   resources :blogs
-
-  get "news/index"
-  get "consignment/index"
   resources :officeaccounts
-
   resources :expenses
-
   resources :currentfees
-
   resources :rols
-
   resources :regions
-
-  get "sensomatica/index"
-  get "sensomatica/calltemp"
   resources :offices
-
   resources :fees
-
   resources :incomes
-
   resources :inscriptions
-
   resources :wpdocuments
-
   resources :persondocuments
-
   resources :workplaces
-
   resources :previousjobs
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  resources :people do
-    collection { post :import }
-  end
+
 
 
   root to: "home#index"
 
-  post "report/export"
-  get "senddiscount/index"
-  get "/senddiscount/sendemail/:id", to:  "senddiscount#sendemail"
-  get "/senddiscount/sendretrieve/:id", to:  "senddiscount#sendretrieve"
-  get "management/index"
-  get "adminspending/index"
-  get "adminconsignment/index"
-  get "admincolegiada/index"
-  get "admincolegiada/superintendencia"
-  get "adminworckplace/index"
-  get "/adminworckplace/wppayregister", to: "adminworckplace#wppayregister"
-  get "/adminworckplace/wppay", to: "adminworckplace#wppay"
-  get "home/index"
-  get "dashboard/index"
-  get "credential/index"
-  get "/incomes/feeforincome/:id", to: 'incomes#feeforincome'
+  get "sensomatica/index"
+  get "sensomatica/calltemp"
 
-  get "/people/picture/:id", to: 'people#picture'
-  get "/people/pay/payregister/:id", to: 'people#payregister'
-  post "/people/pay/pay", to: 'people#pay'
+  resources :accountancy, only: :index
+  resources :summary_expenses, only: :index
+  resources :news, only: :index
+  resources :consignment, only: :index  
+  resources :regional_manager, only: :index
+  
+  # post "report/export"
+  resources :report do
+    collection { post :export }
+  end
 
-  get "/workplaces/pay/payregister", to: 'workplaces#payregister'
-  post "/workplaces/pay/pay", to: 'workplaces#pay'
 
-  get "/people/terms/:id", to: 'people#terms'
-  get "/people/termstopdf/:id", to: 'people#termsToPdf'
-  get "/persondocuments/send/:id", to: "persondocuments#sendfile"
-  # devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+  # get "reports/index"
+  resources :reports, only: :index
+
+  # get "senddiscount/index"
+  # get "/senddiscount/sendemail/:id", to:  "senddiscount#sendemail"
+  # get "/senddiscount/sendretrieve/:id", to:  "senddiscount#sendretrieve"
+  resources :senddiscount do
+    member do
+      get :sendemail
+      get :sendretrieve
+    end
+  end
+  
+  # get "management/index"
+  resources :management, only: :index
+
+  # get "adminspending/index"
+  resources :adminspending, only: :index
+  
+  # get "adminconsignment/index"
+  resources :adminconsignment, only: :index
+  
+  # get "admincolegiada/index"
+  # get "admincolegiada/superintendencia"
+  resources :admincolegiada, only: :index do
+    collection { get :superintendencia }
+  end
+  
+  # get "adminworckplace/index"
+  # get "/adminworckplace/wppayregister", to: "adminworckplace#wppayregister"
+  # get "/adminworckplace/wppay", to: "adminworckplace#wppay"
+  resources :adminconsignment, only: :index do
+    member do
+      get :wppayregister
+      get :wppay
+    end
+  end
+
+  
+  # get "home/index"
+  resources :home, only: :index
+
+  # get "dashboard/index"
+  resources :dashboard, only: :index
+  
+  # get "credential/index"
+  resources :credential, only: :index
+  
+  # get "/incomes/feeforincome/:id", to: 'incomes#feeforincome'
+  resources :incomes do
+    member { get :feeforincome }
+  end
+
+  # get "/people/picture/:id", to: 'people#picture'
+  # get "/people/pay/payregister/:id", to: 'people#payregister'
+  # post "/people/pay/pay", to: 'people#pay'
+  # get "/people/terms/:id", to: 'people#terms'
+  # get "/people/termstopdf/:id", to: 'people#termsToPdf'
+  resources :people do
+    member do
+      get :picture
+      get :payregister
+      post :pay
+      get :terms
+      get :termstopdf
+    end
+    collection { post :import }
+  end
+
+  # get "/workplaces/pay/payregister", to: 'workplaces#payregister'
+  # post "/workplaces/pay/pay", to: 'workplaces#pay'
+  resources :workplaces do
+    member do
+      get :payregister
+      post :pay
+    end
+  end
+
+
+
+
+  # get "/persondocuments/send/:id", to: "persondocuments#sendfile"
+  resources :persondocuments do
+    member do
+      get :send
+    end
+  end
   
 
 end

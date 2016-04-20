@@ -1,0 +1,37 @@
+%h1 Listing detail_expenses
+
+%table
+  %thead
+    %tr
+      %th Numcomprobante
+      %th Debe
+      %th Haber
+      %th Paguesea
+      %th Por
+      %th Observacion
+      %th Account
+      %th Cost center
+      %th Expense
+      %th
+      %th
+      %th
+
+  %tbody
+    - @detail_expenses.each do |detail_expense|
+      %tr
+        %td= detail_expense.numcomprobante
+        %td= detail_expense.debe
+        %td= detail_expense.haber
+        %td= detail_expense.paguesea
+        %td= detail_expense.por
+        %td= detail_expense.observacion
+        %td= detail_expense.account
+        %td= detail_expense.cost_center
+        %td= detail_expense.expense
+        %td= link_to 'Show', detail_expense
+        %td= link_to 'Edit', edit_detail_expense_path(detail_expense)
+        %td= link_to 'Destroy', detail_expense, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Detail expense', new_detail_expense_path

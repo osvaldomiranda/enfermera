@@ -89,7 +89,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html {
         if @msg == " "
-          render action: 'index', notice: "Clientes Ok"
+          render action: 'index', notice: "Colegiadas Ok"
         else
           render '/people/error'
         end  

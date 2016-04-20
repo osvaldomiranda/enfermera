@@ -54,7 +54,6 @@
           = file_field_tag :file 
           %br
           = submit_tag "Importar" 
-
         %br
         %hr
 
@@ -102,7 +101,7 @@
                     %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
                   - else
                     %td= link_to 'Confirmar Suscripción', "", class: 'btn btn-warning btn-xs' 
-                    %td= link_to 'Cancelar Suscripción', "", class: 'btn btn-info btn-xs'
+                    / %td= link_to 'Cancelar Suscripción', "", class: 'btn btn-info btn-xs'
                            
                   / %td= link_to 'Edit', edit_person_path(person)
                   / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }

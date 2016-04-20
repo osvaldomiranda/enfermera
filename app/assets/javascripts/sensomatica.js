@@ -15,6 +15,7 @@ function timeout(){
 function clear(){
     clearInterval(inter);
 }
+
 function callpi(url) {
 $.ajax({
     method: "get",

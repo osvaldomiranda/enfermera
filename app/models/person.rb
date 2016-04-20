@@ -52,17 +52,24 @@ class Person < ActiveRecord::Base
         rowHash = row.to_hash
 
         person = Person.new
+        person.codigo = rowHash["codigo"] 
         person.email = rowHash["email"]
-        person.first_name = rowHash["first_name"]
-        person.last_name = rowHash["last_name"]
+        person.nombres = rowHash["nombres"]
+        person.apellido_paterno = rowHash["apellido_paterno"]
+        person.apellido_materno = rowHash["apellido_materno"]
         person.rut = rowHash["rut"]
         person.phone = rowHash["phone"]
+        person.sexo = rowHash["sexo"]
+        person.direccion = rowHash["direccion"]
+        person.ciudad = rowHash["ciudad"]
+        person.universidad = rowHash["universidad"]
        
         if person.save
           user = User.new
           user.email = rowHash["email"]
-          user.password = rowHash["password"]
-          user.password_confirmation = rowHash["password"]
+          user.password = rowHash["rut"]
+          user.password_confirmation = rowHash["rut"]
+          user.roles_mask = 3
           user.save
  
         else

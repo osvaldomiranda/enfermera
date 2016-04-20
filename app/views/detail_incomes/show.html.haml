@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Pcontable:
+  = @detail_income.pcontable
+%p
+  %b Fcontable:
+  = @detail_income.fcontable
+%p
+  %b Tipo comprobante:
+  = @detail_income.tipo_comprobante
+%p
+  %b Mescuota:
+  = @detail_income.mescuota
+%p
+  %b Detalle:
+  = @detail_income.detalle
+%p
+  %b Debe:
+  = @detail_income.debe
+%p
+  %b Haber:
+  = @detail_income.haber
+%p
+  %b Obeservacion:
+  = @detail_income.obeservacion
+%p
+  %b Account:
+  = @detail_income.account
+%p
+  %b Workplace:
+  = @detail_income.workplace
+%p
+  %b Cost center:
+  = @detail_income.cost_center
+%p
+  %b Income:
+  = @detail_income.income
+
+= link_to 'Edit', edit_detail_income_path(@detail_income)
+\|
+= link_to 'Back', detail_incomes_path

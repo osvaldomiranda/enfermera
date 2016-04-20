@@ -36,7 +36,6 @@
                   %th Descripcion
                   %th Mediopago
                   %th Office
-                  %th User
                   %th Estado
                   %th
                   %th
@@ -44,18 +43,18 @@
               %tbody
                 - @expenses.each do |expense|
                   %tr
-                    %td= expense.fecha
+                    %td= expense.fecha.strftime('%d/%m/%Y %H:%M')
                     %td= expense.monto
                     %td= expense.tipo
-                    %td= expense.document
+                    %td= link_to 'Comprobante', expense.document_url, class: 'btn btn-info'
                     %td= expense.descripcion
                     %td= expense.mediopago
-                    %td= expense.office.nombre
-                    %td= "osvaldo.omiranda@gmail.com"
                     %td= expense.estado
                     %td= link_to 'Editar', edit_expense_path(expense)
                     %td= link_to 'Eliminar', expense, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
             %br
 
-            = link_to 'Registrar Gasto', new_expense_path, class: 'btn btn-info'
+            = link_to 'Registrar Gasto', new_expense_path, data: { modal: true },  class: 'btn btn-info'
+            %br
+            %br

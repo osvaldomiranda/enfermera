@@ -1,0 +1,19 @@
+= simple_form_for(@detail_income) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :pcontable
+    = f.input :fcontable
+    = f.input :tipo_comprobante
+    = f.input :mescuota
+    = f.input :detalle
+    = f.input :debe
+    = f.input :haber
+    = f.input :obeservacion
+    = f.association :account
+    = f.association :workplace
+    = f.association :cost_center
+    = f.association :income
+
+  .form-actions
+    = f.button :submit

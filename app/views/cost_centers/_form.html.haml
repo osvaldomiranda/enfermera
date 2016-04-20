@@ -1,0 +1,9 @@
+= simple_form_for(@cost_center) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :codigo
+    = f.input :nombre
+
+  .form-actions
+    = f.button :submit

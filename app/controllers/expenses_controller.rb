@@ -15,7 +15,7 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
-    respond_with(@expense)
+    respond_modal_with(@expense)
   end
 
   def edit
@@ -23,6 +23,7 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
+    @expense.fecha = DateTime.now
     @expense.save
     respond_with(@expense)
   end

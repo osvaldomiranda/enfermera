@@ -25,39 +25,81 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <%= image_tag("logo-nav.png") %>
+<!--           <%= image_tag("logo-nav.png") %> -->
         </a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <% if user_signed_in? %> 
           <% if current_user.role? :member %>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/news/index">Atividades</a></li>
+              <li>
+                <%= link_to dashboard_index_path do %>
+                  <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Colegiada
+                <% end %>
+              </li>
             </ul> 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/dashboard/index">Colegiada</a></li>
-            </ul>  
+              <li>
+                <%= link_to news_index_path do %>
+                  <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Atividades
+                <% end %>
+              </li>
+            </ul> 
           <% end %>    
+          <% if current_user.role? :regional_admin %>
+            <ul class="nav navbar-nav">
+              <li>
+                <%= link_to regional_manager_index_path do %>
+                  <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Admin.Regional
+                <% end %>
+              </li>
+            </ul>
+          <% end %>  
           <% if current_user.role? :national_admin %>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/management/index">Administración</a></li>
+              <li>
+                <%= link_to management_index_path do %>
+                  <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Admin.Nacional
+                <% end %>
+              </li>
             </ul>
           <% end %>
+          <% if current_user.role? :finance %>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/dashboard/index">Informes</a></li>
+            <li>
+              <%= link_to accountancy_index_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Contabildad
+              <% end %>
+            </li>
           </ul>
-        <% end %>
+          <% end %>
+          <ul class="nav navbar-nav">
+            <li>
+              <%= link_to "/reports/index" do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Resumen Nacional
+              <% end %>
+            </li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Perfíl</a></li>
              <li> <%= link_to " Salir", destroy_user_session_path, method: :delete %> </li> 
           </ul>
-       
+       <% end %>
       </div><!--/.nav-collapse -->
     </div>
   </nav>
 
 
 <div id="modal-holder"></div>
+
+<% flash.each do |key, value| %>
+
+<div class="alert alert-<%= key %>  alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <%= value %>
+  </div>
+<% end %>
+
+
 <%= yield %>
 <!-- footer-->
   <div class="row">

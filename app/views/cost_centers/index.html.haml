@@ -1,0 +1,23 @@
+%h1 Listing cost_centers
+
+%table
+  %thead
+    %tr
+      %th Codigo
+      %th Nombre
+      %th
+      %th
+      %th
+
+  %tbody
+    - @cost_centers.each do |cost_center|
+      %tr
+        %td= cost_center.codigo
+        %td= cost_center.nombre
+        %td= link_to 'Show', cost_center
+        %td= link_to 'Edit', edit_cost_center_path(cost_center)
+        %td= link_to 'Destroy', cost_center, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Cost center', new_cost_center_path
