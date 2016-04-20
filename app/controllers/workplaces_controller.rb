@@ -41,6 +41,7 @@ class WorkplacesController < ApplicationController
 
   def payregister
     @workplace = Workplace.find(params[:income][:workplace_id])
+    # @workplace = Workplace.find(1)
     @income = Income.new
     respond_modal_with(@income)
   end

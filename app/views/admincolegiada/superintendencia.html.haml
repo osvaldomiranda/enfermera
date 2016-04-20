@@ -4,13 +4,11 @@
       .panel-heading
         %h3.panel-title Colegiadas
       .panel-body
-
         = form_tag "/report/export.xls" do
           = field_set_tag do
 
             = label_tag :Mes, 'Mes:'
             = month_field_tag "Mes", value = DateTime.now , options = {} 
-          
             = submit_tag 'Exportar a Excel'
         %br
         %br
@@ -22,9 +20,6 @@
               %th Nombre
               %th Rut
               %th Email
-
-
-
           %tbody
             - Person.all.each do |person|
               %tr
