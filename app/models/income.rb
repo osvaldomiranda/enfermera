@@ -29,7 +29,7 @@ class Income < ActiveRecord::Base
     MEDIOPAGO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
-  valor = Currentfee.last.valor.present? ?  Currentfee.last.valor : 0
+  valor = Currentfee.last.present? ?  Currentfee.last.valor : 0
   CUOTAS=[]
   CUOTAS[0] = ["1 Cuota   $#{valor}.-" , valor]
   CUOTAS[1] = ["2 Cuotas $#{valor*2}.-", valor*2]
