@@ -19,7 +19,7 @@
               %td= persondocument.tipo
 
               %td= link_to 'Ver', persondocument.documento_url, class: "btn btn-primary" 
-              %td= link_to 'Descargar', "/persondocuments/send/#{persondocument.id}", class: "btn btn-primary"  
+              %td= link_to 'Descargar', senddocument_persondocument_path(persondocument), class: "btn btn-primary"  
               %td= link_to 'Eliminar', persondocument, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-warning'  
 
         %br

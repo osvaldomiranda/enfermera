@@ -1,4 +1,4 @@
-class InscriptionsController < ApplicationController
+dashboard_indexclass InscriptionsController < ApplicationController
   before_action :set_inscription, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -34,6 +34,7 @@ class InscriptionsController < ApplicationController
       user.email = params[:inscription][:email]
       user.password = params[:inscription][:password]
       user.password_confirmation = params[:inscription][:password_confirmation]
+      user.roles_mask = 3
       user.save
 
       @person = Person.new
@@ -61,7 +62,8 @@ class InscriptionsController < ApplicationController
       @persondocuments = Persondocument.all
 
       sign_in(user.email)
-      render  "/dashboard/index"
+      render  dashboard_index_path
+      
     else  
       redirect_to "/"
     end

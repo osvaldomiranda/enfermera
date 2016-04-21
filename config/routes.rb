@@ -11,19 +11,12 @@ Enfermera::Application.routes.draw do
   resources :incomes
   resources :inscriptions
   resources :wpdocuments
-  resources :persondocuments
   resources :workplaces
   resources :previousjobs
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-
-
-
   root to: "home#index"
-
-  get "sensomatica/index"
-  get "sensomatica/calltemp"
 
   resources :accountancy, only: :index
   resources :summary_expenses, only: :index
@@ -35,9 +28,6 @@ Enfermera::Application.routes.draw do
   resources :report do
     collection { post :export }
   end
-
-
-  # get "reports/index"
   resources :reports, only: :index
 
   # get "senddiscount/index"
@@ -121,7 +111,7 @@ Enfermera::Application.routes.draw do
   # get "/persondocuments/send/:id", to: "persondocuments#sendfile"
   resources :persondocuments do
     member do
-      get :send
+      get :senddocument
     end
   end
   

@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   def index
   	person_id = params[:person_id]
     @persondocuments = Persondocument.where(person_id: person_id)
-    @person = Person.where(id: person_id).first
+    # @person = Person.where(id: person_id).first
+    @person = Person.first
   end
 end

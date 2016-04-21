@@ -40,14 +40,14 @@
               = @person.email
           .col-sm-12.col-xs-12.editar.text-center
             %hr
-              = link_to 'Editar Datos Básicos', "/people/#{@person.id}/edit",data: { modal: true }, class: 'btn btn-info'
-              = link_to 'Credencial', "/credential/index", data: { modal: true }, class: 'btn btn-info'
-              = link_to 'Documentos', "/persondocuments", class: 'btn btn-info'
-              = link_to 'Registrar Pago', "/people/pay/payregister/#{@person.id}",data: { modal: true }, class: 'btn btn-warning'
+              = link_to 'Editar Datos Básicos', edit_person_path(@person.id),data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Credencial', credential_index_path, data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Documentos', persondocuments_path, class: 'btn btn-info'
+              = link_to 'Registrar Pago', payregister_person_path(@person.id),data: { modal: true }, class: 'btn btn-warning'
               - if @person.terms.present?
-                = link_to 'Has aceptado nuestros Téminos y Condiciones',  "/people/termstopdf/#{@person.id}", class: 'btn btn-info' 
+                = link_to 'Has aceptado nuestros Téminos y Condiciones',  terms_person_path(@person.id), data: { modal: true }, class: 'btn btn-info' 
               - else
-                = link_to 'Aceptar Téminos y Condiciones', "/people/terms/#{@person.id}", data: { modal: true }, class: 'btn btn-warning'  
+                = link_to 'Aceptar Téminos y Condiciones', terms_person_path(@person.id), data: { modal: true }, class: 'btn btn-warning'  
     .panel-footer
       %h3 Documentos
       .panel-body
@@ -65,7 +65,7 @@
                 %td= persondocument.tipo
 
                 %td= link_to 'Ver', persondocument.documento_url, class: "btn btn-primary btn-xs" 
-                %td= link_to 'Descargar', "/persondocuments/send/#{persondocument.id}", class: "btn btn-primary btn-xs"  
+                %td= link_to 'Descargar', senddocument_persondocument_path(persondocument), class: "btn btn-primary btn-xs"  
     %br            
     .panel-footer
       %h3 Registro de pagos últimos 6 pagos

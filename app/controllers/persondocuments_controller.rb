@@ -1,6 +1,6 @@
 class PersondocumentsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_persondocument, only: [:show, :edit, :update, :destroy]
+  before_action :set_persondocument, only: [:show, :edit, :update, :destroy, :senddocument]
 
   respond_to :html
 
@@ -41,9 +41,8 @@ class PersondocumentsController < ApplicationController
     respond_with(@persondocument)
   end
 
-  def sendfile
-    @document = Persondocument.find(params[:id])
-    send_file "#{Rails.root}/public#{@document.documento_url}"
+  def senddocument
+    send_file "#{Rails.root}/public#{@persondocument.documento_url}"
   end
 
   private

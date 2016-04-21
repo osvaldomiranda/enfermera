@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termsToPdf, :payregister]
+  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termstopdf, :payregister]
 
   respond_to :html
 
@@ -43,21 +43,28 @@ class PeopleController < ApplicationController
   end
   
   def update
+
     @persondocuments = Persondocument.all
-    
+
     if !person_params[:picture].present?
       if !person_params[:rut].present?
         if person_params[:terms].present?
-          render "error_terms" 
+          @person.terms = "OK"
+          @person.fechaterms = DateTime.now
+          @person.save
+          redirect_to dashboard_index_path
         else   
           render "error"
         end 
       else  
         if @person.update(person_params)
-          render "/dashboard/index"
+          redirect_to dashboard_index_path
         else
           if person_params[:terms].present?
-            render "error_terms" 
+            @person.terms = "OK"
+            @person.fechaterms = DateTime.now
+            @person.save
+            redirect_to dashboard_index_path
           else   
             render "error"
           end  
@@ -65,8 +72,9 @@ class PeopleController < ApplicationController
       end  
     else
       @person.update(person_params)
-      render "/dashboard/index"
+      redirect_to dashboard_index_path
     end  
+ 
   end
 
   def destroy
@@ -75,10 +83,17 @@ class PeopleController < ApplicationController
   end
 
   def terms
+    @person = Person.find(params[:id])
     respond_modal_with(@person)
   end
 
-  def termsToPdf
+  def termstopdf
+    @person = Person.find(params[:id])
+    puts "****************"
+    puts @person
+    puts params[:id]
+    puts "****************"
+
     render pdf: "terms", formats: :html, encoding: 'utf8'   # Excluding ".pdf" extension.
   end
 
@@ -138,7 +153,7 @@ class PeopleController < ApplicationController
 
     @persondocuments = Persondocument.all
 
-    render "/dashboard/index"
+    redirect_to dashboard_index_path
   end
 
 

@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 
 
   # validates :email, :first_name, :last_name, presence: true
-  validates :rut, :rut_format => true
+  #validates :rut, :rut_format => true
 
   def fullname
     fullname = "#{self.nombres} #{self.apellido_paterno} #{self.apellido_materno}"
