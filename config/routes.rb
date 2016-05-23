@@ -1,6 +1,7 @@
 Enfermera::Application.routes.draw do
 
-  resources :cost_center
+  resources :cost_centers
+  resources :accounts
 
   resources :blogs
   resources :officeaccounts
@@ -57,13 +58,13 @@ Enfermera::Application.routes.draw do
     collection { get :superintendencia }
   end
   
-  # get "adminworckplace/index"
+  # reseources adminworckplace only: :index
   # get "/adminworckplace/wppayregister", to: "adminworckplace#wppayregister"
   # get "/adminworckplace/wppay", to: "adminworckplace#wppay"
 
   
   resources :adminworckplace, only: :index do
-    member do
+    collection do
       get :wppayregister
       get :wppay
     end

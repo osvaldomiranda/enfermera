@@ -4,15 +4,11 @@
       .panel-heading
         %h3.panel-title Lugares de trabajo
       .panel-body
-        %br
-        = link_to '<< Administración', "/management/index",  class: 'btn btn-info'
-        %br
-        %br
         %hr
         .row
           .col-sm-12.col-xs-12.editar.text-center
 
-            = link_to 'Envio Planillas de Descuentos', "/senddiscount/index",  class: 'btn btn-info'
-            = link_to 'Registro de pagos',"/adminworckplace/wppay",  class: 'btn btn-info'
+            = link_to 'Envio Planillas de Descuentos', senddiscount_index_path,  class: 'btn btn-info'
+            = link_to 'Registro de pagos',"",  class: 'btn btn-info'
             / = link_to 'Consulta pagos por Lugar de Trabajo', "",  class: 'btn btn-info'
-            = link_to 'Administrar Lugares de Trabajo', "/workplaces",  class: 'btn btn-info'
+            = link_to 'Administrar Lugares de Trabajo', workplaces_path,  class: 'btn btn-info'

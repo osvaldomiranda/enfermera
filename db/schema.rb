@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311132625) do
+ActiveRecord::Schema.define(version: 20160522212733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,7 +229,6 @@ ActiveRecord::Schema.define(version: 20160311132625) do
     t.date     "fecha_titulo"
     t.string   "lugar_trabajo"
     t.string   "tipo_contrato"
-    t.integer  "workplase_id"
     t.integer  "workplace_id"
     t.text     "url"
     t.text     "certificado_html"
@@ -239,7 +238,6 @@ ActiveRecord::Schema.define(version: 20160311132625) do
   end
 
   add_index "people", ["workplace_id"], name: "index_people_on_workplace_id", using: :btree
-  add_index "people", ["workplase_id"], name: "index_people_on_workplase_id", using: :btree
 
   create_table "persondocuments", force: true do |t|
     t.string   "nombre"
@@ -296,6 +294,7 @@ ActiveRecord::Schema.define(version: 20160311132625) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
+    t.string   "rut"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -313,6 +312,7 @@ ActiveRecord::Schema.define(version: 20160311132625) do
     t.string   "calle"
     t.string   "numero"
     t.integer  "office_id"
+    t.string   "cod_wp"
   end
 
   add_index "workplaces", ["office_id"], name: "index_workplaces_on_office_id", using: :btree

@@ -42,32 +42,38 @@
     
 
 //    CODIGO OMIRANDA + BAD MERGE
+
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
       .panel-heading
         %h3.panel-title Colegiadas
       .panel-body
+        .row
+          .col-xs-12
+            .row
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center= Person.count
+                  .panel-body.text-center
+                    Total de Colegiadas
 
-        %h4 Importar Colegiadas
-        = form_tag import_people_path, multipart: true do 
-          = file_field_tag :file 
-          %br
-          = submit_tag "Importar" 
-        %br
-        %hr
+              .col-xs-6
+                .panel.panel-default
+                  .panel-heading.text-center= Person.where("created_at >= ?", Time.zone.now.beginning_of_month).count
+                  .panel-body.text-center
+                    Nuevas Colegiadas Mes en Curso  
+
 
         .row
           .col-md-12
             = simple_form_for(people_path,:method => :get ) do |f|
               .form-group  
-                .col-sm-2
-                  = f.input :nombre, label: false,  :input_html => {:style=> 'width: 180px'}
+                .col-sm-4
+                  = f.input :nombre, label: false,  :input_html => {:style=> 'width: 300px'}
   
                 .col-sm-2  
                   = f.button :submit, "Buscar",  class: "btn btn-primary"
-
-            = link_to "Limpiar Busqueda","",  class: 'btn btn-info'
         %br
         %br
 

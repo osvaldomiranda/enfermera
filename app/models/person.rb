@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   require 'prawn'
   require 'prawn/table'
 
+  belongs_to :workplace
 
   has_many :previousjob, dependent: :destroy
   has_many :persondocument, dependent: :destroy
@@ -67,6 +68,7 @@ class Person < ActiveRecord::Base
         if person.save
           user = User.new
           user.email = rowHash["email"]
+          user.rut = rowHash["email"]
           user.password = rowHash["rut"]
           user.password_confirmation = rowHash["rut"]
           user.roles_mask = 3

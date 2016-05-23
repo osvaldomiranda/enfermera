@@ -86,6 +86,9 @@ gem 'rest-client'
 #for barcode images
 gem 'barby'
 
+#for data base diagram
+gem "rails-erd"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
