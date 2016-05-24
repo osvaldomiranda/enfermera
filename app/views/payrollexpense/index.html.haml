@@ -1,0 +1,39 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Resumen Nacional
+      .panel-body
+
+        - @offices.each do |office|
+          %h3= office.nombre
+          %h3= "Recibido de: $#{office.incomes.sum(:monto)*0.35}"
+          %h3= "Gastos: $#{office.expenses.sum(:monto)}"
+          %h3= "Saldo: $#{(office.incomes.sum(:monto)*0.35)-office.expenses.sum(:monto)}"
+          %br
+          %table.table.table-striped
+            %thead
+              %tr
+                %td N. Comp
+                %td P. Contable
+                %td F. Contable
+                %td Tipo de Comp.
+                %td Ctas.
+                %td Mes Cancelado
+                %td Cod. Establ.
+                %td Tip.
+                %td Reg.
+                %td Detalle
+                %td Cuenta
+                %td Debe
+                %td Haber
+                %td Observaciones
+            %tbody
+              - @detail_incomes.each do |detail_incomes|
+                %tr
+                  %td= detail_incomes.nombre
+                  %td= detail_incomes.people.count
+                  %td= detail_incomes.incomes.sum(:monto)
+          %br        
+          %hr        
+        %br
