@@ -62,7 +62,7 @@ class InscriptionsController < ApplicationController
       @persondocuments = Persondocument.all
 
       sign_in(user.email)
-      render  dashboard_index_path
+      redirect_to  dashboard_index_path
       
     else  
       redirect_to "/"
