@@ -1,0 +1,30 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Resumen Nacional
+      .panel-body
+
+        - @offices.each do |office|
+          %h3= office.nombre
+          %h3= "Ingresos: $#{office.incomes.sum(:monto)*0.35}"
+          %h3= "Gastos: $#{office.expenses.sum(:monto)}"
+          %h3= "Saldo: $#{(office.incomes.sum(:monto)*0.35)-office.expenses.sum(:monto)}"
+          %br
+          %p Ingresos correpondientes a remesas 35% de las cuotas cobradas
+          %br
+          %table.table.table-striped
+            %thead
+              %tr
+                %td Lugar de Trabajo
+                %td Colegiadas
+                %td Cuotas cobradas
+            %tbody
+              - office.workplaces.each do |workplace|
+                %tr
+                  %td= workplace.nombre
+                  %td= workplace.people.count
+                  %td= workplace.incomes.sum(:monto)
+          %br        
+          %hr        
+        %br
