@@ -7,7 +7,7 @@ class CredentialController < ApplicationController
 
   respond_to :html
   def index
-     @person = Person.where(email:current_user.email).first
+     @person = Person.where(rut:current_user.rut).first
 
      @barcode = Barby::EAN13.new('000113671769')
 

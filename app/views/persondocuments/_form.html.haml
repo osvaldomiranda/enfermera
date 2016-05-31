@@ -6,7 +6,7 @@
         = f.error_notification
 
         .form-inputs
-          = f.input :person, :as => :hidden, :input_html => { :value => current_user.id }
+          = f.input :person_id, :as => :hidden, :input_html => { :value => @person_id }
 
           .form-group
             %label.col-sm-2.control-label{:for => "textinput"} Nombre

@@ -23,6 +23,6 @@
               %td= link_to 'Eliminar', persondocument, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-warning'  
 
         %br
-      = link_to 'Nuevo Documento', new_persondocument_path, data: { modal: true }, class: 'btn btn-warning'  
+      = link_to 'Nuevo Documento', new_persondocument_path(person_id: @person_id), data: { modal: true }, class: 'btn btn-warning'  
       %br
       %br

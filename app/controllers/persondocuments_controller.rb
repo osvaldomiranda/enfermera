@@ -5,7 +5,8 @@ class PersondocumentsController < ApplicationController
   respond_to :html
 
   def index
-    @persondocuments = Persondocument.all
+    @person_id = params[:person_id] 
+    @persondocuments = @person_id.present? ? Persondocument.where(person_id: @person_id) : Persondocument.all
     respond_with(@persondocuments)
   end
 
@@ -15,6 +16,7 @@ class PersondocumentsController < ApplicationController
 
   def new
     @persondocument = Persondocument.new
+    @person_id = params[:person_id]
     respond_modal_with(@persondocument)
   end
 
@@ -25,9 +27,9 @@ class PersondocumentsController < ApplicationController
     @persondocument = Persondocument.new(persondocument_params)
     @persondocument.save
 
-    @persondocuments = Persondocument.all
-
-    @person = Person.where(email:current_user.email).first
+    @person_id = persondocument_params[:person_id] 
+    @persondocuments = @person_id.present? ? Persondocument.where(person_id: @person_id) : Persondocument.all
+    @person = @person_id.present? ? Person.find(@person_id) : Person.where(rut:current_user.rut).first
     render "index"
   end
 

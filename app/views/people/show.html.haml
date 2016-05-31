@@ -1,57 +1,90 @@
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title DATOS BASICOS
+      .panel-body
+        .row
+          .col-md-2
+            %a.thumbnail{:href => "/people/picture/#{@person.id}", data: { modal: true }}
+              - if @person.picture.present?
+                %img.img-circle{:alt => "...", :src =>"#{@person.picture_url}"}
+              - else  
+                %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.fullname
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.nro_registro
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.sexo
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = "Nacionalidad: #{@person.nacionalidad}"
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.universidad
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.rut
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.direccion
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header     
+              = @person.ciudad
+          .col-sm-3.col-xs-12.borders.alto
+            %h5.description-header 
+              = @person.email
+          .col-sm-12.col-xs-12.editar.text-center
+            %hr
+              = link_to '<< Volver', people_path, class: 'btn btn-warning'
 
-%p
-  %b Email:
-  = @person.email
-%p
-  %b Rut:
-  = @person.rut
-%p
-  %b First name:
-  = @person.first_name
-%p
-  %b Last name:
-  = @person.last_name
-%p
-  %b Gender:
-  = @person.gender
-%p
-  %b Nationality:
-  = @person.nationality
-%p
-  %b Economic activity:
-  = @person.economic_activity
-%p
-  %b Education:
-  = @person.education
-%p
-  %b Origin country:
-  = @person.origin_country
-%p
-  %b Resident country:
-  = @person.resident_country
-%p
-  %b Profession:
-  = @person.profession
-%p
-  %b Dependents:
-  = @person.dependents
-%p
-  %b University:
-  = @person.university
-%p
-  %b Number of children:
-  = @person.number_of_children
-%p
-  %b Marital status:
-  = @person.marital_status
-%p
-  %b Matrimonial regime:
-  = @person.matrimonial_regime
-%p
-  %b Date birth:
-  = @person.date_birth
+              = link_to 'Editar Datos Básicos', edit_person_path(@person.id),data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Documentos', persondocuments_path(person_id: @person.id), class: 'btn btn-info'
+              = link_to 'Registrar Pago', payregister_person_path(@person.id),data: { modal: true }, class: 'btn btn-warning'
+              - if @person.terms.present?
+                = link_to 'Has aceptado nuestros Téminos y Condiciones',  terms_person_path(@person.id), data: { modal: true }, class: 'btn btn-info' 
+              - else
+                = link_to 'Aceptar Téminos y Condiciones', terms_person_path(@person.id), data: { modal: true }, class: 'btn btn-warning'  
+    .panel-footer
+      %h3 Documentos
+      .panel-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Nombre
+              %th Tipo
+              %th
+              %th
+          %tbody
+            - @person.persondocuments.each do |persondocument|
+              %tr
+                %td= persondocument.nombre
+                %td= persondocument.tipo
 
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path
+                %td= link_to 'Ver', persondocument.documento_url, class: "btn btn-primary btn-xs" 
+                %td= link_to 'Descargar', senddocument_persondocument_path(persondocument), class: "btn btn-primary btn-xs"  
+    %br            
+    .panel-footer
+      %h3 Registro de pagos últimos 6 pagos
+      .panel-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Pago realizado por
+              %th Mes
+              %th Fecha Pago
+              %th Estado
+              %th Monto
+          %tbody
+            - @person.fees.order(mes_cuota: :desc).limit(6).each do |pago|
+              %tr
+                %td= pago.pagador
+                %td= pago.mes_cuota
+                %td= pago.created_at.strftime('%d/%m/%Y %H:%M')
+                %td= pago.estado
+                %td= pago.monto
+

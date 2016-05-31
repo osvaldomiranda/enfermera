@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   belongs_to :workplace
 
   has_many :previousjob, dependent: :destroy
-  has_many :persondocument, dependent: :destroy
+  has_many :persondocuments, dependent: :destroy
   has_many :fees, dependent: :destroy
 
 
@@ -17,6 +17,15 @@ class Person < ActiveRecord::Base
 
   # validates :email, :first_name, :last_name, presence: true
   #validates :rut, :rut_format => true
+
+  scope :inactive, lambda {where(rut: nil)}
+  scope :active, lambda {where.not(rut: nil)}
+
+
+
+  ESTADOS = { "A" => "Con Rut",  
+              "I" => "Sin Rut"
+              }
 
   def fullname
     fullname = "#{self.nombres} #{self.apellido_paterno} #{self.apellido_materno}"
@@ -52,41 +61,57 @@ class Person < ActiveRecord::Base
       CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
         rowHash = row.to_hash
 
-        person = Person.new
-        person.codigo = rowHash["codigo"] 
-        person.rut = rowHash["rut"]
-
-
+          person = Person.new
+          person.nro_registro = rowHash["nro_registro"] 
+          person.rut = rowHash["rut"]        
+          person.nombres = rowHash["nombres"]
+          person.apellido_paterno = rowHash["apellido_paterno"]
+          person.apellido_materno = rowHash["apellido_materno"]
+          person.sexo = rowHash["sexo"]
+          person.direccion = rowHash["direccion"]
+          person.ciudad = rowHash["ciudad"]
+          person.universidad = rowHash["universidad"]
+          person.fecha_titulo = rowHash["fecha_titulo"]
+         
+          if person.save
         
-        # person.nombres = rowHash["nombres"]
-        # person.apellido_paterno = rowHash["apellido_paterno"]
-        # person.apellido_materno = rowHash["apellido_materno"]
-        # person.phone = rowHash["phone"]
-        # person.sexo = rowHash["sexo"]
-        # person.direccion = rowHash["direccion"]
-        # person.ciudad = rowHash["ciudad"]
-        # person.universidad = rowHash["universidad"]
-       
-        if person.save
-        #   user = User.new
-        #   user.email = rowHash["email"]
-        #   user.rut = rowHash["rut"]
-        #   user.password = rowHash["rut"]
-        #   user.password_confirmation = rowHash["rut"]
-        #   user.roles_mask = 3
-        #   user.save
- 
-        else
-          puts "************************"  
-          puts "************************"  
-          puts   rowHash
-          puts "************************"  
-          puts "************************"  
-        end  
-      end  
+          else
+            puts "************************"  
+            puts "************************"  
+            puts   rowHash
+            puts "************************"  
+            puts "************************"  
+          end 
+      end    
   end    
 
 
+  def self.import_update(file)
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+      if rowHash["nro_registro"].present?
+        person = Person.where(nro_registro: rowHash["nro_registro"]).first
+        if person.present?
+          person.lugar_trabajo = rowHash["lugar_trabajo"] 
+        end  
+      else
+        person = Person.where(rut: rowHash["rut"]).first
+        if person.present?
+          person.lugar_trabajo = rowHash["lugar_trabajo"]
+        end  
+      end  
+      if person.present?
+        person.save
+      else
+        puts "************************"  
+        puts "************************"  
+        puts   rowHash
+        puts "************************"  
+        puts "************************"  
+      end    
+    end 
+
+  end    
 
 
   DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 

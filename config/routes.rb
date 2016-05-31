@@ -98,7 +98,11 @@ Enfermera::Application.routes.draw do
       get :terms
       get :termstopdf
     end
-    collection { post :import }
+    collection do
+      post :import 
+      post :import_update 
+      get :filter
+    end 
   end
 
   # get "/workplaces/pay/payregister", to: 'workplaces#payregister'
