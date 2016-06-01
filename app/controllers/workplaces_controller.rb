@@ -5,7 +5,14 @@ class WorkplacesController < ApplicationController
   respond_to :html
 
   def index
-    @workplaces = Workplace.all
+    @regional = params[:regional] || nil
+    
+    if @regional.present?
+      @workplaces = Workplace.where(office_id: @regional).order(created_at: :desc).page(params[:page]).per_page(20)  
+    else
+      @workplaces = Workplace.all.order(created_at: :desc).page(params[:page]).per_page(20)  
+    end
+    
     respond_with(@workplaces)
   end
 
@@ -40,14 +47,14 @@ class WorkplacesController < ApplicationController
 
 
   def payregister
-    @workplace = Workplace.find(params[:income][:workplace_id])
+    @workplace = Workplace.find(params[:id])
     # @workplace = Workplace.find(1)
     @income = Income.new
     respond_modal_with(@income)
   end
 
   def pay
-
+    
     @income = Income.new
     @income.monto       =  params[:income][:monto]
     @income.person_id   =  nil

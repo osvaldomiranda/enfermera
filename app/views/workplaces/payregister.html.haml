@@ -44,8 +44,7 @@
                           %span.fileinput-exists Cambiar
                           =f.file_field :document
                         %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
-
-               
+          
                   .form-group
                     .col-sm-offset-2.col-sm-10
                       .pull-right
@@ -53,17 +52,7 @@
 
         %hr
         %h3 Registrar cuotas      
-        / %hr
-        / .container-fluid
-        /   .row
-        /     %h4 Importar Colegiadas
-        /     = form_tag import_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       %br
-        /       = submit_tag "Importar" 
 
-        /     %br
-        /     %hr
         %table.table.table-striped
           %thead
             %tr

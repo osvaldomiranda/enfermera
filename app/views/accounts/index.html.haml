@@ -1,23 +1,30 @@
-%h1 Listing accounts
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Cuentas contables
+              %span.badge= @accounts.count
 
-%table
-  %thead
-    %tr
-      %th Codigo
-      %th Nombre
-      %th
-      %th
-      %th
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Codigo
+                  %th Nombre
+                  %th
+                  %th
 
-  %tbody
-    - @accounts.each do |account|
-      %tr
-        %td= account.codigo
-        %td= account.nombre
-        %td= link_to 'Show', account
-        %td= link_to 'Edit', edit_account_path(account)
-        %td= link_to 'Destroy', account, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %tbody
+                - @accounts.each do |account|
+                  %tr
+                    %td= account.codigo
+                    %td= account.nombre
+                    %td= link_to 'Editar', edit_account_path(account)
+                    %td= link_to 'Eliminar', account, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
+            %br
 
-= link_to 'New Account', new_account_path
+            = link_to 'Agregar Cuenta', new_account_path

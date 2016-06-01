@@ -1,23 +1,31 @@
-%h1 Listing cost_centers
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Centros de Costo
+              %span.badge= @cost_centers.count
 
-%table
-  %thead
-    %tr
-      %th Codigo
-      %th Nombre
-      %th
-      %th
-      %th
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Codigo
+                  %th Nombre
+                  %th
+                  %th
+                  %th
 
-  %tbody
-    - @cost_centers.each do |cost_center|
-      %tr
-        %td= cost_center.codigo
-        %td= cost_center.nombre
-        %td= link_to 'Show', cost_center
-        %td= link_to 'Edit', edit_cost_center_path(cost_center)
-        %td= link_to 'Destroy', cost_center, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %tbody
+                - @cost_centers.each do |cost_center|
+                  %tr
+                    %td= cost_center.codigo
+                    %td= cost_center.nombre
+                    %td= link_to 'Editar', edit_cost_center_path(cost_center)
+                    %td= link_to 'Eliminar', cost_center, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
+            %br
 
-= link_to 'New Cost center', new_cost_center_path
+            = link_to 'Agregar Centro de Costo', new_cost_center_path

@@ -6,7 +6,7 @@
       .panel-body
         .row
           .col-md-2
-            %a.thumbnail{:href => "/people/picture/#{@person.id}", data: { modal: true }}
+            %a.thumbnail{:href => picture_person_path(@person.id), data: { modal: true }}
               - if @person.picture.present?
                 %img.img-circle{:alt => "...", :src =>"#{@person.picture_url}"}
               - else  

@@ -196,3 +196,8 @@ es:
       long: "%A %d de %B de %Y %H:%M"
       short: "%d de %b %H:%M"
     pm: pm
+
+  will_paginate:
+    previous_label: "&#8592; go back"
+    next_label: "go forward &#8594;"
+    page_gap: "..."

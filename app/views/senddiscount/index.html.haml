@@ -5,18 +5,19 @@
         %h3.panel-title Envío Manual Planillas de Descuento
       .panel-body
         .row
+          .col-xs-12
+            %h1
+              Lugares de trabajo
+              %span.badge= @workplaces.count
+        .row
           .col-md-12
-            = simple_form_for(workplaces_path,:method => :get ) do |f|
-              .form-group  
-                .col-sm-2
-                  = f.input :nombre, label: false,  collection: Workplace.workplaces_option_for_select, :input_html => {:style=> 'width: 180px'}
-                  / = f.input :nombre, as: :boolean, checked_value: true, unchecked_value: false
-  
-                .col-sm-2  
-                  = f.button :submit, "Buscar",  class: "btn btn-primary"
-
-            = link_to "Limpiar Busqueda","/documentos",  class: 'btn btn-info'
-            = link_to "Enviar Todos","/documentos",  class: 'btn btn-info'
+            .form-inline
+              = label_tag :filter_regional, 'Regional'
+              = select_tag :filter_regional, options_for_select(Office.options_for_select, @regional), prompt: 'Todos', class: "form-control"
+        %br
+        %br
+        = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
+        %br      
         %br
         %table.table.table-striped
           %thead

@@ -14,7 +14,6 @@ Enfermera::Application.routes.draw do
   resources :incomes
   resources :inscriptions
   resources :wpdocuments
-  resources :workplaces
   resources :previousjobs
 
   devise_for :users, :controllers => {:registrations => "registrations"}
@@ -61,8 +60,6 @@ Enfermera::Application.routes.draw do
   # reseources adminworckplace only: :index
   # get "/adminworckplace/wppayregister", to: "adminworckplace#wppayregister"
   # get "/adminworckplace/wppay", to: "adminworckplace#wppay"
-
-  
   resources :adminworckplace, only: :index do
     collection do
       get :wppayregister
@@ -113,8 +110,6 @@ Enfermera::Application.routes.draw do
       post :pay
     end
   end
-
-
 
 
   # get "/persondocuments/send/:id", to: "persondocuments#sendfile"

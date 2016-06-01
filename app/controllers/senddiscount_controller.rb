@@ -1,7 +1,13 @@
 class SenddiscountController < ApplicationController
   before_filter :authenticate_user!    
   def index
-    @workplaces = Workplace.all
+    @regional = params[:regional] || nil
+    
+    if @regional.present?
+      @workplaces = Workplace.where(office_id: @regional).order(created_at: :desc).page(params[:page]).per_page(20)  
+    else
+      @workplaces = Workplace.all.order(created_at: :desc).page(params[:page]).per_page(20)  
+    end
   end
 
   def sendemail

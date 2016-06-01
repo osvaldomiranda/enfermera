@@ -1,5 +1,30 @@
 # encoding: utf-8
-Account.find_or_create_by(codigo: "1010101", nombre: "CAJA CONSEJO GENERAL")
+CostCenter.find_or_create_by(codigo: '100', nombre: 'CONSEJO NACIONAL 1 DIA')
+CostCenter.find_or_create_by(codigo: '101', nombre: 'CONVECION NACIOANL 2 DIAS')
+CostCenter.find_or_create_by(codigo: '102', nombre: 'REVISTA')
+CostCenter.find_or_create_by(codigo: '103', nombre: 'CONGRESO')
+CostCenter.find_or_create_by(codigo: '104', nombre: 'DIE')
+CostCenter.find_or_create_by(codigo: '105', nombre: 'ELECCIONES')
+CostCenter.find_or_create_by(codigo: '106', nombre: 'PRESTAMOS DE BIENESTAR')
+CostCenter.find_or_create_by(codigo: '107', nombre: 'DIRECTORIO')
+CostCenter.find_or_create_by(codigo: '108', nombre: 'REPRESENTACION NACIONAL E INT.')
+CostCenter.find_or_create_by(codigo: '109', nombre: 'LM.')
+CostCenter.find_or_create_by(codigo: '110', nombre: 'ASOC. PEDIATRICA')
+CostCenter.find_or_create_by(codigo: '200', nombre: 'ADM')
+CostCenter.find_or_create_by(codigo: '201', nombre: 'PERSONAL')
+CostCenter.find_or_create_by(codigo: '202', nombre: 'GTOS. BASICOS')
+CostCenter.find_or_create_by(codigo: '203', nombre: 'PRESTAMOS REG. SANTIAGO')
+CostCenter.find_or_create_by(codigo: '204', nombre: 'REMESAS ')
+CostCenter.find_or_create_by(codigo: '205', nombre: 'ANTICIPO DE REMESAS')
+CostCenter.find_or_create_by(codigo: '206', nombre: 'MOVILIZACIONES GREMIALES')
+CostCenter.find_or_create_by(codigo: '207', nombre: 'BIENES MUEBLES (INVENTARIO)')
+CostCenter.find_or_create_by(codigo: '208', nombre: 'REEMBOLSO CONSEJERAS MOVILIZ.. CELULAR')
+CostCenter.find_or_create_by(codigo: '209', nombre: 'RENDICIONES CAJA CHICAS Y CAJAS CHICAS PARA GAS')
+CostCenter.find_or_create_by(codigo: '210', nombre: 'E-LERNING')
+CostCenter.find_or_create_by(codigo: '300', nombre: 'DEPOSITO AÑOS ANTERIORES')
+CostCenter.find_or_create_by(codigo: '301', nombre: 'BANCO CHILE')
+CostCenter.find_or_create_by(codigo: '302', nombre: 'BANCO ESTADO ')
+
 Account.find_or_create_by(codigo: "1010102", nombre: "CAJA CONSEJO REGIONAL IQUIQUE")
 Account.find_or_create_by(codigo: "1010103", nombre: "CAJA CONSEJO REGIONAL ANTOFAGASTA")
 Account.find_or_create_by(codigo: "1010104", nombre: "CAJA CONSEJO REGIONAL LA SERENA")
@@ -214,9 +239,6 @@ Office.find_or_create_by(codigo: "PMO", nombre: "REGIONAL PUERTO MONTT")
 Office.find_or_create_by(codigo: "CHL", nombre: "SUB - SEDE CHILOE")
 Office.find_or_create_by(codigo: "COY", nombre: "SUB - SEDE AYSEN")
 Office.find_or_create_by(codigo: "PAR", nombre: "REGIONAL PUNTA ARENAS")
-
-
-
 
 
 Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '0101', nombre: 'DIRECCION SERVICIO DE SALUD ARICA')
@@ -745,6 +767,26 @@ Workplace.find_or_create_by(codigo: 'TEM', cod_wp: '1385-09', nombre: 'GENDARMER
 Workplace.find_or_create_by(codigo: 'STG', cod_wp: '1385-13', nombre: 'GENDARMERIA DE SANTIAGO')
 Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '1400-05', nombre: 'CORPORACION PARA LA NUTRICIÓN INFANTIL')
 
+Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '999-01-01', nombre: 'pago directo arica')
+Workplace.find_or_create_by(codigo: 'IQQ', cod_wp: '999-01-02', nombre: 'pago directo iquique')
+Workplace.find_or_create_by(codigo: 'ANT', cod_wp: '999-02', nombre: 'pago directo antofagasta')
+Workplace.find_or_create_by(codigo: 'COP', cod_wp: '999-03', nombre: 'pago directo copiapo')
+Workplace.find_or_create_by(codigo: 'LAS', cod_wp: '999-04', nombre: 'pago directo la serena')
+Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '999-05', nombre: 'pago directo valparaiso')
+Workplace.find_or_create_by(codigo: 'RAN', cod_wp: '999-06', nombre: 'pago directo rancagua ')
+Workplace.find_or_create_by(codigo: 'TCA', cod_wp: '999-07-01', nombre: 'pago directo talca')
+Workplace.find_or_create_by(codigo: 'LIN', cod_wp: '999-07-02', nombre: 'pago directo s. s. linares')
+Workplace.find_or_create_by(codigo: 'CON', cod_wp: '999-08-01', nombre: 'pago directo concepcion')
+Workplace.find_or_create_by(codigo: 'CHI', cod_wp: '999-08-02', nombre: 'pago directo chillan')
+Workplace.find_or_create_by(codigo: 'BIO', cod_wp: '999-08-03', nombre: 'pago directo bio bio ')
+Workplace.find_or_create_by(codigo: 'TEM', cod_wp: '999-09', nombre: 'pago directo temuco')
+Workplace.find_or_create_by(codigo: 'VDI', cod_wp: '999-10-01', nombre: 'pago directo valdivia')
+Workplace.find_or_create_by(codigo: 'OSO', cod_wp: '999-10-02', nombre: 'pago directo osorno')
+Workplace.find_or_create_by(codigo: 'PMO', cod_wp: '999-10-03', nombre: 'pago directo puerto montt')
+Workplace.find_or_create_by(codigo: 'CHL', cod_wp: '999-10-04', nombre: 'pago directo chiloe')
+Workplace.find_or_create_by(codigo: 'COY', cod_wp: '999-11', nombre: 'pago directo aysen')
+Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '999-12', nombre: 'pago directo punta arenas')
+Workplace.find_or_create_by(codigo: 'STG', cod_wp: '999-13', nombre: 'pago directo santiago')
 
 Workplace.all.map {|w| w.office_id=Office.find_by_codigo(w.codigo).id; w.save }
 

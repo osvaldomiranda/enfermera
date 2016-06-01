@@ -4,6 +4,20 @@
       .panel-heading
         %h3.panel-title Lugares de trabajo
       .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Lugares de trabajo
+              %span.badge= @workplaces.count
+        .row
+          .col-md-12
+            .form-inline
+              = label_tag :filter_regional, 'Regional'
+              = select_tag :filter_regional, options_for_select(Office.options_for_select, @regional), prompt: 'Todos', class: "form-control"
+        %br
+        %br
+        = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
+        %br      
 
         %table.table.table-striped
           %thead
@@ -21,6 +35,7 @@
                 %td= workplace.nombre
                 %td= workplace.ciudad
                 %td= workplace.region
+                %td= link_to 'Regitrar pago', payregister_workplace_path(workplace.id), class: 'btn btn-info'
                 %td= link_to 'Editar', edit_workplace_path(workplace),  class: 'btn btn-info', data: { modal: true }
                 %td= link_to 'Eliminar', workplace, :method => :delete, :data => { :confirm => 'Are you sure?' },  class: 'btn btn-info'
 

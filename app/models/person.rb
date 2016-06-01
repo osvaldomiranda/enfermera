@@ -89,6 +89,7 @@ class Person < ActiveRecord::Base
   def self.import_update(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash
+      
       if rowHash["nro_registro"].present?
         person = Person.where(nro_registro: rowHash["nro_registro"]).first
         if person.present?
@@ -110,7 +111,7 @@ class Person < ActiveRecord::Base
         puts "************************"  
       end    
     end 
-
+    Person.where.not(lugar_trabajo: nil).map {|p| p.workplace_id=Workplace.find_by_cod_wp(p.lugar_trabajo).id if Workplace.find_by_cod_wp(p.lugar_trabajo).present?; p.save}
   end    
 
 

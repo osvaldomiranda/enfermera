@@ -9,7 +9,7 @@
           .form-inputs
             / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
             = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
-            = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id } 
+            = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
             = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
             .form-group
