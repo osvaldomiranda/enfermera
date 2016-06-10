@@ -6,7 +6,9 @@
       .panel-body
 
         - @offices.each do |office|
-          %h3= office.nombre
+          %h3
+            = office.nombre 
+            %span.badge= "#{office.people.count} Colegiadas"
           %h3= "Ingresos: $#{office.incomes.sum(:monto)*0.35}"
           %h3= "Gastos: $#{office.expenses.sum(:monto)}"
           %h3= "Saldo: $#{(office.incomes.sum(:monto)*0.35)-office.expenses.sum(:monto)}"
@@ -25,6 +27,6 @@
                   %td= workplace.nombre
                   %td= workplace.people.count
                   %td= workplace.incomes.sum(:monto)
-          %br        
+          %br  
           %hr        
         %br

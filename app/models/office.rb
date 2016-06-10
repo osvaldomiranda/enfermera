@@ -2,7 +2,7 @@ class Office < ActiveRecord::Base
   has_many :workplaces
   has_many :expenses
   has_many :incomes, :through => :workplaces
-
+  has_many :people, :through => :workplaces
 
   def self.office_option_for_select
     # filtrar por ciudad

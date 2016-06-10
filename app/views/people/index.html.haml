@@ -14,19 +14,24 @@
               = label_tag :filter_estado, 'Estado'
               = select_tag :filter_estado, options_for_select(Person::ESTADOS.map{|e| [e[1], e[0]]}, @estado), prompt: 'Todos', class: "form-control"
 
-        %h3 importar colegiadas 
-        .form-group   
-          %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          = form_tag import_people_path, multipart: true do 
-            = file_field_tag :file 
-            = submit_tag "Importar" 
+        - if current_user.rut=="11367176-9"
+          %h3 importar colegiadas 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag import_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
 
-        %h3 update colegiadas 
-        .form-group   
-          %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          = form_tag import_update_people_path, multipart: true do 
-            = file_field_tag :file 
-            = submit_tag "Importar" 
+          %h3 update colegiadas 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag import_update_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
+
+
+          %h3 update colegiadas
+          = link_to ' crear usuarios ', create_user_people_path , :target => '_blank', class: 'btn btn-info btn-xs'           
 
 
 .container{:role => "main"}

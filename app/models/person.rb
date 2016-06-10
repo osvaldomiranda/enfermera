@@ -123,6 +123,18 @@ class Person < ActiveRecord::Base
   end    
 
 
+  def self.create_user
+    Person.where.not(rut:nil).each do |p| 
+      u=User.new
+      u.rut=p.rut 
+      u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
+      u.password = "#{p.apellido_paterno}#{p.nro_registro}"
+      u.password_confirmation = "#{p.apellido_paterno}#{p.nro_registro}"
+      u.roles_mask=3 
+      u.save
+    end
+  end
+
   DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 
   def dia(numdia)
     dia = DIA[numdia-1]

@@ -189,6 +189,10 @@ class PeopleController < ApplicationController
     redirect_to dashboard_index_path
   end
 
+  def create_user
+    Person.create_user
+  end
+
 
   private
     def set_person
