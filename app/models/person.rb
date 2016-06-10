@@ -93,14 +93,22 @@ class Person < ActiveRecord::Base
       if rowHash["nro_registro"].present?
         person = Person.where(nro_registro: rowHash["nro_registro"]).first
         if person.present?
-          person.lugar_trabajo = rowHash["lugar_trabajo"] 
+
+          person.lugar_trabajo = rowHash["lugar_trabajo"]    
+          if rowHash["rut"].present? 
+            if rowHash["rut"] != "N/R-"
+              person.rut = rowHash["rut"]
+            end
+          end  
         end  
       else
         person = Person.where(rut: rowHash["rut"]).first
         if person.present?
           person.lugar_trabajo = rowHash["lugar_trabajo"]
-        end  
-      end  
+        end
+      end 
+
+
       if person.present?
         person.save
       else
