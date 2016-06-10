@@ -124,15 +124,25 @@ class Person < ActiveRecord::Base
 
 
   def self.create_user
-    Person.where.not(rut:nil).each do |p| 
-      u=User.new
-      u.rut=p.rut 
-      u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
-      u.password = "#{p.apellido_paterno}#{p.nro_registro}"
-      u.password_confirmation = "#{p.apellido_paterno}#{p.nro_registro}"
-      u.roles_mask=3 
-      u.save
-    end
+    begin
+      Person.where.not(rut:nil).each do |p| 
+        u = User.where(rut: p.rut)
+        if !u.present?
+          u=User.new
+          u.rut=p.rut 
+          u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
+          u.password = "#{p.apellido_paterno}#{p.nro_registro}"
+          u.password_confirmation = "#{p.apellido_paterno}#{p.nro_registro}"
+          u.roles_mask=3 
+          u.save
+        end  
+      end
+    rescue
+      puts "************************"  
+      puts "************************"  
+      puts "************************"  
+      puts "************************"
+    end  
   end
 
   DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 
