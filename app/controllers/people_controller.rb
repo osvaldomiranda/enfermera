@@ -145,6 +145,25 @@ class PeopleController < ApplicationController
     end   
   end
 
+  def create_user
+    puts "*****************"
+    puts params
+    puts "*****************"
+    @people = Person.all
+    @msg = Person.create_user(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Colegiadas Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end
+
+
+
   def payregister
     @income = Income.new
     respond_modal_with(@income)
@@ -189,9 +208,7 @@ class PeopleController < ApplicationController
     redirect_to dashboard_index_path
   end
 
-  def create_user
-    Person.create_user
-  end
+  
 
 
   private

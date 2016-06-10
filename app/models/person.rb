@@ -123,10 +123,12 @@ class Person < ActiveRecord::Base
   end    
 
 
-  def self.create_user
-    begin
-      Person.where.not(rut:nil).each do |p| 
-        u = User.where(rut: p.rut)
+  def self.create_user(file)
+
+      CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+        p = Person.where(rut: rowHash["rut"]).first
+        u = User.where(rut: rowHash["rut"]).first
         if !u.present?
           u=User.new
           u.rut=p.rut 
@@ -137,12 +139,7 @@ class Person < ActiveRecord::Base
           u.save
         end  
       end
-    rescue
-      puts "************************"  
-      puts "************************"  
-      puts "************************"  
-      puts "************************"
-    end  
+
   end
 
   DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 

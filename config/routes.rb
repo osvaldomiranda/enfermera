@@ -98,7 +98,7 @@ Enfermera::Application.routes.draw do
     collection do
       post :import 
       post :import_update 
-      get :create_user
+      post :create_user
       get :filter
     end 
   end

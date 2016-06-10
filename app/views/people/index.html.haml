@@ -29,9 +29,13 @@
               = file_field_tag :file 
               = submit_tag "Importar" 
 
+          %h3 crear usuarios colegiadas 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag create_user_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
 
-          %h3 update colegiadas
-          = link_to ' crear usuarios ', create_user_people_path , :target => '_blank', class: 'btn btn-info btn-xs'           
 
 
 .container{:role => "main"}
