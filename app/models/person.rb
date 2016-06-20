@@ -7,6 +7,7 @@ class Person < ActiveRecord::Base
 
   belongs_to :workplace
 
+
   has_many :previousjob, dependent: :destroy
   has_many :persondocuments, dependent: :destroy
   has_many :fees, dependent: :destroy
@@ -18,13 +19,11 @@ class Person < ActiveRecord::Base
   # validates :email, :first_name, :last_name, presence: true
   #validates :rut, :rut_format => true
 
-  scope :inactive, lambda {where(rut: nil)}
-  scope :active, lambda {where.not(rut: nil)}
+  scope :active, ->estado { where.not(rut: nil) if estado=='A' }
+  scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
 
 
-
-  ESTADOS = { "A" => "Con Rut",  
-              "I" => "Sin Rut"
+  ESTADOS = { "A" => "Con Rut"
               }
 
   def fullname
@@ -58,31 +57,31 @@ class Person < ActiveRecord::Base
 
 
   def self.import(file)
-      CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
-        rowHash = row.to_hash
-
-          person = Person.new
-          person.nro_registro = rowHash["nro_registro"] 
-          person.rut = rowHash["rut"]        
-          person.nombres = rowHash["nombres"]
-          person.apellido_paterno = rowHash["apellido_paterno"]
-          person.apellido_materno = rowHash["apellido_materno"]
-          person.sexo = rowHash["sexo"]
-          person.direccion = rowHash["direccion"]
-          person.ciudad = rowHash["ciudad"]
-          person.universidad = rowHash["universidad"]
-          person.fecha_titulo = rowHash["fecha_titulo"]
-         
-          if person.save
-        
-          else
-            puts "************************"  
-            puts "************************"  
-            puts   rowHash
-            puts "************************"  
-            puts "************************"  
-          end 
-      end    
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+      @person = Person.where(nro_registro: rowHash["nro_registro"])
+      if ! @person.present?
+        person = Person.new
+        person.nro_registro = rowHash["nro_registro"] 
+        person.rut = rowHash["rut"]        
+        person.nombres = rowHash["nombres"]
+        person.apellido_paterno = rowHash["apellido_paterno"]
+        person.apellido_materno = rowHash["apellido_materno"]
+        person.sexo = rowHash["sexo"]
+        person.direccion = rowHash["direccion"]
+        person.ciudad = rowHash["ciudad"]
+        person.universidad = rowHash["universidad"]
+        person.fecha_titulo = rowHash["fecha_titulo"]
+        if person.save
+        else
+          puts "************************"  
+          puts "************************"  
+          puts   rowHash
+          puts "************************"  
+          puts "************************"  
+        end
+      end   
+    end    
   end    
 
 

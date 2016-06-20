@@ -11,6 +11,14 @@ class Workplace < ActiveRecord::Base
     # filtrar por ciudad
     Workplace.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
   end  
- 
+
+  def self.workplaces_for_office(regional)
+    # filtrar por ciudad
+    if regional.present?
+      Workplace.where(office_id: regional).order(nombre: :asc).map {|t| [t.nombre, t.id]}
+    else
+      Workplace.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
+    end    
+  end   
 
 end

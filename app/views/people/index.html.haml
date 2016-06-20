@@ -13,6 +13,10 @@
             .form-inline
               = label_tag :filter_estado, 'Estado'
               = select_tag :filter_estado, options_for_select(Person::ESTADOS.map{|e| [e[1], e[0]]}, @estado), prompt: 'Todos', class: "form-control"
+          
+              = label_tag :filter_lugar_trabajo, 'Lugar de Trabajo'
+              = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_select, @lugar_trabajo), prompt: 'Todos', class: "form-control"
+
 
         - if current_user.rut=="11367176-9"
           %h3 importar colegiadas 
@@ -26,6 +30,13 @@
           .form-group   
             %label.col-sm-2.control-label{:for => "textinput"}  Importar 
             = form_tag import_update_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
+
+          %h3 crear cuotas colegiadas 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag create_fee_people_path, multipart: true do 
               = file_field_tag :file 
               = submit_tag "Importar" 
 

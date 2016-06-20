@@ -6,17 +6,10 @@ class PeopleController < ApplicationController
 
   def index
     @estado = params[:estado] || nil
+    @lugar_trabajo = params[:lugar_trabajo] || nil
     
-    if @estado.present?
-      if @estado== 'I'
-        @people = Person.inactive.order(created_at: :desc).page(params[:page]).per_page(20)  
-      end
-      if @estado== 'A'
-        @people = Person.active.order(created_at: :desc).page(params[:page]).per_page(20)  
-      end
-    else
-       @people = Person.all.order(created_at: :desc).page(params[:page]).per_page(20)  
-    end
+    @people = Person.active(@estado).workplace(@lugar_trabajo).order(created_at: :desc).page(params[:page]).per_page(20)  
+    
 
     respond_with(@people)
   end
@@ -161,6 +154,23 @@ class PeopleController < ApplicationController
       }
     end   
   end
+
+  def create_fee
+    puts "*****************"
+    puts params
+    puts "*****************"
+    @people = Person.all
+    @msg = Fee.import(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Colegiadas Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end  
 
 
 
