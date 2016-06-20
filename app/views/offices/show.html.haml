@@ -1,21 +1,36 @@
-%p#notice= notice
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
 
-%p
-  %b Nombre:
-  = @office.nombre
-%p
-  %b Region:
-  = @office.region
-%p
-  %b Ciudad:
-  = @office.ciudad
-%p
-  %b Email:
-  = @office.email
-%p
-  %b Contacto:
-  = @office.contacto
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Resumen Regional
+      .panel-body
 
-= link_to 'Edit', edit_office_path(@office)
-\|
-= link_to 'Back', offices_path
+        %h3
+          = @office.nombre 
+          %span.badge= "#{@office.people.count} Colegiadas"
+        prueba
+        .row
+          .col-md-12.text-center
+            = pie_chart @colegiada_office 
+        %h4= "Total cuotas 2016: $#{@office.fees.sum(:monto)}"
+        %br
+        %table.table.table-striped
+          %thead
+            %tr
+              %td id
+              %td Lugar de Trabajo
+              %td Colegiadas
+              %td Cuotas 2016
+          %tbody
+            - @office.workplaces.each do |workplace|
+              %tr
+                %td= workplace.id
+                %td= workplace.nombre
+                %td= workplace.people.count
+                %td= workplace.fees.sum(:monto)
+                %td= link_to 'Ver Mas', workplace_path(workplace.id), class: "btn btn-primary btn-xs" 
+        %br  
+        %hr        
+        %br

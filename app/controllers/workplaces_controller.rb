@@ -17,6 +17,7 @@ class WorkplacesController < ApplicationController
   end
 
   def show
+    @wp_monto_mes = @workplace.fees.order(:mes_cuota).group(:mes_cuota).sum(:monto)
     respond_with(@workplace)
   end
 

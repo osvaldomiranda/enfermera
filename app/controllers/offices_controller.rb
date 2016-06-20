@@ -10,6 +10,8 @@ class OfficesController < ApplicationController
   end
 
   def show
+    @colegiada_office = @office.people.group(:workplace_id).count
+    @colegiada_office = @colegiada_office.map {|k, v| [ Workplace.find(k).nombre, v] }
     respond_with(@office)
   end
 

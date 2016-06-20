@@ -9,6 +9,7 @@
           %h3
             = office.nombre 
             %span.badge= "#{office.people.count} Colegiadas"
+          = link_to 'Ver', office_path(office.id), class: "btn btn-primary btn-xs"   
           %h4= "Total cuotas 2016: $#{office.fees.sum(:monto)}"
           %h3= "Ingresos: $#{office.incomes.sum(:monto)*0.35}"
           %h3= "Gastos: $#{office.expenses.sum(:monto)}"
