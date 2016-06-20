@@ -27,7 +27,7 @@
               %th Rut
               %th Nombre
               %th Fecha Creación
-              %th 
+              %th Cuotas 2016
               %th
           %tbody
             - @workplace.people.each do |person|
@@ -37,5 +37,6 @@
                 %td= person.rut
                 %td= person.fullname
                 %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+                %td= person.fees.sum(:monto)
                 %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'      
         %br

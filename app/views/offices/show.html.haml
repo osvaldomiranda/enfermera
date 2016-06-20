@@ -18,14 +18,14 @@
         %table.table.table-striped
           %thead
             %tr
-              %td id
+              %td codigo
               %td Lugar de Trabajo
               %td Colegiadas
               %td Cuotas 2016
           %tbody
             - @office.workplaces.each do |workplace|
               %tr
-                %td= workplace.id
+                %td= workplace.cod_wp
                 %td= workplace.nombre
                 %td= workplace.people.count
                 %td= workplace.fees.sum(:monto)
