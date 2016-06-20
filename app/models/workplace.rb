@@ -5,6 +5,7 @@ class Workplace < ActiveRecord::Base
   has_many :wpdocument, dependent: :destroy
   has_many :people, dependent: :destroy
   has_many :incomes
+  has_many :fees, through: :people
 
  
   def self.workplaces_option_for_select

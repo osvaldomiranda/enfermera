@@ -9,6 +9,7 @@
           %h3
             = office.nombre 
             %span.badge= "#{office.people.count} Colegiadas"
+          %h4= "Total cuotas 2016: $#{office.fees.sum(:monto)}"
           %h3= "Ingresos: $#{office.incomes.sum(:monto)*0.35}"
           %h3= "Gastos: $#{office.expenses.sum(:monto)}"
           %h3= "Saldo: $#{(office.incomes.sum(:monto)*0.35)-office.expenses.sum(:monto)}"
@@ -20,13 +21,13 @@
               %tr
                 %td Lugar de Trabajo
                 %td Colegiadas
-                %td Cuotas cobradas
+                %td Cuotas 2016
             %tbody
               - office.workplaces.each do |workplace|
                 %tr
                   %td= workplace.nombre
                   %td= workplace.people.count
-                  %td= workplace.incomes.sum(:monto)
+                  %td= workplace.fees.sum(:monto)
           %br  
           %hr        
         %br
