@@ -5,10 +5,23 @@ class PeopleController < ApplicationController
   respond_to :html
 
   def index
+
+    puts "****************"
+    puts params
+    puts "****************"
+
+    
+
+    if params["/people"].present?
+      @apellido_paterno = params["/people"][:apellido_paterno].upcase
+      @apellido_materno = params["/people"][:apellido_materno].upcase
+    end  
+      
     @estado = params[:estado] || nil
     @lugar_trabajo = params[:lugar_trabajo] || nil
     
-    @people = Person.active(@estado).workplace(@lugar_trabajo).order(created_at: :desc).page(params[:page]).per_page(20)  
+
+    @people = Person.active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).order(created_at: :desc).page(params[:page]).per_page(20)  
     
 
     respond_with(@people)
@@ -138,6 +151,23 @@ class PeopleController < ApplicationController
     end   
   end
 
+    def import_update_email
+    puts "*****************"
+    puts params
+    puts "*****************"
+    @people = Person.all
+    @msg = Person.import_update_email(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Colegiadas Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end
+
   def create_user
     puts "*****************"
     puts params
@@ -218,7 +248,14 @@ class PeopleController < ApplicationController
     redirect_to dashboard_index_path
   end
 
-  
+  def senduser
+    users = Person.where( rut: ['14103369-7','12212569-6','6728168-3','7525652-3','11825249-7','8055506-7','5591066-9','6460909-2','12690706-0','10544097-9','13069397-0','6157085-3','8263904-7','6504308-4','7034287-1','15217726-7','4269924-1','6653259-3','10543350-6','8622387-2','7068787-9','8263053-8','6793711-2','13169430-K','7906858-6','11691652-5','13125329-K','5615757-3'])
+    users.each do |user|
+      user.password = "#{user.rut}"
+      user.password_confirmation = "#{user.rut}"
+      user.save
+    end
+  end  
 
 
   private

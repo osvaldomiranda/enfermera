@@ -22,6 +22,9 @@ class Person < ActiveRecord::Base
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
 
+  scope :with_paterno, -> with_paterno { where(apellido_paterno: with_paterno) if with_paterno.present?}
+  scope :with_materno, -> with_materno { where(apellido_materno: with_materno) if with_materno.present?}
+
 
   ESTADOS = { "A" => "Con Rut"
               }
@@ -121,6 +124,37 @@ class Person < ActiveRecord::Base
     Person.where.not(lugar_trabajo: nil).map {|p| p.workplace_id=Workplace.find_by_cod_wp(p.lugar_trabajo).id if Workplace.find_by_cod_wp(p.lugar_trabajo).present?; p.save}
   end    
 
+
+  def self.import_update_email(file)
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+      
+      if rowHash["rut"].present?
+        person = Person.where(rut: rowHash["rut"]).first
+        if person.present?
+          person.email = rowHash["email"]    
+
+          user = User.where(rut: rowHash["rut"]).first
+          if user.present?
+            user.email = rowHash["email"] 
+            user.save
+          end
+        end  
+      end 
+
+      if person.present?
+        person.save
+        PersonMailer.send_user(person.rut).deliver
+      else
+        puts "************************"  
+        puts "************************"  
+        puts   rowHash
+        puts "************************"  
+        puts "************************"  
+      end    
+    end 
+    Person.where.not(lugar_trabajo: nil).map {|p| p.workplace_id=Workplace.find_by_cod_wp(p.lugar_trabajo).id if Workplace.find_by_cod_wp(p.lugar_trabajo).present?; p.save}
+  end  
 
   def self.create_user(file)
 

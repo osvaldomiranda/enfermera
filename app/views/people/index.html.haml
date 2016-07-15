@@ -8,6 +8,7 @@
             %h1
               Colegiadas
               %span.badge= @people.count
+        %hr      
         .row
           .col-md-12
             .form-inline
@@ -16,6 +17,23 @@
           
               = label_tag :filter_lugar_trabajo, 'Lugar de Trabajo'
               = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_select, @lugar_trabajo), prompt: 'Todos', class: "form-control"
+  
+        .row
+          .col-md-12
+            = simple_form_for(people_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-4
+                  = f.input :apellido_paterno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4
+                  = f.input :apellido_materno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4  
+                  = f.button :submit, "Buscar",  class: "btn btn-primary"
+
+
+        = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
+        %br
+        %br
+
 
 
         - if current_user.rut=="11367176-9"
@@ -33,6 +51,13 @@
               = file_field_tag :file 
               = submit_tag "Importar" 
 
+          %h3 update emails 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag import_update_email_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar"               
+
           %h3 crear cuotas colegiadas 
           .form-group   
             %label.col-sm-2.control-label{:for => "textinput"}  Importar 
@@ -47,7 +72,7 @@
               = file_field_tag :file 
               = submit_tag "Importar" 
 
-
+ 
 
 .container{:role => "main"}
   .col-md-12

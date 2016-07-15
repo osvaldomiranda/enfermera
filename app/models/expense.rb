@@ -2,8 +2,6 @@ class Expense < ActiveRecord::Base
   belongs_to :office
   belongs_to :user_id
 
-  
-
   mount_uploader :document, DocumentUploader
 
   TIPO      = ['Servicios', 'Viajes', 'Arriendo', 'Representacion']
