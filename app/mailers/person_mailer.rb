@@ -73,7 +73,7 @@ class PersonMailer < ActionMailer::Base
 
       emails = [@person.email]
 
-      mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", cco: "osvaldo.omiranda@gmail.com",)
+      mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", bcc: "osvaldo.omiranda@gmail.com",)
 
 # cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
     rescue
