@@ -1,0 +1,29 @@
+%h1 Listing vows
+
+%table
+  %thead
+    %tr
+      %th Token
+      %th Candidate
+      %th Position
+      %th Vote
+      %th Workplace
+      %th
+      %th
+      %th
+
+  %tbody
+    - @vows.each do |vow|
+      %tr
+        %td= vow.token
+        %td= vow.candidate
+        %td= vow.position
+        %td= vow.vote
+        %td= vow.workplace
+        %td= link_to 'Show', vow
+        %td= link_to 'Edit', edit_vow_path(vow)
+        %td= link_to 'Destroy', vow, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'Votar', new_vow_path

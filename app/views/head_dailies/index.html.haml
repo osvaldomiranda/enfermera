@@ -1,0 +1,44 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Libro Diario
+              %span.badge= @head_dailies.count
+        %hr 
+        = link_to 'Crear Egreso', head_dailies_path(head_daily: {numero: HeadDaily.next_egreso, tipo: 'EGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
+        
+        = link_to 'Crear Ingreso', head_dailies_path(head_daily: {numero: HeadDaily.next_ingreso, tipo: 'INGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
+
+        
+        %hr
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Numero
+              %th Fecha
+              %th Tipo
+              %th Detalle
+              %th Monto
+              %th
+              %th
+              %th
+
+          %tbody
+            - @head_dailies.each do |head_daily|
+              %tr
+                %td= head_daily.numero
+                %td= head_daily.dailies.first.fecha
+                %th= head_daily.dailies.first.tipo
+                %th= head_daily.dailies.first.por
+                %td= head_daily.dailies.sum(:haber)
+                %td= link_to 'Ver', head_daily
+                %td= link_to 'Editar', edit_head_daily_path(head_daily)
+                %td= link_to 'Pdf', ""
+
+        %br
+

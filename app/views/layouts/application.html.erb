@@ -53,8 +53,27 @@
                 <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Resumen Nacional
               <% end %>
             </li>
+            <li>
+              <%= link_to gastos_cc_reports_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Gastos Nacional
+              <% end %>
+            </li>
+
+            
           </ul>
         </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Votaciones <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to votar_votes_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Votaciones Abiertas
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin. Regional <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -128,6 +147,12 @@
               <% end %>
             </li>
 
+            <li>
+              <%= link_to votes_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Administrar Elecciones
+              <% end %>
+            </li>
+
           </ul>
         </li>
 
@@ -148,20 +173,10 @@
               <% end %>
             </li>
             
-            <li>
-              <%= link_to incomes_path do %>
-                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Ingresos
-              <% end %>
-            </li>
+
             
             <li>
-              <%= link_to expenses_path do %>
-                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Egresos
-              <% end %>
-            </li>
-            
-            <li>
-              <%= link_to accountancy_index_path do %>
+              <%= link_to head_dailies_path do %>
                 <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Diario
               <% end %>
             </li>

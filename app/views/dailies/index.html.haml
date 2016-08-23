@@ -1,0 +1,47 @@
+%h1 Listing dailies
+
+%table
+  %thead
+    %tr
+      %th Numero
+      %th Fecha
+      %th Centro de costo
+      %th Cuenta
+      %th Debe
+      %th Haber
+      %th Numdocumento
+      %th Detalle
+      %th Paguesea
+      %th Por
+      %th Tipo
+      %th Office
+      %th Income
+      %th Expense
+      %th
+      %th
+      %th
+
+  %tbody
+    - @dailies.each do |daily|
+      %tr
+        %td= daily.numero
+        %td= daily.fecha
+        %td= daily.cost_center
+        %td= daily.account
+        %td= daily.debe
+        %td= daily.haber
+        %td= daily.numdocumento
+        %td= daily.detalle
+        %td= daily.paguesea
+        %td= daily.por
+        %td= daily.tipo
+        %td= daily.office
+        %td= daily.income
+        %td= daily.expense
+        %td= link_to 'Show', daily
+        %td= link_to 'Edit', edit_daily_path(daily)
+        %td= link_to 'Destroy', daily, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Daily', new_daily_path

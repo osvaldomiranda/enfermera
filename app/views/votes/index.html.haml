@@ -1,0 +1,37 @@
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Elecciones
+      .panel-body
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Fecha
+              %th Elección
+              %th Descripción
+              %th Inicio
+              %th Termino
+              %th Estado
+              %th
+              %th
+              %th
+
+          %tbody
+            - @votes.each do |vote|
+              %tr
+                %td= vote.fecha
+                %td= vote.votacion
+                %td= vote.descripcion
+                %td= vote.inicio
+                %td= vote.termino
+                %td= vote.estado
+                %td= link_to 'Candidatos', vote_path(vote)
+                %td= link_to 'Editar', edit_vote_path(vote)
+                %td= link_to 'Eliminar', vote, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %br
+
+        = link_to 'Nueva Elección', new_vote_path

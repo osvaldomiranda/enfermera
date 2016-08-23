@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Numero:
+  = @daily.numero
+%p
+  %b Fecha:
+  = @daily.fecha
+%p
+  %b Cost center:
+  = @daily.cost_center
+%p
+  %b Account:
+  = @daily.account
+%p
+  %b Debe:
+  = @daily.debe
+%p
+  %b Haber:
+  = @daily.haber
+%p
+  %b Numdocumento:
+  = @daily.numdocumento
+%p
+  %b Detalle:
+  = @daily.detalle
+%p
+  %b Paguesea:
+  = @daily.paguesea
+%p
+  %b Por:
+  = @daily.por
+%p
+  %b Tipo:
+  = @daily.tipo
+%p
+  %b Office:
+  = @daily.office
+%p
+  %b Income:
+  = @daily.income
+%p
+  %b Expense:
+  = @daily.expense
+
+= link_to 'Edit', edit_daily_path(@daily)
+\|
+= link_to 'Back', dailies_path

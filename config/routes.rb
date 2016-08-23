@@ -1,5 +1,21 @@
 Enfermera::Application.routes.draw do
 
+  
+
+  resources :dailies
+
+  resources :vows 
+
+  resources :candidates
+
+  resources :positions
+
+  resources :votes do
+    collection do
+      get :votar
+    end 
+  end
+
   resources :cost_centers
   resources :accounts
 
@@ -30,7 +46,21 @@ Enfermera::Application.routes.draw do
   resources :report do
     collection { post :export }
   end
-  resources :reports, only: :index
+  resources :reports  do
+    collection do
+      get :gastos_cc
+    end
+    member do
+      get :gastos_cta_cc
+      get :detalle_diario
+    end
+  end
+
+  resources :head_dailies do
+    collection do
+      post :create
+    end  
+  end
 
   # get "senddiscount/index"
   # get "/senddiscount/sendemail/:id", to:  "senddiscount#sendemail"
@@ -101,6 +131,8 @@ Enfermera::Application.routes.draw do
       post :import_update_email
       post :create_user
       post :create_fee
+      post :create_head_daily
+      post :create_daily
       get :filter
     end 
   end

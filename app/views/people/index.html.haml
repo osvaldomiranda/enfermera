@@ -72,6 +72,20 @@
               = file_field_tag :file 
               = submit_tag "Importar" 
 
+          %h3 crear head daily 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag create_head_daily_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
+
+          %h3 crear daily 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag create_daily_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
+
  
 
 .container{:role => "main"}

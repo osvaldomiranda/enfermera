@@ -1,0 +1,57 @@
+.container-fluid
+  .container-fluid
+    .row
+      .col-md-12
+      %br
+      %br
+        %form.form-horizontal{:role => "form"}
+          = simple_form_for(@daily) do |f|
+            = f.error_notification
+            .form-inputs
+              
+              .form-group
+                / %label.col-sm-2.control-label{:for => "textinput"} Tipo
+                / .col-sm-4
+                /   = f.input :tipo, label: false, required: true
+
+                %label.col-sm-2.control-label{:for => "textinput"} Fecha
+                .col-sm-4
+                  = f.text_field :fecha, label: false, :class => 'datepicker' 
+              
+              .form-group
+                %label.col-sm-2.control-label{:for => "textinput"} Centro Costo
+                .col-sm-4
+                  = f.association :cost_center,label: false,collection: CostCenter.options_for_select
+
+
+                %label.col-sm-2.control-label{:for => "textinput"} Cuenta
+                .col-sm-4
+                  = f.association :account,label: false,collection: Account.options_for_select
+
+              .form-group 
+                %label.col-sm-2.control-label{:for => "textinput"} Debe
+                .col-sm-4  
+                  = f.input :debe,label: false
+                %label.col-sm-2.control-label{:for => "textinput"} Haber
+                .col-sm-4  
+                  = f.input :haber,label: false
+              .form-group 
+                %label.col-sm-2.control-label{:for => "textinput"} Documento
+                .col-sm-10                    
+                  = f.input :numdocumento,label: false
+                / %label.col-sm-2.control-label{:for => "textinput"} Detalle
+                / .col-sm-10 
+                /   = f.input :detalle,label: false
+                %label.col-sm-2.control-label{:for => "textinput"} Paguese A
+                .col-sm-10 
+                  = f.input :paguesea,label: false
+                %label.col-sm-2.control-label{:for => "textinput"} Por
+                .col-sm-10  
+                  = f.input :por,label: false
+                %label.col-sm-2.control-label{:for => "textinput"} Officina
+                .col-sm-10 
+                  = f.association :office,label: false,collection: Office.options_for_select
+              / = f.association :income
+              / = f.association :expense
+            .form-actions
+              = f.button :submit, 'Crear',class: 'btn btn-info' 

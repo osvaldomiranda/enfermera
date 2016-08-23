@@ -239,6 +239,7 @@ Office.find_or_create_by(codigo: "PMO", nombre: "REGIONAL PUERTO MONTT")
 Office.find_or_create_by(codigo: "CHL", nombre: "SUB - SEDE CHILOE")
 Office.find_or_create_by(codigo: "COY", nombre: "SUB - SEDE AYSEN")
 Office.find_or_create_by(codigo: "PAR", nombre: "REGIONAL PUNTA ARENAS")
+Office.find_or_create_by(codigo: "NAC", nombre: "CONSEJO NACIONAL")
 
 
 Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '0101', nombre: 'DIRECCION SERVICIO DE SALUD ARICA')

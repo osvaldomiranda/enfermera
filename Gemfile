@@ -126,6 +126,4 @@ group :development, :staging do
   # Console in error page
   gem 'binding_of_caller'
 
-  # Better looking error page
-  gem 'better_errors'
 end

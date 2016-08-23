@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Cargo:
+  = @position.cargo
+%p
+  %b Vote:
+  = @position.vote
+
+= link_to 'Edit', edit_position_path(@position)
+\|
+= link_to 'Back', positions_path

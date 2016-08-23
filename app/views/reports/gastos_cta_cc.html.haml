@@ -1,0 +1,30 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Resumen Gastos por Cuenta
+      .panel-body
+
+        %h3= "Gastos por Cuenta del Centro de Costo: #{@cost_center}" 
+   
+        .row
+          .col-md-12.text-center
+            = pie_chart @gastos_grafico
+        %br
+        %table.table.table-striped
+          %thead
+            %tr
+              %td Cuenta
+              %td Total
+          %tbody
+            - @gastos_cuenta.each do |k,v|
+              %tr
+                %td= k.present? ? Account.find(k).nombre : "Sin Cuenta"
+                %td= v
+                - if k.present?
+                  %td= link_to 'Ver Egresos', detalle_diario_report_path(k)
+                - else
+                  %td 
+                

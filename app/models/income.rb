@@ -2,7 +2,8 @@ class Income < ActiveRecord::Base
   belongs_to :person
   belongs_to :workplace
   belongs_to :user
-
+  belongs_to :office
+  
   has_many :fees
 
   mount_uploader :document, DocumentUploader 

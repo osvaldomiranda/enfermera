@@ -1,0 +1,58 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+%p#notice= notice
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Elecciones
+      .panel-body
+        %p
+          %b Fecha:
+          = @vote.fecha
+        %p
+          %b Votacion:
+          = @vote.votacion
+        %p
+          %b Descripcion:
+          = @vote.descripcion
+        %p
+          %b Inicio:
+          = @vote.inicio
+        %p
+          %b Termino:
+          = @vote.termino
+        %p
+          %b Estado:
+          = @vote.estado
+
+        %br  
+        %hr
+          .col-md-12.text-center
+            = pie_chart @votacion_votos 
+        %hr
+        %br  
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Candidato
+              %th Cargo
+              %th
+              %th
+              %th
+
+          %tbody
+            - @vote.candidates.each do |candidate|
+              %tr
+                %td= candidate.candidato
+                %td= candidate.position
+                %td= link_to 'Show', candidate
+                %td= link_to 'Edit', edit_candidate_path(candidate)
+                %td= link_to 'Eliminar', candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %br
+
+        = link_to 'Nuevo Candidato', new_candidate_path
+
+

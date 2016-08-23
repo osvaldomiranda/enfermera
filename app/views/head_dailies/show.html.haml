@@ -1,0 +1,52 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              = "Libro Diario #{@head_daily.tipo} #{@head_daily.numero}"
+              
+        %hr 
+
+
+        %p#notice= notice
+
+        .row
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Numero
+                %th Fecha
+                %th Centro de costo
+                %th Cuenta
+                %th Debe
+                %th Haber
+                %th Paguesea
+                %th Por
+
+            %tbody
+              - @head_daily.dailies.each do |daily|
+                %tr
+                  %td= daily.numero
+                  %td= daily.fecha
+                  - if daily.cost_center.present?
+                    %td= daily.cost_center.nombre
+                  - else
+                    %td
+                  -if  daily.account.present?   
+                    %td= daily.account.nombre
+                  - else
+                    %td  
+                  %td= daily.debe
+                  %td= daily.haber
+                  %td= daily.paguesea
+                  %td= daily.por
+
+        =link_to 'Agregar detalle', new_daily_path, data: { modal: true }, class: 'btn btn-info' 
+        %br
+        %br
+          
+
+

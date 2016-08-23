@@ -1,0 +1,20 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Elecciones
+      .panel-body
+
+        = simple_form_for(@vote) do |f|
+          = f.error_notification
+
+          .form-inputs
+            = f.input :fecha
+            = f.input :votacion
+            = f.input :descripcion
+            = f.input :inicio
+            = f.input :termino
+            = f.input :estado
+
+          .form-actions
+            = f.button :submit

@@ -202,6 +202,33 @@ class PeopleController < ApplicationController
     end   
   end  
 
+  def create_head_daily
+    @people = Person.all
+    @msg = HeadDaily.import(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Colegiadas Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end  
+
+    def create_daily
+    @people = Person.all
+    @msg = Daily.import(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "Colegiadas Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end  
 
 
   def payregister

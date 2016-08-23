@@ -1,22 +1,22 @@
-.container{:role => "main"}
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title Cuenta Corriente
-      .panel-body
-        .row
-          .col-md-12
-            = simple_form_for(people_path,:method => :get ) do |f|
-              .form-group  
-                .col-sm-2
-                  = f.input :nombre, label: false,  :input_html => {:style=> 'width: 180px'}
+/ .container{:role => "main"}
+/   .col-md-12
+/     .panel.panel-default
+/       .panel-heading
+/         %h3.panel-title Cuenta Corriente
+/       .panel-body
+/         .row
+/           .col-md-12
+/             = simple_form_for(people_path,:method => :get ) do |f|
+/               .form-group  
+/                 .col-sm-2
+/                   = f.input :nombre, label: false,  :input_html => {:style=> 'width: 180px'}
   
-                .col-sm-2  
-                  = f.button :submit, "Buscar",  class: "btn btn-primary"
+/                 .col-sm-2  
+/                   = f.button :submit, "Buscar",  class: "btn btn-primary"
 
-            = link_to "Limpiar Busqueda","",  class: 'btn btn-info'
-        %br
-        %br
+/             = link_to "Limpiar Busqueda","",  class: 'btn btn-info'
+/         %br
+/         %br
 
 .container{:role => "main"}
   .col-md-12
@@ -30,6 +30,7 @@
               %thead
                 %tr
                   %th Fecha
+                  %th Oficina
                   %th Monto
                   %th Tipo
                   %th Document
@@ -44,6 +45,10 @@
                 - @expenses.each do |expense|
                   %tr
                     %td= expense.fecha.strftime('%d/%m/%Y %H:%M')
+                    - if expense.office.present?
+                      %td= expense.office.nombre
+                    - else
+                      %td  
                     %td= expense.monto
                     %td= expense.tipo
                     %td= link_to 'Comprobante', expense.document_url, class: 'btn btn-info'

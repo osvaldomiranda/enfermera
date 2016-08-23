@@ -1,7 +1,7 @@
 class Office < ActiveRecord::Base
   has_many :workplaces
   has_many :expenses
-  has_many :incomes, :through => :workplaces
+  has_many :incomes
   has_many :people, :through => :workplaces
   has_many :fees, :through => :workplaces
 

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Token:
+  = @vow.token
+%p
+  %b Candidate:
+  = @vow.candidate
+%p
+  %b Position:
+  = @vow.position
+%p
+  %b Vote:
+  = @vow.vote
+%p
+  %b Workplace:
+  = @vow.workplace
+
+= link_to 'Edit', edit_vow_path(@vow)
+\|
+= link_to 'Back', vows_path

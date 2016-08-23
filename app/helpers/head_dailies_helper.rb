@@ -1,0 +1,2 @@
+module HeadDailiesHelper
+end

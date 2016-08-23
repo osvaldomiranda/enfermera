@@ -1,0 +1,30 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Resumen Gastos por Centro de Costo
+      .panel-body
+
+        %h3 Gastos por Centro de Costo
+   
+        .row
+          .col-md-12.text-center
+            = pie_chart @gastos_grafico
+        %br
+        %table.table.table-striped
+          %thead
+            %tr
+              %td Centro de Costo
+              %td Total
+              %td
+          %tbody
+            - @gastos_cc.each do |k,v|
+              %tr
+                %td= k.present? ? CostCenter.find(k).nombre : "Sin CC"
+                %td= v
+                - if k.present?
+                  %td= link_to 'Ver Cuentas', gastos_cta_cc_report_path(k)
+                - else
+                  %td 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620003412) do
+ActiveRecord::Schema.define(version: 20160819130020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20160620003412) do
     t.datetime "updated_at"
   end
 
+  create_table "candidates", force: true do |t|
+    t.string   "candidato"
+    t.integer  "position_id"
+    t.integer  "vote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "candidates", ["position_id"], name: "index_candidates_on_position_id", using: :btree
+  add_index "candidates", ["vote_id"], name: "index_candidates_on_vote_id", using: :btree
+
   create_table "cost_centers", force: true do |t|
     t.string   "codigo"
     t.string   "nombre"
@@ -45,6 +56,34 @@ ActiveRecord::Schema.define(version: 20160620003412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "dailies", force: true do |t|
+    t.integer  "numero"
+    t.date     "fecha"
+    t.integer  "cost_center_id"
+    t.integer  "account_id"
+    t.integer  "debe"
+    t.integer  "haber"
+    t.string   "numdocumento"
+    t.string   "detalle"
+    t.string   "paguesea"
+    t.string   "por"
+    t.string   "tipo"
+    t.integer  "office_id"
+    t.integer  "income_id"
+    t.integer  "expense_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banco"
+    t.integer  "head_daily_id"
+  end
+
+  add_index "dailies", ["account_id"], name: "index_dailies_on_account_id", using: :btree
+  add_index "dailies", ["cost_center_id"], name: "index_dailies_on_cost_center_id", using: :btree
+  add_index "dailies", ["expense_id"], name: "index_dailies_on_expense_id", using: :btree
+  add_index "dailies", ["head_daily_id"], name: "index_dailies_on_head_daily_id", using: :btree
+  add_index "dailies", ["income_id"], name: "index_dailies_on_income_id", using: :btree
+  add_index "dailies", ["office_id"], name: "index_dailies_on_office_id", using: :btree
 
   create_table "detail_expenses", force: true do |t|
     t.string   "numcomprobante"
@@ -124,6 +163,16 @@ ActiveRecord::Schema.define(version: 20160620003412) do
   add_index "fees", ["income_id"], name: "index_fees_on_income_id", using: :btree
   add_index "fees", ["person_id"], name: "index_fees_on_person_id", using: :btree
 
+  create_table "head_dailies", force: true do |t|
+    t.integer  "numero"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "tipo"
+  end
+
+  add_index "head_dailies", ["user_id"], name: "index_head_dailies_on_user_id", using: :btree
+
   create_table "incomes", force: true do |t|
     t.datetime "fecha"
     t.float    "monto"
@@ -137,8 +186,10 @@ ActiveRecord::Schema.define(version: 20160620003412) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "estado"
+    t.integer  "office_id"
   end
 
+  add_index "incomes", ["office_id"], name: "index_incomes_on_office_id", using: :btree
   add_index "incomes", ["person_id"], name: "index_incomes_on_person_id", using: :btree
   add_index "incomes", ["user_id"], name: "index_incomes_on_user_id", using: :btree
   add_index "incomes", ["workplace_id"], name: "index_incomes_on_workplace_id", using: :btree
@@ -252,6 +303,15 @@ ActiveRecord::Schema.define(version: 20160620003412) do
 
   add_index "persondocuments", ["person_id"], name: "index_persondocuments_on_person_id", using: :btree
 
+  create_table "positions", force: true do |t|
+    t.string   "cargo"
+    t.integer  "vote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "positions", ["vote_id"], name: "index_positions_on_vote_id", using: :btree
+
   create_table "previousjobs", force: true do |t|
     t.string   "establecimiento"
     t.string   "ciudad"
@@ -301,6 +361,33 @@ ActiveRecord::Schema.define(version: 20160620003412) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "votes", force: true do |t|
+    t.date     "fecha"
+    t.string   "votacion"
+    t.string   "descripcion"
+    t.string   "inicio"
+    t.string   "termino"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "tipo"
+  end
+
+  create_table "vows", force: true do |t|
+    t.string   "token"
+    t.integer  "candidate_id"
+    t.integer  "position_id"
+    t.integer  "vote_id"
+    t.integer  "workplace_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vows", ["candidate_id"], name: "index_vows_on_candidate_id", using: :btree
+  add_index "vows", ["position_id"], name: "index_vows_on_position_id", using: :btree
+  add_index "vows", ["vote_id"], name: "index_vows_on_vote_id", using: :btree
+  add_index "vows", ["workplace_id"], name: "index_vows_on_workplace_id", using: :btree
 
   create_table "workplaces", force: true do |t|
     t.string   "nombre"
