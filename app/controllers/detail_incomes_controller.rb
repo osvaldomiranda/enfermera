@@ -1,4 +1,5 @@
 class DetailIncomesController < ApplicationController
+  before_filter :authenticate_user! 
   before_action :set_detail_income, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

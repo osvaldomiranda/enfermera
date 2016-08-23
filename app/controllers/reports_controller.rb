@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_filter :authenticate_user! 
   def index
     @offices = Office.all
     @selected_enero = DateTime.parse("01/01/2016")

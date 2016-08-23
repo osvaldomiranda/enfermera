@@ -1,4 +1,5 @@
 class CostCentersController < ApplicationController
+  before_filter :authenticate_user! 
   before_action :set_cost_center, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
