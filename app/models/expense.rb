@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Expense < ActiveRecord::Base
   belongs_to :office
   belongs_to :user_id
@@ -14,7 +15,7 @@ TIPO      = [
 'HONORARIOS ESPORADICOS',
 'LUZ',
 'AGUA',
-'TELÉFONO',
+'TELEFONO',
 'GAS',
 'FRANQUEO',
 'ARTICULOS DE OFICINA',
