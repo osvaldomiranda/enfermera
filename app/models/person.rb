@@ -179,7 +179,7 @@ class Person < ActiveRecord::Base
     if !u.present?
       u=User.new
       u.rut=self.rut 
-      u.email=self.email.present? ? self.email : "#{p.rut}sin@mail.cl"
+      u.email=self.email.present? ? self.email : "#{self.rut}sin@mail.cl"
       u.password = self.rut
       u.password_confirmation = self.rut
       u.roles_mask=4
