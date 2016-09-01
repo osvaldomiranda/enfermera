@@ -178,10 +178,10 @@ class Person < ActiveRecord::Base
     u = User.where(rut: self.rut).first
     if !u.present?
       u=User.new
-      u.rut=p.rut 
-      u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
-      u.password = p.rut
-      u.password_confirmation = p.rut
+      u.rut=self.rut 
+      u.email=self.email.present? ? self.email : "#{p.rut}sin@mail.cl"
+      u.password = self.rut
+      u.password_confirmation = self.rut
       u.roles_mask=4
       u.save
     end  
