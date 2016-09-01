@@ -17,19 +17,16 @@
           %table.table.table-striped
             %thead
               %tr
-                %th Numero
                 %th Fecha
                 %th Centro de costo
                 %th Cuenta
                 %th Debe
                 %th Haber
-                %th Paguesea
-                %th Por
+                %th Glosa
 
             %tbody
               - @head_daily.dailies.each do |daily|
                 %tr
-                  %td= daily.numero
                   %td= daily.fecha
                   - if daily.cost_center.present?
                     %td= daily.cost_center.nombre
@@ -41,10 +38,10 @@
                     %td  
                   %td= daily.debe
                   %td= daily.haber
-                  %td= daily.paguesea
                   %td= daily.por
 
-        =link_to 'Agregar detalle', new_daily_path, data: { modal: true }, class: 'btn btn-info' 
+      - if current_user.role?(:finance) 
+        =link_to 'Agregar detalle', new_daily_path(head_daily_numero: @head_daily.numero, tipo: @head_daily.tipo), data: { modal: true }, class: 'btn btn-info' 
         %br
         %br
           

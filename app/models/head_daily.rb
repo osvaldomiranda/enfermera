@@ -34,4 +34,12 @@ class HeadDaily < ActiveRecord::Base
     end  
     return n
   end
+
+  def eliminar
+    self.dailies.each do |daily|
+      daily.delete
+    end
+
+    self.delete
+  end
 end

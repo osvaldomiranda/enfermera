@@ -172,7 +172,19 @@ class Person < ActiveRecord::Base
           u.save
         end  
       end
+  end
 
+  def self.usernew
+    u = User.where(rut: self.rut).first
+    if !u.present?
+      u=User.new
+      u.rut=p.rut 
+      u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
+      u.password = p.rut
+      u.password_confirmation = p.rut
+      u.roles_mask=4
+      u.save
+    end  
   end
 
   DIA = ['Lunes', 'Martes','Miercoles','Jueves', 'Vierne', 'Sabado', 'Domingo'] 

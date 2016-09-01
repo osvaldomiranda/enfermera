@@ -14,6 +14,8 @@ class DailiesController < ApplicationController
   end
 
   def new
+    @head_daily_id = HeadDaily.find_by_numero(params[:head_daily_numero]).id
+    @tipo = params[:tipo]
     @daily = Daily.new
     respond_modal_with(@daily)
   end
@@ -22,9 +24,10 @@ class DailiesController < ApplicationController
   end
 
   def create
+    @head_daily = HeadDaily.find(daily_params[:head_daily_id])
     @daily = Daily.new(daily_params)
     @daily.save
-    render :show
+    render '/head_dailies/show'
   end
 
   def update
@@ -43,6 +46,6 @@ class DailiesController < ApplicationController
     end
 
     def daily_params
-      params.require(:daily).permit(:numero, :fecha, :cost_center_id, :account_id, :debe, :haber, :numdocumento, :detalle, :paguesea, :por, :tipo, :office_id, :income_id, :expense_id)
+      params.require(:daily).permit(:numero, :fecha, :cost_center_id, :account_id, :debe, :haber, :numdocumento, :detalle, :paguesea, :por, :tipo, :office_id, :income_id, :expense_id, :head_daily_id)
     end
 end
