@@ -174,7 +174,7 @@ class Person < ActiveRecord::Base
       end
   end
 
-  def self.usernew
+  def usernew
     u = User.where(rut: self.rut).first
     if !u.present?
       u=User.new
