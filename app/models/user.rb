@@ -46,4 +46,12 @@ class User < ActiveRecord::Base
     return result
   end
   ## End ROLES 
+
+  def person
+    Person.find_by_rut(self.rut) || nil
+  end
+  def office
+    p = Person.find_by_rut(self.rut)
+    p.office || nil
+  end
 end

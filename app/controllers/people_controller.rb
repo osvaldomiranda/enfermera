@@ -6,12 +6,6 @@ class PeopleController < ApplicationController
 
   def index
 
-    puts "****************"
-    puts params
-    puts "****************"
-
-    
-
     if params["/people"].present?
       @apellido_paterno = params["/people"][:apellido_paterno].upcase
       @apellido_materno = params["/people"][:apellido_materno].upcase
@@ -258,7 +252,7 @@ class PeopleController < ApplicationController
         fee = Fee.new
         fee.rut = @person.rut
         fee.email = @person.email
-        fee.fecha_pago = params[:income][:fecha]
+        fee.fecha_pago = params[:income][:fecha_pago]
         fee.mes = i
         fee.monto = valorcuota
         fee.person_id = @person.id

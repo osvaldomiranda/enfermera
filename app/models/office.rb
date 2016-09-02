@@ -6,19 +6,20 @@ class Office < ActiveRecord::Base
   has_many :fees, :through => :workplaces
 
   def self.office_option_for_select
-    # filtrar por ciudad
     Office.all.order(nombre: :asc).map {|t| t.nombre}
   end 
 
 
-  def self.options_for_select
-    # filtrar por ciudad
-    Office.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
+  def self.options_for_select(user)
+    if user.role?(:national_admin)
+      Office.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
+    else
+      Office.where(id: user.office.id).map {|t| [t.nombre, t.id]}
+    end  
   end 
 
   def self.region_options_for_select
-    #GENDERS.to_enum.with_index(0).to_a
     Region.all.map { |r| [r.nombre, r.nombre] }
-  end            
+  end   
  
 end

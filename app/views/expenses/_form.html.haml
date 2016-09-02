@@ -24,14 +24,10 @@
                   %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
             .row   
               .col-md-8 
-
-
                 = f.input :monto
                 = f.input :tipo, collection: Expense.tipo_options_for_select
                 = f.input :mediopago, collection: Expense.mediopago_options_for_select
                 = f.input :descripcion
-                / = f.association :office
-                / = f.input :estado
-
+                = f.input :office_id, :as => :hidden, :input_html => { :value => current_user.office.id } 
             .form-actions
               = f.button :submit, 'Guardar Gasto'

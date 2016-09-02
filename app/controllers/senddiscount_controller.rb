@@ -6,7 +6,11 @@ class SenddiscountController < ApplicationController
     if @regional.present?
       @workplaces = Workplace.where(office_id: @regional).order(created_at: :desc).page(params[:page]).per_page(20)  
     else
-      @workplaces = Workplace.all.order(created_at: :desc).page(params[:page]).per_page(20)  
+      if current_user.role?(:national_admin) 
+        @workplaces = Workplace.all.order(created_at: :desc).page(params[:page]).per_page(20)
+      else
+        @workplaces = Workplace.where(office_id: current_user.office.id).order(created_at: :desc).page(params[:page]).per_page(20)
+      end    
     end
   end
 

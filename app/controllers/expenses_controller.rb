@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
   respond_to :html
 
   def index
-    @expenses = Expense.all
+    @expenses = Expense.where(office_id: current_user.office.id)
     respond_with(@expenses)
   end
 

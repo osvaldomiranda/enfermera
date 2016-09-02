@@ -205,4 +205,9 @@ class Person < ActiveRecord::Base
     Workplace.find(self.workplace_id).nombre
   end
 
+  def office
+    w = self.workplace
+    w.office
+  end
+
 end

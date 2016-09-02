@@ -13,7 +13,10 @@
           .col-md-12
             .form-inline
               = label_tag :filter_regional, 'Regional'
-              = select_tag :filter_regional, options_for_select(Office.options_for_select, @regional), prompt: 'Todos', class: "form-control"
+              - if current_user.role?(:national_admin) 
+                = select_tag :filter_regional, options_for_select(Office.options_for_select(current_user), @regional), prompt: 'Todos', class: "form-control"
+              - else
+                = select_tag :filter_regional, options_for_select(Office.options_for_select(current_user), @regional), class: "form-control"
         %br
         %br
         = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
