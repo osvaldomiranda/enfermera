@@ -145,6 +145,7 @@ Enfermera::Application.routes.draw do
   # post "/workplaces/pay/pay", to: 'workplaces#pay'
   resources :workplaces do
     member do
+      get :incomes
       get :payregister
       post :pay
     end

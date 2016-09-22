@@ -1,6 +1,6 @@
 class WorkplacesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_workplace, only: [:show, :edit, :update, :destroy]
+  before_action :set_workplace, only: [:show, :edit, :update, :destroy, :incomes]
 
   respond_to :html
 
@@ -50,6 +50,9 @@ class WorkplacesController < ApplicationController
     respond_with(@workplace)
   end
 
+  def incomes
+    respond_with(@workplace)
+  end
 
   def payregister
 
