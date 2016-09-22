@@ -1,6 +1,13 @@
 class Fee < ActiveRecord::Base
   belongs_to :person
 
+  MES      = ['1', '2', '3','4', '5', '6','7', '8', '9','10', '11', '12']
+  def self.mescuota_options_for_select
+    #GENDERS.to_enum.with_index(0).to_a
+    MES.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
+  end 
+
+
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|

@@ -8,12 +8,12 @@ class WorkplacesController < ApplicationController
     @regional = params[:regional] || nil
     
     if @regional.present?
-      @workplaces = Workplace.where(office_id: @regional).order(created_at: :desc).page(params[:page]).per_page(20)  
+      @workplaces = Workplace.where(office_id: @regional).order(nombre: :asc).page(params[:page]).per_page(20)  
     else
       if current_user.role?(:national_admin) 
-        @workplaces = Workplace.all.order(created_at: :desc).page(params[:page]).per_page(20)
+        @workplaces = Workplace.all.order(nombre: :asc).page(params[:page]).per_page(20)
       else
-        @workplaces = Workplace.where(office_id: current_user.office.id).order(created_at: :desc).page(params[:page]).per_page(20)
+        @workplaces = Workplace.where(office_id: current_user.office.id).order(nombre: :asc).page(params[:page]).per_page(20)
       end    
     end
     
@@ -52,6 +52,7 @@ class WorkplacesController < ApplicationController
 
 
   def payregister
+
     @workplace = Workplace.find(params[:id])
     # @workplace = Workplace.find(1)
     @income = Income.new
@@ -60,41 +61,38 @@ class WorkplacesController < ApplicationController
 
   def pay
     
-    @income = Income.new
-    @income.monto       =  params[:income][:monto]
-    @income.person_id   =  nil
-    @income.workplace_id=  params[:income][:workplace_id]
-    @income.tipo        = "Descuento Planilla"
-    @income.user_id     =  params[:income][:user_id]
-    @income.document    =  params[:income][:document]
-    @income.banco       =  params[:income][:banco]
-    @income.mediopago   =  params[:income][:mediopago]
-    @income.fecha       =  DateTime.now
-    @income.estado      = "CONFIRMADO"
-
-    if @income.save
-
-      valorcuota = Currentfee.last.valor
-      n = params[:income][:monto].to_i/valorcuota
-
-      @workplace = Workplace.find(params[:income][:workplace_id])
-      
-      @workplace.people.each do |person|
-        fee = Fee.new
-        fee.rut = person.rut
-        fee.email = person.email
-        fee.fecha_pago = params[:income][:fecha]
-        fee.mes = 1
-        fee.monto = valorcuota
-        fee.person_id = person.id
-        fee.pagador = "Descuento Planilla"
-        fee.mes_cuota =  1
-        fee.estado = "Confirmado"
-        fee.income_id = @income.id
-        fee.save
+    if params[:person_ids].present?
+      @income = Income.new
+      @income.monto       =  params[:income][:monto]
+      @income.person_id   =  current_user.id
+      @income.office_id   =  params[:income][:office_id]
+      @income.workplace_id=  params[:income][:workplace_id]
+      @income.tipo        = "Descuento Planilla"
+      @income.user_id     =  params[:income][:user_id]
+      @income.document    =  params[:income][:document]
+      @income.banco       =  params[:income][:banco]
+      @income.mediopago   =  params[:income][:mediopago]
+      @income.fecha       =  DateTime.now
+      @income.estado      = "CONFIRMADO"
+      if @income.save
+        valorcuota = Currentfee.last.valor
+        params[:person_ids].each do |id|
+          person = Person.find(id)
+          fee = Fee.new
+          fee.rut = person.rut
+          fee.email = person.email
+          fee.fecha_pago = params[:income][:fecha]
+          fee.mes = 1
+          fee.monto = valorcuota
+          fee.person_id = person.id
+          fee.pagador = "Descuento Planilla"
+          fee.mes_cuota =  params[:income][:tipo]
+          fee.estado = "Confirmado"
+          fee.income_id = @income.id
+          fee.save
+        end
       end
-    end
-
+    end  
     render "/adminworckplace/index"
   end
 

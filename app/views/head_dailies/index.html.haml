@@ -30,15 +30,16 @@
 
           %tbody
             - @head_dailies.each do |head_daily|
-              %tr
-                %td= head_daily.numero
-                %td= head_daily.dailies.first.fecha
-                %th= head_daily.dailies.first.tipo
-                %th= head_daily.dailies.first.por
-                %td= head_daily.dailies.sum(:haber)
-                %td= link_to 'Ver', head_daily
-                %td= link_to 'Editar', edit_head_daily_path(head_daily)
-                %td= link_to 'Pdf', ""
+              - if head_daily.dailies.present?
+                %tr
+                  %td= head_daily.numero
+                  %td= head_daily.dailies.first.fecha
+                  %th= head_daily.dailies.first.tipo
+                  %th= head_daily.dailies.first.por
+                  %td= head_daily.dailies.sum(:haber)
+                  %td= link_to 'Ver', head_daily
+                  %td= link_to 'Editar', edit_head_daily_path(head_daily)
+                  %td= link_to 'PDF', showtopdf_head_daily_path(head_daily.id), class: 'btn btn-success'
 
         %br
 

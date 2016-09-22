@@ -28,21 +28,21 @@
               .col-sm-4  
                 = f.input :haber,label: false
             .form-group 
-              %label.col-sm-2.control-label{:for => "textinput"} Documento
-              .col-sm-10                    
-                = f.input :numdocumento,label: false
+              / %label.col-sm-2.control-label{:for => "textinput"} Documento
+              / .col-sm-10                    
+              /   = f.input :numdocumento,label: false
               / %label.col-sm-2.control-label{:for => "textinput"} Detalle
               / .col-sm-10 
               /   = f.input :detalle,label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Paguese A
-              .col-sm-10 
-                = f.input :paguesea,label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Por
+              / %label.col-sm-2.control-label{:for => "textinput"} Paguese A
+              / .col-sm-10 
+              /   = f.input :paguesea,label: false
+              %label.col-sm-2.control-label{:for => "textinput"} Glosa
               .col-sm-10  
                 = f.input :por,label: false
-              %label.col-sm-2.control-label{:for => "textinput"} Officina
-              .col-sm-10 
-                = f.association :office,label: false,collection: Office.options_for_select
+              / %label.col-sm-2.control-label{:for => "textinput"} Officina
+              / .col-sm-10 
+              /   = f.association :office,label: false,collection: Office.options_for_select(current_user)
             / = f.association :income
             / = f.association :expense
           .form-actions

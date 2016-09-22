@@ -1,4 +1,5 @@
 class Daily < ActiveRecord::Base
+  belongs_to :head_daily
   belongs_to :cost_center
   belongs_to :account
   belongs_to :office

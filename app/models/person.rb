@@ -24,6 +24,7 @@ class Person < ActiveRecord::Base
 
   scope :with_paterno, -> with_paterno { where(apellido_paterno: with_paterno) if with_paterno.present?}
   scope :with_materno, -> with_materno { where(apellido_materno: with_materno) if with_materno.present?}
+  scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
 
 
   ESTADOS = { "A" => "Con Rut"

@@ -26,9 +26,13 @@
                   = f.input :apellido_paterno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
                 .col-sm-4
                   = f.input :apellido_materno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
-                .col-sm-4  
-                  = f.button :submit, "Buscar",  class: "btn btn-primary"
-
+              .form-group  
+                .col-sm-4
+                  = f.input :rut, label: false, placeholder: "Rut", :input_html => {:style=> 'width: 150px'} 
+              .col-sm-4  
+                = f.button :submit, "Buscar",  class: "btn btn-primary"
+        %br
+        %br
 
         = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
         %br

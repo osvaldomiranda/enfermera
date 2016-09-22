@@ -1,10 +1,11 @@
 class HeadDailiesController < ApplicationController
   before_filter :authenticate_user! 
-  before_action :set_head_daily, only: [:show, :edit, :update, :destroy]
+  before_action :set_head_daily, only: [:show, :edit, :update, :destroy, :eliminar]
 
   respond_to :html
 
   def index
+    HeadDaily.where.not(id: Daily.uniq(:head_daily_id).pluck(:head_daily_id)).destroy_all
     @head_dailies = HeadDaily.all.order(numero: :desc)
     respond_with(@head_dailies)
   end
@@ -19,6 +20,7 @@ class HeadDailiesController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@head_daily)
   end
 
   def create
@@ -37,12 +39,25 @@ class HeadDailiesController < ApplicationController
     respond_with(@head_daily)
   end
 
+  def eliminar
+    @head_daily.eliminar
+
+    @head_dailies = HeadDaily.all.order(numero: :desc)
+    render 'index'
+  end
+
+  def showtopdf
+    @head_daily = HeadDaily.find(params[:id])
+
+    render pdf: "#{@head_daily.tipo}#{@head_daily.numero}",  encoding: 'utf8', orientation: 'Landscape'
+  end
+
   private
     def set_head_daily
       @head_daily = HeadDaily.find(params[:id])
     end
 
     def head_daily_params
-      params.require(:head_daily).permit(:numero, :user_id, :tipo)
+      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode)
     end
 end

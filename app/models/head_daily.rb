@@ -1,6 +1,7 @@
 class HeadDaily < ActiveRecord::Base
   belongs_to :user
-  has_many :dailies
+
+  has_many :dailies, dependent: :destroy
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
@@ -39,7 +40,6 @@ class HeadDaily < ActiveRecord::Base
     self.dailies.each do |daily|
       daily.delete
     end
-
     self.delete
   end
 end

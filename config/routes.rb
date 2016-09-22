@@ -60,6 +60,10 @@ Enfermera::Application.routes.draw do
     collection do
       post :create
     end  
+    member do
+      get :showtopdf
+      get :eliminar
+    end
   end
 
   # get "senddiscount/index"

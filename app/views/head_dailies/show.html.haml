@@ -5,14 +5,26 @@
       .panel-body
         .row
           .col-xs-12
+            = image_tag("logo-top.png")
             %h1
               = "Libro Diario #{@head_daily.tipo} #{@head_daily.numero}"
-              
-        %hr 
-
+            - if @head_daily.tipo == "INGRESO"  
+              %p= "Recibido de: #{@head_daily.recibidode}"
+              %p= "Medio de Pago: #{@head_daily.mediopago}"
+              %p= "Banco: #{@head_daily.banco}"
+            - else
+              %p= "Paguese a: #{@head_daily.paguesea}" 
+              %p= "Por: #{@head_daily.por}"
+              %p= "Medio de Pago: #{@head_daily.mediopago}"
+              %p= "Banco: #{@head_daily.banco}"
 
         %p#notice= notice
-
+        =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info' 
+        =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
+        =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning' 
+        %br
+        %br
+        %hr 
         .row
           %table.table.table-striped
             %thead
@@ -23,7 +35,6 @@
                 %th Debe
                 %th Haber
                 %th Glosa
-
             %tbody
               - @head_daily.dailies.each do |daily|
                 %tr

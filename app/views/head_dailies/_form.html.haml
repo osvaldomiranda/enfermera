@@ -1,9 +1,19 @@
-= simple_form_for(@head_daily) do |f|
-  = f.error_notification
+.container-fluid
+  .container-fluid
+    .row
+      .col-md-12
+        = simple_form_for(@head_daily) do |f|
+          = f.error_notification
 
-  .form-inputs
-    = f.input :numero
-    = f.association :user
+          .form-inputs
+            - if @head_daily.tipo == 'EGRESO'
+              = f.input :paguesea
+              = f.input :por
+            - else  
+              = f.input :recibidode
 
-  .form-actions
-    = f.button :submit
+            = f.input :mediopago
+            = f.input :banco
+
+          .form-actions
+            = f.button :submit, 'Guardar', class: 'btn btn-warning' 
