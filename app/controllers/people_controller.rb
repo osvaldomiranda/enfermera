@@ -5,6 +5,7 @@ class PeopleController < ApplicationController
   respond_to :html
 
   def index
+
     if params["/people"].present?
       @apellido_paterno = params["/people"][:apellido_paterno].upcase
       @apellido_materno = params["/people"][:apellido_materno].upcase
@@ -13,12 +14,15 @@ class PeopleController < ApplicationController
       
     @estado = params[:estado] || nil
     @lugar_trabajo = params[:lugar_trabajo] || nil
+    if params[:office].present?
+      office_id = Office.where(nombre:params[:office]).first.id 
+    else  
+      office_id = nil
+    end  
+    @office = params[:office] || nil
     
+    @people = Person.office(office_id).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
     
-
-    @people = Person.active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
-    
-
     respond_with(@people)
   end
 

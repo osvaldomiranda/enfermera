@@ -22,13 +22,15 @@ class Person < ActiveRecord::Base
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
 
+  scope :office, -> office { where(workplace_id: Office.find(office).workplaces.pluck(:id)) if office.present?}
+
+
   scope :with_paterno, -> with_paterno { where(apellido_paterno: with_paterno) if with_paterno.present?}
   scope :with_materno, -> with_materno { where(apellido_materno: with_materno) if with_materno.present?}
   scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
 
 
-  ESTADOS = { "A" => "Con Rut"
-              }
+  ESTADOS = { "A" => "Con Rut"}
 
   def fullname
     fullname = "#{self.nombres} #{self.apellido_paterno} #{self.apellido_materno}"
@@ -124,6 +126,7 @@ class Person < ActiveRecord::Base
     end 
     Person.where.not(lugar_trabajo: nil).map {|p| p.workplace_id=Workplace.find_by_cod_wp(p.lugar_trabajo).id if Workplace.find_by_cod_wp(p.lugar_trabajo).present?; p.save}
   end    
+
 
 
   def self.import_update_email(file)

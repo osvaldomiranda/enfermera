@@ -810,6 +810,10 @@ Workplace.find_or_create_by(codigo: 'COY', cod_wp: '888-11', nombre: 'Pasivo ays
 Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '888-12', nombre: 'Pasivo punta arenas')
 Workplace.find_or_create_by(codigo: 'STG', cod_wp: '888-13', nombre: 'Pasivo santiago')
 
+Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '0529', nombre: 'CESFAM OLMUE')
+Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '0523', nombre: 'I.MUNICIPALIDAD PUCHUNCAVI')
+Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '0552', nombre: 'I.MUNICIPALIDAD SAN FELIPE')
+
 
 Workplace.all.map {|w| w.office_id=Office.find_by_codigo(w.codigo).id; w.save }
 
