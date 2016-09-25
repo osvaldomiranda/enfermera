@@ -6,7 +6,8 @@ class HeadDailiesController < ApplicationController
 
   def index
     HeadDaily.where.not(id: Daily.uniq(:head_daily_id).pluck(:head_daily_id)).destroy_all
-    @head_dailies = HeadDaily.all.order(numero: :desc)
+    @tipo = params[:tipo] || nil
+    @head_dailies = HeadDaily.with_tipo(@tipo).order(numero: :desc)
     respond_with(@head_dailies)
   end
 
@@ -58,6 +59,6 @@ class HeadDailiesController < ApplicationController
     end
 
     def head_daily_params
-      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode)
+      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode, :numcheque, :documento)
     end
 end

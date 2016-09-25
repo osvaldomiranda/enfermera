@@ -2,6 +2,9 @@ class HeadDaily < ActiveRecord::Base
   belongs_to :user
 
   has_many :dailies, dependent: :destroy
+  mount_uploader :documento, DocumentUploader
+  
+  scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|

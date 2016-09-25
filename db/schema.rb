@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922104912) do
+ActiveRecord::Schema.define(version: 20160925150041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,8 @@ ActiveRecord::Schema.define(version: 20160922104912) do
     t.string   "banco"
     t.string   "recibidode"
     t.string   "mediopago"
+    t.string   "numcheque"
+    t.string   "documento"
   end
 
   add_index "head_dailies", ["user_id"], name: "index_head_dailies_on_user_id", using: :btree

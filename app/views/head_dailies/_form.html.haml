@@ -13,7 +13,20 @@
               = f.input :recibidode
 
             = f.input :mediopago
+            = f.input :numcheque
             = f.input :banco
+
+                          
+          .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+            .form-control{"data-trigger" => "fileinput"}
+              %i.glyphicon.glyphicon-file.fileinput-exists
+              %span.fileinput-filename
+            %span.input-group-addon.btn.btn-default.btn-file
+              %span.fileinput-new Documento
+              %span.fileinput-exists Cambiar
+              =f.file_field :documento
+            %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
+
 
           .form-actions
             = f.button :submit, 'Guardar', class: 'btn btn-warning' 

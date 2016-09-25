@@ -1,6 +1,6 @@
 class CostCenter < ActiveRecord::Base
 
   def self.options_for_select
-    CostCenter.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
+    CostCenter.all.order(codigo: :asc).map {|t| ["#{t.codigo}  #{t.nombre}", t.id]}
   end 
 end

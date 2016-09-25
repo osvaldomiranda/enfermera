@@ -14,9 +14,10 @@
               .col-sm-4
                 = f.text_field :fecha, label: false, :class => 'datepicker'       
             .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Centro Costo
-              .col-sm-4
-                = f.association :cost_center,label: false,collection: CostCenter.options_for_select
+              - if @tipo == "EGRESO"
+                %label.col-sm-2.control-label{:for => "textinput"} Centro Costo
+                .col-sm-4
+                  = f.association :cost_center,label: false,collection: CostCenter.options_for_select
               %label.col-sm-2.control-label{:for => "textinput"} Cuenta
               .col-sm-4
                 = f.association :account,label: false,collection: Account.options_for_select
@@ -46,4 +47,4 @@
             / = f.association :income
             / = f.association :expense
           .form-actions
-            = f.button :submit 
+            = f.button :submit, "Guardar", class: 'btn btn-warning' 

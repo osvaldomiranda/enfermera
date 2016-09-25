@@ -35,20 +35,29 @@
                   %th Glosa
 
               %tbody
-                - @head_daily.dailies.each do |daily|
+                - @head_daily.dailies.order(:id).each do |daily|
                   %tr
                     %td= daily.fecha
                     - if daily.cost_center.present?
-                      %td= daily.cost_center.nombre
+                      %td= daily.cost_center.codigo
                     - else
                       %td
                     -if  daily.account.present?   
-                      %td= daily.account.nombre
+                      %td= daily.account.codigo
                     - else
                       %td  
                     %td= daily.debe
                     %td= daily.haber
                     %td= daily.por
+              %hr      
+              %tr
+                %td
+                %td
+                %td  
+                %td= @head_daily.dailies.sum(:debe)
+                %td= @head_daily.dailies.sum(:haber)
+                %td 
+
   %hr 
   .col-md-4.col-md-offset-4.text-center.logo-margin
     - if @head_daily.tipo == "INGRESO"

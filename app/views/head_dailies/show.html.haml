@@ -18,10 +18,13 @@
               %p= "Medio de Pago: #{@head_daily.mediopago}"
               %p= "Banco: #{@head_daily.banco}"
 
+            = link_to "Ver Documento adjunto", @head_daily.documento_url
+
         %p#notice= notice
-        =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info' 
-        =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
-        =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning' 
+        - if current_user.role?(:finance)
+          =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info' 
+          =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
+          =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning' 
         %br
         %br
         %hr 
@@ -35,8 +38,11 @@
                 %th Debe
                 %th Haber
                 %th Glosa
+                - if current_user.role?(:finance)
+                  %th
+                  %th
             %tbody
-              - @head_daily.dailies.each do |daily|
+              - @head_daily.dailies.order(:id).each do |daily|
                 %tr
                   %td= daily.fecha
                   - if daily.cost_center.present?
@@ -50,6 +56,19 @@
                   %td= daily.debe
                   %td= daily.haber
                   %td= daily.por
+                  - if current_user.role?(:finance)
+                    %td= link_to 'Editar', edit_daily_path(daily), data: { modal: true }
+                    %td= link_to 'Eliminar', daily, :method => :delete, :data => { :confirm => 'Esta Seguro ?' }
+            %tr
+              %td
+              %td
+              %td  
+              %td= @head_daily.dailies.sum(:debe)
+              %td= @head_daily.dailies.sum(:haber)
+              %td 
+              - if current_user.role?(:finance)
+                %td
+                %td
 
       - if current_user.role?(:finance) 
         =link_to 'Agregar detalle', new_daily_path(head_daily_numero: @head_daily.numero, tipo: @head_daily.tipo), data: { modal: true }, class: 'btn btn-info' 

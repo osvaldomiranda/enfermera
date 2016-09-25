@@ -14,13 +14,19 @@ class DailiesController < ApplicationController
   end
 
   def new
-    @head_daily_id = HeadDaily.find_by_numero(params[:head_daily_numero]).id
+    @head_daily = HeadDaily.find_by_numero(params[:head_daily_numero])
+    @head_daily_id = @head_daily.id
     @tipo = params[:tipo]
     @daily = Daily.new
+    if @head_daily.dailies.last.present?
+      @daily = @head_daily.dailies.last
+    end
+
     respond_modal_with(@daily)
   end
 
   def edit
+    respond_modal_with(@daily)
   end
 
   def create
@@ -31,13 +37,17 @@ class DailiesController < ApplicationController
   end
 
   def update
+    @head_daily = @daily.head_daily
+    params[:daily][:head_daily_id] = @head_daily.id
+    params[:daily][:tipo] = @head_daily.tipo
     @daily.update(daily_params)
-    respond_with(@daily)
+    render '/head_dailies/show'
   end
 
   def destroy
+    @head_daily = @daily.head_daily
     @daily.destroy
-    respond_with(@daily)
+    render '/head_dailies/show'
   end
 
   private

@@ -1,0 +1,90 @@
+.background {
+	background-image: image-url("bkg_bw.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 800px;
+	position: relative;
+	top: 0;
+}
+
+.signin {
+	background-color: white !important;
+}
+
+.case_thumb {
+	width: 120px;
+	margin-right: 10px;
+	height: 120px;
+	border: 3px solid #fff;
+	border-radius: 3px;
+}
+
+.btn_landing {
+	background-color: rgba(255, 255, 255, 0.6);
+	border: 1px solid #428bca;
+	color: #428bca;
+	margin-left: 10px;
+	padding: 3px 20px;
+}
+
+.btn_landing:hover {
+	color: white;
+	background-color: #428bca;
+}
+
+.btn_pill {
+	background-color: rgba(66, 139, 202, 0.7);
+	border: 2px solid white;
+	color: white;
+	border-radius: 50px;
+	padding: 15px 55px;
+	min-width: 150px;
+	font-size: 17px;
+}
+
+.btn_pill:hover {
+	color: white;
+	border-color: white;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.margin_both {
+	margin: 0 10px;
+}
+
+.topbar {
+	padding: 15px 0;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.6);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	width: 100%;
+}
+
+.section {
+	margin: 100px;
+}
+
+.huge {
+	font-size: 60px;
+}
+
+.divider_line {
+	padding-bottom: 30px;
+	margin-top: 30px;
+	border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.landing_content {
+	margin-top: 100px;
+}
+
+.brand_topbar {
+	display: inline-block;
+	margin: 0;
+	color: #636e7b;
+}
+
+.bkg_blue {
+	background-color: #275f9f;
+	color: white;
+}
