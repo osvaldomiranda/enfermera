@@ -8,6 +8,8 @@ class Income < ActiveRecord::Base
 
   mount_uploader :document, DocumentUploader 
 
+  after_save :dailycreate
+
   TIPOPAGO      = ['Deposito', 'Cheque', 'Transferencia']
   def self.tipopago_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
@@ -40,7 +42,53 @@ class Income < ActiveRecord::Base
   def self.cuouas_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     CUOTAS.each.map { |t| [t[0], t[1]] }
-  end   
+  end  
+
+  def dailycreate
+    # Acá se debe crear un asiento contable si el ingreso no es de Valpo
+
+    workplace = Workplace.find(self.workplace_id)
+
+    if workplace.office.codigo != "VPO"
+      head_daily = HeadDaily.new
+      head_daily.numero = HeadDaily.next_ingreso
+      head_daily.user_id = self.user_id
+      head_daily.tipo = "INGRESO"
+      head_daily.banco = self.banco 
+      head_daily.recibidode = workplace.nombre
+      head_daily.mediopago = self.mediopago
+
+      head_daily.save
+
+      daily = Daily.new
+      daily.fecha = Time.now.strftime("%Y-%d-%m %H:%M:%S")
+      daily.account_id =  Account.find_by_codigo('1010101').id
+      daily.debe = self.monto
+      daily.haber = 0 
+      daily.detalle = "Ingreso #{self.numero}"
+      daily.tipo = "INGRESO"
+      daily.office_id = workplace.office.id 
+      daily.income_id = self.id
+      daily.banco = self.banco
+      daily.head_daily_id = head_daily.id
+      daily.save
+
+      daily = Daily.new
+      daily.fecha = Time.now.strftime("%Y-%d-%m %H:%M:%S")
+      daily.account_id = Account.find_by_codigo('2040102').id
+      daily.debe  = 0
+      daily.haber = self.monto
+      daily.detalle = "Ingreso #{self.numero}"
+      daily.tipo = "INGRESO"
+      daily.office_id = workplace.office.id 
+      daily.income_id = self.id
+      daily.banco = self.banco
+      daily.head_daily_id = head_daily.id
+      daily.save
+    end  
+
+
+  end 
 
 
 end

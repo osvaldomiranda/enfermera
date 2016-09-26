@@ -19,7 +19,18 @@ class DailiesController < ApplicationController
     @tipo = params[:tipo]
     @daily = Daily.new
     if @head_daily.dailies.last.present?
-      @daily = @head_daily.dailies.last
+      daily_last = @head_daily.dailies.last
+
+      @daily.fecha = daily_last.fecha
+      @daily.cost_center_id = daily_last.cost_center_id 
+      @daily.account_id = daily_last.account_id 
+      @daily.debe = daily_last.debe 
+      @daily.haber = daily_last.haber 
+      @daily.detalle  = daily_last.detalle
+      @daily.por  = daily_last.por
+      @daily.tipo  = daily_last.tipo
+      @daily.head_daily_id = daily_last.head_daily_id
+
     end
 
     respond_modal_with(@daily)
