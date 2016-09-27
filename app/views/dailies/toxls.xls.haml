@@ -1,0 +1,38 @@
+%table
+  %thead
+    %tr
+      %th Tipo
+      %th Numero
+      %th Fecha
+      %th CCosto
+      %th NombreCC
+      %th Cuenta
+      %th NombreCta
+      %th Debe
+      %th Haber
+      %th Por
+      %th MedioPago
+      %th NumCheque
+      %th Banco
+      %th Paguesea        
+  %tbody
+    - @dailies.each do |daily|
+      %tr
+        %td= daily.tipo
+        %td= daily.numero
+        %td= daily.fecha
+        -if daily.cost_center.present?
+          %td= daily.cost_center.codigo
+          %td= daily.cost_center.nombre
+        - else
+          %td
+          %td  
+        %td= daily.account.codigo
+        %td= daily.account.nombre
+        %td= daily.debe
+        %td= daily.haber
+        %td= daily.por
+        %td= daily.head_daily.mediopago
+        %td= daily.head_daily.numcheque
+        %td= daily.head_daily.banco
+        %td= daily.head_daily.paguesea

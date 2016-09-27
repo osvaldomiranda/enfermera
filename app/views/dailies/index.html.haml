@@ -1,47 +1,66 @@
-%h1 Listing dailies
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Detalle Libro Diario
+              %span.badge= @dailies.count
 
-%table
-  %thead
-    %tr
-      %th Numero
-      %th Fecha
-      %th Centro de costo
-      %th Cuenta
-      %th Debe
-      %th Haber
-      %th Numdocumento
-      %th Detalle
-      %th Paguesea
-      %th Por
-      %th Tipo
-      %th Office
-      %th Income
-      %th Expense
-      %th
-      %th
-      %th
+            %br
+        .row
+          .col-md-12
+            .form-inline
+              = select_tag :filter_cuenta, options_for_select(Account.options_for_select, @cuenta), prompt: 'Cuenta: Todas', class: "form-control"
+              = link_to 'Exportar Excel', toxls_dailies_path(cuenta: @cuenta, format: :xls),class: 'btn btn-info'
+        %br    
+        %hr 
+        .row
+          .col-md-12
 
-  %tbody
-    - @dailies.each do |daily|
-      %tr
-        %td= daily.numero
-        %td= daily.fecha
-        %td= daily.cost_center
-        %td= daily.account
-        %td= daily.debe
-        %td= daily.haber
-        %td= daily.numdocumento
-        %td= daily.detalle
-        %td= daily.paguesea
-        %td= daily.por
-        %td= daily.tipo
-        %td= daily.office
-        %td= daily.income
-        %td= daily.expense
-        %td= link_to 'Show', daily
-        %td= link_to 'Edit', edit_daily_path(daily)
-        %td= link_to 'Destroy', daily, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            .table-responsive
+              %table.table.table-striped.table-hover.table-condensed
+                %thead
+                  %tr
+                    %th Tipo
+                    %th Numero
+                    %th Fecha
+                    %th CCosto
+                    %th NombreCC
+                    %th Cuenta
+                    %th NombreCta
+                    %th Debe
+                    %th Haber
+                    %th Por
+                    %th MedioPago
+                    %th NumCheque
+                    %th Banco
+                    %th Paguesea
+                    
+                    
+                %tbody
+                  - @dailies.each do |daily|
+                    %tr
+                      %td= daily.tipo
+                      %td= daily.numero
+                      %td= daily.fecha
+                      -if daily.cost_center.present?
+                        %td= daily.cost_center.codigo
+                        %td= daily.cost_center.nombre
+                      - else
+                        %td
+                        %td  
+                      %td= daily.account.codigo
+                      %td= daily.account.nombre
+                      %td= daily.debe
+                      %td= daily.haber
+                      %td= daily.por
+                      %td= daily.head_daily.mediopago
+                      %td= daily.head_daily.numcheque
+                      %td= daily.head_daily.banco
+                      %td= daily.head_daily.paguesea
+                    
 
-%br
-
-= link_to 'New Daily', new_daily_path
+            %br

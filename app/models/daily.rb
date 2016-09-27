@@ -6,6 +6,8 @@ class Daily < ActiveRecord::Base
   belongs_to :income
   belongs_to :expense
 
+  scope :with_cuenta, -> with_cuenta { where(account_id: with_cuenta) if with_cuenta.present?}
+
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash

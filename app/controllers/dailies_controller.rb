@@ -5,9 +5,20 @@ class DailiesController < ApplicationController
   respond_to :html
 
   def index
-    @dailies = Daily.all
+    @cuenta = params[:cuenta] || nil
+    @dailies = Daily.with_cuenta(@cuenta).order(id: :desc)
     respond_with(@dailies)
   end
+
+  def toxls
+    require 'csv'
+    @cuenta = params[:cuenta] || nil
+    @dailies = Daily.with_cuenta(@cuenta).order(id: :desc)
+    respond_to do |format|
+      format.xls 
+    end
+  end
+
 
   def show
     respond_with(@daily)

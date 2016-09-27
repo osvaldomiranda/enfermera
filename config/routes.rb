@@ -1,8 +1,10 @@
 Enfermera::Application.routes.draw do
 
-  
-
-  resources :dailies
+  resources :dailies do
+    collection do
+      get :toxls
+    end
+  end
 
   resources :vows 
 
@@ -152,10 +154,11 @@ Enfermera::Application.routes.draw do
   end
 
 
+
   # get "/persondocuments/send/:id", to: "persondocuments#sendfile"
   resources :persondocuments do
     member do
-      get :senddocument
+      post :senddocument
     end
   end
   
