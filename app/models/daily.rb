@@ -14,6 +14,8 @@ class Daily < ActiveRecord::Base
       cost_center = CostCenter.where(codigo: rowHash["centro_costo"]).first
       account = Account.where(codigo: rowHash["cuenta"]).first
       head_daily = HeadDaily.where(numero: rowHash["numero"]).first
+      office = Office.where(codigo: rowHash["region"]).first
+      workplace = Workplace.where(cod_wp: rowHash["wp"]).first
 
         d = Daily.new
         if cost_center.present?
@@ -23,12 +25,14 @@ class Daily < ActiveRecord::Base
         d.head_daily_id = head_daily.id
 
         d.tipo = "EGRESO"
+        d.office_id = office.present? ? office.id : nil
+        d.workplace_id = workplace.present? ? workplace.id : nil
         d.numero = rowHash["numero"]
         d.fecha = Date.parse(rowHash["fecha"]) 
         d.debe = rowHash["debe"]  
         d.haber = rowHash["haber"] 
         d.paguesea = rowHash["paguesea"]  
-        d.por = rowHash["por"] 
+        d.por = rowHash["glosa"] 
         d.save
  
     end

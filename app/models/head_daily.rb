@@ -9,10 +9,16 @@ class HeadDaily < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash
-      h = HeadDaily.where(numero: rowHash["numero"]).first
+      h = HeadDaily.where(numero: rowHash["numero"], tipo:"INGRESO").first
+      office = Office.where(codigo: rowHash["region"]).first
+      workplace = Workplace.where(cod_wp: rowHash["wp"]).first
       if !h.present?
         h = HeadDaily.new
         h.numero = rowHash["numero"]
+        h.tipo = 'INGRESO'
+        h.recibidode = rowHash["glosa"]
+        h.office_id = office.present? ? office.id : nil
+        h.workplace_id = workplace.present? ? workplace.id : nil
         h.user_id = 1
         h.save
       end

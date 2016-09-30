@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925150041) do
+ActiveRecord::Schema.define(version: 20160930134242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160925150041) do
     t.datetime "updated_at"
     t.string   "banco"
     t.integer  "head_daily_id"
+    t.integer  "workplace_id"
   end
 
   add_index "dailies", ["account_id"], name: "index_dailies_on_account_id", using: :btree
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160925150041) do
   add_index "dailies", ["head_daily_id"], name: "index_dailies_on_head_daily_id", using: :btree
   add_index "dailies", ["income_id"], name: "index_dailies_on_income_id", using: :btree
   add_index "dailies", ["office_id"], name: "index_dailies_on_office_id", using: :btree
+  add_index "dailies", ["workplace_id"], name: "index_dailies_on_workplace_id", using: :btree
 
   create_table "detail_expenses", force: true do |t|
     t.string   "numcomprobante"
@@ -176,9 +178,13 @@ ActiveRecord::Schema.define(version: 20160925150041) do
     t.string   "mediopago"
     t.string   "numcheque"
     t.string   "documento"
+    t.integer  "office_id"
+    t.integer  "workplace_id"
   end
 
+  add_index "head_dailies", ["office_id"], name: "index_head_dailies_on_office_id", using: :btree
   add_index "head_dailies", ["user_id"], name: "index_head_dailies_on_user_id", using: :btree
+  add_index "head_dailies", ["workplace_id"], name: "index_head_dailies_on_workplace_id", using: :btree
 
   create_table "incomes", force: true do |t|
     t.datetime "fecha"
