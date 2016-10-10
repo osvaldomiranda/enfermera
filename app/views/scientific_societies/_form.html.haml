@@ -1,0 +1,14 @@
+= simple_form_for(@scientific_society) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :descripcion
+    = f.input :logo
+    = f.input :direccion
+    = f.input :telefono
+    = f.input :contacto
+    = f.input :web_url
+
+  .form-actions
+    = f.button :submit

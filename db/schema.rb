@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930134242) do
+ActiveRecord::Schema.define(version: 20161009124843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,15 @@ ActiveRecord::Schema.define(version: 20160930134242) do
 
   add_index "inscriptions", ["workplace_id"], name: "index_inscriptions_on_workplace_id", using: :btree
 
+  create_table "jobs", force: true do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "contacto"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "officeaccounts", force: true do |t|
     t.date     "fecha"
     t.string   "tipo"
@@ -338,6 +347,18 @@ ActiveRecord::Schema.define(version: 20160930134242) do
 
   add_index "previousjobs", ["person_id"], name: "index_previousjobs_on_person_id", using: :btree
 
+  create_table "publications", force: true do |t|
+    t.string   "titulo"
+    t.string   "texto"
+    t.string   "resumen"
+    t.string   "imagen"
+    t.string   "tipo"
+    t.string   "documeto"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "regions", force: true do |t|
     t.string   "codigo"
     t.string   "nombre"
@@ -354,6 +375,18 @@ ActiveRecord::Schema.define(version: 20160930134242) do
   end
 
   add_index "rols", ["user_id"], name: "index_rols_on_user_id", using: :btree
+
+  create_table "scientific_societies", force: true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.string   "logo"
+    t.string   "direccion"
+    t.string   "telefono"
+    t.string   "contacto"
+    t.string   "web_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -374,6 +407,14 @@ ActiveRecord::Schema.define(version: 20160930134242) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "titulo"
+    t.string   "alojamiento"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "votes", force: true do |t|
     t.date     "fecha"

@@ -1,0 +1,11 @@
+= simple_form_for(@job) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :titulo
+    = f.input :descripcion
+    = f.input :contacto
+    = f.input :estado
+
+  .form-actions
+    = f.button :submit

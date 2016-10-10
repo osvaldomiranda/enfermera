@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @publication.titulo
+%p
+  %b Texto:
+  = @publication.texto
+%p
+  %b Resumen:
+  = @publication.resumen
+%p
+  %b Imagen:
+  = @publication.imagen
+%p
+  %b Tipo:
+  = @publication.tipo
+%p
+  %b Documeto:
+  = @publication.documeto
+%p
+  %b Estado:
+  = @publication.estado
+
+= link_to 'Edit', edit_publication_path(@publication)
+\|
+= link_to 'Back', publications_path

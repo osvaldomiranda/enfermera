@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @video.titulo
+%p
+  %b Alojamiento:
+  = @video.alojamiento
+%p
+  %b Estado:
+  = @video.estado
+
+= link_to 'Edit', edit_video_path(@video)
+\|
+= link_to 'Back', videos_path

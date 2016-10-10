@@ -227,9 +227,11 @@
 
 <%= yield %>
 <!-- footer-->
-  <div class="row">
-    <div class="col-md-12 text-center">Colegio de Enfermeras de Chile, Soporte técnico: 90880320</div>
-  </div>
+  <% if current_user.present? %>
+    <div class="row">
+      <div class="col-md-12 text-center">Colegio de Enfermeras de Chile, Soporte técnico: 90880320</div>
+    </div>
+  <%end%>  
 </div>
 
 </body>

@@ -1,0 +1,33 @@
+%h1 Listing scientific_societies
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Descripcion
+      %th Logo
+      %th Direccion
+      %th Telefono
+      %th Contacto
+      %th Web url
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scientific_societies.each do |scientific_society|
+      %tr
+        %td= scientific_society.nombre
+        %td= scientific_society.descripcion
+        %td= scientific_society.logo
+        %td= scientific_society.direccion
+        %td= scientific_society.telefono
+        %td= scientific_society.contacto
+        %td= scientific_society.web_url
+        %td= link_to 'Show', scientific_society
+        %td= link_to 'Edit', edit_scientific_society_path(scientific_society)
+        %td= link_to 'Destroy', scientific_society, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Scientific society', new_scientific_society_path

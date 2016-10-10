@@ -1,5 +1,13 @@
 Enfermera::Application.routes.draw do
 
+  resources :scientific_societies
+
+  resources :videos
+
+  resources :publications
+
+  resources :jobs
+
   resources :dailies do
     collection do
       get :toxls
