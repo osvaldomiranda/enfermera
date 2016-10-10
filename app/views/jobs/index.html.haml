@@ -1,27 +1,38 @@
-%h1 Listing jobs
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Ofertas de Trabajo
+      .panel-body
+        .container-fluid
+          .table-responsive
+            %table.table.table-striped
 
-%table
-  %thead
-    %tr
-      %th Titulo
-      %th Descripcion
-      %th Contacto
-      %th Estado
-      %th
-      %th
-      %th
 
-  %tbody
-    - @jobs.each do |job|
-      %tr
-        %td= job.titulo
-        %td= job.descripcion
-        %td= job.contacto
-        %td= job.estado
-        %td= link_to 'Show', job
-        %td= link_to 'Edit', edit_job_path(job)
-        %td= link_to 'Destroy', job, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %thead
+                %tr
+                  %th Titulo
+                  %th Contacto
+                  %th Estado
+                  %th
+                  %th
+                  %th
 
-%br
+              %tbody
+                - @jobs.each do |job|
+                  %tr
+                    %td= job.titulo
+                    %td= job.descripcion
+                    %td= job.contacto
+                    %td= job.estado
+                    %td= link_to 'Ver detalle', job
+                    - if current_user.present?
+                      - if current_user.role?(:national_admin)
+                        %td= link_to 'Edit', edit_job_path(job)
+                        %td= link_to 'Destroy', job, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %br
+        - if current_user.present?
+          - if current_user.role?(:national_admin)
+            = link_to 'New Job', new_job_path
 
-= link_to 'New Job', new_job_path
+
