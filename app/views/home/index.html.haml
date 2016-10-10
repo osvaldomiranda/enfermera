@@ -179,7 +179,52 @@
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-right
-      %br          
+      %br     
+.suero-bkg 
+  .container
+    %br     
+    .row
+      %h1.page-header
+        Colegio al día  
+    %br
+    %br 
+      .row
+        .col-md-6
+          %h1
+            Yo Te Cuido
+          %h2.white
+            =@publication_yotecuido.last.titulo
+          %h4.white  
+            =@publication_yotecuido.last.resumen       
+          = link_to 'Ver todo Yo Te Cuido',new_inscription_path , class: 'btn btn_pill_small'
+        .col-md-6      
+          .row.carousel-holder
+            #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
+              %ol.carousel-indicators
+                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
+                %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
+                %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
+              .carousel-inner
+                .item.active
+                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                - @publication_yotecuido.each do |publication_yotecuido|
+                  .item
+                    = image_tag publication_yotecuido.imagen_url, class: "center slide-image"
+
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
+                %span.glyphicon.glyphicon-chevron-left
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
+                %span.glyphicon.glyphicon-chevron-right
+      %br
+
+.bkg-blue
+  .container
+    %br     
+    .row
+      %h1.page-header
+        Eventos 
+    %br
+    %br 
       .row
         .col-md-6
           %h1
