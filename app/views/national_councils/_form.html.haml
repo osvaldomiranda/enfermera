@@ -1,0 +1,11 @@
+= simple_form_for(@national_council) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :imagen
+    = f.input :cargo
+    = f.input :curriculum
+
+  .form-actions
+    = f.button :submit

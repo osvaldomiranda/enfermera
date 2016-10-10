@@ -1,5 +1,7 @@
 Enfermera::Application.routes.draw do
 
+  resources :national_councils
+
   resources :scientific_societies
 
   resources :videos

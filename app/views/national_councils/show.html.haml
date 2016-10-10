@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @national_council.nombre
+%p
+  %b Imagen:
+  = @national_council.imagen
+%p
+  %b Cargo:
+  = @national_council.cargo
+%p
+  %b Curriculum:
+  = @national_council.curriculum
+
+= link_to 'Edit', edit_national_council_path(@national_council)
+\|
+= link_to 'Back', national_councils_path
