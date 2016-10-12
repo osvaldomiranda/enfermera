@@ -25,6 +25,22 @@ class HeadDaily < ActiveRecord::Base
     end
   end
 
+  def self.import_egreso(file)
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+      h = HeadDaily.where(numero: rowHash["numero"], tipo:"EGRESO").first
+      if !h.present?
+        h = HeadDaily.new
+        h.numero = rowHash["numero"]
+        h.tipo = 'EGRESO'
+        h.paguesea = rowHash["glosa"]
+        h.user_id = 1
+        h.save
+      end
+    end
+  end
+
+
   def self.next_ingreso
     h = HeadDaily.where(tipo: 'INGRESO').last
     if h.present?

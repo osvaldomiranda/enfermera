@@ -83,12 +83,19 @@
               = file_field_tag :file 
               = submit_tag "Importar" 
 
-          %h3 crear head daily 
+          %h3 crear head daily Ingreso
           .form-group   
             %label.col-sm-2.control-label{:for => "textinput"}  Importar 
             = form_tag create_head_daily_people_path, multipart: true do 
               = file_field_tag :file 
               = submit_tag "Importar" 
+
+          %h3 crear head daily Egreso
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            = form_tag create_head_daily_egreso_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar"               
 
           %h3 crear daily 
           .form-group   

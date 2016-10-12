@@ -148,6 +148,7 @@ Enfermera::Application.routes.draw do
       post :create_user
       post :create_fee
       post :create_head_daily
+      post :create_head_daily_egreso
       post :create_daily
       get :filter
     end 
