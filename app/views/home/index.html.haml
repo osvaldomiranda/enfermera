@@ -166,31 +166,44 @@
           .row.carousel-holder
             #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
+                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
+                / %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
+                / %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
               .carousel-inner
-                .item.active
-                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-                  %h2.white
-                    Maqueta de Noticia
-                  %h4.white  
-                    Esta es una maqueta de noticia
+                / .item.active
+                /   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                /   %h2.white
+                /     Maqueta de Noticia
+                /   %h4.white  
+                /     Esta es una maqueta de noticia
                 - @publication_news.each do |publication_new|
-                  .item
-                    = image_tag publication_new.imagen_url, class: "center slide-image"
-                    %h2.white
-                      =@publication_news.last.titulo
-                    %h4.white  
-                      =@publication_news.last.resumen
+                  - if @publication_news.first.id==publication_new.id
+                    .item.active
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_new.titulo
+                      %h4.white.center  
+                        =publication_new.resumen
+                  - else      
+                    .item
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_new.titulo
+                      %h4.white.center  
+                        =publication_new.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-right
+    %br
+    %br
+    %br            
+    .row 
+      .col-md-12            
       %br
-      .center  
-        = link_to 'Ver todas las noticias',new_inscription_path , class: 'btn btn_pill_small'
-      %br
+        .center  
+          = link_to 'Ver todas las noticias',new_inscription_path , class: 'btn btn_pill_small'
+        %br
 
 .bkg-blue 
   .container
@@ -204,11 +217,11 @@
       .row   
         .col-md-12 
           .row.carousel-holder
-            #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
+            #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
+                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
+                %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
+                %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
               .carousel-inner
                 .item.active
                   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
@@ -218,14 +231,15 @@
                     Esta es una maqueta de Yo Te Cuido
                 - @publication_yotecuido.each do |publication_new|
                   .item
-                    = image_tag publication_new.imagen_url, class: "center slide-image"
+                    .carrusel-img-content
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
                     %h2.white
                       =@publication_news.last.titulo
                     %h4.white  
                       =@publication_news.last.resumen
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
@@ -244,11 +258,11 @@
       .row   
         .col-md-12 
           .row.carousel-holder
-            #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
+            #carousel-eventos.carousel.slide{"data-ride" => "carousel-eventos"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
+                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
+                %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
+                %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
               .carousel-inner
                 .item.active
                   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
@@ -258,14 +272,16 @@
                     Esta es una maqueta de EVENTO
                 - @publication_yotecuido.each do |publication_new|
                   .item
-                    = image_tag publication_new.imagen_url, class: "center slide-image"
-                    %h2.white
-                      =@publication_news.last.titulo
-                    %h4.white  
-                      =@publication_news.last.resumen
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
+                    .row
+                      .col-md-12 
+                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white
+                          =@publication_news.last.titulo
+                        %h4.white  
+                          =@publication_news.last.resumen
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
