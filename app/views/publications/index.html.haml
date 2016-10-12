@@ -1,33 +1,39 @@
-%h1 Listing publications
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Noticias
+      .panel-body
+        .container-fluid
+          .table-responsive
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Titulo
+                  %th Texto
+                  %th Resumen
+                  %th Imagen
+                  %th Tipo
+                  %th Documeto
+                  %th Estado
+                  %th
+                  %th
+                  %th
 
-%table
-  %thead
-    %tr
-      %th Titulo
-      %th Texto
-      %th Resumen
-      %th Imagen
-      %th Tipo
-      %th Documeto
-      %th Estado
-      %th
-      %th
-      %th
+              %tbody
+                - @publications.each do |publication|
+                  %tr
+                    %td= publication.titulo
+                    %td= publication.texto
+                    %td= publication.resumen
+                    %td= publication.imagen
+                    %td= publication.tipo
+                    %td= publication.documeto
+                    %td= publication.estado
+                    %td= link_to 'Show', publication
+                    %td= link_to 'Edit', edit_publication_path(publication)
+                    %td= link_to 'Destroy', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  %tbody
-    - @publications.each do |publication|
-      %tr
-        %td= publication.titulo
-        %td= publication.texto
-        %td= publication.resumen
-        %td= publication.imagen
-        %td= publication.tipo
-        %td= publication.documeto
-        %td= publication.estado
-        %td= link_to 'Show', publication
-        %td= link_to 'Edit', edit_publication_path(publication)
-        %td= link_to 'Destroy', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %br
 
-%br
-
-= link_to 'New Publication', new_publication_path
+            = link_to 'New Publication', new_publication_path

@@ -1,0 +1,27 @@
+%h1 Listing national_councils
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Imagen
+      %th Cargo
+      %th Curriculum
+      %th
+      %th
+      %th
+
+  %tbody
+    - @national_councils.each do |national_council|
+      %tr
+        %td= national_council.nombre
+        %td= national_council.imagen
+        %td= national_council.cargo
+        %td= national_council.curriculum
+        %td= link_to 'Show', national_council
+        %td= link_to 'Edit', edit_national_council_path(national_council)
+        %td= link_to 'Destroy', national_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New National council', new_national_council_path

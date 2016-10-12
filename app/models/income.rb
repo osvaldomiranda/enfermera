@@ -50,13 +50,21 @@ class Income < ActiveRecord::Base
     workplace = Workplace.find(self.workplace_id)
 
     if workplace.office.codigo != "VPO"
+
+
       head_daily = HeadDaily.new
       head_daily.numero = HeadDaily.next_ingreso
       head_daily.user_id = self.user_id
       head_daily.tipo = "INGRESO"
       head_daily.banco = self.banco 
-      head_daily.recibidode = workplace.nombre
       head_daily.mediopago = self.mediopago
+
+      if self.tipo == "Colegiada"
+        person = Person.find(self.person_id)
+        head_daily.recibidode = person.fullname
+      else  
+        head_daily.recibidode = workplace.nombre 
+      end   
 
       head_daily.save
 
@@ -65,7 +73,13 @@ class Income < ActiveRecord::Base
       daily.account_id =  Account.find_by_codigo('1010101').id
       daily.debe = self.monto
       daily.haber = 0 
-      daily.detalle = "Ingreso #{self.numero}"
+      daily.detalle = "Ingreso #{self.id}"
+
+      if self.tipo == "Colegiada"
+        daily.por = "Pago cuotas: #{person.fullname}" 
+      else  
+        daily.por = "Pago cuotas: #{workplace.nombre}"
+      end  
       daily.tipo = "INGRESO"
       daily.office_id = workplace.office.id 
       daily.income_id = self.id
@@ -78,12 +92,18 @@ class Income < ActiveRecord::Base
       daily.account_id = Account.find_by_codigo('2040102').id
       daily.debe  = 0
       daily.haber = self.monto
-      daily.detalle = "Ingreso #{self.numero}"
+      daily.detalle = "Ingreso #{self.id}"
       daily.tipo = "INGRESO"
       daily.office_id = workplace.office.id 
       daily.income_id = self.id
       daily.banco = self.banco
       daily.head_daily_id = head_daily.id
+
+      if self.tipo == "Colegiada"
+        daily.por = "Pago cuotas: #{person.fullname}" 
+      else  
+        daily.por = "Pago cuotas: #{workplace.nombre}"
+      end  
       daily.save
     end  
 

@@ -1,27 +1,29 @@
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Ofertas de Trabajo
+      .panel-body
+        %p#notice= notice
 
-%p
-  %b Nombre:
-  = @scientific_society.nombre
-%p
-  %b Descripcion:
-  = @scientific_society.descripcion
-%p
-  %b Logo:
-  = @scientific_society.logo
-%p
-  %b Direccion:
-  = @scientific_society.direccion
-%p
-  %b Telefono:
-  = @scientific_society.telefono
-%p
-  %b Contacto:
-  = @scientific_society.contacto
-%p
-  %b Web url:
-  = @scientific_society.web_url
+        = image_tag @scientific_society.logo_url, class: "center img-circle img-responsive img-center"
+        %p
+          %b Nombre:
+          = @scientific_society.nombre
+        %p
+          %b Descripcion:
+          = @scientific_society.descripcion
+        %p
+          %b Direccion:
+          = @scientific_society.direccion
+        %p
+          %b Telefono:
+          = @scientific_society.telefono
+        %p
+          %b Contacto:
+          = @scientific_society.contacto
+        %p
+          %b Web url:
+          = @scientific_society.web_url
 
-= link_to 'Edit', edit_scientific_society_path(@scientific_society)
-\|
-= link_to 'Back', scientific_societies_path
+

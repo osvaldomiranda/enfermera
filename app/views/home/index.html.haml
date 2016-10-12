@@ -7,25 +7,31 @@
           Ingreso colegiados
         %ul.nav.navbar-nav
           %li
-            = link_to dashboard_index_path do
+            = link_to jobs_path do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Ofertas de trabajo
-          %li
-            = link_to dashboard_index_path do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Porque colegiarse  
-          %li
-            = link_to dashboard_index_path do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Beneficios  
-          %li
-            = link_to dashboard_index_path do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Obligaciones
+
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Porque colegiarse
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to reports_path do
+                  %span.iconos>
+                    %i.fa.fa-user.fa-fw
+                  Porque colegiarse
+              %li
+                = link_to gastos_cc_reports_path do
+                  %span.iconos>
+                    %i.fa.fa-user.fa-fw
+                  Beneficios
+              %li
+                = link_to gastos_cc_reports_path do
+                  %span.iconos>
+                    %i.fa.fa-user.fa-fw
+                  Obligaciones                  
           %li
             = link_to dashboard_index_path do
               %span.iconos>
@@ -48,17 +54,20 @@
           %h1.landing-title
             Colegio de Enfermeras de Chile      
         .col-md-6
-        .col-md-6.center 
-  
-          %a{:href => "https://github.com/lipis", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'GitHub']);"}
-            %span.fa.fa-github
-            GitHub
-          %a{:href => "https://twitter.com/lipis", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
-            %span.fa.fa-twitter
-            Twitter
-          %a{:href => "https://google.com/+PanayiotisLipiridis", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Google+']);"}
-            %span.fa.fa-google
-            Google+
+        .col-md-6
+          .center
+            %a{:href => "https://www.facebook.com/colegiodeenfermerasdechile", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'facebook']);"}
+              %span.fa.fa-facebook
+              Facebook
+            %a{:href => "https://twitter.com/colegioenfermer/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
+              %span.fa.fa-twitter
+              Twitter
+            %a{:href => "https://www.youtube.com/channel/UCkBovX9V2cwBUIkGW8CHRNw", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'youtube']);"}
+              %span.fa.fa-youtube
+              Youtube
+            %a{:href => "https://www.flickr.com/photos/130181298@N05/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'flickr']);"}
+              %span.fa.fa-flickr
+              Flickr
 
 
     
@@ -148,48 +157,65 @@
     %br     
     .row
       %h1.page-header
-        Colegio al día  
+        NOTICIAS 
     %br
     %br 
     .col-md-12 
       .row   
-        .col-md-6
-          %h1
-            Noticias
-          %h2.white
-            =@publication_news.last.titulo
-          %h4.white  
-            =@publication_news.last.resumen
-          = link_to 'Ver todas las noticias',new_inscription_path , class: 'btn btn_pill_small'
-        .col-md-6  
+        .col-md-12 
           .row.carousel-holder
             #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
+                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
+                / %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
+                / %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
               .carousel-inner
-                .item.active
-                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                / .item.active
+                /   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                /   %h2.white
+                /     Maqueta de Noticia
+                /   %h4.white  
+                /     Esta es una maqueta de noticia
                 - @publication_news.each do |publication_new|
-                  .item
-                    = image_tag publication_new.imagen_url, class: "center slide-image"
-
+                  - if @publication_news.first.id==publication_new.id
+                    .item.active
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_new.titulo
+                      %h4.white.center  
+                        =publication_new.resumen
+                  - else      
+                    .item
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_new.titulo
+                      %h4.white.center  
+                        =publication_new.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-right
-      %br          
-      .row
-        .col-md-6
-          %h1
-            Yo Te Cuido
-          %h2.white
-            =@publication_yotecuido.last.titulo
-          %h4.white  
-            =@publication_yotecuido.last.resumen       
-          = link_to 'Ver todo Yo Te Cuido',new_inscription_path , class: 'btn btn_pill_small'
-        .col-md-6      
+    %br
+    %br
+    %br            
+    .row 
+      .col-md-12            
+      %br
+        .center  
+          = link_to 'Ver todas las noticias',new_inscription_path , class: 'btn btn_pill_small'
+        %br
+
+.bkg-blue 
+  .container
+    %br     
+    .row
+      %h1.page-header
+        Yo Te Cuido 
+    %br
+    %br 
+    .col-md-12 
+      .row   
+        .col-md-12 
           .row.carousel-holder
             #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
               %ol.carousel-indicators
@@ -199,14 +225,67 @@
               .carousel-inner
                 .item.active
                   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-                - @publication_yotecuido.each do |publication_yotecuido|
+                  %h2.white
+                    Maqueta de Yo Te Cuido
+                  %h4.white  
+                    Esta es una maqueta de Yo Te Cuido
+                - @publication_yotecuido.each do |publication_new|
                   .item
-                    = image_tag publication_yotecuido.imagen_url, class: "center slide-image"
-
+                    .carrusel-img-content
+                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                    %h2.white
+                      =@publication_news.last.titulo
+                    %h4.white  
+                      =@publication_news.last.resumen
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-right
+      %br
+      .center  
+        = link_to 'Ver todo Yo Te Cuido',new_inscription_path , class: 'btn btn_pill_small'
+      %br
+
+.suero-bkg 
+  .container
+    %br     
+    .row
+      %h1.page-header
+        EVENTOS 
+    %br
+    %br 
+    .col-md-12 
+      .row   
+        .col-md-12 
+          .row.carousel-holder
+            #carousel-eventos.carousel.slide{"data-ride" => "carousel-eventos"}
+              %ol.carousel-indicators
+                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
+                %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
+                %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
+              .carousel-inner
+                .item.active
+                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                  %h2.white
+                    Maqueta de EVENTO
+                  %h4.white  
+                    Esta es una maqueta de EVENTO
+                - @publication_yotecuido.each do |publication_new|
+                  .item
+                    .row
+                      .col-md-12 
+                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white
+                          =@publication_news.last.titulo
+                        %h4.white  
+                          =@publication_news.last.resumen
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
+                %span.glyphicon.glyphicon-chevron-left
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
+                %span.glyphicon.glyphicon-chevron-right
+      %br
+      .center  
+        = link_to 'Ver todas los eventos',new_inscription_path , class: 'btn btn_pill_small'
       %br
             
     
@@ -250,7 +329,28 @@
           %h4.center.blue-text
             =link_to scientific_society.nombre, scientific_society_path(scientific_society)
 
+.bkg-blue 
+  .container
+    .row
+      .col-lg-12
+        %h1.page-header
+          Consejo Nacional
+    / Team Members Row
+    .row
+      - @national_councils.each do |national_council|
+        .col-lg-3.text-center
+          = image_tag national_council.imagen_url, class: "center img-circle img-responsive img-center"
+          %h4.center.white
+            =link_to national_council.nombre, ""
+            %br
+            =national_council.cargo
 
+.bkg-blue.row
+  %br
+  %br
+  .divider_line 
+  %br
+  %br 
 .bkg-blue.row
   .container
     .row
@@ -268,60 +368,3 @@
 
 
 
-
-
-
-/ .wave-bkg
-/ / Team Members Row
-/ .container
-/   .row
-/     .col-lg-12
-/       %h2.page-header Our Team
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!
-/     .col-lg-3.col-sm-6.text-center
-/       %img.img-circle.img-responsive.img-center{:alt => "", :src => "http://placehold.it/200x200"}/
-/       %h3
-/         John Smith
-/         %small Job Title
-/       %p What does this team member to? Keep it short! This is also a great spot for social links!    

@@ -1,18 +1,21 @@
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Ofertas de Trabajo
+      .panel-body
+        %p#notice= notice
 
-%p
-  %b Titulo:
-  = @job.titulo
-%p
-  %b Descripcion:
-  = @job.descripcion
-%p
-  %b Contacto:
-  = @job.contacto
-%p
-  %b Estado:
-  = @job.estado
+        %p
+          %b Titulo:
+          = @job.titulo
+        %p
+          %b Descripcion:
+          = @job.descripcion
+        %p
+          %b Contacto:
+          = @job.contacto
+        %p
+          %b Estado:
+          = @job.estado
 
-= link_to 'Edit', edit_job_path(@job)
-\|
-= link_to 'Back', jobs_path
