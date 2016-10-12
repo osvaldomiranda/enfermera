@@ -42,7 +42,7 @@ class HeadDaily < ActiveRecord::Base
 
 
   def self.next_ingreso
-    h = HeadDaily.where(tipo: 'INGRESO').last
+    h = HeadDaily.where(tipo: 'INGRESO').order("numero ASC").last
     if h.present?
       n = h.numero + 1
     else
@@ -52,7 +52,7 @@ class HeadDaily < ActiveRecord::Base
   end
 
   def self.next_egreso
-    h = HeadDaily.where(tipo: 'EGRESO').last
+    h = HeadDaily.where(tipo: 'EGRESO').order("numero ASC").last
     if h.present?
       n = h.numero + 1
     else
