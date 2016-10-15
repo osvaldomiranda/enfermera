@@ -1,14 +1,52 @@
-= simple_form_for(@publication) do |f|
-  = f.error_notification
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1 Crear Publicación
+              
+        %hr
+        .row
+          .col-xs-12         
+            = simple_form_for(@publication) do |f|
+              = f.error_notification
 
-  .form-inputs
-    = f.input :titulo
-    = f.input :texto
-    = f.input :resumen
-    = f.input :imagen
-    = f.input :tipo
-    = f.input :documeto
-    = f.input :estado
+              .form-inputs
+                = f.input :titulo
+                
+                = f.input :resumen
 
-  .form-actions
-    = f.button :submit
+
+                Imagen Portada
+                .fileinput.fileinput-new{"data-provides" => "fileinput"}
+                  .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+                  %div
+                    %span.btn.btn-default.btn-file
+                      %span.fileinput-new Seleccionar imagen
+                      %span.fileinput-exists Cambiar
+                      =f.file_field :imagen
+                    %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+                .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                  .form-control{"data-trigger" => "fileinput"}
+                    %i.glyphicon.glyphicon-file.fileinput-exists
+                    %span.fileinput-filename
+                  %span.input-group-addon.btn.btn-default.btn-file
+                    %span.fileinput-new Comprobante de Deposito
+                    %span.fileinput-exists Cambiar
+                    =f.file_field :documento
+                  %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+
+                = f.input :web , as: :wysihtml5     
+                = f.input :tipo, collection: Publication.tipo_collection
+                = f.input :estado, collection: Publication.estado_collection
+                %br
+                %br
+              .form-actions
+                = f.button  :submit, 'Guardar'
+              
+              %br
+              %br

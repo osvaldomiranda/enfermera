@@ -42,6 +42,6 @@ class PublicationsController < ApplicationController
     end
 
     def publication_params
-      params.require(:publication).permit(:titulo, :texto, :resumen, :imagen, :tipo, :documeto, :estado)
+      params.require(:publication).permit(:titulo, :texto, :resumen, :imagen, :tipo, :documeto, :estado, :web)
     end
 end

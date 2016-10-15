@@ -10,30 +10,22 @@
               %thead
                 %tr
                   %th Titulo
-                  %th Texto
                   %th Resumen
-                  %th Imagen
-                  %th Tipo
-                  %th Documeto
-                  %th Estado
                   %th
-                  %th
-                  %th
+                  - if current_user.present?
+                    %th
+                    %th
 
               %tbody
                 - @publications.each do |publication|
                   %tr
                     %td= publication.titulo
-                    %td= publication.texto
                     %td= publication.resumen
-                    %td= publication.imagen
-                    %td= publication.tipo
-                    %td= publication.documeto
-                    %td= publication.estado
-                    %td= link_to 'Show', publication
-                    %td= link_to 'Edit', edit_publication_path(publication)
-                    %td= link_to 'Destroy', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                    %td= link_to 'Ver', publication
+                    - if current_user.present?
+                      %td= link_to 'Edit', edit_publication_path(publication)
+                      %td= link_to 'Destroy', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
             %br
-
-            = link_to 'New Publication', new_publication_path
+            - if current_user.present?
+              = link_to 'Crear Publicación', new_publication_path
