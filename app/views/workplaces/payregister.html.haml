@@ -27,7 +27,7 @@
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} Monto
                     .col-sm-4
-                      = f.input :monto, label: false,  :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
+                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
                     %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota 
                     .col-sm-4
                       = f.input :tipo, label: false, collection:  Fee.mescuota_options_for_select  
@@ -66,7 +66,7 @@
                         %tbody
                           - @workplace.people.each do |person|
                             %tr
-                              %td= check_box_tag "person_ids[]", person.id , {:checked => "checked"} 
+                              %td= check_box_tag "person_ids[]", person.id , {:checked => "checked"}, {:onchange => "toggleCheckbox(this, #{Currentfee.last.valor})"} 
                               %td= person.fullname  
                               %td= person.rut
                               %td= person.email

@@ -12,6 +12,20 @@
           .col-md-12
             .form-inline
               = select_tag :filter_tipo, options_for_select([['Egresos', 'EGRESO'],['Ingresos', 'INGRESO']], @tipo), prompt: 'Todos', class: "form-control"
+
+        .row
+          .col-md-12
+            = simple_form_for(head_dailies_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-4
+                  = f.input :numero, label: false, placeholder: "Numero Comprobante", :input_html => {:style=> 'width: 350px'} 
+              .col-sm-4  
+                = f.button :submit, "Buscar",  class: "btn btn-primary"
+        %br
+        %br
+
+        = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
+        %br
         %br    
         %hr 
         = link_to 'Crear Egreso', head_dailies_path(head_daily: {numero: HeadDaily.next_egreso, tipo: 'EGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
@@ -21,7 +35,7 @@
         %br
         %br
         %hr
-
+        = will_paginate @head_dailies, previous_label: h("<  "), next_label: h("  >")
         %table.table.table-striped
           %thead
             %tr

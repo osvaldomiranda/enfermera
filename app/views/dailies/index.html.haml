@@ -15,11 +15,25 @@
             .form-inline
               = select_tag :filter_cuenta, options_for_select(Account.options_for_select, @cuenta), prompt: 'Cuenta: Todas', class: "form-control"
               = link_to 'Exportar Excel', toxls_dailies_path(cuenta: @cuenta, format: :xls),class: 'btn btn-info'
-        %br    
-        %hr 
         .row
           .col-md-12
+            = simple_form_for(dailies_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-4
+                  = f.input :numero, label: false, placeholder: "Numero Comprobante", :input_html => {:style=> 'width: 350px'} 
+              .col-sm-4  
+                = f.button :submit, "Buscar",  class: "btn btn-primary"
+          .col-sm-4       
+            = link_to 'Exportar Excel', toxls_dailies_path(numero: @numero, format: :xls),class: 'btn btn-info'
+        %br
+        %br
+        %br
+        %hr 
+        .row
 
+          .col-md-12
+            = will_paginate @dailies, previous_label: h("<  "), next_label: h("  >")
+            
             .table-responsive
               %table.table.table-striped.table-hover.table-condensed
                 %thead

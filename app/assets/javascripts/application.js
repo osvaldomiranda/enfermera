@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jasny-bootstrap
 //= require bootstrap-datepicker
+//= require wppayregister
 //= require_tree .
 
 

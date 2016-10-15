@@ -6,14 +6,19 @@ class DailiesController < ApplicationController
 
   def index
     @cuenta = params[:cuenta] || nil
-    @dailies = Daily.with_cuenta(@cuenta).order(id: :desc)
+    if params["/dailies"].present?
+      @numero = params["/dailies"][:numero] || nil
+    end
+    @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).order(id: :desc).page(params[:page]).per_page(20) 
     respond_with(@dailies)
   end
 
   def toxls
     require 'csv'
     @cuenta = params[:cuenta] || nil
-    @dailies = Daily.with_cuenta(@cuenta).order(id: :desc)
+    @numero = params[:numero] || nil
+    
+    @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).order(id: :desc)
     respond_to do |format|
       format.xls 
     end
