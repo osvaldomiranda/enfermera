@@ -12,7 +12,7 @@ load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
 load "config/recipes/solr"
-load "config/recipes/redis"
+# load "config/recipes/redis"
 load "config/recipes/bundler"
 load "config/recipes/sidekiq"
 load "config/recipes/ruby_dev"
@@ -23,7 +23,7 @@ set :stages, %w(production staging)
 set :default_stage, "production"
 
 # Application info
-set :user, "deployer"
+set :user, "ubuntu"
 set :application, "enfermera"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false

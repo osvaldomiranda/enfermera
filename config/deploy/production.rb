@@ -1,6 +1,13 @@
-set :ip, "45.79.158.208"
-server "#{ip}", :web, :app, :db, primary: true
+set :ip, "54.186.192.122"
 set :rails_env, 'production'
+server "#{ip}", :web, :app, :db, primary: true,
+  ssh_options: {
+     keys: %w(/Users/osvaldo/.ssh/id_rsa),
+     forward_agent: true,
+     auth_methods: %w(publickey)
+  }
+
+
 
 # set :rails_env, :production
 # set :branch, "master"

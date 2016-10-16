@@ -21,7 +21,7 @@ namespace :deploy do
     postgresql.install
     nodejs.install
     make.install
-    redis.install
+    # redis.install
     rbenv.install
     ruby_dev.install
   end
