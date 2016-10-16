@@ -6,3 +6,4 @@ function toggleCheckbox(element,valor)
       document.getElementById("income_monto").value = parseInt(document.getElementById("income_monto").value) - valor;
     }
  }
+

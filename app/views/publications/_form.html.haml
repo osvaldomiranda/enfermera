@@ -40,7 +40,7 @@
                   %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
 
 
-                = f.input :web , as: :wysihtml5     
+                = f.input :web , as: :wysihtml5 
                 = f.input :tipo, collection: Publication.tipo_collection
                 = f.input :estado, collection: Publication.estado_collection
                 %br
@@ -50,3 +50,5 @@
               
               %br
               %br
+
+

@@ -5,29 +5,28 @@
       .panel-body
         .row
           .col-xs-12
-            %h1= @publication.tipo
-            %p#notice= notice
+            %br
+            %br
+            %br
+            .col-xs-4
+            .col-xs-4.center-text
+              = image_tag @publication.imagen
+        .row     
+          .col-xs-12  
+            %br
+            %br
+            %br    
+        
+            %h1.center= @publication.titulo
+            %h2.center= @publication.texto
+            %h4.center= @publication.resumen
+            / = link_to 'Ver Documento', @publication.documeto_url
+            %br
+            %br
+            %br
+            %hr            
 
-            %p
-              %b Titulo:
-              = @publication.titulo
-            %p
-              %b Texto:
-              = @publication.texto
-            %p
-              %b Resumen:
-              = @publication.resumen
-            %p
-              %b Imagen:
-              = @publication.imagen
-
-            %p
-              %b Documeto:
-              = @publication.documeto
-
-            %p
-              %b web:
-              = raw(@publication.web)
+            = raw(@publication.web)
 
 
             = link_to 'Edit', edit_publication_path(@publication)
