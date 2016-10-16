@@ -87,7 +87,7 @@ Enfermera::Application.configure do
   config.active_support.deprecation = :notify
 
 
-  config.gem "cancan"
+  # config.gem "cancan"
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
