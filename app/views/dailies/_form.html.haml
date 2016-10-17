@@ -8,6 +8,7 @@
           = f.error_notification
           .form-inputs
             = f.input :head_daily_id, :as => :hidden, :input_html => { :value => @head_daily_id }
+            = f.input :numero, :as => :hidden, :input_html => { :value => @head_daily.numero }
             = f.input :tipo, :as => :hidden, :input_html => { :value => @tipo }              
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Fecha

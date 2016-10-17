@@ -46,7 +46,6 @@ class DailiesController < ApplicationController
       @daily.por  = daily_last.por
       @daily.tipo  = daily_last.tipo
       @daily.head_daily_id = daily_last.head_daily_id
-
     end
 
     respond_modal_with(@daily)
