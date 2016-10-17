@@ -9,6 +9,7 @@
             %h1
               Lugares de trabajo
               %span.badge= @workplaces.count
+            %h1= @cod_wp
         .row
           .col-md-12
             .form-inline
@@ -18,6 +19,22 @@
               - else
                 = select_tag :filter_regional, options_for_select(Office.options_for_select(current_user), @regional), class: "form-control"
         %br
+        %hr
+        .row
+          .col-md-12
+            = simple_form_for(workplaces_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-4
+                  = f.input :cod_wp, label: false, placeholder: "Codigo"
+                .col-sm-4  
+                  = f.button :submit, "Buscar",  class: "btn btn-primary"
+          %br     
+          .col-sm-4  
+            = link_to "Limpiar Busqueda",workplaces_path,  class: 'btn btn-info'
+        %br
+        %br
+        %hr 
+
         %br
         = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
         %br      
@@ -25,6 +42,7 @@
         %table.table.table-striped
           %thead
             %tr
+              %th Codigo
               %th Nombre
               %th Ciudad
               %th Region
@@ -36,9 +54,10 @@
           %tbody
             - @workplaces.each do |workplace|
               %tr
+                %td= workplace.cod_wp
                 %td= workplace.nombre
                 %td= workplace.ciudad
-                %td= workplace.region
+                %td= workplace.codigo
                 %td= workplace.people.count
                 %td= link_to 'Regitrar pago', payregister_workplace_path(workplace.id), class: 'btn btn-info'
                 %td= link_to 'Editar', edit_workplace_path(workplace),  class: 'btn btn-info', data: { modal: true }

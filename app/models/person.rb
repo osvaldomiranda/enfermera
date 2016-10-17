@@ -7,14 +7,11 @@ class Person < ActiveRecord::Base
 
   belongs_to :workplace
 
-
   has_many :previousjob, dependent: :destroy
   has_many :persondocuments, dependent: :destroy
   has_many :fees, dependent: :destroy
 
-
   mount_uploader :picture, PictureUploader
-
 
   # validates :email, :first_name, :last_name, presence: true
   #validates :rut, :rut_format => true
@@ -24,7 +21,6 @@ class Person < ActiveRecord::Base
 
   scope :office, -> office { where(workplace_id: Office.find(office).workplaces.pluck(:id)) if office.present?}
 
-
   scope :with_paterno, -> with_paterno { where(apellido_paterno: with_paterno) if with_paterno.present?}
   scope :with_materno, -> with_materno { where(apellido_materno: with_materno) if with_materno.present?}
   scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
@@ -33,7 +29,7 @@ class Person < ActiveRecord::Base
   ESTADOS = { "A" => "Con Rut"}
 
   def fullname
-    fullname = "#{self.nombres} #{self.apellido_paterno} #{self.apellido_materno}"
+    fullname = "#{self.apellido_paterno} #{self.apellido_materno} #{self.nombres} "
   end
 
   GENDERS      = ['Masculino', 'Femenino']

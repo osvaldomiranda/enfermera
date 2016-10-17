@@ -7,6 +7,8 @@ class Workplace < ActiveRecord::Base
   has_many :incomes
   has_many :fees, through: :people
 
+  scope :with_codwp, -> with_codwp { where(cod_wp: with_codwp) if with_codwp.present?}
+
  
   def self.workplaces_option_for_select
     # filtrar por ciudad

@@ -5,15 +5,19 @@ class WorkplacesController < ApplicationController
   respond_to :html
 
   def index
+    
     @regional = params[:regional] || nil
+    if params["/workplaces"].present?
+      @cod_wp = params["/workplaces"][:cod_wp] || nil
+    end  
     
     if @regional.present?
-      @workplaces = Workplace.where(office_id: @regional).order(nombre: :asc).page(params[:page]).per_page(20)  
+      @workplaces = Workplace.where(office_id: @regional).with_codwp(@cod_wp).order(nombre: :asc).page(params[:page]).per_page(20)  
     else
       if current_user.role?(:national_admin) 
-        @workplaces = Workplace.all.order(nombre: :asc).page(params[:page]).per_page(20)
+        @workplaces = Workplace.all.with_codwp(@cod_wp).order(nombre: :asc).page(params[:page]).per_page(20)
       else
-        @workplaces = Workplace.where(office_id: current_user.office.id).order(nombre: :asc).page(params[:page]).per_page(20)
+        @workplaces = Workplace.where(office_id: current_user.office.id).with_codwp(@cod_wp).order(nombre: :asc).page(params[:page]).per_page(20)
       end    
     end
     
