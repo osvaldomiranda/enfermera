@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   #********************************************************
  #Begin roles
-  ROLES = %w[observer member regional_admin national_admin finance admin]
+  ROLES = %w[observer member regional_admin national_admin finance admin web]
 
   scope :with_role, -> role { where('roles_mask & ? > 0', 2**ROLES.index(role.to_s)) }
   
