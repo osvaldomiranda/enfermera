@@ -28,6 +28,7 @@ Enfermera::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+
   config.assets.precompile << Proc.new { |path|
     if path =~ /\.(css|js)\z/
       full_path = Rails.application.assets.resolve(path).to_path
@@ -43,6 +44,7 @@ Enfermera::Application.configure do
       false
     end
   }
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   # Generate digests for assets URLs.
   config.assets.digest = true
 
