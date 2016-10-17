@@ -5,27 +5,36 @@
         %h3.panel-title Noticias
       .panel-body
         .container-fluid
-          .table-responsive
-            %table.table.table-striped
-              %thead
-                %tr
-                  %th Titulo
-                  %th Resumen
-                  %th
-                  - if current_user.present?
-                    %th
-                    %th
-
-              %tbody
-                - @publications.each do |publication|
-                  %tr
-                    %td= publication.titulo
-                    %td= publication.resumen
-                    %td= link_to 'Ver', publication
-                    - if current_user.present?
-                      %td= link_to 'Edit', edit_publication_path(publication)
-                      %td= link_to 'Destroy', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+          %h1 Publicaciones 
+          - if current_user.present?
             %br
-            - if current_user.present?
-              = link_to 'Crear Publicación', new_publication_path
+            = link_to 'Crear Publicación', new_publication_path, class: 'btn btn-info' 
+            %br
+            %br
+          - else
+            = link_to 'Volver', '/'  
+          - @publications.each do |publication|
+            %hr
+            %br
+            .row
+              .col-md-12
+                .col-md-3
+                  = image_tag publication.imagen
+                .col-md-6
+                  %h3= publication.titulo
+                  %h5= publication.resumen
+
+                .col-md-3
+                  .row
+                    %p= publication.tipo
+                  .row
+                    = link_to 'Ver', publication, class: 'btn btn-warning'
+                    - if current_user.present?
+                      = link_to 'Editar', edit_publication_path(publication), class: 'btn btn-info'
+                      = link_to 'Eliminar', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
+                      
+            %br
+            %br
+
+
+

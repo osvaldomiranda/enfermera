@@ -8,8 +8,8 @@
             %br
             %br
             %br
-            .col-xs-4
-            .col-xs-4.center-text
+            .col-xs-2
+            .col-xs-8.center-text
               = image_tag @publication.imagen
         .row     
           .col-xs-12  
@@ -29,6 +29,4 @@
             = raw(@publication.web)
 
 
-            = link_to 'Edit', edit_publication_path(@publication)
-            \|
-            = link_to 'Back', publications_path
+            = link_to '<< Atras', publications_path
