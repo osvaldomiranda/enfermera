@@ -55,7 +55,7 @@ class HeadDailiesController < ApplicationController
   def showtopdf
     @head_daily = HeadDaily.find(params[:id])
 
-    render pdf: "#{@head_daily.tipo}#{@head_daily.numero}",  encoding: 'utf8', orientation: 'Landscape'
+    render pdf: "#{@head_daily.tipo}#{@head_daily.numero}",  orientation: 'Landscape'
   end
 
   private
