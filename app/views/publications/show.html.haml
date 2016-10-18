@@ -1,27 +1,34 @@
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %br
+            %br
+            %br
+            .col-xs-4
+            .col-xs-4.center-text
+              = image_tag @publication.imagen
+        .row     
+          .col-xs-12  
+            %br
+            %br
+            %br    
+        
+            %h1.center= @publication.titulo
+            %h2.center= @publication.texto
+            %h4.center= @publication.resumen
+            / = link_to 'Ver Documento', @publication.documeto_url
+            %br
+            %br
+            %br
+            %hr            
 
-%p
-  %b Titulo:
-  = @publication.titulo
-%p
-  %b Texto:
-  = @publication.texto
-%p
-  %b Resumen:
-  = @publication.resumen
-%p
-  %b Imagen:
-  = @publication.imagen
-%p
-  %b Tipo:
-  = @publication.tipo
-%p
-  %b Documeto:
-  = @publication.documeto
-%p
-  %b Estado:
-  = @publication.estado
+            = raw(@publication.web)
 
-= link_to 'Edit', edit_publication_path(@publication)
-\|
-= link_to 'Back', publications_path
+
+            = link_to 'Edit', edit_publication_path(@publication)
+            \|
+            = link_to 'Back', publications_path

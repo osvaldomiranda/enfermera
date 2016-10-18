@@ -43,6 +43,8 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.1.4)
     cancan (1.6.10)
     capistrano (2.15.5)
@@ -257,6 +259,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   cancan
   capistrano (~> 2.15.5)
   capistrano-ext
