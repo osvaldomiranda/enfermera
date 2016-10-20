@@ -10,6 +10,16 @@ class Income < ActiveRecord::Base
 
   after_save :dailycreate
 
+
+  def self.mescuota_options_for_select
+    fecha = DateTime.now.year
+    mes = [1,2,3,4,5,6,7,8,9,10,11,12]
+    mespago = mes.map{|m| "#{m}-#{fecha-1}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha+1}"}
+    mespago.each.map { |t| [t, t] }
+  end  
+
   TIPOPAGO      = ['Deposito', 'Cheque', 'Transferencia']
   def self.tipopago_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
@@ -39,7 +49,7 @@ class Income < ActiveRecord::Base
   CUOTAS[2] = ["3 Cuotas $#{valor*3}.-", valor*3]
   CUOTAS[3] = ["4 Cuotas $#{valor*4}.-", valor*4]
   CUOTAS[4] = ["5 Cuotas $#{valor*5}.-", valor*5]
-  def self.cuouas_options_for_select
+  def self.cuotas_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     CUOTAS.each.map { |t| [t[0], t[1]] }
   end  
@@ -69,7 +79,7 @@ class Income < ActiveRecord::Base
       head_daily.save
 
       daily = Daily.new
-      daily.fecha = Time.now.strftime("%Y-%d-%m %H:%M:%S")
+      daily.fecha = self.fecha_pago
       daily.account_id =  Account.find_by_codigo('1010101').id
       daily.debe = self.monto
       daily.haber = 0 
@@ -88,7 +98,7 @@ class Income < ActiveRecord::Base
       daily.save
 
       daily = Daily.new
-      daily.fecha = Time.now.strftime("%Y-%d-%m %H:%M:%S")
+      daily.fecha = self.fecha_pago
       daily.account_id = Account.find_by_codigo('2040102').id
       daily.debe  = 0
       daily.haber = self.monto

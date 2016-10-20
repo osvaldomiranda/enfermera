@@ -15,7 +15,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require jasny-bootstrap
-//= require bootstrap-datepicker
+
+//= require moment
+//= require bootstrap-datetimepicker
+//= require datepicker
+
 //= require wppayregister
 //= require bootstrap-wysihtml5/locales/es-ES
 

@@ -30,14 +30,21 @@
                       = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
                     %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota 
                     .col-sm-4
-                      = f.input :tipo, label: false, collection:  Fee.mescuota_options_for_select  
+                      = f.input :tipo, label: false, collection:  Income.mescuota_options_for_select  
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} banco
                     .col-sm-4  
                       = f.input :banco, label: false, collection:  Income.banco_options_for_select    
                     %label.col-sm-2.control-label{:for => "textinput"} mediopago
                     .col-sm-4
-                      = f.input :mediopago, label: false, collection:  Income.mediopago_options_for_select    
+                      = f.input :mediopago, label: false, collection:  Income.mediopago_options_for_select 
+                  .form-group
+                    %label.col-sm-2.control-label{:for => "textinput"} Fecha Pago
+                    .col-sm-4  
+                      = f.text_field :fecha_pago, label: false, :id => 'datetimepicker1'     
+                    %label.col-sm-2.control-label{:for => "textinput"} Fecha Contable
+                    .col-sm-4
+                      = f.text_field :fecha_contable, label: false , :id => 'datetimepicker2'                           
                   .form-group 
                     %label.col-sm-2.control-label{:for => "textinput"}  
                     .col-sm-12 

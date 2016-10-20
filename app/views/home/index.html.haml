@@ -11,17 +11,22 @@
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Ofertas de trabajo
+          %li
+            = link_to publications_path do
+              %span.iconos>
+                %i.fa.fa-user.fa-fw
+              Capacitación   
 
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Porque colegiarse
+              Por qué colegiarse
               %span.caret
             %ul.dropdown-menu
               %li
                 = link_to reports_path do
                   %span.iconos>
                     %i.fa.fa-user.fa-fw
-                  Porque colegiarse
+                  Por qué colegiarse
               %li
                 = link_to gastos_cc_reports_path do
                   %span.iconos>
@@ -144,7 +149,7 @@
           .center
             = link_to new_inscription_path, class: 'btn btn_pill btn-block' do
               %i.glyphicon.glyphicon-user
-              Colegiate
+              Colégiate
       %br
       %br
       %br

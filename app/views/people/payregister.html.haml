@@ -8,15 +8,33 @@
           = f.error_notification
           .form-inputs
             / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
-            = f.input :fecha_pago, :as => :hidden, :input_html => { :value => Date.today } 
             = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
             = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
             = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
+            - if current_user.role?(:regional_admin)
+              .form-group
+                %label.col-sm-2.control-label{:for => "textinput"} Fecha Pago
+                .col-sm-4  
+                  = f.text_field :fecha_pago, label: false, :id => 'datetimepicker1'     
+                %label.col-sm-2.control-label{:for => "textinput"} Fecha Contable
+                .col-sm-4
+                  = f.text_field :fecha_contable, label: false , :id => 'datetimepicker2'
+
+
+            - else
+              = f.input :fecha_pago, :as => :hidden, :input_html => { :value => DateTime.now } 
+              = f.input :fecha_contable, :as => :hidden, :input_html => { :value => DateTime.now } 
+
+
+            .form-group
+              %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota
+              .col-sm-4
+                = f.input :mes_cuota, label: false  , collection: Income.mescuota_options_for_select
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Monto
               .col-sm-4
-                = f.input :monto, label: false  , collection: Income.cuouas_options_for_select
+                = f.input :monto, label: false  , collection: Income.cuotas_options_for_select
             .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} banco
               .col-sm-4  

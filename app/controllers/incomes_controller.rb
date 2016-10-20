@@ -48,6 +48,6 @@ class IncomesController < ApplicationController
     end
 
     def income_params
-      params.require(:income).permit(:fecha, :monto, :tipo, :document, :banco, :mediopago, :person_id, :workplace_id, :user_id)
+      params.require(:income).permit(:fecha, :monto, :tipo, :document, :banco, :mediopago, :person_id, :workplace_id, :user_id, :fecha_pago, :fecha_contable)
     end
 end

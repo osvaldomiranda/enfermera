@@ -261,23 +261,36 @@ class PeopleController < ApplicationController
     @income.document    =  params[:income][:document]
     @income.banco       =  params[:income][:banco]
     @income.mediopago   =  params[:income][:mediopago]
+    @income.fecha_pago   =  Date.parse(params[:income][:fecha_pago])
+    @income.fecha_contable  = Date.parse( params[:income][:fecha_contable])
+    @income.mes_cuota = params[:income][:mes_cuota]
     @income.fecha       =  DateTime.now
-    @income.estado      = "POR CONFIRMAR"
+    @income.estado      = "CONFIRMADO"
 
     if @income.save
       valorcuota = Currentfee.last.valor
       n = params[:income][:monto].to_i/valorcuota
+      
+      mes = params[:income][:mes_cuota][0..1].gsub('-','').to_i
+      year = params[:income][:mes_cuota][1..6].gsub('-','').to_i
+
       @person = Person.find(params[:income][:person_id])
       (1..n).each do |i|
+        mes += 1
+        if mes > 12
+          mes = mes-12
+          year = year+1
+        end
+
         fee = Fee.new
         fee.rut = @person.rut
         fee.email = @person.email
-        fee.fecha_pago = params[:income][:fecha_pago]
+        fee.fecha_pago = Date.parse(params[:income][:fecha_pago])
         fee.mes = i
         fee.monto = valorcuota
+        fee.mes_cuota = "#{mes}-#{year}"
         fee.person_id = @person.id
         fee.pagador = "Pago Directo Colegiada"
-        fee.mes_cuota =  i
         fee.estado = "Por Confirmar"
         fee.income_id = @income.id
         fee.save
@@ -286,7 +299,7 @@ class PeopleController < ApplicationController
 
     @persondocuments = Persondocument.all
 
-    redirect_to dashboard_index_path
+    redirect_to person_path(params[:income][:person_id])
   end
 
   def senduser
