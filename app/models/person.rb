@@ -166,8 +166,8 @@ class Person < ActiveRecord::Base
           u=User.new
           u.rut=p.rut 
           u.email=p.email.present? ? p.email : "#{p.rut}sin@mail.cl"
-          u.password = "#{p.apellido_paterno}#{p.nro_registro}"
-          u.password_confirmation = "#{p.apellido_paterno}#{p.nro_registro}"
+          u.password = p.rut
+          u.password_confirmation = p.rut
           u.roles_mask=3 
           u.save
         end  
