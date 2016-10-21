@@ -11,4 +11,20 @@ class HomeController < ApplicationController
       @publication_eventos = Publication.where(tipo: 'EVENTO')
     end  
   end
+
+  def porque
+  end
+  
+  def beneficios
+  end
+
+  def obligaciones
+  end
+
+  def estatutos
+  end
+
+  def reglamento
+  end
+
 end

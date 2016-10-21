@@ -23,27 +23,27 @@
               %span.caret
             %ul.dropdown-menu
               %li
-                = link_to reports_path do
+                = link_to porque_home_index_path do
                   %span.iconos>
                     %i.fa.fa-user.fa-fw
                   Por qué colegiarse
               %li
-                = link_to gastos_cc_reports_path do
+                = link_to beneficios_home_index_path do
                   %span.iconos>
                     %i.fa.fa-user.fa-fw
                   Beneficios
               %li
-                = link_to gastos_cc_reports_path do
+                = link_to obligaciones_home_index_path do
                   %span.iconos>
                     %i.fa.fa-user.fa-fw
                   Obligaciones                  
           %li
-            = link_to dashboard_index_path do
+            = link_to estatutos_home_index_path do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Estatutos  
           %li
-            = link_to dashboard_index_path do
+            = link_to reglamento_home_index_path do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Reglamento               
@@ -208,7 +208,7 @@
       .col-md-12            
       %br
         .center  
-          = link_to 'Ver todas las noticias',publications_path , class: 'btn btn_pill_small'
+          = link_to 'Ver todas las noticias',publications_path(tipo: 'NOTICIA') , class: 'btn btn_pill_small'
         %br
 
 .bkg-blue 
@@ -250,7 +250,7 @@
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
-        = link_to 'Ver todo Yo Te Cuido',publications_path , class: 'btn btn_pill_small'
+        = link_to 'Ver todo Yo Te Cuido',publications_path(tipo: 'YO_TE_CUIDO') , class: 'btn btn_pill_small'
       %br
 
 .suero-bkg 
@@ -292,7 +292,7 @@
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
-        = link_to 'Ver todas los eventos',publications_path , class: 'btn btn_pill_small'
+        = link_to 'Ver todas los eventos',publications_path(tipo: 'EVENTO') , class: 'btn btn_pill_small'
       %br
             
     

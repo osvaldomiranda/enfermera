@@ -49,6 +49,16 @@ Enfermera::Application.routes.draw do
 
   root to: "home#index"
 
+  resources :home, only: :index do
+    collection do
+      get :porque
+      get :beneficios
+      get :obligaciones
+      get :estatutos
+      get :reglamento
+    end
+  end
+
   resources :accountancy, only: :index
   resources :summary_expenses, only: :index
   resources :news, only: :index

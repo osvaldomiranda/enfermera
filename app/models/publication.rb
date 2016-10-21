@@ -1,6 +1,8 @@
 class Publication < ActiveRecord::Base
   mount_uploader :imagen, PictureUploader
 
+  scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
+
   ESTADO      = ['Visible', 'No Visible']
   def self.estado_collection
     #GENDERS.to_enum.with_index(0).to_a

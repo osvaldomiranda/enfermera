@@ -5,7 +5,8 @@ class PublicationsController < ApplicationController
   respond_to :html
 
   def index
-    @publications = Publication.all.order(created_at: :desc)
+    @tipo = params[:tipo] || nil
+    @publications = Publication.with_tipo(@tipo).order(created_at: :desc)
     respond_with(@publications)
   end
 
