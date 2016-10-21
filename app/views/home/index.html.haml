@@ -184,18 +184,22 @@
                 - @publication_news.each do |publication_new|
                   - if @publication_news.first.id==publication_new.id
                     .item.active
-                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_new.titulo
-                      %h4.white.center  
-                        =publication_new.resumen
+                      .col-md-2
+                      .col-md-8 
+                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white.center
+                          =publication_new.titulo
+                        %h4.white.center  
+                          =publication_new.resumen
                   - else      
                     .item
-                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_new.titulo
-                      %h4.white.center  
-                        =publication_new.resumen    
+                      .col-md-2
+                      .col-md-8
+                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        %h3.white.center
+                          =publication_new.titulo
+                        %h4.white.center  
+                          =publication_new.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
@@ -203,7 +207,7 @@
     %br
     %br
     %br
-  .landing_content 
+  .container 
     .row    
       .col-md-12            
       %br
@@ -232,18 +236,22 @@
                 - @publication_yotecuido.each do |publication_yotecuido|
                   - if @publication_yotecuido.first.id==publication_yotecuido.id
                     .item.active
-                      = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_yotecuido.titulo
-                      %h4.white.center  
-                        =publication_yotecuido.resumen
+                      .col-md-2
+                      .col-md-8 
+                        = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white.center
+                          =publication_yotecuido.titulo
+                        %h4.white.center  
+                          =publication_yotecuido.resumen
                   - else      
                     .item
-                      = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_yotecuido.titulo
-                      %h4.white.center  
-                        =publication_yotecuido.resumen    
+                      .col-md-2
+                      .col-md-8 
+                        = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white.center
+                          =publication_yotecuido.titulo
+                        %h4.white.center  
+                          =publication_yotecuido.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
@@ -274,18 +282,22 @@
                 - @publication_eventos.each do |publication_eventos|
                   - if @publication_eventos.first.id==publication_eventos.id
                     .item.active
-                      = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_eventos.titulo
-                      %h4.white.center  
-                        =publication_eventos.resumen
+                      .col-md-2
+                      .col-md-8 
+                        = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white.center
+                          =publication_eventos.titulo
+                        %h4.white.center  
+                          =publication_eventos.resumen
                   - else      
                     .item
-                      = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
-                      %h2.white.center
-                        =publication_eventos.titulo
-                      %h4.white.center  
-                        =publication_eventos.resumen    
+                      .col-md-2
+                      .col-md-8 
+                        = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                        %h2.white.center
+                          =publication_eventos.titulo
+                        %h4.white.center  
+                          =publication_eventos.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
