@@ -225,31 +225,32 @@
           .row.carousel-holder
             #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
+                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
+                / %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
+                / %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
               .carousel-inner
-                .item.active
-                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-                  %h2.white
-                    Maqueta de Yo Te Cuido
-                  %h4.white  
-                    Esta es una maqueta de Yo Te Cuido
-                - @publication_yotecuido.each do |publication_new|
-                  .item
-                    .carrusel-img-content
-                      = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
-                    %h2.white
-                      =@publication_news.last.titulo
-                    %h4.white  
-                      =@publication_news.last.resumen
+                - @publication_yotecuido.each do |publication_yotecuido|
+                  - if @publication_yotecuido.first.id==publication_yotecuido.id
+                    .item.active
+                      = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_yotecuido.titulo
+                      %h4.white.center  
+                        =publication_yotecuido.resumen
+                  - else      
+                    .item
+                      = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_yotecuido.titulo
+                      %h4.white.center  
+                        =publication_yotecuido.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
-        = link_to 'Ver todo Yo Te Cuido',new_inscription_path , class: 'btn btn_pill_small'
+        = link_to 'Ver todo Yo Te Cuido',publications_path , class: 'btn btn_pill_small'
       %br
 
 .suero-bkg 
@@ -266,32 +267,32 @@
           .row.carousel-holder
             #carousel-eventos.carousel.slide{"data-ride" => "carousel-eventos"}
               %ol.carousel-indicators
-                %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
-                %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
-                %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
+                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
+                / %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
+                / %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
               .carousel-inner
-                .item.active
-                  %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-                  %h2.white
-                    Maqueta de EVENTO
-                  %h4.white  
-                    Esta es una maqueta de EVENTO
-                - @publication_yotecuido.each do |publication_new|
-                  .item
-                    .row
-                      .col-md-12 
-                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
-                        %h2.white
-                          =@publication_news.last.titulo
-                        %h4.white  
-                          =@publication_news.last.resumen
+                - @publication_eventos.each do |publication_eventos|
+                  - if @publication_eventos.first.id==publication_eventos.id
+                    .item.active
+                      = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_eventos.titulo
+                      %h4.white.center  
+                        =publication_eventos.resumen
+                  - else      
+                    .item
+                      = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                      %h2.white.center
+                        =publication_eventos.titulo
+                      %h4.white.center  
+                        =publication_eventos.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-right
       %br
       .center  
-        = link_to 'Ver todas los eventos',new_inscription_path , class: 'btn btn_pill_small'
+        = link_to 'Ver todas los eventos',publications_path , class: 'btn btn_pill_small'
       %br
             
     

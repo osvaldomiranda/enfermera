@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       @scientific_societies =  ScientificSociety.all
       @national_councils = NationalCouncil.all
       @publication_news = Publication.where(tipo: 'NOTICIA')
-      @publication_yotecuido = Publication.where(tipo: 'YOTECUIDO')
+      @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO')
       @publication_eventos = Publication.where(tipo: 'EVENTO')
     end  
   end

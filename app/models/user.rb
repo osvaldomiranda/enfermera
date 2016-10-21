@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
+
   #********************************************************
  #Begin roles
   ROLES = %w[observer member regional_admin national_admin finance admin web]
