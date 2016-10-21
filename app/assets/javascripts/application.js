@@ -15,16 +15,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require jasny-bootstrap
-
+//= require bootstrap-datepicker
 //= require wppayregister
-//= require bootstrap-wysihtml5/locales/es-ES
-
-//= require bootstrap-wysihtml5/wysihtml5x-toolbar.js
-//= require bootstrap-wysihtml5/handlebars.runtime.min.js
-
-//= require bootstrap-wysihtml5/minimum
-
 //= require_tree .
+
+
 
 
 
