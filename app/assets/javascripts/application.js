@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery-ui
 //= require bootstrap
 //= require jasny-bootstrap
 //= require wppayregister
+//= require datepicker
 //= require_tree .
 
 
