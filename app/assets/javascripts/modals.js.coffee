@@ -3,12 +3,17 @@ $ ->
   modal_holder_selector = '#modal-holder'
   modal_selector = '.modal'
 
+
+
   $(document).on 'click', 'a[data-modal]', ->
     location = $(this).attr('href')
     #Load modal dialog from server
     $.get location, (data)->
       $(modal_holder_selector).html(data).
-      find(modal_selector).modal()
+      find(modal_selector).modal(
+        $('#income_fecha_pago').datepicker();
+        $('#income_fecha_contable').datepicker();
+      )
     false
 
   $(document).on 'ajax:success',
