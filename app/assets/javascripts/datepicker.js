@@ -4,3 +4,7 @@ $(function() {
 $(function() {
   $('#datepicker').datepicker();
 });
+
+$(function() {
+  $('#publication_web').froalaEditor();
+});

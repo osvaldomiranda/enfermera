@@ -86,7 +86,7 @@ gem "rails-erd"
 gem "font-awesome-rails"
 
 #for page editor
-# gem 'bootstrap-wysihtml5-rails'
+gem "wysiwyg-rails"
 
 
 
