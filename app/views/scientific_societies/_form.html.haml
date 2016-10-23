@@ -1,14 +1,37 @@
-= simple_form_for(@scientific_society) do |f|
-  = f.error_notification
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
 
-  .form-inputs
-    = f.input :nombre
-    = f.input :descripcion
-    = f.input :logo
-    = f.input :direccion
-    = f.input :telefono
-    = f.input :contacto
-    = f.input :web_url
+        - if @scientific_society.logo.present?
+          %img.img-circle{:alt => "...", :src =>"#{@scientific_society.logo_url}"}
+        - else  
+          %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
 
-  .form-actions
-    = f.button :submit
+        = simple_form_for(@scientific_society) do |f|
+          = f.error_notification
+
+          .form-inputs
+            = f.input :nombre
+            = f.input :descripcion
+
+            .fileinput.fileinput-new{"data-provides" => "fileinput"}
+              .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+              %div
+                %span.btn.btn-default.btn-file
+                  %span.fileinput-new Seleccionar imagen Nueva
+                  %span.fileinput-exists Cambiar
+                  =f.file_field :logo
+                %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+ 
+            = f.input :direccion
+            = f.input :telefono
+            = f.input :contacto
+            = f.input :web_url
+
+          .form-actions
+            = f.button :submit, 'Guardar'
