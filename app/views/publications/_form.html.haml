@@ -17,24 +17,33 @@
                 = f.input :titulo
                 
                 = f.input :resumen
+                - if @publication.imagen.present?
+                  .col-md-4
+                    Imagen Actual de portada
+                    %a.thumbnail{:href => '' , data: { modal: true }}
+                      %img{:alt => "...", :src =>"#{@publication.imagen_url}"}
 
 
-                Imagen Portada
+
                 .fileinput.fileinput-new{"data-provides" => "fileinput"}
                   .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
                   %div
                     %span.btn.btn-default.btn-file
-                      %span.fileinput-new Seleccionar imagen
+                      - if @publication.imagen.present?
+                        %span.fileinput-new Seleccionar imagen Nueva
+                      -else
+                        %span.fileinput-new Seleccionar imagen Portada  
                       %span.fileinput-exists Cambiar
                       =f.file_field :imagen
                     %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
 
                 .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
                   .form-control{"data-trigger" => "fileinput"}
                     %i.glyphicon.glyphicon-file.fileinput-exists
                     %span.fileinput-filename
                   %span.input-group-addon.btn.btn-default.btn-file
-                    %span.fileinput-new Comprobante de Deposito
+                    %span.fileinput-new Documento Adjunto
                     %span.fileinput-exists Cambiar
                     =f.file_field :documento
                   %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  

@@ -1,27 +1,44 @@
-%h1 Listing national_councils
+%br
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Concejo Nacional
+      .panel-body
+        .container-fluid
+          %h1 Concejo Nacional 
+          - if current_user.present?
 
-%table
-  %thead
-    %tr
-      %th Nombre
-      %th Imagen
-      %th Cargo
-      %th Curriculum
-      %th
-      %th
-      %th
 
-  %tbody
-    - @national_councils.each do |national_council|
-      %tr
-        %td= national_council.nombre
-        %td= national_council.imagen
-        %td= national_council.cargo
-        %td= national_council.curriculum
-        %td= link_to 'Show', national_council
-        %td= link_to 'Edit', edit_national_council_path(national_council)
-        %td= link_to 'Destroy', national_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th
+                  %th Nombre
+                  %th Cargo
+                  %th
+                  %th
+                  %th
+
+              %tbody
+                - @national_councils.each do |national_council|
+                  %tr
+                    %td
+                      .col-md-8
+                        %a.thumbnail{:href => ""}
+                          - if national_council.imagen.present?
+                            %img.img-circle{:alt => "...", :src =>"#{national_council.imagen_url}"}
+                          - else  
+                            %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+                    %td= national_council.nombre
+                    %td= national_council.cargo
+                    %td= link_to 'Ver', national_council
+                    %td= link_to 'Editar', edit_national_council_path(national_council)
+                    %td= link_to 'Eliminar', national_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New National council', new_national_council_path
+= link_to 'Crear nuevo integrante', new_national_council_path

@@ -51,7 +51,7 @@
 
 //= require_tree .
 
-$('#froala-editor').editable({ });
+
 
 
 

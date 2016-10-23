@@ -1,18 +1,37 @@
-%p#notice= notice
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Concejo Nacional
+      .panel-body
+        .container-fluid
+          %h1 Concejo Nacional 
+          %p#notice= notice
 
-%p
-  %b Nombre:
-  = @national_council.nombre
-%p
-  %b Imagen:
-  = @national_council.imagen
-%p
-  %b Cargo:
-  = @national_council.cargo
-%p
-  %b Curriculum:
-  = @national_council.curriculum
-
-= link_to 'Edit', edit_national_council_path(@national_council)
-\|
-= link_to 'Back', national_councils_path
+          .row
+            %hr
+            .col-md-2
+              %a.thumbnail{:href => "", data: { modal: true }}
+                - if @national_council.imagen.present?
+                  %img.img-circle{:alt => "...", :src =>"#{@national_council.imagen_url}"}
+                - else  
+                  %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+            .col-md-8      
+            
+              %h2= @national_council.nombre  
+              %h3= @national_council.cargo
+          %br
+          %hr   
+          .row
+            .col-md-12
+              = raw(@national_council.web)    
+          %br
+          %br
+          %br
+          - if current_user.present?  
+            = link_to '<< Atras', national_councils_path
+          - else
+            = link_to '<< Atras', '/'

@@ -1,33 +1,43 @@
-%h1 Listing scientific_societies
-
-%table
-  %thead
-    %tr
-      %th Nombre
-      %th Descripcion
-      %th Logo
-      %th Direccion
-      %th Telefono
-      %th Contacto
-      %th Web url
-      %th
-      %th
-      %th
-
-  %tbody
-    - @scientific_societies.each do |scientific_society|
-      %tr
-        %td= scientific_society.nombre
-        %td= scientific_society.descripcion
-        %td= scientific_society.logo
-        %td= scientific_society.direccion
-        %td= scientific_society.telefono
-        %td= scientific_society.contacto
-        %td= scientific_society.web_url
-        %td= link_to 'Show', scientific_society
-        %td= link_to 'Edit', edit_scientific_society_path(scientific_society)
-        %td= link_to 'Destroy', scientific_society, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
 %br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
 
-= link_to 'New Scientific society', new_scientific_society_path
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+              %th Nombre
+              %th Direccion
+              %th Telefono
+              %th Contacto
+              %th
+              %th
+              %th
+
+          %tbody
+            - @scientific_societies.each do |scientific_society|
+              %tr
+                %td
+                  .col-md-8
+                    %a.thumbnail{:href => ""}
+                      - if scientific_society.logo.present?
+                        %img.img-circle{:alt => "...", :src =>"#{scientific_society.logo_url}"}
+                      - else  
+                        %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+                %td= scientific_society.nombre
+                %td= scientific_society.direccion
+                %td= scientific_society.telefono
+                %td= scientific_society.contacto
+                %td= link_to 'Ver', scientific_society
+                %td= link_to 'Editar', edit_scientific_society_path(scientific_society)
+                %td= link_to 'Eliminar', scientific_society, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %br
+
+        = link_to 'Nueva Sociedad Cientifica', new_scientific_society_path

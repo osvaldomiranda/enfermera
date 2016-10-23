@@ -1,15 +1,27 @@
-%p#notice= notice
-
-%p
-  %b Titulo:
-  = @video.titulo
-%p
-  %b Alojamiento:
-  = @video.alojamiento
-%p
-  %b Estado:
-  = @video.estado
-
-= link_to 'Edit', edit_video_path(@video)
-\|
-= link_to 'Back', videos_path
+%br
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %br
+            %br
+            %br
+            .col-xs-2
+            .col-xs-8.center-text
+              %iframe{:frameborder => "0", :height => "300", :src => "http://www.youtube.com/embed/#{@video.vid}", :width => "500"}
+        .row     
+          .col-xs-12  
+            %br
+            %h1.center= @video.titulo
+            %h2.center= @video.estado
+            %br
+            %br
+            %br
+            %hr            
+        = link_to '<< Atras', videos_path
