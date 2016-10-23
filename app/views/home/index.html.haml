@@ -315,18 +315,19 @@
     .row
       .col-md-12
         %h3.white.center
-          Diputado Roberto Poblete saluda a las Enfermeras en su día.
+          =@video.titulo
       %br
       %br
       %br    
       .col-md-12
         .center
-          %iframe{:frameborder => "0", :height => "300", :src => "http://www.youtube.com/embed/7-aQMkbLSRA", :width => "500"}
-
+          - if @video.alojamiento.present?
+            %iframe{:frameborder => "0", :height => "300", :src => "http://www.youtube.com/embed/#{@video.vid}", :width => "500"}
+        
           %br
           %br
         .center  
-          = link_to 'Ver todos los videos',new_inscription_path , class: 'btn btn_pill_small'
+          = link_to 'Ver todos los videos',videos_path , class: 'btn btn_pill_small'
   %br
   %br
   %br
@@ -344,9 +345,9 @@
     .row
       - @scientific_societies.each do |scientific_society|
         .col-lg-3.text-center
-          = image_tag scientific_society.logo_url, class: "center img-circle img-responsive img-center"
-          %h4.center.blue-text
-            =link_to scientific_society.nombre, scientific_society_path(scientific_society)
+          = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
+          %h4.center.white
+            =scientific_society.nombre
 
 .bkg-blue 
   .container
@@ -358,10 +359,10 @@
     .row
       - @national_councils.each do |national_council|
         .col-lg-3.text-center
-          = image_tag national_council.imagen_url, class: "center img-circle img-responsive img-center"
+          =link_to image_tag(national_council.imagen_url ,class: "center img-circle img-responsive img-center"), national_council_path(national_council)
           %h4.center.white
-            =link_to national_council.nombre, ""
-            %br
+            =national_council.nombre  
+          %h5.center.white
             =national_council.cargo
 
 .bkg-blue.row

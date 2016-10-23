@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_filter :authenticate_user! 
+  before_filter :authenticate_user! , only: [:edit, :update, :destroy]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

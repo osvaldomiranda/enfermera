@@ -9,6 +9,7 @@ class HomeController < ApplicationController
       @publication_news = Publication.where(tipo: 'NOTICIA')
       @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO')
       @publication_eventos = Publication.where(tipo: 'EVENTO')
+      @video = Video.last
     end  
   end
 
