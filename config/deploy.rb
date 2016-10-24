@@ -34,7 +34,7 @@ set :rails_env, 'stagind'
 set :scm, "git"
 set :git_user, 'osvaldomiranda'
 set :repository, "git@github.com:#{git_user}/#{application}.git"
-set :branch, "froala"
+set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
