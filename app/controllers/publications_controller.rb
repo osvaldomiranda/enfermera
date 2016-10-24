@@ -1,5 +1,5 @@
 class PublicationsController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update, :create, :destroy]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :create, :destroy]
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

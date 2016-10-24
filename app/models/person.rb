@@ -21,8 +21,8 @@ class Person < ActiveRecord::Base
 
   scope :office, -> office { where(workplace_id: Office.find(office).workplaces.pluck(:id)) if office.present?}
 
-  scope :with_paterno, -> with_paterno { where(apellido_paterno: with_paterno) if with_paterno.present?}
-  scope :with_materno, -> with_materno { where(apellido_materno: with_materno) if with_materno.present?}
+  scope :with_paterno, -> with_paterno { where('lower(apellido_paterno) = ?', with_paterno.downcase  ) if with_paterno.present?}
+  scope :with_materno, -> with_materno { where('lower(apellido_materno) = ?', with_materno.downcase) if with_materno.present?}
   scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
 
 

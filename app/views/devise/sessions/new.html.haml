@@ -26,5 +26,8 @@
           .container
             %br
             %br
-            = link_to "Formulario de Inscripcion", "/inscriptions/new", class: 'btn btn-success'    
+            .col-md-4
+              = link_to new_inscription_path, class: 'btn btn_pill btn-block' do
+                %i.glyphicon.glyphicon-user
+                Colégiate   
         %br

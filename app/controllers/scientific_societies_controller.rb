@@ -1,5 +1,5 @@
 class ScientificSocietiesController < ApplicationController
-  before_filter :authenticate_user! , only: [:edit, :update, :destroy]
+  before_filter :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
   before_action :set_scientific_society, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

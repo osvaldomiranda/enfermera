@@ -44,7 +44,7 @@
       <ul class="nav navbar-nav">
         <li>
           <%= link_to dashboard_index_path do %>
-            <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Colegiada
+            <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Mi Perfil
           <% end %>
         </li>
 
@@ -254,6 +254,13 @@
                 <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Salir
               <% end %>
             </li>
+
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Cambiar Contraseña
+              <% end %>
+            </li>
+
           </ul>
         </li>
       </ul>

@@ -11,8 +11,8 @@ $ ->
     $.get location, (data)->
       $(modal_holder_selector).html(data).
       find(modal_selector).modal(
-        $('#income_fecha_pago').datepicker();
-        $('#income_fecha_contable').datepicker();
+        $('#income_fecha_pago').datepicker({dateFormat: "dd/mm/yy"});
+        $('#income_fecha_contable').datepicker({dateFormat: "dd/mm/yy"});
       )
     false
 

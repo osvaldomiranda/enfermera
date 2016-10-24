@@ -4,7 +4,7 @@
       .pull-right
         =link_to  new_user_session_path, class: 'btn btn-warning' do
           %i.glyphicon.glyphicon-log-in
-          Ingreso colegiados
+          Ingreso colegiadas
         %ul.nav.navbar-nav
           %li
             = link_to jobs_path do
@@ -12,7 +12,7 @@
                 %i.fa.fa-user.fa-fw
               Ofertas de trabajo
           %li
-            = link_to publications_path do
+            = link_to publications_path(tipo:'EVENTO') do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Capacitación   
@@ -157,7 +157,7 @@
 
 
  
-.pasillo-bkg 
+.suero-bkg 
   .container
     %br     
     .row
@@ -261,7 +261,7 @@
         = link_to 'Ver todo Yo Te Cuido',publications_path(tipo: 'YO_TE_CUIDO') , class: 'btn btn_pill_small'
       %br
 
-.suero-bkg 
+.pasillo-bkg 
   .container
     %br     
     .row

@@ -1,8 +1,8 @@
 $(function() {
-  $('#datepicker1').datepicker();
+  $('#datepicker1').datepicker( {dateFormat: "dd/mm/yy"} );
 });
 $(function() {
-  $('#datepicker').datepicker();
+  $('#datepicker').datepicker( {dateFormat: "dd/mm/yy" });
 });
 
 $(function() {

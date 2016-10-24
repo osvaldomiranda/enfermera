@@ -1,5 +1,5 @@
 class NationalCouncilsController < ApplicationController
-  before_filter :authenticate_user!, only:[:index,:edit, :update, :destroy]
+  before_filter :authenticate_user!, only:[:new, :create, :index,:edit, :update, :destroy]
   before_action :set_national_council, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
