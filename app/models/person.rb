@@ -210,4 +210,14 @@ class Person < ActiveRecord::Base
     w.office
   end
 
+  def self.next_nro_registro
+    h = Person.order("nro_registro ASC").last
+    if h.present?
+      n = h.numero + 1
+    else
+      n = 1  
+    end  
+    return n
+  end
+
 end

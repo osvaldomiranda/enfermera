@@ -39,6 +39,7 @@ class InscriptionsController < ApplicationController
       user.save
 
       @person = Person.new
+      @person.nro_registro = Person.next_nro_registro
       @person.email = params[:inscription][:email]
       @person.rut = params[:inscription][:rut]
       @person.nombres = params[:inscription][:nombres]
