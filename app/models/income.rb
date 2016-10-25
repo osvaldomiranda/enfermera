@@ -68,6 +68,7 @@ class Income < ActiveRecord::Base
       head_daily.tipo = "INGRESO"
       head_daily.banco = self.banco 
       head_daily.mediopago = self.mediopago
+      head_daily.documento = self.document
 
       if self.tipo == "Colegiada"
         person = Person.find(self.person_id)
@@ -79,7 +80,8 @@ class Income < ActiveRecord::Base
       head_daily.save
 
       daily = Daily.new
-      daily.fecha = self.fecha_pago
+      daily.numero = head_daily.numero
+      daily.fecha = self.fecha_contable
       daily.account_id =  Account.find_by_codigo('1010101').id
       daily.debe = self.monto
       daily.haber = 0 
@@ -98,7 +100,8 @@ class Income < ActiveRecord::Base
       daily.save
 
       daily = Daily.new
-      daily.fecha = self.fecha_pago
+      daily.numero = head_daily.numero
+      daily.fecha = self.fecha_contable
       daily.account_id = Account.find_by_codigo('2040102').id
       daily.debe  = 0
       daily.haber = self.monto

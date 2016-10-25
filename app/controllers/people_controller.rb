@@ -7,8 +7,8 @@ class PeopleController < ApplicationController
   def index
 
     if params["/people"].present?
-      @apellido_paterno = params["/people"][:apellido_paterno].upcase
-      @apellido_materno = params["/people"][:apellido_materno].upcase
+      @apellido_paterno = params["/people"][:apellido_paterno]
+      @apellido_materno = params["/people"][:apellido_materno]
       @rut = params["/people"][:rut] || nil
     end  
       
@@ -261,9 +261,9 @@ class PeopleController < ApplicationController
     @income.document    =  params[:income][:document]
     @income.banco       =  params[:income][:banco]
     @income.mediopago   =  params[:income][:mediopago]
-    @income.fecha_pago   =  Date.parse(params[:income][:fecha_pago])
+    @income.fecha_pago  =  Date.parse(params[:income][:fecha_pago])
     @income.fecha_contable  = Date.parse( params[:income][:fecha_contable])
-    @income.mes_cuota = params[:income][:mes_cuota]
+    @income.mes_cuota   = params[:income][:mes_cuota]
     @income.fecha       =  DateTime.now
     @income.estado      = "CONFIRMADO"
 
@@ -276,12 +276,6 @@ class PeopleController < ApplicationController
 
       @person = Person.find(params[:income][:person_id])
       (1..n).each do |i|
-        mes += 1
-        if mes > 12
-          mes = mes-12
-          year = year+1
-        end
-
         fee = Fee.new
         fee.rut = @person.rut
         fee.email = @person.email
@@ -294,6 +288,12 @@ class PeopleController < ApplicationController
         fee.estado = "Por Confirmar"
         fee.income_id = @income.id
         fee.save
+
+        mes += 1
+        if mes > 12
+          mes = mes-12
+          year = year+1
+        end
       end
     end
 
