@@ -252,6 +252,15 @@ class PeopleController < ApplicationController
 
   def pay
 
+    if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
+      fecha_pago = DateTime.now.strftime("%d-%m-%Y")
+      fecha_contable = DateTime.now.strftime("%d-%m-%Y")
+    else  
+      fecha_pago     = params[:income][:fecha_pago]
+      fecha_contable = params[:income][:fecha_contable]
+    end
+
+
     @income = Income.new
     @income.monto       =  params[:income][:monto]
     @income.person_id   =  params[:income][:person_id]
@@ -261,8 +270,8 @@ class PeopleController < ApplicationController
     @income.document    =  params[:income][:document]
     @income.banco       =  params[:income][:banco]
     @income.mediopago   =  params[:income][:mediopago]
-    @income.fecha_pago  =  Date.parse(params[:income][:fecha_pago])
-    @income.fecha_contable  = Date.parse( params[:income][:fecha_contable])
+    @income.fecha_pago  =  Date.parse(fecha_pago)
+    @income.fecha_contable  = Date.parse( fecha_contable)
     @income.mes_cuota   = params[:income][:mes_cuota]
     @income.fecha       =  DateTime.now
     @income.estado      = "CONFIRMADO"
@@ -279,7 +288,7 @@ class PeopleController < ApplicationController
         fee = Fee.new
         fee.rut = @person.rut
         fee.email = @person.email
-        fee.fecha_pago = Date.parse(params[:income][:fecha_pago])
+        fee.fecha_pago = Date.parse(fecha_pago)
         fee.mes = i
         fee.monto = valorcuota
         fee.mes_cuota = "#{mes}-#{year}"

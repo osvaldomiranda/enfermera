@@ -67,6 +67,14 @@ class WorkplacesController < ApplicationController
   end
 
   def pay
+
+    if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
+      fecha_pago = DateTime.now.strftime("%d-%m-%Y")
+      fecha_contable = DateTime.now.strftime("%d-%m-%Y")
+    else  
+      fecha_pago     = params[:income][:fecha_pago]
+      fecha_contable = params[:income][:fecha_contable]
+    end
     
     if params[:person_ids].present?
       @income = Income.new
@@ -81,8 +89,8 @@ class WorkplacesController < ApplicationController
       @income.mediopago   =  params[:income][:mediopago]
       @income.fecha       =  DateTime.now
 
-      @income.fecha_pago  =  Date.parse(params[:income][:fecha_pago])
-      @income.fecha_contable  = Date.parse( params[:income][:fecha_contable])
+      @income.fecha_pago  =  Date.parse(fecha_pago)
+      @income.fecha_contable  = Date.parse( fecha_contable)
       @income.mes_cuota   = params[:income][:mes_cuota]
 
 
@@ -96,7 +104,7 @@ class WorkplacesController < ApplicationController
           fee.email = person.email
           
 
-          fee.fecha_pago = Date.parse(params[:income][:fecha_pago])
+          fee.fecha_pago = Date.parse(fecha_pago)
 
           fee.mes = params[:income][:mes_cuota]
           fee.monto = valorcuota
