@@ -59,17 +59,16 @@
                           =f.file_field :document
                         %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar        
 
-       
-
+             
                   .form-group 
                     %label.col-sm-2.control-label{:for => "textinput"}    
-                    .col-sm-12 
+                    .col-sm-12{id: "person_ids"}
                       %hr
                       %h3 Registrar cuotas      
                       %table.table.table-striped
                         %thead
                           %tr
-                            %th Registrar Cuota
+                            %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{Currentfee.last.valor})"}  
                             %th Nombre
                             %th Rut
                             %th Email

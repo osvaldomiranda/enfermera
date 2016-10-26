@@ -78,7 +78,10 @@
                     = f.input :tipo_contrato, label: false, collection: Inscription.tipocontrato_options_for_select     
                   %label.col-sm-2.control-label{:for => "textinput"} Lugar de trabajo 
                   .col-sm-4
-                    = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_select  
+                    - if current_user.present?
+                      = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_code 
+                    -else
+                      = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_name   
                 %h3 Forma pago cuota social   
                 %p= "Actualmente nuestra cuota social es de $#{@valorcuota}."
                 %p Pago directo inplica que usted deberá realizar el pago en nuestra cuenta corriente,

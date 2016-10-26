@@ -10,9 +10,14 @@ class Workplace < ActiveRecord::Base
   scope :with_codwp, -> with_codwp { where(cod_wp: with_codwp) if with_codwp.present?}
 
  
-  def self.workplaces_option_for_select
+  def self.workplaces_option_for_name
     # filtrar por ciudad
     Workplace.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
+  end  
+
+  def self.workplaces_option_for_code
+    # filtrar por ciudad
+    Workplace.all.order(cod_wp: :asc).map {|t| ["#{t.cod_wp} #{t.nombre}", t.id]}
   end  
 
   def self.workplaces_for_office(regional)

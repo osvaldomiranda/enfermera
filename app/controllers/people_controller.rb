@@ -272,7 +272,7 @@ class PeopleController < ApplicationController
       n = params[:income][:monto].to_i/valorcuota
       
       mes = params[:income][:mes_cuota][0..1].gsub('-','').to_i
-      year = params[:income][:mes_cuota][1..6].gsub('-','').to_i
+      year = params[:income][:mes_cuota][2..6].gsub('-','').to_i
 
       @person = Person.find(params[:income][:person_id])
       (1..n).each do |i|
@@ -284,8 +284,14 @@ class PeopleController < ApplicationController
         fee.monto = valorcuota
         fee.mes_cuota = "#{mes}-#{year}"
         fee.person_id = @person.id
-        fee.pagador = "Pago Directo Colegiada"
-        fee.estado = "Por Confirmar"
+
+        if current_user.role?(:member)
+          fee.pagador = "Pago Directo Colegiada"
+          fee.estado = "Por Confirmar"
+        else
+          fee.pagador = "Pago Registrado Admin"
+          fee.estado = "Confirmado"
+        end
         fee.income_id = @income.id
         fee.save
 
@@ -299,7 +305,11 @@ class PeopleController < ApplicationController
 
     @persondocuments = Persondocument.all
 
-    redirect_to person_path(params[:income][:person_id])
+    if current_user.role?(:member)
+      redirect_to dashboard_index_path
+    else
+      redirect_to person_path(params[:income][:person_id])
+    end
   end
 
   def senduser

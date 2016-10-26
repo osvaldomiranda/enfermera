@@ -80,6 +80,12 @@ class WorkplacesController < ApplicationController
       @income.banco       =  params[:income][:banco]
       @income.mediopago   =  params[:income][:mediopago]
       @income.fecha       =  DateTime.now
+
+      @income.fecha_pago  =  Date.parse(params[:income][:fecha_pago])
+      @income.fecha_contable  = Date.parse( params[:income][:fecha_contable])
+      @income.mes_cuota   = params[:income][:mes_cuota]
+
+
       @income.estado      = "CONFIRMADO"
       if @income.save
         valorcuota = Currentfee.last.valor
@@ -88,12 +94,15 @@ class WorkplacesController < ApplicationController
           fee = Fee.new
           fee.rut = person.rut
           fee.email = person.email
-          fee.fecha_pago = params[:income][:fecha]
-          fee.mes = 1
+          
+
+          fee.fecha_pago = Date.parse(params[:income][:fecha_pago])
+
+          fee.mes = params[:income][:mes_cuota]
           fee.monto = valorcuota
           fee.person_id = person.id
           fee.pagador = "Descuento Planilla"
-          fee.mes_cuota =  params[:income][:tipo]
+          fee.mes_cuota =  params[:income][:mes_cuota]
           fee.estado = "Confirmado"
           fee.income_id = @income.id
           fee.save
