@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     end
 
     @persondocuments = @person.persondocuments
-
+    @head_dailies = HeadDaily.where(rut: @person.rut) 
   end
 
 end
