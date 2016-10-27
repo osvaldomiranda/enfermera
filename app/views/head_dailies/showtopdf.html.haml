@@ -1,70 +1,72 @@
-.container{:role => "main"}
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-      .panel-body
-        .row
-          .col-md-4.col-md-offset-4.text-center.logo-margin
-            = wicked_pdf_image_tag("logo-top.png")
-          .col-xs-12.text-center.logo-margin
-            %h1
-              = "Comprobante de #{@head_daily.tipo} #{@head_daily.numero}"
-     
-                
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    = wicked_pdf_stylesheet_link_tag "pdf"
+    = wicked_pdf_javascript_include_tag "number_pages"
+  %body
 
-          - if @head_daily.tipo == "INGRESO"  
-            %p= "Recibido de: #{@head_daily.recibidode}"
-            %p= "Medio de Pago: #{@head_daily.mediopago}"
-            %p= "Banco: #{@head_daily.banco}"
-          - else
-            %p= "Paguese a: #{@head_daily.paguesea}" 
-            %p= "Por: #{@head_daily.por}"
-            %p= "Medio de Pago: #{@head_daily.mediopago}"
-            %p= "Banco: #{@head_daily.banco}"
-        %hr 
-        .row
-          .col-xs-12
-            %table
-              %thead
-                %tr
-                  %th Fecha
-                  %th Centro de costo
-                  %th Cuenta
-                  %th Debe
-                  %th Haber
-                  %th Glosa
-
-              %tbody
-                - @head_daily.dailies.order(:id).each do |daily|
-                  %tr
-                    %td= daily.fecha
-                    - if daily.cost_center.present?
-                      %td= daily.cost_center.codigo
-                    - else
-                      %td
-                    -if  daily.account.present?   
-                      %td= daily.account.codigo
-                    - else
-                      %td  
-                    %td= daily.debe
-                    %td= daily.haber
-                    %td= daily.por
-              %hr      
+    .container
+      .row
+        .col-xl-12.text-center
+          = wicked_pdf_image_tag("logo-top.png")
+      .row    
+        .col-xl-12.text-center
+          %h1
+            = "Comprobante de #{@head_daily.tipo} #{@head_daily.numero}"
+        - if @head_daily.tipo == "INGRESO"  
+          %p= "Recibido de: #{@head_daily.recibidode}"
+          %p= "Medio de Pago: #{@head_daily.mediopago}"
+          %p= "Banco: #{@head_daily.banco}"
+        - else
+          %p= "Paguese a: #{@head_daily.paguesea}" 
+          %p= "Por: #{@head_daily.por}"
+          %p= "Medio de Pago: #{@head_daily.mediopago}"
+          %p= "Banco: #{@head_daily.banco}"
+      %hr 
+      .row
+        .col-xl-12
+          %table.table.table-striped
+            %thead
               %tr
-                %td
-                %td
-                %td  
-                %td= @head_daily.dailies.sum(:debe)
-                %td= @head_daily.dailies.sum(:haber)
-                %td 
-
-  %hr 
-  .col-md-4.col-md-offset-4.text-center.logo-margin
-    - if @head_daily.tipo == "INGRESO"
-      = wicked_pdf_image_tag("ingreso.png")
-    - else
-      = wicked_pdf_image_tag("egreso.png")
-      
+                %th Fecha
+                %th Centro de costo
+                %th Cuenta
+                %th Debe
+                %th Haber
+                %th Glosa
+            %tbody
+              - @head_daily.dailies.order(:id).each do |daily|
+                %tr
+                  %td= daily.fecha
+                  - if daily.cost_center.present?
+                    %td= daily.cost_center.codigo
+                  - else
+                    %td
+                  -if  daily.account.present?   
+                    %td= daily.account.codigo
+                  - else
+                    %td  
+                  %td= daily.debe
+                  %td= daily.haber
+                  %td= daily.por
+            %hr      
+            %tr
+              %td
+              %td
+              %td  
+              %td= @head_daily.dailies.sum(:debe)
+              %td= @head_daily.dailies.sum(:haber)
+              %td 
+      %hr 
+      .row
+        .col-xl-12.text-center
+          - if @head_daily.tipo == "INGRESO"
+            = wicked_pdf_image_tag("ingreso.png")
+          - else
+            = wicked_pdf_image_tag("egreso.png")
+          
 
 
 
