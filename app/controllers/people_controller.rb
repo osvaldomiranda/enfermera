@@ -260,11 +260,13 @@ class PeopleController < ApplicationController
       fecha_contable = params[:income][:fecha_contable]
     end
 
+    worplace = Workplace.where(id:params[:income][:workplace_id]).firs
 
     @income = Income.new
     @income.monto       =  params[:income][:monto]
     @income.person_id   =  params[:income][:person_id]
     @income.workplace_id=  params[:income][:workplace_id]
+    @income.office_id   =  workplace.office_id
     @income.tipo        = "Colegiada"
     @income.user_id     =  params[:income][:user_id]
     @income.document    =  params[:income][:document]
@@ -301,6 +303,7 @@ class PeopleController < ApplicationController
           fee.pagador = "Pago Registrado Admin"
           fee.estado = "Confirmado"
         end
+        
         fee.income_id = @income.id
         fee.save
 

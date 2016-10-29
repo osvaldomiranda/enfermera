@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       redirect_to dashboard_index_path
     else  
       @scientific_societies =  ScientificSociety.all
-      @national_councils = NationalCouncil.all
+      @national_councils = NationalCouncil.all.order('prioridad ASC')
       @publication_news = Publication.where(tipo: 'NOTICIA')
       @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO')
       @publication_eventos = Publication.where(tipo: 'EVENTO')

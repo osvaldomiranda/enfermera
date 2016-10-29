@@ -5,7 +5,7 @@ class NationalCouncilsController < ApplicationController
   respond_to :html
 
   def index
-    @national_councils = NationalCouncil.all
+    @national_councils = NationalCouncil.all.order('prioridad ASC')
     respond_with(@national_councils)
   end
 
