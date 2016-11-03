@@ -27,7 +27,8 @@ class PeopleController < ApplicationController
   end
 
   def show
-    respond_with(@person)
+    @head_dailies = HeadDaily.where(rut: @person.rut) 
+    respond_with(@person) 
   end
 
   def new
