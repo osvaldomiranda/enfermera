@@ -5,7 +5,7 @@ class ScientificSocietiesController < ApplicationController
   respond_to :html
 
   def index
-    @scientific_societies = ScientificSociety.all
+    @scientific_societies = ScientificSociety.all.order('id ASC')
     respond_with(@scientific_societies)
   end
 
