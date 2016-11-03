@@ -260,7 +260,7 @@ class PeopleController < ApplicationController
       fecha_contable = params[:income][:fecha_contable]
     end
 
-    worplace = Workplace.where(id:params[:income][:workplace_id]).first
+    workplace = Workplace.where(id:params[:income][:workplace_id]).first
 
     @income = Income.new
     @income.monto       =  params[:income][:monto]
