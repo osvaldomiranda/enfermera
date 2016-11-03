@@ -344,7 +344,7 @@
     / Team Members Row
     .row
       - @scientific_societies.each do |scientific_society|
-        .col-lg-4.text-center
+        .col-lg-3.text-center
           = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
           %h4.center.white
             =scientific_society.nombre
