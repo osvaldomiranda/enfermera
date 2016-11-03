@@ -1,6 +1,7 @@
 Enfermera::Application.routes.draw do
 
 
+  get "welcome/index"
   resources :national_councils
 
   resources :scientific_societies
