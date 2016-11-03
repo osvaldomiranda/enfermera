@@ -1,15 +1,14 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
       .panel-heading
         %h3.panel-title Colegiadas
       .panel-body
-        = form_tag "/report/export.xls" do
-          = field_set_tag do
-
-            = label_tag :Mes, 'Mes:'
-            = month_field_tag "Mes", value = DateTime.now , options = {} 
-            = submit_tag 'Exportar a Excel'
+        
+        = link_to 'Exportar', toxls_admincolegiada_index_path(format: :xls),  class: 'btn btn-info'
         %br
         %br
         %br
@@ -20,6 +19,12 @@
               %th Nombre
               %th Rut
               %th Email
+              %th Sexo
+              %th Fecha Inscripción
+              %th Dirección
+              %th Ciudad
+              %th Universidad
+              %th Fecha Titulo
           %tbody
             - Person.all.each do |person|
               %tr
@@ -27,3 +32,9 @@
                 %td= person.fullname  
                 %td= person.rut
                 %td= person.email
+                %td= person.sexo
+                %td= person.created_at
+                %td= person.direccion
+                %td= person.ciudad
+                %td= person.universidad
+                %td= person.fecha_titulo

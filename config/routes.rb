@@ -112,7 +112,10 @@ Enfermera::Application.routes.draw do
   # get "admincolegiada/index"
   # get "admincolegiada/superintendencia"
   resources :admincolegiada, only: :index do
-    collection { get :superintendencia }
+    collection do 
+      get :superintendencia 
+      get :toxls
+    end
   end
   
   # reseources adminworckplace only: :index

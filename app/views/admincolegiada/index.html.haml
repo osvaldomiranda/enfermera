@@ -1,13 +1,13 @@
 = javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
       .panel-heading
         %h3.panel-title Colegiadas
       .panel-body
-        %br
-        = link_to '<< Administración', "/management/index",  class: 'btn btn-info'
-        %br
         %br
         .row
           .col-md-12.text-center
@@ -43,7 +43,7 @@
         %hr
         .row
           .col-sm-12.col-xs-12.editar.text-center
-            = link_to 'Consulta Colegiada', "/people",  class: 'btn btn-info'
-            = link_to 'Informe Superintendencia Salud', "/admincolegiada/superintendencia",  class: 'btn btn-info'
+            = link_to 'Consulta Colegiada', people_path,  class: 'btn btn-info'
+            = link_to 'Informe Superintendencia Salud', superintendencia_admincolegiada_index_path,  class: 'btn btn-info'
             / = link_to 'Aprobar Registro de Colegiatura', "",  class: 'btn btn-info'
            

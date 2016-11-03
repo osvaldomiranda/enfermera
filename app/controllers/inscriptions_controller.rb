@@ -32,9 +32,9 @@ class InscriptionsController < ApplicationController
       certificado_html = ""
 
       user = User.new
-      user.email = params[:inscription][:email]
-      user.password = params[:inscription][:password]
-      user.password_confirmation = params[:inscription][:password_confirmation]
+      user.email = params[:inscription][:email] || "#{params[:inscription][:rut]}sin@email.cl"
+      user.password = params[:inscription][:password] || params[:inscription][:rut]
+      user.password_confirmation = params[:inscription][:password_confirmation] || params[:inscription][:rut]
       user.roles_mask = 3
       user.save
 

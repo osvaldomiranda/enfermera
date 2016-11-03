@@ -213,7 +213,7 @@ class Person < ActiveRecord::Base
   def self.next_nro_registro
     h = Person.order("nro_registro ASC").last
     if h.present?
-      n = h.numero + 1
+      n = h.nro_registro.to_i + 1
     else
       n = 1  
     end  

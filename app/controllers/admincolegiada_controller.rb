@@ -6,6 +6,14 @@ class AdmincolegiadaController < ApplicationController
   end
 
   def superintendencia
-    @colegiadas = Person.all
+    @colegiadas = Person.order('nro_registro DESC')
+  end
+
+  def toxls
+    require 'csv'
+    @colegiadas = Person.order('nro_registro DESC')
+    respond_to do |format|
+      format.xls 
+    end
   end
 end
