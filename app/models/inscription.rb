@@ -116,10 +116,7 @@ class Inscription < ActiveRecord::Base
     password = self.password.present? ? self.password : self.rut
 
 
-    puts "********************"
-    puts email
-    puts password
-    puts "********************"
+
 
     user = User.new
     user.email = email
@@ -129,9 +126,7 @@ class Inscription < ActiveRecord::Base
 
     if user.save
 
-    puts "********************"
-    puts 'Guardó user'
-    puts "********************"
+
 
       @person = Person.new
       @person.email = email
@@ -151,9 +146,7 @@ class Inscription < ActiveRecord::Base
       @person.url = ''
       @person.certificado_html = ''
       if  @person.save
-        puts "********************"
-        puts 'Guardó person'
-        puts "********************"
+
       else
         errors.add(:rut, 'No se pudo crear Colegiada')
       end  
