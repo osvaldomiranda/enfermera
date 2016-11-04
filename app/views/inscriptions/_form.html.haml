@@ -1,3 +1,6 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .panel.panel-default
     .panel-heading
@@ -21,13 +24,13 @@
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} Correo Electrónico
                   .col-sm-4
-                    = f.input :email, label: false, required: true
+                    = f.input :email, label: false
                   %label.col-sm-2.control-label{:for => "textinput"} Contraseña
                   .col-sm-4
-                    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: false
+                    = f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: false
                   %label.col-sm-8.control-label{:for => "textinput"} Confirmar Contraseña
                   .col-sm-4 
-                    = f.input :password_confirmation, label: false, required: true  
+                    = f.input :password_confirmation, label: false 
                 %h3 Información Básica       
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} RUT

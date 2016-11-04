@@ -13,6 +13,8 @@ class Person < ActiveRecord::Base
 
   mount_uploader :picture, PictureUploader
 
+  auto_increment :nro_registro
+
   # validates :email, :first_name, :last_name, presence: true
   #validates :rut, :rut_format => true
 
@@ -210,15 +212,5 @@ class Person < ActiveRecord::Base
     w.office
   end
 
-  def self.next_nro_registro
-    h = Person.order("nro_registro ASC").last
-    
-    if h.present?
-      n = h.nro_registro.to_i + 1
-    else
-      n = 1  
-    end  
-    return n
-  end
 
 end

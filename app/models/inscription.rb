@@ -1,6 +1,7 @@
 class Inscription < ActiveRecord::Base
 
 	include ActiveModel::Validations
+  validate :create_person_user
 
   auto_increment :nro_registro
 
@@ -32,6 +33,13 @@ class Inscription < ActiveRecord::Base
 
 	#validates_with RutFormatValidator, field: [:rut]
   validates :rut, presence: true, rutFormat: true
+  validates :apellido_paterno, presence: true
+  validates :nombres, presence: true
+  validates :tipo_contrato, presence: true
+  validates :sexo, presence: true
+  validates :nacionalidad, presence: true
+  validates :workplace_id, presence: true
+  validates :forma_pago, presence: true
 
   # Validamos que el telefono solo sea numerico
   #validates :telefono, presence: true #numericality: { only_integer: true }
@@ -99,6 +107,60 @@ class Inscription < ActiveRecord::Base
     
     end 
 
+  end
+
+
+  def create_person_user
+
+    email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
+    password = self.password.present? ? self.password : self.rut
+
+
+    puts "********************"
+    puts email
+    puts password
+    puts "********************"
+
+    user = User.new
+    user.email = email
+    user.password = password
+    user.password_confirmation = password
+    user.roles_mask = 3
+
+    if user.save
+
+    puts "********************"
+    puts 'Guardó user'
+    puts "********************"
+
+      @person = Person.new
+      @person.email = email
+      @person.rut = self.rut
+      @person.nombres = self.nombres
+      @person.apellido_paterno = self.apellido_paterno
+      @person.apellido_materno = self.apellido_materno
+      @person.sexo = self.sexo
+      @person.nacionalidad = self.nacionalidad
+      @person.fecha_inscripcion = DateTime.now
+      @person.direccion = self.direccion
+      @person.ciudad = self.ciudad
+      @person.universidad = self.universidad
+      @person.fecha_titulo = self.fecha_titulo
+      @person.tipo_contrato = self.tipo_contrato
+      @person.workplace_id = self.workplace_id
+      @person.url = ''
+      @person.certificado_html = ''
+      if  @person.save
+        puts "********************"
+        puts 'Guardó person'
+        puts "********************"
+      else
+        errors.add(:rut, 'No se pudo crear Colegiada')
+      end  
+      Inscription.BuscarCertificado(self.rut)
+    else
+      errors.add(:rut, 'No se pudo crear Colegiada')  
+    end
   end
 end 
 

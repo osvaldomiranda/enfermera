@@ -23,52 +23,11 @@ class InscriptionsController < ApplicationController
   end
 
   def create
+    inscription_params[:email] = "#{inscription_params[:rut]}sin@email.cl" unless inscription_params[:email].present?
 
     @inscription = Inscription.new(inscription_params)
-    
-    if @inscription.save
-      
-      url = ""
-      certificado_html = ""
-
-      user = User.new
-      user.email = params[:inscription][:email] || "#{params[:inscription][:rut]}sin@email.cl"
-      user.password = params[:inscription][:password] || params[:inscription][:rut]
-      user.password_confirmation = params[:inscription][:password_confirmation] || params[:inscription][:rut]
-      user.roles_mask = 3
-      user.save
-
-      @person = Person.new
-      @person.nro_registro = Person.next_nro_registro
-      @person.email = params[:inscription][:email]
-      @person.rut = params[:inscription][:rut]
-      @person.nombres = params[:inscription][:nombres]
-      @person.apellido_paterno = params[:inscription][:apellido_paterno]
-      @person.apellido_materno = params[:inscription][:apellido_materno]
-      @person.nro_registro = params[:inscription][:nro_registro]
-      @person.sexo = params[:inscription][:sexo]
-      @person.nacionalidad = params[:inscription][:nacionalidad]
-      @person.fecha_inscripcion = params[:inscription][:fecha_inscripcion] 
-      @person.direccion = params[:inscription][:direccion]
-      @person.ciudad = params[:inscription][:ciudad]
-      @person.universidad = params[:inscription][:universidad]
-      @person.fecha_titulo = params[:inscription][:fecha_titulo]
-      @person.tipo_contrato = params[:inscription][:tipo_contrato]
-      @person.workplace_id = params[:inscription][:workplace_id]
-      @person.url = url
-      @person.certificado_html = certificado_html
-      @person.save
-
-      Inscription.BuscarCertificado(params[:inscription][:rut])
-
-      @persondocuments = Persondocument.all
-
-      sign_in(user.email)
-      redirect_to  dashboard_index_path
-      
-    else  
-      redirect_to "/"
-    end
+    @inscription.save
+    respond_with(@inscription)
   end
 
   def update
@@ -87,6 +46,6 @@ class InscriptionsController < ApplicationController
     end
 
     def inscription_params
-      params.require(:inscription).permit(:nro_registro, :rut, :nombres, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :tipo_contrato, :estado, :fecha_solicitud, :workplace_id, :forma_pago)
+      params.require(:inscription).permit(:nro_registro, :rut, :nombres, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :tipo_contrato, :estado, :fecha_solicitud, :workplace_id, :forma_pago, :email, :password, :password_confirmation, :telefono, :celular)
     end
 end
