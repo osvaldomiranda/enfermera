@@ -68,6 +68,10 @@ class WorkplacesController < ApplicationController
 
   def pay
 
+    puts "***************"
+    puts params[:income][:mes_cuota]
+    puts "***************"
+
     if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
       fecha_pago = DateTime.now.strftime("%d-%m-%Y")
       fecha_contable = DateTime.now.strftime("%d-%m-%Y")

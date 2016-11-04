@@ -1,3 +1,4 @@
+
 .container-fluid
   %h2 
   .container-fluid
@@ -9,14 +10,16 @@
 
           .form-inputs
             = f.input :nombre
-            = f.input :ciudad
-            = f.input :region, collection: Office.region_options_for_select, :input_html => {:style=> 'width: 180px'}
-            = f.input :codigo  
+            = f.input :cod_wp  
             = f.input :telefono
             = f.input :email
+            = f.input :ciudad
             = f.input :calle
             = f.input :numero
             = f.input :office_id, collection: Office.office_option_for_select, :input_html => {:style=> 'width: 180px'}
-
+          %br  
+          %br
           .form-actions
-            = f.button :submit
+            = f.button :submit, 'Guardar'
+            %br
+            %br

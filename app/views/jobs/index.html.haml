@@ -1,3 +1,6 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
@@ -28,11 +31,11 @@
                     %td= link_to 'Ver detalle', job
                     - if current_user.present?
                       - if current_user.role?(:national_admin)
-                        %td= link_to 'Edit', edit_job_path(job)
-                        %td= link_to 'Destroy', job, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                        %td= link_to 'Editar', edit_job_path(job)
+                        %td= link_to 'Eliminar', job, :method => :delete, :data => { :confirm => 'Are you sure?' }
         %br
         - if current_user.present?
           - if current_user.role?(:national_admin)
-            = link_to 'New Job', new_job_path
+            = link_to 'Nueva Oferta', new_job_path, class: 'btn btn-warning'
 
 

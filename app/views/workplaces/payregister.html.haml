@@ -37,7 +37,7 @@
                       = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
                     %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota 
                     .col-sm-4
-                      = f.input :tipo, label: false, collection:  Income.mescuota_options_for_select  
+                      = f.input :mes_cuota, label: false, collection:  Income.mescuota_options_for_select  
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} banco
                     .col-sm-4  

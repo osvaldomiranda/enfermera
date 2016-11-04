@@ -297,12 +297,12 @@ class PeopleController < ApplicationController
         fee.mes_cuota = "#{mes}-#{year}"
         fee.person_id = @person.id
 
-        if current_user.role?(:member)
-          fee.pagador = "Pago Directo Colegiada"
-          fee.estado = "Por Confirmar"
-        else
+        if current_user.role?(:finance)
           fee.pagador = "Pago Registrado Admin"
           fee.estado = "Confirmado"
+        else
+          fee.pagador = "Pago Directo Colegiada"
+          fee.estado = "Por Confirmar"
         end
         
         fee.income_id = @income.id
