@@ -8,34 +8,27 @@
         %h3.panel-title Ofertas de Trabajo
       .panel-body
         .container-fluid
-          .table-responsive
-            %table.table.table-striped
+          = link_to '<< Volver', '/', class: 'btn btn-info'
+          
+          - if current_user.present?
+            - if current_user.role?(:national_admin)
+              %br
+              %br
+              = link_to 'Nueva Oferta', new_job_path, class: 'btn btn-warning'
+          %br
+          %br    
 
-
-              %thead
-                %tr
-                  %th Titulo
-                  %th Contacto
-                  %th Estado
-                  %th
-                  %th
-                  %th
-
-              %tbody
-                - @jobs.each do |job|
-                  %tr
-                    %td= job.titulo
-                    %td= job.descripcion
-                    %td= job.contacto
-                    %td= job.estado
-                    %td= link_to 'Ver detalle', job
-                    - if current_user.present?
-                      - if current_user.role?(:national_admin)
-                        %td= link_to 'Editar', edit_job_path(job)
-                        %td= link_to 'Eliminar', job, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        %br
-        - if current_user.present?
-          - if current_user.role?(:national_admin)
-            = link_to 'Nueva Oferta', new_job_path, class: 'btn btn-warning'
-
+          - @jobs.each do |job|
+            %hr
+            %h1= job.titulo
+            %h3= job.descripcion
+            %h4= job.contacto
+            %p= "Publicado el: #{job.created_at.strftime('%d/%m/%Y %H:%M')}"
+            %p= job.estado
+            - if current_user.present?
+              - if current_user.role?(:national_admin)
+                = link_to 'Editar', edit_job_path(job) , class: 'btn btn-info'
+                = link_to 'Eliminar', job, :method => :delete, :data => { :confirm => 'Are you sure?' } , class: 'btn btn-info'
+                %br
+                %br
 

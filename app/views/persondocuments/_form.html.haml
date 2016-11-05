@@ -17,22 +17,24 @@
             %label.col-sm-2.control-label{:for => "textinput"} Tipo
             .col-sm-4
               = f.input :tipo, label: false, collection: Persondocument.tipo_options_for_select
+        .form-group      
+          .col-sm-12
 
-              
-        .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
-          .form-control{"data-trigger" => "fileinput"}
-            %i.glyphicon.glyphicon-file.fileinput-exists
-            %span.fileinput-filename
-          %span.input-group-addon.btn.btn-default.btn-file
-            %span.fileinput-new Documento
-            %span.fileinput-exists Cambiar
-            =f.file_field :documento
-          %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
-      
+            .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+              .form-control{"data-trigger" => "fileinput"}
+                %i.glyphicon.glyphicon-file.fileinput-exists
+                %span.fileinput-filename
+              %span.input-group-addon.btn.btn-default.btn-file
+                %span.fileinput-new Documento
+                %span.fileinput-exists Cambiar
+                =f.file_field :documento
+              %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
 
 
-        .form-actions
-          = f.button :submit, "Guardar Documento" , class: 'btn btn-warning' 
+        .row
+          .col-sm-8
+            .form-actions
+              = f.button :submit, "Guardar Documento" , class: 'btn btn-warning' 
 
       %br
       %br

@@ -11,7 +11,7 @@
         .container-fluid
           %h1 Consejo Nacional 
           - if current_user.present?
-
+            = link_to 'Crear nuevo integrante', new_national_council_path, class: 'btn btn-warning'
 
             %table.table.table-striped
               %thead
@@ -41,4 +41,4 @@
 
 %br
 
-= link_to 'Crear nuevo integrante', new_national_council_path
+

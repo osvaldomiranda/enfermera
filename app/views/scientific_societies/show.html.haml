@@ -1,18 +1,17 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
       .panel-heading
-        %h3.panel-title Ofertas de Trabajo
+        %h3.panel-title 
       .panel-body
         %p#notice= notice
 
         = image_tag @scientific_society.logo_url, class: "center img-circle img-responsive img-center"
-        %p
-          %b Nombre:
-          = @scientific_society.nombre
-        %p
-          %b Descripcion:
-          = @scientific_society.descripcion
+        %h2= @scientific_society.nombre
+        %p= @scientific_society.descripcion
         %p
           %b Direccion:
           = @scientific_society.direccion

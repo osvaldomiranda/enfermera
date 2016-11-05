@@ -6,7 +6,8 @@
     .panel.panel-default
       .panel-heading
       .panel-body
-
+        %h2 Sociedades Cientificas
+        = link_to 'Nueva Sociedad Cientifica', new_scientific_society_path, class: 'btn btn-warning'
 
         %table.table.table-striped
           %thead
@@ -40,4 +41,4 @@
 
         %br
 
-        = link_to 'Nueva Sociedad Cientifica', new_scientific_society_path
+
