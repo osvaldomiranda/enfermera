@@ -1,3 +1,6 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
@@ -38,5 +41,5 @@
                     %td= income.workplace.nombre
                     %td= income.user.email
                     %td= link_to "#{income.estado}", "", class: 'btn btn-info'
-                    %td= link_to "Ver", "/incomes/feeforincome/#{income.id}", data: { modal: true },class: 'btn btn-info'
+                    %td= link_to "Ver", feeforincome_incomes_path(id: income.id), data: { modal: true },class: 'btn btn-info'
             %br

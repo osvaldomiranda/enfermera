@@ -41,7 +41,6 @@ Enfermera::Application.routes.draw do
   resources :regions
   resources :offices
   resources :fees
-  resources :incomes
   resources :inscriptions
   resources :wpdocuments
   resources :previousjobs
@@ -140,7 +139,7 @@ Enfermera::Application.routes.draw do
   
   # get "/incomes/feeforincome/:id", to: 'incomes#feeforincome'
   resources :incomes do
-    member { get :feeforincome }
+    collection { get :feeforincome }
   end
 
   # get "/people/picture/:id", to: 'people#picture'

@@ -1,3 +1,6 @@
+%br
+%br
+%br
 .container{:role => "main"}
   .col-md-12
     .row
@@ -28,6 +31,9 @@
                 = f.input :tipo, collection: Expense.tipo_options_for_select
                 = f.input :mediopago, collection: Expense.mediopago_options_for_select
                 = f.input :descripcion
-                = f.input :office_id, :as => :hidden, :input_html => { :value => current_user.office.id } 
+                = f.input :office_id, label: 'Regional ',collection: Office.office_option_for_select, :input_html => {:style=> 'width: 450px'}
+            %br
+            %br
+            %br    
             .form-actions
               = f.button :submit, 'Guardar Gasto'

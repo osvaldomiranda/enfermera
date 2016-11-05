@@ -19,6 +19,7 @@ class ExpensesController < ApplicationController
   end
 
   def edit
+    respond_modal_with(@expense)
   end
 
   def create
