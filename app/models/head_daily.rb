@@ -64,6 +64,13 @@ class HeadDaily < ActiveRecord::Base
 
   def eliminar
     self.dailies.each do |daily|
+      if daily.income.present?
+        daily.income.fees.each do |fee|
+          fee.delete
+        end
+        daily.income.delete
+      end  
+      
       daily.delete
     end
     self.delete
