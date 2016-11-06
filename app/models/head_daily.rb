@@ -84,7 +84,7 @@ class HeadDaily < ActiveRecord::Base
   end
 
   def define_estado
-    if current_user.role?(:admin)
+    if self.user.role?(:admin)
       self.estado = 'CONFIRMADO'
     else
       self.estado = 'PENDIENTE'
