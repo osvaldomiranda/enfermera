@@ -8,18 +8,28 @@
         %h3.panel-title Registro de Gastos 
       .panel-body
         .container-fluid
+          .row
+            .col-md-12
+              .form-inline
+                = label_tag :filter_office, 'Regional'
+                = select_tag :filter_office, options_for_select(Office.options_for_select(current_user), @office), prompt: 'Todos', class: "form-control"
+              %br  
+              = link_to 'Exportar Excel', toxls_expenses_path(office: @office, format: :xls),class: 'btn btn-info'
+          %br    
+          = link_to 'Registrar Gasto', new_expense_path, class: 'btn btn-warning'
+          %br
+          %br
           .table-responsive
             %table.table.table-striped
               %thead
                 %tr
                   %th Fecha
-                  %th Oficina
+                  %th Regional
                   %th Monto
                   %th Tipo
                   %th Document
                   %th Descripcion
                   %th Mediopago
-                  %th Office
                   %th Estado
                   %th
                   %th
@@ -38,11 +48,9 @@
                     %td= expense.descripcion
                     %td= expense.mediopago
                     %td= expense.estado
-                    %td= link_to 'Editar', edit_expense_path(expense), data: { modal: true },class: 'btn btn-info'
-                    %td= link_to 'Eliminar', expense, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-info'
+                    - if expense.user_id == current_user.id
+                      %td= link_to 'Editar', edit_expense_path(expense),class: 'btn btn-info'
+                      %td= link_to 'Eliminar', expense, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-info'
 
             %br
 
-            = link_to 'Registrar Gasto', new_expense_path, data: { modal: true },  class: 'btn btn-info'
-            %br
-            %br

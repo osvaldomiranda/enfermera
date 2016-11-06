@@ -141,7 +141,10 @@
                   %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
 
                   - if person.estado == "OK"
-                    %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                    - if person.url.present?
+                      %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                    - else
+                      %td= link_to 'Colegiada', '' , :target => '_blank', class: 'btn btn-info btn-xs'  
                   - else
                     %td= link_to 'Confirmar Suscripción', "", class: 'btn btn-warning btn-xs' 
                     / %td= link_to 'Cancelar Suscripción', "", class: 'btn btn-info btn-xs'

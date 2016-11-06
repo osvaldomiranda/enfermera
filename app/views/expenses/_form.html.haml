@@ -3,37 +3,40 @@
 %br
 .container{:role => "main"}
   .col-md-12
-    .row
-      .col-md-2.text-center
-        %h4 Registro de Gastos
-    .panel-body
-      .row
-        .col-md-12
-          = simple_form_for(@expense) do |f|
-            = f.error_notification
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Registro de Gastos 
+      .panel-body
+        .row
+          .col-md-12
+            = simple_form_for(@expense) do |f|
+              = f.error_notification
 
-            .form-inputs
+              .form-inputs
 
-            .row   
-              .col-md-8 
-                .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
-                  .form-control{"data-trigger" => "fileinput"}
-                    %i.glyphicon.glyphicon-file.fileinput-exists
-                    %span.fileinput-filename
-                  %span.input-group-addon.btn.btn-default.btn-file
-                    %span.fileinput-new Documento
-                    %span.fileinput-exists Cambiar
-                    =f.file_field :document
-                  %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
-            .row   
-              .col-md-8 
-                = f.input :monto
-                = f.input :tipo, collection: Expense.tipo_options_for_select
-                = f.input :mediopago, collection: Expense.mediopago_options_for_select
-                = f.input :descripcion
-                = f.input :office_id, label: 'Regional ',collection: Office.office_option_for_select, :input_html => {:style=> 'width: 450px'}
-            %br
-            %br
-            %br    
-            .form-actions
-              = f.button :submit, 'Guardar Gasto'
+              .row   
+                .col-md-8 
+                  .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                    .form-control{"data-trigger" => "fileinput"}
+                      %i.glyphicon.glyphicon-file.fileinput-exists
+                      %span.fileinput-filename
+                    %span.input-group-addon.btn.btn-default.btn-file
+                      %span.fileinput-new Documento
+                      %span.fileinput-exists Cambiar
+                      =f.file_field :document
+                    %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+              .row   
+                .col-md-8 
+                  = f.input :monto
+                  = f.input :tipo, collection: Expense.tipo_options_for_select
+                  = f.input :mediopago, collection: Expense.mediopago_options_for_select
+                  = f.input :descripcion
+                  = f.input :office_id, label: 'Regional ',collection: Office.options_for_select(current_user), :input_html => {:style=> 'width: 450px'}
+              %br
+              %br
+              %br    
+              .form-actions
+                = f.button :submit, 'Guardar Gasto', class: 'btn btn-warning'
+              %br
+              %br
+              %br 

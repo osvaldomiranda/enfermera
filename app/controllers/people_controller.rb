@@ -12,6 +12,7 @@ class PeopleController < ApplicationController
       @rut = params["/people"][:rut] || nil
     end  
       
+
     @estado = params[:estado] || nil
     @lugar_trabajo = params[:lugar_trabajo] || nil
     if params[:office].present?
@@ -20,8 +21,9 @@ class PeopleController < ApplicationController
       office_id = nil
     end  
     @office = params[:office] || nil
-    
-    @people = Person.office(office_id).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
+    @member = true
+
+    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
     
     respond_with(@people)
   end
@@ -43,7 +45,7 @@ class PeopleController < ApplicationController
 
   def edit
     @valorcuota = Currentfee.last.valor
-    respond_modal_with(@person)
+    respond_with(@person)
   end
 
   def create
@@ -70,19 +72,31 @@ class PeopleController < ApplicationController
           @person.terms = "OK"
           @person.fechaterms = DateTime.now
           @person.save
-          redirect_to dashboard_index_path
+          if current_user.rut == @person.rut
+            redirect_to dashboard_index_path
+          else
+            redirect_to person_path(@person.id)
+          end
         else   
           render "error"
         end 
       else  
         if @person.update(person_params)
-          redirect_to dashboard_index_path
+          if current_user.rut == @person.rut
+            redirect_to dashboard_index_path
+          else
+            redirect_to person_path(@person.id)
+          end
         else
           if person_params[:terms].present?
             @person.terms = "OK"
             @person.fechaterms = DateTime.now
             @person.save
-            redirect_to dashboard_index_path
+            if current_user.rut == @person.rut
+              redirect_to dashboard_index_path
+            else  
+              redirect_to person_path(@person.id)
+            end
           else   
             render "error"
           end  
@@ -90,7 +104,11 @@ class PeopleController < ApplicationController
       end  
     else
       @person.update(person_params)
-      redirect_to dashboard_index_path
+      if current_user.rut == @person.rut
+        redirect_to dashboard_index_path
+      else
+        redirect_to person_path(@person.id)
+      end
     end  
  
   end
@@ -318,7 +336,7 @@ class PeopleController < ApplicationController
 
     @persondocuments = Persondocument.all
 
-    if current_user.role?(:member)
+    if current_user.rut ==   @income.person.rut
       redirect_to dashboard_index_path
     else
       redirect_to person_path(params[:income][:person_id])

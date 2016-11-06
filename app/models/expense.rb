@@ -1,9 +1,17 @@
 # encoding: utf-8
 class Expense < ActiveRecord::Base
   belongs_to :office
-  belongs_to :user_id
+  belongs_to :user
 
   mount_uploader :document, DocumentUploader
+
+  validates :monto, presence: true
+  validates :tipo, presence: true
+  validates :mediopago, presence: true
+  validates :office_id, presence: true
+
+  scope :office, -> office { where(office_id: office) if office.present?}
+
 
 TIPO      = [
 'SUELDOS (SECRETARIA)',

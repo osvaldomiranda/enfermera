@@ -45,7 +45,7 @@
             %hr
               = link_to '<< Volver', people_path, class: 'btn btn-warning'
 
-              = link_to 'Editar Datos Básicos', edit_person_path(@person.id),data: { modal: true }, class: 'btn btn-info'
+              = link_to 'Editar Datos Básicos', edit_person_path(@person.id), class: 'btn btn-info'
               = link_to 'Documentos', persondocuments_path(person_id: @person.id), class: 'btn btn-info'
               = link_to 'Registrar Pago', payregister_person_path(@person.id),data: { modal: true }, class: 'btn btn-warning' 
     .panel-footer

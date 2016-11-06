@@ -40,6 +40,7 @@ class Inscription < ActiveRecord::Base
   validates :nacionalidad, presence: true
   validates :workplace_id, presence: true
   validates :forma_pago, presence: true
+  
 
   # Validamos que el telefono solo sea numerico
   #validates :telefono, presence: true #numericality: { only_integer: true }

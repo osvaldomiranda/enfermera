@@ -60,7 +60,10 @@
                   %th= head_daily.tipo
                   %th= head_daily.dailies.first.por
                   %td= head_daily.dailies.sum(:haber)
-                  %td= link_to 'Ver', head_daily
+                  - if head_daily.estado=='CONFIRMADO'
+                    %td= link_to 'Ver', head_daily
+                  - else
+                    %td= link_to 'Revisar', head_daily, class: 'btn btn-danger' 
                   %td= link_to 'Documento', head_daily.documento_url
                   %td= link_to 'PDF', showtopdf_head_daily_path(head_daily.id), class: 'btn btn-success', :target => '_blank'
 

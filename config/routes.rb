@@ -30,12 +30,18 @@ Enfermera::Application.routes.draw do
     end 
   end
 
+  resources :expenses do
+    collection do
+      get :toxls
+    end
+  end
+
   resources :cost_centers
   resources :accounts
 
   resources :blogs
   resources :officeaccounts
-  resources :expenses
+
   resources :currentfees
   resources :rols
   resources :regions
@@ -86,6 +92,7 @@ Enfermera::Application.routes.draw do
     member do
       get :showtopdf
       get :eliminar
+      get :confirmar
     end
   end
 

@@ -5,8 +5,21 @@ class ExpensesController < ApplicationController
   respond_to :html
 
   def index
-    @expenses = Expense.where(office_id: current_user.office.id)
+ 
+    @office = params[:office]  || nil
+    @expenses = Expense.office(@office)
+
     respond_with(@expenses)
+  end
+
+  def toxls
+    require 'csv'
+    @office = params[:office]  || nil
+    @expenses = Expense.office(@office)
+
+    respond_to do |format|
+      format.xls 
+    end
   end
 
   def show
@@ -15,16 +28,17 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
-    respond_modal_with(@expense)
+    respond_with(@expense)
   end
 
   def edit
-    respond_modal_with(@expense)
+    respond_with(@expense)
   end
 
   def create
     @expense = Expense.new(expense_params)
     @expense.fecha = DateTime.now
+    @expense.user_id = current_user.id
     @expense.save
     respond_with(@expense)
   end

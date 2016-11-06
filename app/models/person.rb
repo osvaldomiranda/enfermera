@@ -15,8 +15,8 @@ class Person < ActiveRecord::Base
 
   auto_increment :nro_registro
 
-  # validates :email, :first_name, :last_name, presence: true
-  #validates :rut, :rut_format => true
+  validates :email, :nombres, :apellido_paterno, presence: true
+  validates :rut, :rut_format => true
 
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
@@ -26,7 +26,7 @@ class Person < ActiveRecord::Base
   scope :with_paterno, -> with_paterno { where('lower(apellido_paterno) = ?', with_paterno.downcase  ) if with_paterno.present?}
   scope :with_materno, -> with_materno { where('lower(apellido_materno) = ?', with_materno.downcase) if with_materno.present?}
   scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
-
+  scope :member, -> member { where.not(nro_registro: nil) if member }
 
   ESTADOS = { "A" => "Con Rut"}
 

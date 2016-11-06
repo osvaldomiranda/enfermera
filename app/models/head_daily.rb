@@ -68,4 +68,10 @@ class HeadDaily < ActiveRecord::Base
     end
     self.delete
   end
+
+  def confirmar
+    self.estado='CONFIRMADO'
+    self.save
+  end
+
 end

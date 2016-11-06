@@ -1,6 +1,6 @@
 class HeadDailiesController < ApplicationController
   before_filter :authenticate_user! 
-  before_action :set_head_daily, only: [:show, :edit, :update, :destroy, :eliminar]
+  before_action :set_head_daily, only: [:show, :edit, :update, :destroy, :eliminar, :confirmar]
 
   respond_to :html
 
@@ -31,6 +31,11 @@ class HeadDailiesController < ApplicationController
 
   def create
     @head_daily = HeadDaily.new(head_daily_params)
+    if current_user.role?(:admin)
+      @head_daily.estado = 'CONFIRMADO'
+    else
+      @head_daily.estado = 'PENDIENTE'
+    end  
     @head_daily.save
     respond_with(@head_daily)
   end
@@ -48,8 +53,13 @@ class HeadDailiesController < ApplicationController
   def eliminar
     @head_daily.eliminar
 
-    @head_dailies = HeadDaily.all.order(numero: :desc)
-    render 'index'
+    redirect_to head_dailies_path
+  end
+
+  def confirmar
+    @head_daily.confirmar
+
+    redirect_to head_dailies_path
   end
 
   def showtopdf

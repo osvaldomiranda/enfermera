@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %th Fecha
+      %th Regional
+      %th Monto
+      %th Tipo
+      %th Descripcion
+      %th Mediopago
+      %th Estado
+      %th Usuario
+      %th
+      %th
+  %tbody
+    - @expenses.each do |expense|
+      %tr
+        %td= expense.fecha.strftime('%d/%m/%Y %H:%M')
+        - if expense.office.present?
+          %td= expense.office.nombre
+        - else
+          %td  
+        %td= expense.monto
+        %td= expense.tipo
+        %td= expense.descripcion
+        %td= expense.mediopago
+        %td= expense.estado
+        %td= expense.user.person.fullname if expense.user.present?

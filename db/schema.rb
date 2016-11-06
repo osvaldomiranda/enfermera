@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029122645) do
+ActiveRecord::Schema.define(version: 20161106194827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 20161029122645) do
     t.string   "descripcion"
     t.string   "mediopago"
     t.integer  "office_id"
-    t.integer  "user_id_id"
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -144,7 +143,6 @@ ActiveRecord::Schema.define(version: 20161029122645) do
 
   add_index "expenses", ["office_id"], name: "index_expenses_on_office_id", using: :btree
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
-  add_index "expenses", ["user_id_id"], name: "index_expenses_on_user_id_id", using: :btree
 
   create_table "fees", force: true do |t|
     t.string   "rut"
@@ -183,6 +181,7 @@ ActiveRecord::Schema.define(version: 20161029122645) do
     t.integer  "workplace_id"
     t.datetime "fecha_contable"
     t.string   "rut"
+    t.string   "estado"
   end
 
   add_index "head_dailies", ["office_id"], name: "index_head_dailies_on_office_id", using: :btree

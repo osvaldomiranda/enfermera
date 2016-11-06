@@ -1,36 +1,44 @@
 %br
 %br
 %br
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Registro de Gastos 
+      .panel-body
+        .container-fluid
+          %h2 Se ha registrado el gasto
+          .row
+            .col-md-12
 
-%p
-  %b Fecha:
-  = @expense.fecha
-%p
-  %b Monto:
-  = @expense.monto
-%p
-  %b Tipo:
-  = @expense.tipo
-%p
-  %b Document:
-  = @expense.document
-%p
-  %b Descripcion:
-  = @expense.descripcion
-%p
-  %b Mediopago:
-  = @expense.mediopago
-%p
-  %b Office:
-  = @expense.office
-%p
-  %b User:
-  = @expense.user_id
-%p
-  %b Estado:
-  = @expense.estado
+              %p#notice= notice
+              %p
+                %b Regional:
+                = @expense.office.nombre
+              %p
+                %b Fecha:
+                = @expense.fecha
+              %p
+                %b Monto:
+                = @expense.monto
+              %p
+                %b Tipo:
+                = @expense.tipo
+              %p
+                %b Descripcion:
+                = @expense.descripcion
+              %p
+                %b Mediopago:
+                = @expense.mediopago
 
-= link_to 'Edit', edit_expense_path(@expense)
-\|
-= link_to 'Back', expenses_path
+              %p
+                %b User:
+                = @expense.user.person.fullname
+              %p
+                %b Estado:
+                = @expense.estado
+
+              = link_to 'Continuar', expenses_path, class: 'btn btn-info'
+              %br
+              %br
