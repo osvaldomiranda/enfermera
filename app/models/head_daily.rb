@@ -6,6 +6,7 @@ class HeadDaily < ActiveRecord::Base
 
   
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
+  scope :with_estado, -> with_estado { where(estado: with_estado) if with_estado.present?}
   scope :with_numero, -> with_numero { where(numero: with_numero) if with_numero.present?}
 
   def self.import(file)

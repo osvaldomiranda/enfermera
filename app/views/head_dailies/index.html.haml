@@ -14,7 +14,9 @@
         .row
           .col-md-12
             .form-inline
-              = select_tag :filter_tipo, options_for_select([['Egresos', 'EGRESO'],['Ingresos', 'INGRESO']], @tipo), prompt: 'Todos', class: "form-control"
+              = select_tag :filter_tipo, options_for_select([['Egresos', 'EGRESO'],['Ingresos', 'INGRESO']], @tipo), prompt: 'Todos Ingresos/Egresos', class: "form-control"
+
+              = select_tag :filter_estado, options_for_select([['POR REVISAR', 'PENDIENTE'],['CONFIRMADOS', 'CONFIRMADO']], @estado), prompt: 'Todos los estados', class: "form-control"
 
         .row
           .col-md-12
