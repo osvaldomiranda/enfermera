@@ -20,13 +20,15 @@
               %p= "Por: #{@head_daily.por}"
               %p= "Medio de Pago: #{@head_daily.mediopago}"
               %p= "Banco: #{@head_daily.banco}"
-            %h4= "Usuario Ingreso: #{@head_daily.user.person.fullname}"  
+            - if @head_daily.user.present?  
+              %h4= "Usuario Ingreso: #{@head_daily.user.person.fullname}"  
 
 
             = link_to "Ver Documento adjunto", @head_daily.documento_url, class:'btn btn-info' 
-            -if  @head_daily.dailies.first.income.present?
-              -if  @head_daily.dailies.first.income.fees.count > 0
-                = link_to "Cuotas Asociadas", feeforincome_incomes_path(id: @head_daily.dailies.first.income.id), data: { modal: true },class: 'btn btn-info'
+            - if @head_daily.dailies.first.present?
+              -if  @head_daily.dailies.first.income.present?
+                -if  @head_daily.dailies.first.income.fees.count > 0
+                  = link_to "Cuotas Asociadas", feeforincome_incomes_path(id: @head_daily.dailies.first.income.id), data: { modal: true },class: 'btn btn-info'
 
         %p#notice= notice
         - if current_user.role?(:admin)
