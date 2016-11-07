@@ -29,7 +29,7 @@
                 = link_to "Cuotas Asociadas", feeforincome_incomes_path(id: @head_daily.dailies.first.income.id), data: { modal: true },class: 'btn btn-info'
 
         %p#notice= notice
-        - if current_user.role?(:finance)
+        - if current_user.role?(:admin)
           =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info' 
           =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
           =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning'
@@ -48,7 +48,7 @@
                 %th Debe
                 %th Haber
                 %th Glosa
-                - if current_user.role?(:finance)
+                - if current_user.role?(:admin)
                   %th
                   %th
             %tbody
@@ -66,7 +66,7 @@
                   %td= daily.debe
                   %td= daily.haber
                   %td= daily.por
-                  - if current_user.role?(:finance)
+                  - if current_user.role?(:admin)
                     %td= link_to 'Editar', edit_daily_path(daily), data: { modal: true }
                     %td= link_to 'Eliminar', daily, :method => :delete, :data => { :confirm => 'Esta Seguro ?' }
             %tr
@@ -76,7 +76,7 @@
               %td= @head_daily.dailies.sum(:debe)
               %td= @head_daily.dailies.sum(:haber)
               %td 
-              - if current_user.role?(:finance)
+              - if current_user.role?(:admin)
                 %td
                 %td
 
