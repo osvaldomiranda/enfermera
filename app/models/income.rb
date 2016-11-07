@@ -60,8 +60,6 @@ class Income < ActiveRecord::Base
     workplace = Workplace.find(self.workplace_id)
 
     if workplace.office.codigo != "VPO"
-
-
       head_daily = HeadDaily.new
       head_daily.numero = HeadDaily.next_ingreso
       head_daily.user_id = self.user_id
@@ -69,6 +67,13 @@ class Income < ActiveRecord::Base
       head_daily.banco = self.banco 
       head_daily.mediopago = self.mediopago
       head_daily.documento = self.document
+
+      user = User.find(self.user_id)
+      if user.role?(:admin)
+        head_daily.estado = 'CONFIRMADO'
+      else
+        head_daily.estado = 'PENDIENTE'
+      end    
 
       if self.tipo == "Colegiada"
         person = Person.find(self.person_id)

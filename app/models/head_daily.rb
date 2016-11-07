@@ -4,7 +4,6 @@ class HeadDaily < ActiveRecord::Base
   has_many :dailies, dependent: :destroy
   mount_uploader :documento, DocumentUploader
 
-  after_save :define_estado
   
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
   scope :with_numero, -> with_numero { where(numero: with_numero) if with_numero.present?}
@@ -72,7 +71,6 @@ class HeadDaily < ActiveRecord::Base
         end
         daily.income.delete
       end  
-      
       daily.delete
     end
     self.delete
@@ -80,16 +78,6 @@ class HeadDaily < ActiveRecord::Base
 
   def confirmar
     self.estado='CONFIRMADO'
-    self.sav
-  end
-
-  def define_estado
-    if self.user.role?(:admin)
-      self.estado = 'CONFIRMADO'
-    else
-      self.estado = 'PENDIENTE'
-    end  
     self.save
   end
-
 end
