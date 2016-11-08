@@ -59,7 +59,7 @@
                 %td= workplace.ciudad
                 %td= workplace.codigo
                 %td= workplace.people.count
-                %td= link_to 'Regitrar pago', payregister_workplace_path(workplace.id), class: 'btn btn-info'
+                %td= link_to 'Registrar pago', payregister_workplace_path(workplace.id), class: 'btn btn-info'
                 %td= link_to 'Editar', edit_workplace_path(workplace),  class: 'btn btn-info', data: { modal: true }
                 %td= link_to 'Ver Pagos', incomes_workplace_path(workplace),  class: 'btn btn-info'
                 
