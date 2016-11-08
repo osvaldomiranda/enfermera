@@ -32,12 +32,13 @@ class HeadDailiesController < ApplicationController
 
   def create
     @head_daily = HeadDaily.new(head_daily_params)
+    
     if current_user.role?(:admin)
       @head_daily.estado = 'CONFIRMADO'
     else
       @head_daily.estado = 'PENDIENTE'
     end  
-
+    @head_daily.user_id = current_user.id
     @head_daily.save
     respond_with(@head_daily)
   end
