@@ -19,6 +19,9 @@
           = link_to 'Registrar Gasto', new_expense_path, class: 'btn btn-warning'
           %br
           %br
+          %hr
+          = will_paginate @expenses, previous_label: h("<  "), next_label: h("  >")
+          %br
           .table-responsive
             %table.table.table-striped
               %thead

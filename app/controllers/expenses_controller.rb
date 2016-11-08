@@ -7,7 +7,7 @@ class ExpensesController < ApplicationController
   def index
  
     @office = params[:office]  || nil
-    @expenses = Expense.office(@office)
+    @expenses = Expense.office(@office).order('created_at DESC').page(params[:page]).per_page(20) 
 
     respond_with(@expenses)
   end
@@ -15,7 +15,7 @@ class ExpensesController < ApplicationController
   def toxls
     require 'csv'
     @office = params[:office]  || nil
-    @expenses = Expense.office(@office)
+    @expenses = Expense.office(@office).order('created_at DESC')
 
     respond_to do |format|
       format.xls 
@@ -36,8 +36,13 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.new(expense_params)
-    @expense.fecha = DateTime.now
+    @expense = Expense.new
+    @expense.fecha = Date.parse(expense_params[:fecha])
+    @expense.monto = expense_params[:monto]
+    @expense.tipo  = expense_params[:tipo]
+    @expense.mediopago = expense_params[:mediopago]
+    @expense.descripcion = expense_params[:descripcion]
+    @expense.office_id = expense_params[:office_id]
     @expense.user_id = current_user.id
     @expense.save
     respond_with(@expense)
