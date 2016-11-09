@@ -14,7 +14,7 @@
           = @job.titulo
         %p
           %b Descripcion:
-          = @job.descripcion
+          = raw(@job.descripcion)
         %p
           %b Contacto:
           = @job.contacto

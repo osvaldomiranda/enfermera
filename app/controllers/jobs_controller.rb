@@ -4,7 +4,12 @@ class JobsController < ApplicationController
   respond_to :html
 
   def index
-    @jobs = Job.all
+    @jobs = Job.where(estado:'VISIBLE').order('created_at DESC')
+    if current_user.present?
+      if current_user.role?(:web)
+        @jobs = Job.all.order('created_at DESC')
+      end
+    end    
     respond_with(@jobs)
   end
 

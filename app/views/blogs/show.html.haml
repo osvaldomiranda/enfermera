@@ -1,24 +1,30 @@
 %br
 %br
 %br
-%p#notice= notice
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Noticias
+      .panel-body
+        .container-fluid
+          %p#notice= notice
 
-%p
-  %b Titulo:
-  = @blog.titulo
-%p
-  %b Descripcion:
-  = @blog.descripcion
-%p
-  %b Imagen:
-  = @blog.imagen
-%p
-  %b Documento:
-  = @blog.documento
-%p
-  %b Estado:
-  = @blog.estado
+          %p
+            %b Titulo:
+            = @blog.titulo
+          %p
+            %b Descripcion:
+            = raw(@blog.descripcion)
+          %p
+            %b Imagen:
+            = @blog.imagen
+          %p
+            %b Documento:
+            = @blog.documento
+          %p
+            %b Estado:
+            = @blog.estado
 
-= link_to 'Edit', edit_blog_path(@blog)
-\|
-= link_to 'Back', blogs_path
+
+          = link_to 'Continuar', blogs_path

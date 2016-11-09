@@ -20,8 +20,9 @@
 
           - @jobs.each do |job|
             %hr
+            %hr
             %h1= job.titulo
-            %h3= job.descripcion
+            %h3= raw(job.descripcion)
             %h4= job.contacto
             %p= "Publicado el: #{job.created_at.strftime('%d/%m/%Y %H:%M')}"
             %p= job.estado
