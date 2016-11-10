@@ -67,6 +67,7 @@ class PeopleController < ApplicationController
     @persondocuments = Persondocument.all
 
     if !person_params[:picture].present?
+
       if !person_params[:rut].present?
         if person_params[:terms].present?
           @person.terms = "OK"
@@ -80,7 +81,7 @@ class PeopleController < ApplicationController
         else   
           render "error"
         end 
-      else  
+      else        
         if @person.update(person_params)
           if current_user.rut == @person.rut
             redirect_to dashboard_index_path
@@ -97,8 +98,8 @@ class PeopleController < ApplicationController
             else  
               redirect_to person_path(@person.id)
             end
-          else   
-            render "error"
+          else  
+            respond_with(@person)
           end  
         end
       end  

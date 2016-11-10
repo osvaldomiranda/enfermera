@@ -6,7 +6,12 @@ class PublicationsController < ApplicationController
 
   def index
     @tipo = params[:tipo] || nil
-    @publications = Publication.with_tipo(@tipo).order(created_at: :desc)
+    @publications = Publication.where(estado:'VISIBLE').with_tipo(@tipo).order('created_at DESC')
+    if current_user.present?
+      if current_user.role?(:web)
+        @Publication = Publication.all.order('created_at DESC')
+      end
+    end  
     respond_with(@publications)
   end
 

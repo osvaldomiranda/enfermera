@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 
   auto_increment :nro_registro
 
-  validates :email, :nombres, :apellido_paterno, presence: true
+  validates :nombres, :apellido_paterno, presence: true
   validates :rut, :rut_format => true
 
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
