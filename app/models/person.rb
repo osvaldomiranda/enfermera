@@ -63,7 +63,7 @@ class Person < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash
-      @person = Person.where(rut: rowHash["rut"])
+      @person = Person.where(rut: rowHash["rut"]).first
       if ! @person.present?
         person = Person.new
         person.nro_registro = rowHash["nro_registro"] 
@@ -76,6 +76,7 @@ class Person < ActiveRecord::Base
         person.ciudad = rowHash["ciudad"]
         person.universidad = rowHash["universidad"]
         person.fecha_titulo = rowHash["fecha_titulo"]
+        person.phone = rowHash["fono"]
         if person.save
         else
           puts "************************"  
