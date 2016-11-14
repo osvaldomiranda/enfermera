@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108144047) do
+ActiveRecord::Schema.define(version: 20161111182705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,6 +248,16 @@ ActiveRecord::Schema.define(version: 20161108144047) do
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "magazines", force: true do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "portada"
+    t.string   "documento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "fecha"
   end
 
   create_table "national_councils", force: true do |t|

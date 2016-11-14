@@ -1,6 +1,8 @@
 Enfermera::Application.routes.draw do
 
 
+  resources :magazines
+
   get "welcome/index"
   resources :national_councils
 
@@ -8,7 +10,12 @@ Enfermera::Application.routes.draw do
 
   resources :videos
 
-  resources :publications
+  resources :publications 
+  # do
+  #   collection do
+  #     post :froala_image_upload
+  #   end
+  # end
 
   resources :jobs
 

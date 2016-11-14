@@ -1,0 +1,26 @@
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Oferta de Trabajo
+      .panel-body
+        .container-fluid
+          %p#notice= notice
+
+          %p
+            %b Titulo:
+            = @magazine.titulo
+          %p
+            %b Descripcion:
+            = @magazine.descripcion
+          %p
+            %b Portada:
+            = @magazine.portada
+          %p
+            %b Documento:
+            = @magazine.documento
+
+          = link_to 'Continuar', magazines_path, class: 'btn btn-warning'

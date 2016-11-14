@@ -1,0 +1,42 @@
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Revista
+      .panel-body
+        .container-fluid
+          = simple_form_for(@magazine) do |f|
+            = f.error_notification
+
+            .form-inputs
+              = f.input :titulo
+              = f.text_field :fecha, id: 'datepicker'
+              = f.input :descripcion
+
+              .fileinput.fileinput-new{"data-provides" => "fileinput"}
+                .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+                %div
+                  %span.btn.btn-default.btn-file
+                    %span.fileinput-new Seleccionar imagen de portada Nueva
+                    %span.fileinput-exists Cambiar
+                    =f.file_field :portada
+                  %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+                %br
+                %br
+
+              .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                .form-control{"data-trigger" => "fileinput"}
+                  %i.glyphicon.glyphicon-file.fileinput-exists
+                  %span.fileinput-filename
+                %span.input-group-addon.btn.btn-default.btn-file
+                  %span.fileinput-new Revista en Pdf
+                  %span.fileinput-exists Cambiar
+                  =f.file_field :documento
+                %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar 
+
+
+            .form-actions
+              = f.button :submit, 'Guardar'

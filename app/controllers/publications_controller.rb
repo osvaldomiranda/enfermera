@@ -43,6 +43,16 @@ class PublicationsController < ApplicationController
     respond_with(@publication)
   end
 
+  # def froala_image_upload
+  #   uploader = PostImageUploader.new
+  #   file = params[:file]
+  #   uploader.store!(file)
+  #   render json: { success: true }
+  #   rescue CarrierWave::IntegrityError => e
+  #     render json: { error: e.message }
+  # end
+
+
   private
     def set_publication
       @publication = Publication.find(params[:id])
