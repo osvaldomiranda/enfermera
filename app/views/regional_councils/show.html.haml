@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @regional_council.nombre
+%p
+  %b Cargo:
+  = @regional_council.cargo
+%p
+  %b Email:
+  = @regional_council.email
+%p
+  %b Fono:
+  = @regional_council.fono
+%p
+  %b Office:
+  = @regional_council.office
+%p
+  %b Person:
+  = @regional_council.person
+
+= link_to 'Edit', edit_regional_council_path(@regional_council)
+\|
+= link_to 'Back', regional_councils_path

@@ -1,6 +1,8 @@
 Enfermera::Application.routes.draw do
 
 
+  resources :regional_councils
+
   resources :magazines
 
   get "welcome/index"

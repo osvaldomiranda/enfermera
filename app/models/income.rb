@@ -59,7 +59,7 @@ class Income < ActiveRecord::Base
 
     workplace = Workplace.find(self.workplace_id)
 
-    if workplace.office.codigo != "VPO"
+    # if workplace.office.codigo != "VPO"
       head_daily = HeadDaily.new
       head_daily.numero = HeadDaily.next_ingreso
       head_daily.user_id = self.user_id
@@ -123,7 +123,7 @@ class Income < ActiveRecord::Base
         daily.por = "Pago cuotas: #{workplace.nombre}"
       end  
       daily.save
-    end  
+    # end  
 
 
   end 

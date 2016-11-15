@@ -1,0 +1,13 @@
+= simple_form_for(@regional_council) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :cargo
+    = f.input :email
+    = f.input :fono
+    = f.association :office
+    = f.association :person
+
+  .form-actions
+    = f.button :submit

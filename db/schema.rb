@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111182705) do
+ActiveRecord::Schema.define(version: 20161115151624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -385,6 +385,20 @@ ActiveRecord::Schema.define(version: 20161111182705) do
     t.datetime "updated_at"
     t.text     "web"
   end
+
+  create_table "regional_councils", force: true do |t|
+    t.string   "nombre"
+    t.string   "cargo"
+    t.string   "email"
+    t.string   "fono"
+    t.integer  "office_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "regional_councils", ["office_id"], name: "index_regional_councils_on_office_id", using: :btree
+  add_index "regional_councils", ["person_id"], name: "index_regional_councils_on_person_id", using: :btree
 
   create_table "regions", force: true do |t|
     t.string   "codigo"

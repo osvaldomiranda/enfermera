@@ -1,0 +1,31 @@
+%h1 Listing regional_councils
+
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Cargo
+      %th Email
+      %th Fono
+      %th Office
+      %th Person
+      %th
+      %th
+      %th
+
+  %tbody
+    - @regional_councils.each do |regional_council|
+      %tr
+        %td= regional_council.nombre
+        %td= regional_council.cargo
+        %td= regional_council.email
+        %td= regional_council.fono
+        %td= regional_council.office
+        %td= regional_council.person
+        %td= link_to 'Show', regional_council
+        %td= link_to 'Edit', edit_regional_council_path(regional_council)
+        %td= link_to 'Destroy', regional_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Regional council', new_regional_council_path
