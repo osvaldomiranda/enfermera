@@ -29,7 +29,8 @@
                 %td= workplace.nombre
                 %td= workplace.people.count
                 %td= workplace.fees.sum(:monto)
-                %td= link_to 'Ver Mas', workplace_path(workplace.id), class: "btn btn-primary btn-xs" 
+                - if current_user.role?(:regional_admin) 
+                  %td= link_to 'Ver Mas', workplace_path(workplace.id), class: "btn btn-primary btn-xs" 
         %br  
         %hr        
         %br

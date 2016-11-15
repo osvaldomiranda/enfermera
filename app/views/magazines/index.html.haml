@@ -8,7 +8,10 @@
         %h3.panel-title Revista
       .panel-body
         .container-fluid
-          = link_to 'Nueva Revista', new_magazine_path, class: 'btn btn-warning'
+          = link_to '<< Volver', '/', class: 'btn btn-warning'
+          - if current_user.present?
+            - if current_user.role?(:web)
+              = link_to 'Nueva Revista', new_magazine_path, class: 'btn btn-warning'
 
           - @magazines.each do |magazine|
             %h2= magazine.titulo
@@ -23,7 +26,8 @@
                 .col-sm-8
                 .col-sm-2  
                 = link_to "Ver Pdf",magazine.documento_url,  class: 'btn btn-info'
-                - if current_user.role?(:web)
-                  = link_to 'Eliminar', magazine, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
+                - if current_user.present?
+                  - if current_user.role?(:web)
+                    = link_to 'Eliminar', magazine, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
             %br
             %br  

@@ -5,6 +5,11 @@ class MagazinesController < ApplicationController
 
   def index
     @magazines = Magazine.order(fecha: :desc)
+
+    if params[:origin].present?
+      @magazines = Magazine.where('fecha<?', '01/01/2016').order(fecha: :desc)
+    end  
+
     respond_with(@magazines)
   end
 
@@ -47,6 +52,6 @@ class MagazinesController < ApplicationController
     end
 
     def magazine_params
-      params.require(:magazine).permit(:titulo, :descripcion, :portada, :documento, :fecha)
+      params.require(:magazine).permit(:titulo, :descripcion, :portada, :documento, :fecha, :origin)
     end
 end

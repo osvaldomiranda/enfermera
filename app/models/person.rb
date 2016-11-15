@@ -150,7 +150,7 @@ class Person < ActiveRecord::Base
 
       if person.present?
         person.save
-        PersonMailer.send_user(person.rut).deliver
+        # PersonMailer.send_user(person.rut).deliver
       else
         puts "************************"  
         puts "************************"  

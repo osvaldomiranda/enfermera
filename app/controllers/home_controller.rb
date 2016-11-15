@@ -15,6 +15,7 @@ class HomeController < ApplicationController
       @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO').where(estado:'VISIBLE').order('created_at DESC').limit(3)
       @publication_eventos = Publication.where(tipo: 'EVENTO').where(estado:'VISIBLE').order('created_at DESC').limit(3)
       @video = Video.last
+      
     end  
   end
 
