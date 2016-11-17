@@ -1,31 +1,75 @@
-%h1 Listing regional_councils
+/ %h1 Listing regional_councils
 
-%table
-  %thead
-    %tr
-      %th Nombre
-      %th Cargo
-      %th Email
-      %th Fono
-      %th Office
-      %th Person
-      %th
-      %th
-      %th
+/ %table
+/   %thead
+/     %tr
+/       %th Nombre
+/       %th Cargo
+/       %th Email
+/       %th Fono
+/       %th Office
+/       %th Person
+/       %th
+/       %th
+/       %th
 
-  %tbody
-    - @regional_councils.each do |regional_council|
-      %tr
-        %td= regional_council.nombre
-        %td= regional_council.cargo
-        %td= regional_council.email
-        %td= regional_council.fono
-        %td= regional_council.office
-        %td= regional_council.person
-        %td= link_to 'Show', regional_council
-        %td= link_to 'Edit', edit_regional_council_path(regional_council)
-        %td= link_to 'Destroy', regional_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
+/   %tbody
+/     - @regional_councils.each do |regional_council|
+/       %tr
+/         %td= regional_council.nombre
+/         %td= regional_council.cargo
+/         %td= regional_council.email
+/         %td= regional_council.fono
+/         %td= regional_council.office
+/         %td= regional_council.person
+/         %td= link_to 'Show', regional_council
+/         %td= link_to 'Edit', edit_regional_council_path(regional_council)
+/         %td= link_to 'Destroy', regional_council, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Regional council', new_regional_council_path
+%br
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Consejos Regionales
+      .panel-body
+        .container-fluid
+          %h1 Consejos Regionales 
+          - if current_user.present?
+            = link_to 'Crear nuevo integrante', new_regional_council_path, class: 'btn btn-warning'
+
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Regional 
+                  %th
+                  %th Nombre
+                  %th Cargo
+                  %th
+                  %th
+                  %th
+
+              %tbody
+                - @regional_councils.each do |regional_councils|
+                  %tr regional_councils.office.nombre
+                  %tr
+                    %td
+                      .col-md-8
+                        %a.thumbnail{:href => ""}
+                          - if regional_councils.person.picture.present?
+                            %img.img-circle{:alt => "...", :src =>"#{regional_councils.person.picture_url}"}
+                          - else  
+                            %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+                    %td= regional_councils.nombre
+                    %td= regional_councils.cargo
+                    %td= link_to 'Ver', regional_councils
+                    %td= link_to 'Editar', edit_regional_councils_path(regional_councils)
+                    %td= link_to 'Eliminar', regional_councils, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Regional council', new_regional_council_path

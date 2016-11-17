@@ -4,7 +4,7 @@ class RegionalCouncilsController < ApplicationController
   respond_to :html
 
   def index
-    @regional_councils = RegionalCouncil.all
+    @regional_councils = RegionalCouncil.order(:office_id)
     respond_with(@regional_councils)
   end
 

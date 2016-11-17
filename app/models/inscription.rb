@@ -113,49 +113,50 @@ class Inscription < ActiveRecord::Base
 
   def create_person_user
 
-    email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
-    password = self.password.present? ? self.password : self.rut
+    person = Person.find_by_rut(self.rut)
+      errors.add(:rut, 'Ya existes en nuestra base de datos, ingresa con tu rut como password')
+    if person.present?
 
+    else  
+      email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
+      password = self.password.present? ? self.password : self.rut
 
+      user = User.new
+      user.email = email
+      user.password = password
+      user.password_confirmation = password
+      user.roles_mask = 3
 
+      if user.save
 
-    user = User.new
-    user.email = email
-    user.password = password
-    user.password_confirmation = password
-    user.roles_mask = 3
+        @person = Person.new
+        @person.email = email
+        @person.rut = self.rut
+        @person.nombres = self.nombres
+        @person.apellido_paterno = self.apellido_paterno
+        @person.apellido_materno = self.apellido_materno
+        @person.sexo = self.sexo
+        @person.nacionalidad = self.nacionalidad
+        @person.fecha_inscripcion = DateTime.now
+        @person.direccion = self.direccion
+        @person.ciudad = self.ciudad
+        @person.universidad = self.universidad
+        @person.fecha_titulo = self.fecha_titulo
+        @person.tipo_contrato = self.tipo_contrato
+        @person.workplace_id = self.workplace_id
+        @person.url = ''
+        @person.certificado_html = ''
+        if  @person.save
 
-    if user.save
-
-
-
-      @person = Person.new
-      @person.email = email
-      @person.rut = self.rut
-      @person.nombres = self.nombres
-      @person.apellido_paterno = self.apellido_paterno
-      @person.apellido_materno = self.apellido_materno
-      @person.sexo = self.sexo
-      @person.nacionalidad = self.nacionalidad
-      @person.fecha_inscripcion = DateTime.now
-      @person.direccion = self.direccion
-      @person.ciudad = self.ciudad
-      @person.universidad = self.universidad
-      @person.fecha_titulo = self.fecha_titulo
-      @person.tipo_contrato = self.tipo_contrato
-      @person.workplace_id = self.workplace_id
-      @person.url = ''
-      @person.certificado_html = ''
-      if  @person.save
-
+        else
+          errors.add(:rut, 'No se pudo crear Colegiada')
+        end  
+        Inscription.BuscarCertificado(self.rut)
       else
-        errors.add(:rut, 'No se pudo crear Colegiada')
-      end  
-      Inscription.BuscarCertificado(self.rut)
-    else
-      errors.add(:rut, 'No se pudo crear Colegiada')  
+        errors.add(:rut, 'No se pudo crear Colegiada')  
+      end
     end
-  end
+  end  
 end 
 
 	
