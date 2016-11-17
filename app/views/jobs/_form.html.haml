@@ -14,7 +14,6 @@
 
             .form-inputs
               = f.input :titulo
-              = f.input :fecha
               = f.input :descripcion
               = f.input :contacto
               = f.input :estado, collection: Job.estado_options_for_select, selected:1

@@ -12,12 +12,11 @@ Enfermera::Application.routes.draw do
 
   resources :videos
 
-  resources :publications 
-  # do
-  #   collection do
-  #     post :froala_image_upload
-  #   end
-  # end
+  resources :publications do
+    collection do
+      post :froala_upload
+    end
+  end
 
   resources :jobs
 
