@@ -114,9 +114,9 @@ class Inscription < ActiveRecord::Base
   def create_person_user
 
     person = Person.find_by_rut(self.rut)
-      errors.add(:rut, 'Ya existes en nuestra base de datos, ingresa con tu rut como password')
+      
     if person.present?
-
+      errors.add(:rut, 'Ya existes en nuestra base de datos, ingresa con tu rut como password')
     else  
       email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
       password = self.password.present? ? self.password : self.rut
