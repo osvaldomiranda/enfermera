@@ -114,7 +114,7 @@ class Inscription < ActiveRecord::Base
   def create_person_user
 
     person = Person.find_by_rut(self.rut)
-      
+
     if person.present?
       errors.add(:rut, 'Ya existes en nuestra base de datos, ingresa con tu rut como password')
     else  
@@ -126,6 +126,7 @@ class Inscription < ActiveRecord::Base
       user.password = password
       user.password_confirmation = password
       user.roles_mask = 3
+      user.rut = self.rut
 
       if user.save
 
@@ -147,7 +148,6 @@ class Inscription < ActiveRecord::Base
         @person.url = ''
         @person.certificado_html = ''
         if  @person.save
-
         else
           errors.add(:rut, 'No se pudo crear Colegiada')
         end  

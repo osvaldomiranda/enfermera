@@ -1,24 +1,68 @@
-%p#notice= notice
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Directorios Regionales
+      .panel-body
+        .container-fluid
+          %h1= "Directorio #{@regional_council.office.nombre}"
+          %p#notice= notice
 
-%p
-  %b Nombre:
-  = @regional_council.nombre
-%p
-  %b Cargo:
-  = @regional_council.cargo
-%p
-  %b Email:
-  = @regional_council.email
-%p
-  %b Fono:
-  = @regional_council.fono
-%p
-  %b Office:
-  = @regional_council.office
-%p
-  %b Person:
-  = @regional_council.person
+          .row
+            %hr
+            .col-md-2
+              %a.thumbnail{:href => "/"}
+                - if @regional_council.person.present?
+                  - if @regional_council.person.picture.present?
+                    %img.img-circle{:alt => "...", :src =>"#{@regional_council.person.picture_url}"}
+                  - else  
+                    %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+            .col-md-8      
+            
+              %h2= @regional_council.nombre  
+              %h3= @regional_council.cargo
+          %br
+          %hr   
+          .row
+            .col-md-12
+              / = raw(@regional_council.web)    
+          %br
+          %br
+          %br
+          - if current_user.present?  
+            = link_to '<< Atras', regional_councils_path
+          - else
+            = link_to '<< Atras', '/'
 
-= link_to 'Edit', edit_regional_council_path(@regional_council)
-\|
-= link_to 'Back', regional_councils_path
+
+
+
+
+
+/ %p#notice= notice
+
+/ %p
+/   %b Nombre:
+/   = @regional_council.nombre
+/ %p
+/   %b Cargo:
+/   = @regional_council.cargo
+/ %p
+/   %b Email:
+/   = @regional_council.email
+/ %p
+/   %b Fono:
+/   = @regional_council.fono
+/ %p
+/   %b Office:
+/   = @regional_council.office
+/ %p
+/   %b Person:
+/   = @regional_council.person
+
+/ = link_to 'Edit', edit_regional_council_path(@regional_council)
+/ \|
+/ = link_to 'Back', regional_councils_path

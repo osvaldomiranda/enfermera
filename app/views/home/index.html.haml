@@ -60,17 +60,17 @@
         .col-md-6
         .col-md-6
           .center
-            %a{:href => "https://www.facebook.com/colegiodeenfermerasdechile", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'facebook']);"}
-              %span.fa.fa-facebook
+            %a.color-text{:href => "https://www.facebook.com/colegiodeenfermerasdechile", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'facebook']);"}
+              %span.fa.fa-facebook.color-text
               Facebook
-            %a{:href => "https://twitter.com/colegioenfermer/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
-              %span.fa.fa-twitter
+            %a.color-text{:href => "https://twitter.com/colegioenfermer/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
+              %span.fa.fa-twitter.color-text
               Twitter
-            %a{:href => "https://www.youtube.com/channel/UCkBovX9V2cwBUIkGW8CHRNw", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'youtube']);"}
-              %span.fa.fa-youtube
+            %a.color-text{:href => "https://www.youtube.com/channel/UCkBovX9V2cwBUIkGW8CHRNw", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'youtube']);"}
+              %span.fa.fa-youtube.color-text
               Youtube
-            %a{:href => "https://www.flickr.com/photos/130181298@N05/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'flickr']);"}
-              %span.fa.fa-flickr
+            %a.color-text{:href => "https://www.flickr.com/photos/130181298@N05/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'flickr']);"}
+              %span.fa.fa-flickr.color-text
               Flickr
       %br
       %br
@@ -78,66 +78,64 @@
       %br
   .bkg-blue       
     .container 
-      .landing_content 
-        .row
-          .row.carousel-holder
-            .col-md-12
-              #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-                %ol.carousel-indicators
-                  / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-                  / %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-                  / %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-                .carousel-inner
-                  .item.active
-                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                    .carrusel-block
-                      %row
-                        .col-md-2.text-center 
-                        .col-md-8.text-center 
-                          %h2.center_text.white
-                            El Colegio de Enfermeras de Chile A.G.  
-                          %h4.center_text.white
-                            Es la instancia gremial que defiende, protege y salvaguarda el ejercicio legal de la profesión, y promueve entre sus asociadas la capacitación, lo que permite a las enfermeras ejercer el rol de liderazgo que están llamadas a emprender dentro de los equipos de salud.
-                  .item
-                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                    .carrusel-block
-                      %row
-                        .col-md-2.text-center 
-                        .col-md-8.text-center   
-                          %h2.center_text.white
-                            Misión
-                          %h4.center_text.white
-                            Ofrecer las mejores condiciones económicas, sociales y de capacitación para garantizar profesionalmente el cuidado de enfermería  de las personas, asumiendo el peso histórico y cultural del cuidado humano.
-                  .item
-                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                    .carrusel-block
-                      %row
-                        .col-md-2.text-center 
-                        .col-md-8.text-center 
-                          %h2.center_text.white
-                            Visión  
-                          %h4.center_text.white
-                            Ser reconocidos por nuestros colegiados como la única organización que vela por el permanente perfeccionamiento y desempeño profesional de los mismos.
-                  .item
-                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                    .carrusel-block
-                      %row
-                        .col-md-2.text-center 
-                        .col-md-8.text-center 
-                          %h2.center_text.white
-                            Valores  
-                          %h4.center_text.white
-                            Proteger a nuestros asociados, tanto en el aspecto económico como en el social.
-                            %br
-                            Velar por el permanente perfeccionamiento de nuestros colegiados.
-                            %br
-                            Supervisar el correcto desempeño profesional de nuestros colegiados.
-                            %br
-                            Defender el derecho a la salud, como principio inquebrantable de nuestra organización.
-                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-                  %span.glyphicon.glyphicon-chevron-left
-                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-                  %span.glyphicon.glyphicon-chevron-right
+      .row
+        .row.carousel-holder
+          .col-md-12
+            #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+              %ol.carousel-indicators
+                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+                / %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+                / %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+              .carousel-inner
+                .item.active
+                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                  .carrusel-block
+                    %row
+                      .col-md-2.text-center 
+                      .col-md-8.text-center 
+                        %h2.center_text.white
+                          El Colegio de Enfermeras de Chile A.G.  
+                        %h4.center_text.white
+                          Es la instancia gremial que defiende, protege y salvaguarda el ejercicio legal de la profesión, y promueve entre sus asociadas la capacitación, lo que permite a las enfermeras ejercer el rol de liderazgo que están llamadas a emprender dentro de los equipos de salud.
+                .item
+                  .carrusel-block
+                    %row
+                      .col-md-2.text-center 
+                      .col-md-8.text-center   
+                        %h2.center_text.white
+                          Misión
+                        %h4.center_text.white
+                          Ofrecer las mejores condiciones económicas, sociales y de capacitación para garantizar profesionalmente el cuidado de enfermería  de las personas, asumiendo el peso histórico y cultural del cuidado humano.
+                .item
+                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                  .carrusel-block
+                    %row
+                      .col-md-2.text-center 
+                      .col-md-8.text-center 
+                        %h2.center_text.white
+                          Visión  
+                        %h4.center_text.white
+                          Ser reconocidos por nuestros colegiados como la única organización que vela por el permanente perfeccionamiento y desempeño profesional de los mismos.
+                .item
+                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                  .carrusel-block
+                    %row
+                      .col-md-2.text-center 
+                      .col-md-8.text-center 
+                        %h2.center_text.white
+                          Valores  
+                        %h4.center_text.white
+                          Proteger a nuestros asociados, tanto en el aspecto económico como en el social.
+                          %br
+                          Velar por el permanente perfeccionamiento de nuestros colegiados.
+                          %br
+                          Supervisar el correcto desempeño profesional de nuestros colegiados.
+                          %br
+                          Defender el derecho a la salud, como principio inquebrantable de nuestra organización.
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+                %span.glyphicon.glyphicon-chevron-left
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+                %span.glyphicon.glyphicon-chevron-right
     %br       
     .container 
       .landing_content 
@@ -150,11 +148,9 @@
       %br
       %br
       %br
-
-
- 
-.suero-bkg 
+.suero-bkg-pub
   .container
+
     %br     
     .row
       %h1.page-header
@@ -306,9 +302,9 @@
         = link_to 'Ver todas los eventos',publications_path(tipo: 'EVENTO') , class: 'btn btn_pill_small'
       %br
             
-    
-.bkg-blue.row
-  .container
+ 
+.bkg-blue
+  .container 
     %h1.page-header 
       Videos  
     .row
@@ -317,12 +313,11 @@
           =@video.titulo
       %br
       %br
-      %br    
+      %br
       .col-md-12
         .center
           - if @video.alojamiento.present?
-            %iframe{:frameborder => "0", :height => "300", :src => "http://www.youtube.com/embed/#{@video.vid}", :width => "500"}
-        
+            %iframe{:frameborder => "0", :src => "http://www.youtube.com/embed/#{@video.vid}"}       
           %br
           %br
         .center  
@@ -332,7 +327,6 @@
   %br
   %br
   %br
- 
 .suero-bkg 
   .container
     .row
@@ -340,16 +334,14 @@
         %h1.page-header
           Sociedades Cientificas
         %p El Colegio de Enfermeras de Chile A.G. ha promovido la creación de Sociedades Científicas para otorgar a sus colegiados la posibilidad de especializarse en el área de salud que se desempeñan profesionalmente.
-    / Team Members Row
     .row
       - @scientific_societies.each do |scientific_society|
         .col-lg-3.text-center
           = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
           %h4.center.white
             =scientific_society.nombre
-
-.bkg-blue 
-  .container
+.bkg-blue
+  .container 
     .row
       .col-lg-12
         %h1.page-header
@@ -363,14 +355,35 @@
             =national_council.nombre  
           %h5.center.white
             =national_council.cargo
+.bkg-blue
+  .container 
+    .row
+      .col-lg-12
+        %h1.page-header
+          Directorios Regionales
+    / Team Members Row
+    .row  
+      - @office.each do |office|
+        - if office.regional_councils.count > 0
+          .row
+            .col-lg-12.text-center
+              %h2= office.nombre
+          - office.regional_councils.each do |regional_council|
+            .row
+              .col-lg-3.text-center
+                %h4.center.white
+                  =regional_council.nombre  
+                %h5.center.white
+                  =regional_council.cargo
 
-.bkg-blue.row
+
+.bkg-blue
   %br
   %br
   .divider_line 
   %br
   %br 
-.bkg-blue.row
+.bkg-blue
   .container
     .row
       .col-md-2.text-center 

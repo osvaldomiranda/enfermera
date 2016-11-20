@@ -59,6 +59,11 @@ class Person < ActiveRecord::Base
     FORMAPAGO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
+  def self.regional_admin_for_select
+    admins = Person.where(email:User.where('roles_mask >= 4').pluck(:email))
+    admins.map {|p| [p.fullname, p.id]}
+  end
+
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
