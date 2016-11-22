@@ -67,7 +67,6 @@ class WorkplacesController < ApplicationController
   end
 
   def pay
-
     puts "***************"
     puts params[:income][:mes_cuota]
     puts "***************"
@@ -124,6 +123,10 @@ class WorkplacesController < ApplicationController
     render "/adminworckplace/index"
   end
 
+  def change_person
+    person = Person.find(params[:person_id])
+    
+  end
 
   private
     def set_workplace

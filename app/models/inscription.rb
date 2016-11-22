@@ -40,6 +40,8 @@ class Inscription < ActiveRecord::Base
   validates :nacionalidad, presence: true
   validates :workplace_id, presence: true
   validates :forma_pago, presence: true
+  validates :direccion, presence: true
+  validates :ciudad, presence: true
   
 
   # Validamos que el telefono solo sea numerico
@@ -145,6 +147,7 @@ class Inscription < ActiveRecord::Base
         @person.fecha_titulo = self.fecha_titulo
         @person.tipo_contrato = self.tipo_contrato
         @person.workplace_id = self.workplace_id
+        @person.origen = self.origen
         @person.url = ''
         @person.certificado_html = ''
         if  @person.save

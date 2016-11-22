@@ -81,6 +81,7 @@
                               %td= person.rut
                               %td= person.email
                               %td= "$#{Currentfee.last.valor}"
+                              / %td= link_to change_person_workplace_path(person_id: person.id)
                   .form-group
                     .col-sm-offset-2.col-sm-10
                       .pull-right

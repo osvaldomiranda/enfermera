@@ -1,6 +1,10 @@
 Enfermera::Application.routes.draw do
 
 
+  resources :counties
+
+  resources :states
+
   resources :regional_councils
 
   resources :magazines
@@ -189,6 +193,7 @@ Enfermera::Application.routes.draw do
     member do
       get :incomes
       get :payregister
+      get :change_person
       post :pay
     end
   end

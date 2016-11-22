@@ -20,6 +20,8 @@
                 / - @inscription.errors.full_messages.each do |msg|
                 /   %li{:style => "color:brown"}= msg
                 .form-inputs
+                = f.input :origen, :as => :hidden, :input_html => { :value => current_user.present? ? 'ADMIN' : "USUARIO" } 
+
                 %h3 Información de Registro
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} Correo Electrónico
@@ -57,9 +59,9 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Direccion
                   .col-sm-4
                     = f.input :direccion, label: false
-                  %label.col-sm-2.control-label{:for => "textinput"} Ciudad
+                  %label.col-sm-2.control-label{:for => "textinput"} Comuna
                   .col-sm-4
-                    = f.input :ciudad, label: false               
+                    = f.input :ciudad, label: false , collection: County.for_select              
                   %label.col-sm-2.control-label{:for => "textinput"} Teléfono
                   .col-sm-4
                     = f.input :telefono, label: false, :numericality => {:only_integer => true}
@@ -86,8 +88,8 @@
                     -else
                       = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_name   
                 %h3 Forma pago cuota social   
-                %p= "Actualmente nuestra cuota social es de $#{@valorcuota}."
-                %p Pago directo inplica que usted deberá realizar el pago en nuestra cuenta corriente,
+                %p= "Actualmente la cuota se paga mensualmente y es hasta Diciembre 2016 de $#{@valorcuota}.-  El período de Enero a Diciembre 2017 será de $ 6.500.-"
+                %p Pago directo implica que usted deberá realizar el pago en nuestra cuenta corriente,
                 %p luego registrar su pago en su pagina de inicio, o enviar el comprobante vía email.   
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} Forma de Pago 

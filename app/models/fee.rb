@@ -23,8 +23,11 @@ class Fee < ActiveRecord::Base
 
         # Enero
         if rowHash["ene"].present?
-          fee_actual = Person.fees.where(mes_cuota: "01-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "01-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else  
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_ene"])
@@ -41,8 +44,11 @@ class Fee < ActiveRecord::Base
         end  
         # Febrero
         if rowHash["feb"].present?
-          fee_actual = Person.fees.where(mes_cuota: "02-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "02-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else  
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_feb"])
@@ -59,8 +65,11 @@ class Fee < ActiveRecord::Base
         end  
         # Marzo
         if rowHash["mar"].present?
-          fee_actual = Person.fees.where(mes_cuota: "03-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "03-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_mar"])
@@ -77,8 +86,11 @@ class Fee < ActiveRecord::Base
         end  
         # Abril
         if rowHash["abr"].present?
-          fee_actual = Person.fees.where(mes_cuota: "04-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "04-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_abr"])
@@ -95,8 +107,11 @@ class Fee < ActiveRecord::Base
         end  
         # MAYO
         if rowHash["may"].present?
-          fee_actual = Person.fees.where(mes_cuota: "05-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "05-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_may"])
@@ -113,8 +128,11 @@ class Fee < ActiveRecord::Base
         end  
         # JUNIO
         if rowHash["jun"].present?
-          fee_actual = Person.fees.where(mes_cuota: "06-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "06-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_jun"])
@@ -131,8 +149,11 @@ class Fee < ActiveRecord::Base
         end  
         # Julio
         if rowHash["jul"].present?
-          fee_actual = Person.fees.where(mes_cuota: "07-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "07-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_jul"])
@@ -148,8 +169,11 @@ class Fee < ActiveRecord::Base
         end  
         # Agosto
         if rowHash["ago"].present?
-          fee_actual = Person.fees.where(mes_cuota: "08-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "08-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_ago"])
@@ -166,8 +190,11 @@ class Fee < ActiveRecord::Base
         end  
         # Septiembre
         if rowHash["sep"].present?
-          fee_actual = Person.fees.where(mes_cuota: "09-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "09-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_sep"])
@@ -184,8 +211,11 @@ class Fee < ActiveRecord::Base
         end  
         # Octubre
         if rowHash["oct"].present?
-          fee_actual = Person.fees.where(mes_cuota: "10-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "10-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_oct"])
@@ -202,8 +232,11 @@ class Fee < ActiveRecord::Base
         end  
         # Noviembre
         if rowHash["nov"].present?
-          fee_actual = Person.fees.where(mes_cuota: "11-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "11-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_nov"])
@@ -220,8 +253,11 @@ class Fee < ActiveRecord::Base
         end 
         # Diciembre
         if rowHash["dic"].present?
-          fee_actual = Person.fees.where(mes_cuota: "12-2016").first
+          fee_actual = @person.fees.where(mes_cuota: "12-2016").first
           if fee_actual.present?
+            puts "****************"
+            puts "EXISTE"
+            puts "****************"
           else 
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_dic"])

@@ -128,6 +128,7 @@
                 %th Rut
                 %th Nombre
                 %th Fecha Creación
+                %th Origen
                 %th 
                 %th
             %tbody
@@ -138,6 +139,7 @@
                   %td= person.rut
                   %td= person.fullname
                   %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+                  %td= person.origen.present? ? person.origen : "SISTEMA"
                   %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
 
                   - if person.estado == "OK"

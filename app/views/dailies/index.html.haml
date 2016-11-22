@@ -48,6 +48,8 @@
                     %th NombreCC
                     %th Cuenta
                     %th NombreCta
+                    %th CodEstablecimiento
+                    %th Regional
                     %th Debe
                     %th Haber
                     %th Por
@@ -71,6 +73,16 @@
                         %td  
                       %td= daily.account.codigo
                       %td= daily.account.nombre
+                      - if daily.income.present?
+                        - if daily.income.workplace.present?
+                          %td= daily.income.workplace.cod_wp
+                          %td= daily.income.workplace.codigo
+                        - else
+                          %td
+                          %td
+                      - else
+                        %td
+                        %td  
                       %td= daily.debe
                       %td= daily.haber
                       %td= daily.por

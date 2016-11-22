@@ -1,0 +1,9 @@
+= simple_form_for(@county) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.association :state
+
+  .form-actions
+    = f.button :submit
