@@ -18,16 +18,25 @@
             .form-inline
               = select_tag :filter_cuenta, options_for_select(Account.options_for_select, @cuenta), prompt: 'Cuenta: Todas', class: "form-control"
               = link_to 'Exportar Excel', toxls_dailies_path(cuenta: @cuenta, format: :xls),class: 'btn btn-info'
+        %br
+        %br  
+        %hr    
         .row
           .col-md-12
             = simple_form_for(dailies_path,:method => :get ) do |f|
               .form-group  
                 .col-sm-4
-                  = f.input :numero, label: false, placeholder: "Numero Comprobante", :input_html => {:style=> 'width: 350px'} 
+                  = f.input :numero, label: false, placeholder: "Numero Comprobante", :input_html => {:style=> 'width: 300px'} 
+                  = f.text_field :fecha_desde, id: 'datepicker', placeholder: "Fecha Desde"
+                  = f.text_field :fecha_hasta, id: 'datepicker1',placeholder: "Fecha Hasta"
+                %br
+                %br  
               .col-sm-4  
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
+        %br   
+        .row        
           .col-sm-4       
-            = link_to 'Exportar Excel', toxls_dailies_path(numero: @numero, format: :xls),class: 'btn btn-info'
+            = link_to 'Exportar Excel', toxls_dailies_path(numero: @numero, fecha_desde: @fecha_desde, fecha_hasta: @fecha_hasta ,format: :xls),class: 'btn btn-info'
         %br
         %br
         %br
