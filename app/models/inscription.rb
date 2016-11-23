@@ -34,6 +34,7 @@ class Inscription < ActiveRecord::Base
 	#validates_with RutFormatValidator, field: [:rut]
   validates :rut, presence: true, rutFormat: true
   validates :apellido_paterno, presence: true
+  validates :apellido_materno, presence: true
   validates :nombres, presence: true
   validates :tipo_contrato, presence: true
   validates :sexo, presence: true
@@ -42,6 +43,8 @@ class Inscription < ActiveRecord::Base
   validates :forma_pago, presence: true
   validates :direccion, presence: true
   validates :ciudad, presence: true
+  validates :celular, presence: true
+  validates :email, presence: true
   
 
   # Validamos que el telefono solo sea numerico
@@ -131,7 +134,6 @@ class Inscription < ActiveRecord::Base
       user.rut = self.rut
 
       if user.save
-
         @person = Person.new
         @person.email = email
         @person.rut = self.rut
@@ -147,6 +149,8 @@ class Inscription < ActiveRecord::Base
         @person.fecha_titulo = self.fecha_titulo
         @person.tipo_contrato = self.tipo_contrato
         @person.workplace_id = self.workplace_id
+        @person.telefono = self.telefono
+        @person.celular = self.celular
         @person.origen = self.origen
         @person.url = ''
         @person.certificado_html = ''
