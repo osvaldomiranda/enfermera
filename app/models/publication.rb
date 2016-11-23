@@ -1,5 +1,6 @@
 class Publication < ActiveRecord::Base
   mount_uploader :imagen, PictureUploader
+  mount_uploader :documeto, FileUploader
 
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
 

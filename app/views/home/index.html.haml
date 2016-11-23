@@ -178,7 +178,7 @@
                     .item.active
                       .col-md-2
                       .col-md-8 
-                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        = link_to image_tag(publication_new.imagen_url), publication_new, class: "center slide-image img-responsive"
                         %h2.white.center
                           =publication_new.titulo
                         %h4.white.center  
@@ -187,7 +187,7 @@
                     .item
                       .col-md-2
                       .col-md-8
-                        = image_tag publication_new.imagen_url, class: "center slide-image img-responsive"
+                        = link_to image_tag(publication_new.imagen_url), publication_new, class: "center slide-image img-responsive"
                         %h3.white.center
                           =publication_new.titulo
                         %h4.white.center  

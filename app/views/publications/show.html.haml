@@ -1,3 +1,7 @@
+-if current_user.present?
+  %br
+  %br
+  %br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
@@ -20,14 +24,17 @@
             %h1.center= @publication.titulo
             %h2.center= @publication.texto
             %h4.center= @publication.resumen
-            / = link_to 'Ver Documento', @publication.documeto_url
+            - if @publication.documeto.present?
+              = link_to 'Ver Documento Adjunto', @publication.documeto_url, class: 'btn btn-warning'
+              = link_to '<< Atras', publications_path, class: 'btn btn-warning'
             %br
             %br
             %br
             %hr            
-
+        .row     
+          .col-xs-12 
             = raw(@publication.web)
 
         %br
         %hr 
-        = link_to '<< Atras', publications_path
+
