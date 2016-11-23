@@ -141,6 +141,7 @@
                   %td= person.created_at.strftime('%d/%m/%Y %H:%M')
                   %td= person.origen.present? ? person.origen : "SISTEMA"
                   %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
+                  %td= link_to 'Modificar', edit_person_path(person.id),class: 'btn btn-info btn-xs'
 
                   - if person.estado == "OK"
                     - if person.url.present?
