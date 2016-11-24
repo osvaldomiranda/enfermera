@@ -178,20 +178,24 @@
                     .item.active
                       .col-md-2
                       .col-md-8 
-                        = link_to image_tag(publication_new.imagen_url), publication_new, class: "center slide-image img-responsive"
-                        %h2.white.center
-                          =publication_new.titulo
-                        %h4.white.center  
-                          =publication_new.resumen
+                        .carousel-container
+                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+                          .caption
+                            %h2.white.center
+                              =publication_new.titulo
+                            %h4.white.center  
+                              =publication_new.resumen
                   - else      
                     .item
                       .col-md-2
                       .col-md-8
-                        = link_to image_tag(publication_new.imagen_url), publication_new, class: "center slide-image img-responsive"
-                        %h3.white.center
-                          =publication_new.titulo
-                        %h4.white.center  
-                          =publication_new.resumen    
+                        .carousel-container
+                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+                          .caption
+                            %h3.white.center
+                              =publication_new.titulo
+                            %h4.white.center  
+                              =publication_new.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
@@ -233,20 +237,22 @@
                     .item.active
                       .col-md-2
                       .col-md-8 
-                        = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
-                        %h2.white.center
-                          =publication_yotecuido.titulo
-                        %h4.white.center  
-                          =publication_yotecuido.resumen
+                        .carousel-container
+                          = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                          %h2.white.center
+                            =publication_yotecuido.titulo
+                          %h4.white.center  
+                            =publication_yotecuido.resumen
                   - else      
                     .item
                       .col-md-2
                       .col-md-8 
-                        = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
-                        %h2.white.center
-                          =publication_yotecuido.titulo
-                        %h4.white.center  
-                          =publication_yotecuido.resumen    
+                        .carousel-container
+                          = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                          %h2.white.center
+                            =publication_yotecuido.titulo
+                          %h4.white.center  
+                            =publication_yotecuido.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
@@ -279,20 +285,22 @@
                     .item.active
                       .col-md-2
                       .col-md-8 
-                        = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
-                        %h2.white.center
-                          =publication_eventos.titulo
-                        %h4.white.center  
-                          =publication_eventos.resumen
+                        .carousel-container
+                          = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                          %h2.white.center
+                            =publication_eventos.titulo
+                          %h4.white.center  
+                            =publication_eventos.resumen
                   - else      
                     .item
                       .col-md-2
                       .col-md-8 
-                        = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
-                        %h2.white.center
-                          =publication_eventos.titulo
-                        %h4.white.center  
-                          =publication_eventos.resumen    
+                        .carousel-container
+                          = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                          %h2.white.center
+                            =publication_eventos.titulo
+                          %h4.white.center  
+                            =publication_eventos.resumen    
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
