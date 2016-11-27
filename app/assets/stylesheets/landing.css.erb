@@ -12,6 +12,22 @@
   top: 0;
 }
 
+.carousel-container{
+  height: 450px;   
+}
+
+
+.council-container{
+  height: 230px;
+}
+.society-container{
+  height: 210px;
+} 
+
+.thumbnail {
+  background-color: #265EA5;
+}
+
 .signin {
   background-color: white !important;
 }
@@ -241,8 +257,12 @@
     font-size: 0.95em;
   }
   .suero-bkg {
-    height: 1600px;
+    height: 2100px;
   }  
+  .carousel-container{
+    height: 250px;   
+  }  
+ 
   .top-background {
     background: url(<%= asset_path "largo2.png" %>) no-repeat top ;
     height: 900px;
@@ -260,7 +280,6 @@
       width: 200px;
       height: 100px;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -273,8 +292,11 @@
     font-size: 0.95em;
   }
   .suero-bkg {
-    height: 1600px;
+    height: 2100px;
   }  
+  .carousel-container{
+    height: 450px;   
+  }
   .top-background {
     background: url(<%= asset_path "largo.png" %>) no-repeat top ;
     height: 700px;
@@ -284,7 +306,6 @@
   .color-text {
     color: #265EA5;
   }
-
   .iframe {
       position: absolute;
       top:0;
@@ -305,14 +326,18 @@
     font-size: 1.0em;
   }
   .suero-bkg {
-    height: 1500px;
+    height: 1900px;
   } 
+  .carousel-container{
+    height: 450px;   
+  }
   .top-background {
     background: url(<%= asset_path "largo.png" %>) no-repeat top ;
     height: 700px;
     position: relative;
     top: 0;
   }
+
   .color-text {
     color: #265EA5;
   }
@@ -323,6 +348,7 @@
     width: 500px;
     height: 300px;
   }
+
 }
 
 @media (min-width: 1200px) {
@@ -337,7 +363,9 @@
   .suero-bkg {
     height: 750px;
   } 
-
+  .carousel-container{
+    height: 450px;   
+  }
   .top-background {
     background: url(<%= asset_path "largo.png" %>) no-repeat top ;
     height: 700px;
