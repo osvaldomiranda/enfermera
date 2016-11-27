@@ -179,23 +179,27 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
                           .caption
-                            %h2.white.center
+                            %h3.white.center
                               =publication_new.titulo
-                            %h4.white.center  
-                              =publication_new.resumen
+                            / %h4.white.center  
+                            /   =publication_new.resumen
+                          %br    
+                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+
                   - else      
                     .item
                       .col-md-2
                       .col-md-8
                         .carousel-container
-                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
                           .caption
                             %h3.white.center
                               =publication_new.titulo
-                            %h4.white.center  
-                              =publication_new.resumen    
+                            / %h4.white.center  
+                            /   =publication_new.resumen 
+                          %br    
+                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+   
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
@@ -238,21 +242,24 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_yotecuido.imagen_url(:normal), class: "center slide-image img-responsive"
-                          %h2.white.center
+                          %h3.white.center
                             =publication_yotecuido.titulo
-                          %h4.white.center  
-                            =publication_yotecuido.resumen
+                          / %h4.white.center  
+                          /   =publication_yotecuido.resumen
+                          %br
+                          = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
                   - else      
                     .item
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_yotecuido.imagen_url(:normal), class: "center slide-image img-responsive"
                           %h2.white.center
                             =publication_yotecuido.titulo
-                          %h4.white.center  
-                            =publication_yotecuido.resumen    
+                          / %h4.white.center  
+                          /   =publication_yotecuido.resumen 
+                          %br
+                          = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
+   
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
@@ -286,21 +293,24 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_eventos.imagen_url(:normal), class: "center slide-image img-responsive"
-                          %h2.white.center
+                          %h3.white.center
                             =publication_eventos.titulo
-                          %h4.white.center  
-                            =publication_eventos.resumen
+                          / %h4.white.center  
+                          /   =publication_eventos.resumen
+                          %br                        
+                          = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
                   - else      
                     .item
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_eventos.imagen_url(:normal), class: "center slide-image img-responsive"
-                          %h2.white.center
+                          %h3.white.center
                             =publication_eventos.titulo
-                          %h4.white.center  
-                            =publication_eventos.resumen    
+                          / %h4.white.center  
+                          / =publication_eventos.resumen 
+                          %br
+                          = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
+   
               %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
