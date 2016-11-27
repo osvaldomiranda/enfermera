@@ -238,7 +238,7 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                          = image_tag publication_yotecuido.imagen_url(:normal), class: "center slide-image img-responsive"
                           %h2.white.center
                             =publication_yotecuido.titulo
                           %h4.white.center  
@@ -248,7 +248,7 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_yotecuido.imagen_url, class: "center slide-image img-responsive"
+                          = image_tag publication_yotecuido.imagen_url(:normal), class: "center slide-image img-responsive"
                           %h2.white.center
                             =publication_yotecuido.titulo
                           %h4.white.center  
@@ -286,7 +286,7 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                          = image_tag publication_eventos.imagen_url(:normal), class: "center slide-image img-responsive"
                           %h2.white.center
                             =publication_eventos.titulo
                           %h4.white.center  
@@ -296,7 +296,7 @@
                       .col-md-2
                       .col-md-8 
                         .carousel-container
-                          = image_tag publication_eventos.imagen_url, class: "center slide-image img-responsive"
+                          = image_tag publication_eventos.imagen_url(:normal), class: "center slide-image img-responsive"
                           %h2.white.center
                             =publication_eventos.titulo
                           %h4.white.center  
@@ -343,11 +343,18 @@
           Sociedades Cientificas
         %p El Colegio de Enfermeras de Chile A.G. ha promovido la creación de Sociedades Científicas para otorgar a sus colegiados la posibilidad de especializarse en el área de salud que se desempeñan profesionalmente.
     .row
+      - n = 0
       - @scientific_societies.each do |scientific_society|
+        - if n==4
+          - n = 0
+          .row
         .col-lg-3.text-center
-          = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
-          %h4.center.white
-            =scientific_society.nombre
+          .society-container 
+            = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
+            %h4.center.white
+              =scientific_society.nombre
+        - n+= 1
+            
 .bkg-blue
   .container 
     .row
@@ -356,13 +363,23 @@
           Directorio Nacional
     / Team Members Row
     .row
+      - n = 0      
       - @national_councils.each do |national_council|
+        - if n==4
+          - n = 0
+          .row
+
         .col-lg-3.text-center
-          =link_to image_tag(national_council.imagen_url ,class: "center img-circle img-responsive img-center"), national_council_path(national_council)
-          %h4.center.white
-            =national_council.nombre  
-          %h5.center.white
-            =national_council.cargo
+          .council-container 
+            =link_to image_tag(national_council.imagen_url ,class: "center img-circle img-responsive img-center"), national_council_path(national_council)
+            %h4.center.white
+              =national_council.nombre  
+            %h5.center.white
+              =national_council.cargo
+        - n+= 1    
+
+
+
 .bkg-blue
   .container 
     .row
@@ -378,13 +395,12 @@
               %h2= office.nombre
           - office.regional_councils.each do |regional_council|
             .row
-              .col-lg-3.text-center
-                %h4.center.white
-                  =regional_council.nombre  
-                %h5.center.white
-                  =regional_council.cargo
-
-
+              .col-lg-3
+                .thumbnail.text-center
+                  %h4.center.white
+                    =regional_council.nombre  
+                  %h5.center.white
+                    =regional_council.cargo
 .bkg-blue
   %br
   %br
