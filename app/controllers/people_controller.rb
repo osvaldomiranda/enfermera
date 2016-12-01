@@ -61,6 +61,7 @@ class PeopleController < ApplicationController
     @person.save
     respond_with(@person)
   end
+
   
   def update
 

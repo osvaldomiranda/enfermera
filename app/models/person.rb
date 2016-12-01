@@ -216,6 +216,16 @@ class Person < ActiveRecord::Base
     Workplace.find(self.workplace_id).nombre
   end
 
+  def to_pasive
+    if self.workplace_id.present?
+      wp = Workplace.where(codigo: self.workplace.codigo).where("cod_wp like '888%'").first
+    else
+      wp = Workplace.where(cod_wp: '888-13').first
+    end    
+    self.workplace_id = wp.id
+    self.save
+  end
+
   def office
     w = self.workplace
     w.office

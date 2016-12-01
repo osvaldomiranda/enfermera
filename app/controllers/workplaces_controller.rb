@@ -59,11 +59,18 @@ class WorkplacesController < ApplicationController
   end
 
   def payregister
-
     @workplace = Workplace.find(params[:id])
     # @workplace = Workplace.find(1)
     @income = Income.new
     respond_modal_with(@income)
+  end
+
+  def topasive
+    person = Person.find(params[:person_id])
+    @workplace = person.workplace
+    person.to_pasive
+    @income = Income.new
+    render 'payregister'
   end
 
   def pay

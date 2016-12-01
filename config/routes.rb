@@ -197,7 +197,8 @@ Enfermera::Application.routes.draw do
       get :payregister
       get :change_person
       post :pay
-    end
+      get :topasive
+    end  
   end
 
 
