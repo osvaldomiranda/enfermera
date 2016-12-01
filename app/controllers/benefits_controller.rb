@@ -1,4 +1,5 @@
 class BenefitsController < ApplicationController
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
