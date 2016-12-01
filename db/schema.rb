@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123162848) do
+ActiveRecord::Schema.define(version: 20161201111039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20161123162848) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "benefits", force: true do |t|
+    t.string   "institucion"
+    t.string   "resumen"
+    t.string   "imagen"
+    t.text     "web"
+    t.integer  "office_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "benefits", ["office_id"], name: "index_benefits_on_office_id", using: :btree
 
   create_table "blogs", force: true do |t|
     t.string   "titulo"
@@ -407,18 +419,13 @@ ActiveRecord::Schema.define(version: 20161123162848) do
   end
 
   create_table "regional_councils", force: true do |t|
-    t.string   "nombre"
-    t.string   "cargo"
-    t.string   "email"
-    t.string   "fono"
     t.integer  "office_id"
-    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "web"
   end
 
   add_index "regional_councils", ["office_id"], name: "index_regional_councils_on_office_id", using: :btree
-  add_index "regional_councils", ["person_id"], name: "index_regional_councils_on_person_id", using: :btree
 
   create_table "regions", force: true do |t|
     t.string   "codigo"

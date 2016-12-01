@@ -11,36 +11,16 @@
         .container-fluid
           %h1 Directorios Regionales 
           - if current_user.present?
-            = link_to 'Crear nuevo integrante', new_regional_council_path, class: 'btn btn-warning'
+            = link_to 'Crear nuevo directorio', new_regional_council_path, class: 'btn btn-warning'
 
-            %table.table.table-striped
-              %thead
-                %tr
-                  %th Regional 
-                  %th
-                  %th Nombre
-                  %th Cargo
-                  %th
-                  %th
-                  %th
 
-              %tbody
-                - @regional_councils.each do |regional_councils|
-                  %tr
-                    %td
-                      %h1= regional_councils.office.nombre
-                    %td
-                      .col-sm-4
-                        %a.thumbnail{:href => ""}
-                          - if regional_councils.person.present?
-                            - if regional_councils.person.picture.present?
-                              %img.img-circle{:alt => "...", :src =>"#{regional_councils.person.picture_url}"}
-                            - else  
-                              %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
-                    %td= regional_councils.nombre
-                    %td= regional_councils.cargo
-                    %td= link_to 'Ver', regional_councils
-                    %td= link_to 'Editar', edit_regional_council_path(regional_councils)
-                    %td= link_to 'Eliminar', regional_councils, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            - @regional_councils.each do |regional_councils|
+              %h1= regional_councils.office.nombre
+              = raw(regional_councils.web)
+              = link_to 'Ver', regional_councils
+              - if current_user.role?(:web)
+                = link_to 'Editar', edit_regional_council_path(regional_councils)
+                = link_to 'Eliminar', regional_councils, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              %hr  
 
 %br

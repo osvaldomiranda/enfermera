@@ -5,6 +5,7 @@ class Office < ActiveRecord::Base
   has_many :regional_councils
   has_many :people, :through => :workplaces
   has_many :fees, :through => :workplaces
+  has_many :benefits
 
   def self.office_option_for_select
     Office.all.order(nombre: :asc).map {|t| t.nombre}
@@ -12,7 +13,7 @@ class Office < ActiveRecord::Base
 
 
   def self.options_for_select(user)
-    if user.role?(:national_admin)
+    if user.role?(:national_admin) || user.role?(:web)
       Office.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
     else
       Office.where(id: user.office.id).map {|t| [t.nombre, t.id]}

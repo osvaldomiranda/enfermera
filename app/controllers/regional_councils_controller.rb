@@ -42,6 +42,6 @@ class RegionalCouncilsController < ApplicationController
     end
 
     def regional_council_params
-      params.require(:regional_council).permit(:nombre, :cargo, :email, :fono, :office_id, :person_id)
+      params.require(:regional_council).permit(:web, :office_id)
     end
 end

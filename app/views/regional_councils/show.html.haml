@@ -10,25 +10,11 @@
         .container-fluid
           %h1= "Directorio #{@regional_council.office.nombre}"
           %p#notice= notice
-
-          .row
-            %hr
-            .col-md-2
-              %a.thumbnail{:href => "/"}
-                - if @regional_council.person.present?
-                  - if @regional_council.person.picture.present?
-                    %img.img-circle{:alt => "...", :src =>"#{@regional_council.person.picture_url}"}
-                  - else  
-                    %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
-            .col-md-8      
-            
-              %h2= @regional_council.nombre  
-              %h3= @regional_council.cargo
           %br
           %hr   
           .row
             .col-md-12
-              / = raw(@regional_council.web)    
+              = raw(@regional_council.web)    
           %br
           %br
           %br

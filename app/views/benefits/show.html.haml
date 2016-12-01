@@ -1,0 +1,36 @@
+-if current_user.present?
+  %br
+  %br
+  %br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %br
+            %br
+            %br
+            .col-xs-2
+            .col-xs-8.center-text
+              = image_tag @benefit.imagen
+        .row     
+          .col-xs-12  
+            %br
+            %br
+            %br    
+        
+            %h1.center= @benefit.institucion
+            %h4.center= @benefit.resumen
+            = link_to '<< Continuar', benefits_path, class: 'btn btn-warning'
+            %br
+            %br
+            %br
+            %hr            
+        .row     
+          .col-xs-12 
+            = raw(@benefit.web)
+
+        %br
+        %hr 

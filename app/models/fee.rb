@@ -29,6 +29,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else  
+            puts "******* #{rowHash["fch_ene"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_ene"])
             fee.mes = "ENERO-2016"
@@ -50,6 +51,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else  
+            puts "******* #{rowHash["fch_feb"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_feb"])
             fee.mes = "FEBRERO-2016"
@@ -71,6 +73,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_mar"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_mar"])
             fee.mes = "MARZO-2016"
@@ -92,6 +95,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_abr"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_abr"])
             fee.mes = "ABRIL-2016"
@@ -113,6 +117,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_may"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_may"])
             fee.mes = "MAYO-2016"
@@ -134,6 +139,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_jun"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_jun"])
             fee.mes = "JUNIO-2016"
@@ -155,6 +161,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_jul"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_jul"])
             fee.mes = "JULIO-2016"
@@ -175,6 +182,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_ago"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_ago"])
             fee.mes = "AGOSTO-2016"
@@ -196,6 +204,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_sep"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_sep"])
             fee.mes = "SEPTIEMBRE-2016"
@@ -217,6 +226,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_oct"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_oct"])
             fee.mes = "OCTUBRE-2016"
@@ -238,6 +248,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_nov"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_nov"])
             fee.mes = "NOVIEMBRE-2016"
@@ -259,6 +270,7 @@ class Fee < ActiveRecord::Base
             puts "EXISTE"
             puts "****************"
           else 
+            puts "******* #{rowHash["fch_dic"]} *********"
             fee = Fee.new
             fee.fecha_pago = Date.parse(rowHash["fch_dic"])
             fee.mes = "DICIEMBRE-2016"

@@ -1,6 +1,8 @@
 Enfermera::Application.routes.draw do
 
 
+  resources :benefits
+
   resources :counties
 
   resources :states

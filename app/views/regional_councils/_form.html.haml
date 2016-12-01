@@ -16,12 +16,8 @@
                 = f.error_notification
 
                 .form-inputs
-                  = f.input :nombre
-                  = f.input :cargo
-                  = f.input :email
-                  = f.input :fono
                   = f.input :office_id, collection: Office.options_for_select(current_user)
-                  = f.input :person_id, collection: Person.regional_admin_for_select
+                  = f.input :web
 
                 .form-actions
                   = f.button :submit, 'Guardar'

@@ -1,0 +1,48 @@
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1 Crear Beneficio
+            %br
+            
+              
+        %hr
+        .row
+          .col-xs-12         
+            = simple_form_for(@benefit) do |f|
+              = f.error_notification
+              .form-inputs
+                = f.input :institucion
+                = f.input :resumen
+                - if @benefit.imagen.present?
+                  .col-md-4
+                    Imagen Actual de portada
+                    %a.thumbnail{:href => '' , data: { modal: true }}
+                      %img{:alt => "...", :src =>"#{@benefit.imagen_url}"}
+                .fileinput.fileinput-new{"data-provides" => "fileinput"}
+                  .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+                  %div
+                    %span.btn.btn-default.btn-file
+                      - if @benefit.imagen.present?
+                        %span.fileinput-new Seleccionar imagen Nueva
+                      -else
+                        %span.fileinput-new Seleccionar imagen Portada  
+                      %span.fileinput-exists Cambiar
+                      =f.file_field :imagen
+                    %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+                = f.input :web
+                %p Si el beneficio es extensivo a todas las colegiadas, dejar campo Regional en blanco.
+                = f.input :office_id, label: 'Regional', collection: Office.options_for_select(current_user)
+                %br
+                %br
+              .form-actions
+                = f.button  :submit, 'Guardar'
+              
+              %br
+              %br    

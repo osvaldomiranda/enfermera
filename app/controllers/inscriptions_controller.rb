@@ -24,7 +24,7 @@ class InscriptionsController < ApplicationController
 
   def create
     inscription_params[:email] = "#{inscription_params[:rut]}sin@email.cl" unless inscription_params[:email].present?
-
+    
     @inscription = Inscription.new(inscription_params)
     @inscription.save
     respond_with(@inscription)

@@ -391,6 +391,9 @@
 
 
 .bkg-blue
+  %br
+  %br
+  %br
   .container 
     .row
       .col-lg-12
@@ -405,12 +408,11 @@
               %h2= office.nombre
           - office.regional_councils.each do |regional_council|
             .row
-              .col-lg-3
+              .col-lg-12
                 .thumbnail.text-center
-                  %h4.center.white
-                    =regional_council.nombre  
-                  %h5.center.white
-                    =regional_council.cargo
+                  .center.white
+                    %h4= raw(regional_council.web)
+
 .bkg-blue
   %br
   %br
