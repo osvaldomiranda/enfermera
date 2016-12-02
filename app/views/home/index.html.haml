@@ -401,7 +401,6 @@
         - if n==4
           - n = 0
           .row
-
         .col-lg-3.text-center
           .council-container 
             =link_to image_tag(national_council.imagen_url ,class: "center img-circle img-responsive img-center"), national_council_path(national_council)
@@ -410,8 +409,6 @@
             %h5.center.white
               =national_council.cargo
         - n+= 1    
-
-
 
 .bkg-blue
   %br
@@ -423,19 +420,16 @@
         %h1.page-header
           Directorios Regionales
     / Team Members Row
-    .row  
+    .row
       - @office.each do |office|
         - if office.regional_councils.count > 0
-          .row
-            .col-lg-12.text-center
-              %h2= office.nombre
-          - office.regional_councils.each do |regional_council|
-            .row
-              .col-lg-12
-                .thumbnail.text-center
-                  .center.white
-                    %h4= raw(regional_council.web)
-
+          .col-md-4.text-center
+            .regional-container
+              %h3= office.nombre
+              - office.regional_councils.each do |regional_council|
+                .center.white
+                  %h5= raw(regional_council.web)
+  
 .bkg-blue
   %br
   %br
