@@ -17,9 +17,12 @@
               = f.input :descripcion
               = f.input :contacto
               = f.input :estado, collection: Job.estado_options_for_select, selected:1
-
+              = f.text_field :fecha_desde, id: 'datepicker', placeholder: 'Visible Desde'  
+              = f.text_field :fecha_hasta, id: 'datepicker1', placeholder: 'Visible Hasta'  
+         
             .form-actions
               = f.button :submit, 'Guardar', class: 'btn btn-warning'
             %br
             %br
             %br  
+        = link_to 'Volver', jobs_path, class: 'btn btn-warning'

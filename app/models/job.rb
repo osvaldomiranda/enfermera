@@ -3,6 +3,10 @@ class Job < ActiveRecord::Base
   validates :titulo, presence: true
   validates :contacto, presence: true
 
+  scope :visible, -> { where('fecha_desde <= ? and fecha_hasta >= ?', DateTime.now.beginning_of_day, DateTime.now).where(estado: 'VISIBLE') }
+
+  
+
   ESTADO = ['VISIBLE', 'OCULTO']
 
   def self.estado_options_for_select

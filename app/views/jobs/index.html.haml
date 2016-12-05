@@ -38,6 +38,7 @@
             %h4= job.contacto
             %p= "Publicado el: #{job.created_at.strftime('%d/%m/%Y %H:%M')}"
             %p= job.estado
+            %p= "Desde:#{job.fecha_desde} Hasta:#{job.fecha_hasta}" if job.estado=="VISIBLE"
             - if current_user.present?
               - if current_user.role?(:national_admin)
                 = link_to 'Editar', edit_job_path(job) , class: 'btn btn-info'

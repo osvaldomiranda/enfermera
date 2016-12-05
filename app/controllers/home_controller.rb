@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     else  
       @scientific_societies =  ScientificSociety.all
       @national_councils = NationalCouncil.all.order('prioridad ASC')
-      @office = Office.all
+      @office = Office.order(:id)
 
       @publication_news = Publication.where(tipo: 'NOTICIA').where(estado:'VISIBLE').order('created_at DESC').limit(3)
       @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO').where(estado:'VISIBLE').order('created_at DESC').limit(3)
