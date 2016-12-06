@@ -31,6 +31,7 @@
                 .col-md-3
                   .row
                     %p= publication.tipo
+                    %p= "Desde:#{publication.fecha_desde} Hasta:#{publication.fecha_hasta}" if publication.estado=="VISIBLE"
                   .row
                     = link_to 'Ver', publication, class: 'btn btn-warning'
                     - if current_user.present?

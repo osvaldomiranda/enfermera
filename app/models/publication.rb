@@ -3,6 +3,8 @@ class Publication < ActiveRecord::Base
   mount_uploader :documeto, FileUploader
 
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
+  scope :scheduled, -> { where('fecha_desde <= ? and fecha_hasta >= ?', DateTime.now.beginning_of_day, DateTime.now)}
+
 
   ESTADO      = ['Visible', 'No Visible']
   def self.estado_collection

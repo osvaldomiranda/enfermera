@@ -7,7 +7,7 @@ class PublicationsController < ApplicationController
 
   def index
     @tipo = params[:tipo] || nil
-    @publications = Publication.where(estado:'VISIBLE').with_tipo(@tipo).order('created_at DESC')
+    @publications = Publication.where(estado:'VISIBLE').scheduled().with_tipo(@tipo).order('created_at DESC')
     if current_user.present?
       if current_user.role?(:web)
         @publications = Publication.all.order('created_at DESC')
@@ -29,13 +29,21 @@ class PublicationsController < ApplicationController
   end
 
   def create
-    @publication = Publication.new(publication_params)
+    pp = publication_params
+    pp[:fecha_desde] = publication_params[:fecha_desde].present? ? Date.strptime(publication_params[:fecha_desde], '%d-%m-%Y') : DateTime.now.to_date  
+    pp[:fecha_hasta] = publication_params[:fecha_hasta].present? ? Date.strptime(publication_params[:fecha_hasta], '%d-%m-%Y') : Date.strptime('31-12-2099', '%d-%m-%Y') 
+
+    @publication = Publication.new(pp)
     @publication.save
     respond_with(@publication)
   end
 
   def update
-    @publication.update(publication_params)
+    pp = publication_params
+    pp[:fecha_desde] = publication_params[:fecha_desde].present? ? Date.strptime(publication_params[:fecha_desde], '%d-%m-%Y') : DateTime.now.to_date  
+    pp[:fecha_hasta] = publication_params[:fecha_hasta].present? ? Date.strptime(publication_params[:fecha_hasta], '%d-%m-%Y') : Date.strptime('31-12-2099', '%d-%m-%Y') 
+
+    @publication.update(pp)
     respond_with(@publication)
   end
 

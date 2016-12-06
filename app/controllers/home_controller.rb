@@ -12,16 +12,18 @@ class HomeController < ApplicationController
       @national_councils = NationalCouncil.all.order('prioridad ASC')
       @office = Office.order(:id)
 
-      @publication_news = Publication.where(tipo: 'NOTICIA').where(estado:'VISIBLE').order('created_at DESC').limit(3)
-      @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO').where(estado:'VISIBLE').order('created_at DESC').limit(3)
-      @publication_eventos = Publication.where(tipo: 'EVENTO').where(estado:'VISIBLE').order('created_at DESC').limit(3)
+      @publication_news = Publication.where(tipo: 'NOTICIA').scheduled().where(estado:'VISIBLE').order('created_at DESC').limit(3)
+      @publication_yotecuido = Publication.where(tipo: 'YO_TE_CUIDO').scheduled().where(estado:'VISIBLE').order('created_at DESC').limit(3)
+      @publication_eventos = Publication.where(tipo: 'EVENTO').scheduled().where(estado:'VISIBLE').order('created_at DESC').limit(3)
       @video = Video.last
-      
     end  
   end
 
   def porque
   end
+
+  # Publication.where(fecha_desde:nil).update_all(fecha_desde: DateTime.now.to_date - 1.days)
+  # Publication.update_all(fecha_hasta: Date.strptime('31-12-2099', '%d-%m-%Y') )
   
   def beneficios
   end

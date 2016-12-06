@@ -51,7 +51,9 @@
 
                 = f.input :web
                 = f.input :tipo, collection: Publication.tipo_collection
-                = f.input :estado, collection: Publication.estado_collection
+                = f.input :estado, collection: Publication.estado_collection, selected:1
+                = f.text_field :fecha_desde, id: 'datepicker', placeholder: 'Visible Desde'  
+                = f.text_field :fecha_hasta, id: 'datepicker1', placeholder: 'Visible Hasta'  
                 %br
                 %br
               .form-actions
