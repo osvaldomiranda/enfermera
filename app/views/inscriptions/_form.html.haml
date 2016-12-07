@@ -52,9 +52,17 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Sexo
                   .col-sm-4
                     = f.input :sexo, label: false, collection: Inscription.gender_options_for_select
+                .form-group 
                   %label.col-sm-2.control-label{:for => "textinput"} Nacionalidad
                   .col-sm-4
-                    = f.input :nacionalidad, label: false,collection: Inscription.nacionalidad_options_for_select           
+                    = f.input :nacionalidad, label: false,collection: Inscription.nacionalidad_options_for_select, :input_html => {:onchange => "extranjero(this)"}   
+                 
+                  #pais_origen{:style => "display:none;"}
+                    %label.col-sm-2.control-label{:for => "textinput"} País
+                    .col-sm-4
+                      = f.input :pais_origen, label: false,collection: Country.for_select
+
+
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} Direccion
                   .col-sm-4

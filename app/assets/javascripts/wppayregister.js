@@ -12,7 +12,6 @@ function toggleAllCheckbox(divid, element, valor)
   var checkboxes = new Array(); 
   var checkboxes = document.querySelectorAll('#' + divid + ' input[type="checkbox"]');
 
-
   for (var i=0; i<checkboxes.length; i++)  {
     if (checkboxes[i].type == 'checkbox')   {
       if (element.checked){

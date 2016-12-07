@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206123333) do
+ActiveRecord::Schema.define(version: 20161206152720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,12 @@ ActiveRecord::Schema.define(version: 20161206123333) do
 
   add_index "counties", ["name"], name: "index_counties_on_name", unique: true, using: :btree
   add_index "counties", ["state_id"], name: "index_counties_on_state_id", using: :btree
+
+  create_table "countries", force: true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "currentfees", force: true do |t|
     t.float    "valor"
@@ -266,6 +272,7 @@ ActiveRecord::Schema.define(version: 20161206123333) do
     t.integer  "workplace_id"
     t.string   "forma_pago"
     t.string   "origen"
+    t.string   "pais_origen"
   end
 
   add_index "inscriptions", ["workplace_id"], name: "index_inscriptions_on_workplace_id", using: :btree
