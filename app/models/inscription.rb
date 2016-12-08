@@ -1,5 +1,4 @@
 class Inscription < ActiveRecord::Base
-
 	include ActiveModel::Validations
   validate :create_person_user
 
