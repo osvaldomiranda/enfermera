@@ -61,7 +61,6 @@ class Income < ActiveRecord::Base
 
     # if workplace.office.codigo != "VPO"
       head_daily = HeadDaily.new
-      head_daily.numero = HeadDaily.next_ingreso
       head_daily.user_id = self.user_id
       head_daily.tipo = "INGRESO"
       head_daily.banco = self.banco 

@@ -17,7 +17,8 @@
           .col-md-12
             .form-inline
               = select_tag :filter_cuenta, options_for_select(Account.options_for_select, @cuenta), prompt: 'Cuenta: Todas', class: "form-control"
-              = link_to 'Exportar Excel', toxls_dailies_path(cuenta: @cuenta, format: :xls),class: 'btn btn-info'
+              = select_tag :filter_tipo, options_for_select([['Egresos', 'EGRESO'],['Ingresos', 'INGRESO']], @tipo), prompt: 'Todos Ingresos/Egresos', class: "form-control"
+              = link_to 'Exportar Excel', toxls_dailies_path(tipo:@tipo, cuenta: @cuenta, format: :xls),class: 'btn btn-info'
         %br
         %br  
         %hr    

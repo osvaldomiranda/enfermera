@@ -1,6 +1,4 @@
 Enfermera::Application.routes.draw do
-
-
   resources :countries
 
   resources :benefits
@@ -173,6 +171,8 @@ Enfermera::Application.routes.draw do
   resources :people do
     member do
       get :picture
+      get :certificado
+      get :cancel
       get :payregister
       post :pay
       get :terms

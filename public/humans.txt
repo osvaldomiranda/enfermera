@@ -1,0 +1,20 @@
+Sistema de Colegiadas Colegio de Enfermeras de Chile A.G.
+
+Fecha de lanzamiento
+07/11/2016
+
+Presidenta en ejercicio
+  Paola Pontonni Z.
+
+Especificación de funcionalidades
+
+  Ana Maria San Martin V.
+  Secretaria de Finanzas
+
+  Luis Torres
+  Tesorería y administración
+
+Ingenieros de Software
+
+  Osvaldo Miranda S.  osvaldo.omiranda@gmail.com
+  René Maldonado A.   rene.maldonado@gmail.com

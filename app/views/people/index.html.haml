@@ -131,6 +131,7 @@
                 %th Origen
                 %th 
                 %th
+                %th
             %tbody
               - @people.each do |person|
                 %tr
@@ -147,10 +148,14 @@
                     - if person.url.present?
                       %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
                     - else
-                      %td= link_to 'Colegiada', '' , :target => '_blank', class: 'btn btn-info btn-xs'  
+                      - if person.certificado_file
+                        %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
                   - else
-                    %td= link_to 'Confirmar Suscripción', "", class: 'btn btn-warning btn-xs' 
-                    / %td= link_to 'Cancelar Suscripción', "", class: 'btn btn-info btn-xs'
+                    - if person.estado == "CANCELADO"
+                      %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 
+                    - else  
+                      %td= link_to 'Confirmar', certificado_person_path(person.id), data: { modal: true },class: 'btn btn-warning btn-xs' 
+                      %td= link_to 'Cancelar', cancel_person_path(person.id), class: 'btn btn-warning btn-xs'
                            
                   / %td= link_to 'Edit', edit_person_path(person)
                   / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }

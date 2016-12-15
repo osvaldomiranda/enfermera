@@ -12,6 +12,7 @@ class Person < ActiveRecord::Base
   has_many :fees, dependent: :destroy
 
   mount_uploader :picture, PictureUploader
+  mount_uploader :certificado_file, FileUploader
 
   auto_increment :nro_registro
 

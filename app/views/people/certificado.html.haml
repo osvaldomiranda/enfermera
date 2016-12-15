@@ -1,0 +1,21 @@
+.container-fluid
+  %h2 Confirmar Colegiatura
+  .container-fluid
+    .row
+      .col-md-12
+        %form.form-horizontal{:role => "form"}
+        = simple_form_for(@person, html: { class: 'form-horizontal' }) do |f|
+          .form-inputs
+            .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+              .form-control{"data-trigger" => "fileinput"}
+                %i.glyphicon.glyphicon-file.fileinput-exists
+                %span.fileinput-filename
+              %span.input-group-addon.btn.btn-default.btn-file
+                %span.fileinput-new Certificado
+                %span.fileinput-exists Cambiar
+                =f.file_field :certificado_file
+              %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .pull-right
+                  %button.btn.btn-success{:type => "submit"} Guardar y Confirmar Colegiatura

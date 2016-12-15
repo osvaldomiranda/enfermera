@@ -6,18 +6,18 @@ class DailiesController < ApplicationController
 
   def index
     @cuenta = params[:cuenta] || nil
+    @tipo = params[:tipo] || nil
     if params["/dailies"].present?
-      @numero = params["/dailies"][:numero] || nil
-
+      @numero = params["/dailies"][:numero] || nil 
       @fecha_desde = params["/dailies"][:fecha_desde] || nil
       @fecha_hasta = params["/dailies"][:fecha_hasta] || nil
     end
     if @fecha_desde.present? && @fecha_hasta.present?
       fdesde = DateTime.parse(@fecha_desde)
       fhasta = DateTime.parse(@fecha_hasta)
-      @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).where(:fecha => fdesde..fhasta).order(id: :desc).page(params[:page]).per_page(20) 
+      @dailies = Daily.with_tipo(@tipo).with_cuenta(@cuenta).with_numero(@numero).where(:fecha => fdesde..fhasta).order(id: :desc).page(params[:page]).per_page(20) 
     else  
-      @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).order(id: :desc).page(params[:page]).per_page(20) 
+      @dailies = Daily.with_tipo(@tipo).with_cuenta(@cuenta).with_numero(@numero).order(id: :desc).page(params[:page]).per_page(20) 
     end
     respond_with(@dailies)
   end
@@ -26,16 +26,16 @@ class DailiesController < ApplicationController
     require 'csv'
     @cuenta = params[:cuenta] || nil
     @numero = params[:numero] || nil
-
+    @tipo = params[:tipo] || nil
     @fecha_desde = params[:fecha_desde] || nil
     @fecha_hasta = params[:fecha_hasta] || nil
-    fdesde = DateTime.parse(@fecha_desde)
-    fhasta = DateTime.parse(@fecha_hasta)
-    
-    if fdesde.present? && fhasta.present?
-      @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).where(:fecha => fdesde..fhasta).order(id: :desc)
+
+    if @fdesde.present? && @fhasta.present?
+      fdesde = DateTime.parse(@fecha_desde)
+      fhasta = DateTime.parse(@fecha_hasta)
+      @dailies = Daily.with_tipo(@tipo).with_cuenta(@cuenta).with_numero(@numero).where(:fecha => fdesde..fhasta).order(id: :desc)
     else  
-      @dailies = Daily.with_cuenta(@cuenta).with_numero(@numero).order(id: :desc)
+      @dailies = Daily.with_tipo(@tipo).with_cuenta(@cuenta).with_numero(@numero).order(id: :desc)
     end
 
     respond_to do |format|

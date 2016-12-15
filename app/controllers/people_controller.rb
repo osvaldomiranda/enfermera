@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termstopdf, :payregister]
+  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termstopdf, :payregister, :certificado]
 
   respond_to :html
 
@@ -11,8 +11,7 @@ class PeopleController < ApplicationController
       @apellido_materno = params["/people"][:apellido_materno]
       @rut = params["/people"][:rut] || nil
     end  
-      
-
+ 
     @estado = params[:estado] || nil
     @lugar_trabajo = params[:lugar_trabajo] || nil
     if params[:office].present?
@@ -43,6 +42,11 @@ class PeopleController < ApplicationController
     respond_modal_with(@person)
   end
 
+  def certificado
+    respond_modal_with(@person)
+  end
+
+
   def edit
     @valorcuota = Currentfee.last.valor
     respond_with(@person)
@@ -58,8 +62,14 @@ class PeopleController < ApplicationController
   def cancel
     @person = Person.find(params[:id])
     @person.estado = "CANCELADO"
-    @person.save
-    respond_with(@person)
+    if @person.save
+      user = User.find_by_rut( @person.rut)
+      if user.present?
+        user.password = 'cancelado'
+        user.save
+      end
+    end  
+    redirect_to people_path
   end
 
   
@@ -67,52 +77,58 @@ class PeopleController < ApplicationController
 
     @persondocuments = Persondocument.all
 
-    if !person_params[:picture].present?
+    if person_params[:certificado_file].present?
+      pp = person_params
+      pp[:estado] = "OK"
+      @person.update(pp)
+      redirect_to people_path
+    else  
 
-      if !person_params[:rut].present?
-        if person_params[:terms].present?
-          @person.terms = "OK"
-          @person.fechaterms = DateTime.now
-          @person.save
-          if current_user.rut == @person.rut
-            redirect_to dashboard_index_path
-          else
-            redirect_to person_path(@person.id)
-          end
-        else   
-          render "error"
-        end 
-      else        
-        if @person.update(person_params)
-          if current_user.rut == @person.rut
-            redirect_to dashboard_index_path
-          else
-            redirect_to person_path(@person.id)
-          end
-        else
+      if !person_params[:picture].present?
+        if !person_params[:rut].present?
           if person_params[:terms].present?
             @person.terms = "OK"
             @person.fechaterms = DateTime.now
             @person.save
             if current_user.rut == @person.rut
               redirect_to dashboard_index_path
-            else  
+            else
               redirect_to person_path(@person.id)
             end
-          else  
-            respond_with(@person)
-          end  
+          else   
+            render "error"
+          end 
+        else        
+          if @person.update(person_params)
+            if current_user.rut == @person.rut
+              redirect_to dashboard_index_path
+            else
+              redirect_to person_path(@person.id)
+            end
+          else
+            if person_params[:terms].present?
+              @person.terms = "OK"
+              @person.fechaterms = DateTime.now
+              @person.save
+              if current_user.rut == @person.rut
+                redirect_to dashboard_index_path
+              else  
+                redirect_to person_path(@person.id)
+              end
+            else  
+              respond_with(@person)
+            end  
+          end
+        end  
+      else
+        @person.update(person_params)
+        if current_user.rut == @person.rut
+          redirect_to dashboard_index_path
+        else
+          redirect_to person_path(@person.id)
         end
       end  
-    else
-      @person.update(person_params)
-      if current_user.rut == @person.rut
-        redirect_to dashboard_index_path
-      else
-        redirect_to person_path(@person.id)
-      end
-    end  
- 
+    end
   end
 
   def destroy
@@ -361,7 +377,7 @@ class PeopleController < ApplicationController
     end
 
     def person_params
-      params.require(:person).permit( :email, :rut, :created_at, :updated_at, :picture, :phone, :terms, :fechaterms, :completeeduc, :nombres, :nro_registro, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :lugar_trabajo, :tipo_contrato, :workplace_id, :forma_pago, :telefono, :celular )
+      params.require(:person).permit( :email, :rut, :created_at, :updated_at, :picture, :phone, :terms, :fechaterms, :completeeduc, :nombres, :nro_registro, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :lugar_trabajo, :tipo_contrato, :workplace_id, :forma_pago, :telefono, :celular, :certificado_file )
     end
     def income_params
       params.require(:income).permit( :fecha, :tipo, :person_id, :workplace_id, :user_id, :monto , :banco, :mediopago, :document )
