@@ -5,6 +5,9 @@ class BenefitsController < ApplicationController
   respond_to :html
 
   def index
+    puts "*********"
+    puts params
+    puts "*********"
     @benefits = Benefit.where(office_id: nil)
     @offices = Office.all
     respond_with(@benefits)
