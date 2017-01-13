@@ -211,6 +211,17 @@ Enfermera::Application.routes.draw do
       post :senddocument
     end
   end
+
+
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :people do
+        collection do
+          get :iscollegiate
+        end
+      end
+    end
+  end
   
 
 end
