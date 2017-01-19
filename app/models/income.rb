@@ -63,6 +63,7 @@ class Income < ActiveRecord::Base
       head_daily = HeadDaily.new
       head_daily.user_id = self.user_id
       head_daily.tipo = "INGRESO"
+      head_daily.numero = HeadDaily.next_ingreso
       head_daily.banco = self.banco 
       head_daily.mediopago = self.mediopago
       head_daily.documento = self.document

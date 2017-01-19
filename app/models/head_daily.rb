@@ -4,7 +4,7 @@ class HeadDaily < ActiveRecord::Base
   has_many :dailies, dependent: :destroy
   mount_uploader :documento, DocumentUploader
 
-  before_save :set_numero
+  # before_save :set_numero
   
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
   scope :with_estado, -> with_estado { where(estado: with_estado) if with_estado.present?}
@@ -61,6 +61,26 @@ class HeadDaily < ActiveRecord::Base
   def confirmar
     self.estado='CONFIRMADO'
     self.save
+  end
+
+  def self.next_ingreso    
+    h = HeadDaily.where(tipo: 'INGRESO').order("numero ASC").last   
+    if h.present?   
+      n = h.numero + 1    
+    else    
+      n = 1     
+    end     
+    return n    
+  end   
+    
+  def self.next_egreso    
+    h = HeadDaily.where(tipo: 'EGRESO').order("numero ASC").last    
+    if h.present?   
+      n = h.numero + 1    
+    else    
+      n = 1     
+    end     
+    return n    
   end
 
   def set_numero

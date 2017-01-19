@@ -33,9 +33,9 @@
         %br
         %br    
         %hr 
-        = link_to 'Crear Egreso', head_dailies_path(head_daily: {tipo: 'EGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
+        = link_to 'Crear Egreso', head_dailies_path(head_daily: {numero: HeadDaily.next_egreso, tipo: 'EGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
         
-        = link_to 'Crear Ingreso', head_dailies_path(head_daily: {tipo: 'INGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
+        = link_to 'Crear Ingreso', head_dailies_path(head_daily: {numero: HeadDaily.next_ingreso, tipo: 'INGRESO', user: current_user}), :method => :post, class: 'btn btn-info' 
 
         %br
         %br
