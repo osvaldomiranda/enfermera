@@ -60,7 +60,7 @@ class WorkplacesController < ApplicationController
 
   def payregister
     @workplace = Workplace.find(params[:id])
-    # @workplace = Workplace.find(1)
+    @Currentfee = params[:valorcuota].to_i
     @income = Income.new
     respond_modal_with(@income)
   end
@@ -106,7 +106,7 @@ class WorkplacesController < ApplicationController
 
       @income.estado      = "CONFIRMADO"
       if @income.save
-        valorcuota = Currentfee.last.valor
+        valorcuota = params[:income][:valorcuota]
         params[:person_ids].each do |id|
           person = Person.find(id)
           fee = Fee.new

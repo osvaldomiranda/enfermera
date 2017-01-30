@@ -37,6 +37,7 @@ class CurrentfeesController < ApplicationController
     respond_with(@currentfee)
   end
 
+
   private
     def set_currentfee
       @currentfee = Currentfee.find(params[:id])

@@ -17,6 +17,7 @@
                 = f.error_notification
                 .form-inputs
                   = f.input :workplace_id, :as => :hidden, :input_html => { :value => @workplace.id }
+                  = f.input :valorcuota, :as => :hidden, :input_html => { :value => @Currentfee }
                   = f.input :office_id, :as => :hidden, :input_html => { :value => @workplace.office.id } 
                   = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
@@ -34,10 +35,10 @@
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} Monto
                     .col-sm-4
-                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count*Currentfee.last.valor }    
+                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count* @Currentfee }    
                     %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota 
                     .col-sm-4
-                      = f.input :mes_cuota, label: false, collection:  Income.mescuota_options_for_select  
+                      = f.input :mes_cuota, label: false, collection:  Income.mescuota_options_for_select
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} banco
                     .col-sm-4  
@@ -68,7 +69,7 @@
                       %table.table.table-striped
                         %thead
                           %tr
-                            %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{Currentfee.last.valor})"}  
+                            %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{@Currentfee})"}  
                             %th Nombre
                             %th Rut
                             %th Email
@@ -76,11 +77,11 @@
                         %tbody
                           - @workplace.people.order('apellido_paterno, apellido_materno, nombres  DESC').each do |person|
                             %tr
-                              %td= check_box_tag "person_ids[]", person.id , {:checked => "checked"}, {:onchange => "toggleCheckbox(this, #{Currentfee.last.valor})"} 
+                              %td= check_box_tag "person_ids[]", person.id , {:checked => "checked"}, {:onchange => "toggleCheckbox(this, #{@Currentfee})"} 
                               %td= person.fullname  
                               %td= person.rut
                               %td= person.email
-                              %td= "$#{Currentfee.last.valor}"
+                              %td= "$#{@Currentfee}"
                               %td= link_to 'Enviar a pasivo', topasive_workplace_path(id: person.workplace.id, person_id: person.id), class: 'btn btn-warning'
                   .form-group
                     .col-sm-offset-2.col-sm-10
