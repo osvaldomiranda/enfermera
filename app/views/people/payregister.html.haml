@@ -34,7 +34,12 @@
             .form-group
               %label.col-sm-2.control-label{:for => "textinput"} Monto
               .col-sm-4
-                = f.input :monto, label: false  , collection: Income.cuotas_options_for_select, selected: 1
+                - if current_user.role?(:finance)
+                  = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('SI'), selected: 1
+                - else
+                  = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('NO'), selected: 1
+                   
+                
             .form-group    
               %label.col-sm-2.control-label{:for => "textinput"} banco
               .col-sm-4  

@@ -49,7 +49,16 @@ class Income < ActiveRecord::Base
   CUOTAS[2] = ["3 Cuotas $#{valor*3}.-", valor*3]
   CUOTAS[3] = ["4 Cuotas $#{valor*4}.-", valor*4]
   CUOTAS[4] = ["5 Cuotas $#{valor*5}.-", valor*5]
-  def self.cuotas_options_for_select
+
+  def self.cuotas_options_for_select(admin)
+    if admin == 'SI'
+      CUOTAS[5] = ["1 Cuotas $6000.-", 6000]
+      CUOTAS[6] = ["2 Cuotas $#{6000*2}.-", 6000*2]
+      CUOTAS[7] = ["3 Cuotas $#{6000*3}.-", 6000*3]
+      CUOTAS[8] = ["4 Cuotas $#{6000*4}.-", 6000*4]
+      CUOTAS[9] = ["5 Cuotas $#{6000*5}.-", 6000*5]
+    end
+
     #GENDERS.to_enum.with_index(0).to_a
     CUOTAS.each.map { |t| [t[0], t[1]] }
   end  
