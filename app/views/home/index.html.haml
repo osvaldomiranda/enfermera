@@ -1,6 +1,8 @@
 .top-background
   .topbar
     .container
+      .pull-left
+        =link_to image_tag("yotecuido2.png"), publications_path(tipo: 'YO_TE_CUIDO')
       .pull-right
         =link_to  new_user_session_path, class: 'btn btn-warning' do
           %i.glyphicon.glyphicon-log-in
