@@ -1,23 +1,58 @@
-.top-background
-  .topbar
-    .container
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      / <a class="navbar-brand" href="#">Brand</a>
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      .container
       .pull-left
-        =link_to image_tag("yotecuido2.png"), publications_path(tipo: 'YO_TE_CUIDO')
+        =link_to image_tag("yotecuido2.png"), "#yotecuido"
       .pull-right
         =link_to  new_user_session_path, class: 'btn btn-warning' do
           %i.glyphicon.glyphicon-log-in
           Ingreso colegiadas
+
+
+        %ul.nav.navbar-nav
+          %li
+            = link_to "#sociedades" do
+              %span.iconos>
+                %i.fa.fa-user.fa-fw
+              Sociedades Cientificas
+
+        %ul.nav.navbar-nav
+          %li
+            = link_to "#noticias" do
+              %span.iconos>
+                %i.fa.fa-user.fa-fw
+              Noticias
+
+        %ul.nav.navbar-nav
+          %li
+            = link_to "#eventos" do
+              %span.iconos>
+                %i.fa.fa-user.fa-fw
+              Eventos
+
+
+
         %ul.nav.navbar-nav
           %li
             = link_to jobs_path do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Ofertas de trabajo
-          %li
-            = link_to publications_path(tipo:'EVENTO') do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Capacitación   
+          / %li
+          /   = link_to publications_path(tipo:'EVENTO') do
+          /     %span.iconos>
+          /       %i.fa.fa-user.fa-fw
+          /     Capacitación   
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               ¿Por qué colegiarse?
@@ -47,139 +82,148 @@
             = link_to reglamento_home_index_path do
               %span.iconos>
                 %i.fa.fa-user.fa-fw
-              Reglamento               
-  .container
-    .landing_content
-      .row
-        .col-md-6           
-        .col-md-6.text-center.logo-margin
-          = image_tag("logo-top.png")
-      .row
-        .col-md-6
-          .col-md-8
-          .col-md-1
-          .col-md-1
-            %br
-      
-            = link_to "http://eventospais.cl/enfermeras/", class: 'btn btn_pill_small' do
-              Mas información aquí
-        .col-md-6 
-          %h1.landing-title
-            Colegio de Enfermeras de Chile A.G.     
-        .col-md-6
-        .col-md-6
-          .center
-            %a.color-text{:href => "https://www.facebook.com/colegiodeenfermerasdechile", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'facebook']);"}
-              %span.fa.fa-facebook.color-text
-              Facebook
-            %a.color-text{:href => "https://twitter.com/colegioenfermer/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
-              %span.fa.fa-twitter.color-text
-              Twitter
-            %a.color-text{:href => "https://www.youtube.com/channel/UCkBovX9V2cwBUIkGW8CHRNw", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'youtube']);"}
-              %span.fa.fa-youtube.color-text
-              Youtube
-            %a.color-text{:href => "https://www.flickr.com/photos/130181298@N05/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'flickr']);"}
-              %span.fa.fa-flickr.color-text
-              Flickr
-      %br        
-      %br
-      .row
-        .col-md-6
-        .col-md-6
-          .center
-            %a.color-text{:href => 'http://www.who.int/es/' }
-              %span.fa.icon-plus-sign-alt.color-text
-              O.M.S.
-            %a.color-text{:href => 'http://www.paho.org/hq/?lang=es' }
-              %span.fa.icon-plus-sign-alt.color-text
-              O.P.S.
-            %a.color-text{:href => 'http://www.paho.org/chi/' }
-              %span.fa.icon-plus-sign-alt.color-text
-              O.P.S.Chile
-            %a.color-text{:href => 'http://www.minsal.cl' }
-              %span.fa.icon-plus-sign-alt.color-text
-              MINSAL
-            %a.color-text{:href => 'http://www.ilo.org/global/lang--es/index.htm' }
-              %span.fa.icon-plus-sign-alt.color-text
-              O.I.T.
-            %a.color-text{:href => 'http://www.icn.ch/es/' }
-              %span.fa.icon-plus-sign-alt.color-text
-              C.I.E.
-            %a.color-text{:href => 'http://instituciones.sld.cu/feppen/'  }
-              %span.fa.icon-plus-sign-alt.color-text
-              FEPPEN
-  .bkg-blue       
-    .container 
-      .row
-        .row.carousel-holder
-          .col-md-12
-            #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-              %ol.carousel-indicators
-                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-                / %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-                / %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-              .carousel-inner
-                .item.active
-                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                  .carrusel-block
-                    %row
-                      .col-md-2.text-center 
-                      .col-md-8.text-center 
-                        %h2.center_text.white
-                          El Colegio de Enfermeras de Chile A.G.  
-                        %h4.center_text.white
-                          Es la instancia gremial que defiende, protege y salvaguarda el ejercicio legal de la profesión, y promueve entre sus asociadas la capacitación, lo que permite a las enfermeras ejercer el rol de liderazgo que están llamadas a emprender dentro de los equipos de salud.
-                .item
-                  .carrusel-block
-                    %row
-                      .col-md-2.text-center 
-                      .col-md-8.text-center   
-                        %h2.center_text.white
-                          Misión
-                        %h4.center_text.white
-                          Ofrecer las mejores condiciones económicas, sociales y de capacitación para garantizar profesionalmente el cuidado de enfermería  de las personas, asumiendo el peso histórico y cultural del cuidado humano.
-                .item
-                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                  .carrusel-block
-                    %row
-                      .col-md-2.text-center 
-                      .col-md-8.text-center 
-                        %h2.center_text.white
-                          Visión  
-                        %h4.center_text.white
-                          Ser reconocidos por nuestros colegiados como la única organización que vela por el permanente perfeccionamiento y desempeño profesional de los mismos.
-                .item
-                  / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
-                  .carrusel-block
-                    %row
-                      .col-md-2.text-center 
-                      .col-md-8.text-center 
-                        %h2.center_text.white
-                          Valores  
-                        %h4.center_text.white
-                          Proteger a nuestros asociados, tanto en el aspecto económico como en el social.
-                          %br
-                          Velar por el permanente perfeccionamiento de nuestros colegiados.
-                          %br
-                          Supervisar el correcto desempeño profesional de nuestros colegiados.
-                          %br
-                          Defender el derecho a la salud, como principio inquebrantable de nuestra organización.
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-                %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-                %span.glyphicon.glyphicon-chevron-right
-    %br       
-    .container 
-      .landing_content 
-        .row                    
-          .center
-            = link_to new_inscription_path, class: 'btn btn_pill btn-block' do
-              %i.glyphicon.glyphicon-user
-              Colégiate
-      %br
-      %br
-      %br
-      %br
+              Reglamento 
+
+
+.top-background
+  .top-container
+    %br
+    %br
+    %br
+    %br
+    .container
+      .landing_content
+        .row
+          .col-md-6   
+          .logo-container        
+            .col-md-6.text-center.logo-margin
+              = image_tag("logo-top.png")
+        .row
+          .col-md-6
+            .col-md-8
+            .col-md-1
+            .col-md-1
+              %br
+        
+              = link_to "http://eventospais.cl/enfermeras/", class: 'btn btn_pill_small' do
+                Mas información aquí
+          .col-md-6 
+            %h1.landing-title
+              Colegio de Enfermeras de Chile A.G.     
+          .col-md-6
+          .col-md-6
+            .center
+              %a.color-text{:href => "https://www.facebook.com/colegiodeenfermerasdechile", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'facebook']);"}
+                %span.fa.fa-facebook.color-text
+                Facebook
+              %a.color-text{:href => "https://twitter.com/colegioenfermer/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);"}
+                %span.fa.fa-twitter.color-text
+                Twitter
+              %a.color-text{:href => "https://www.youtube.com/channel/UCkBovX9V2cwBUIkGW8CHRNw", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'youtube']);"}
+                %span.fa.fa-youtube.color-text
+                Youtube
+              %a.color-text{:href => "https://www.flickr.com/photos/130181298@N05/", :onclick => "_gaq.push(['_trackEvent', 'exit', 'footer', 'flickr']);"}
+                %span.fa.fa-flickr.color-text
+                Flickr
+        %br        
+        %br
+        .row
+          .col-md-6
+          .col-md-6
+            .center
+              %a.color-text{:href => 'http://www.who.int/es/' }
+                %span.fa.icon-plus-sign-alt.color-text
+                O.M.S.
+              %a.color-text{:href => 'http://www.paho.org/hq/?lang=es' }
+                %span.fa.icon-plus-sign-alt.color-text
+                O.P.S.
+              %a.color-text{:href => 'http://www.paho.org/chi/' }
+                %span.fa.icon-plus-sign-alt.color-text
+                O.P.S.Chile
+              %a.color-text{:href => 'http://www.minsal.cl' }
+                %span.fa.icon-plus-sign-alt.color-text
+                MINSAL
+              %a.color-text{:href => 'http://www.ilo.org/global/lang--es/index.htm' }
+                %span.fa.icon-plus-sign-alt.color-text
+                O.I.T.
+              %a.color-text{:href => 'http://www.icn.ch/es/' }
+                %span.fa.icon-plus-sign-alt.color-text
+                C.I.E.
+              %a.color-text{:href => 'http://instituciones.sld.cu/feppen/'  }
+                %span.fa.icon-plus-sign-alt.color-text
+                FEPPEN
+    .bkg-blue       
+      .container 
+        .row
+          .row.carousel-holder
+            .col-md-12
+              #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+                %ol.carousel-indicators
+                  / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+                  / %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+                  / %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+                .carousel-inner
+                  .item.active
+                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                    .carrusel-block
+                      %row
+                        .col-md-2.text-center 
+                        .col-md-8.text-center 
+                          %h2.center_text.white
+                            El Colegio de Enfermeras de Chile A.G.  
+                          %h4.center_text.white
+                            Es la instancia gremial que defiende, protege y salvaguarda el ejercicio legal de la profesión, y promueve entre sus asociadas la capacitación, lo que permite a las enfermeras ejercer el rol de liderazgo que están llamadas a emprender dentro de los equipos de salud.
+                  .item
+                    .carrusel-block
+                      %row
+                        .col-md-2.text-center 
+                        .col-md-8.text-center   
+                          %h2.center_text.white
+                            Misión
+                          %h4.center_text.white
+                            Ofrecer las mejores condiciones económicas, sociales y de capacitación para garantizar profesionalmente el cuidado de enfermería  de las personas, asumiendo el peso histórico y cultural del cuidado humano.
+                  .item
+                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                    .carrusel-block
+                      %row
+                        .col-md-2.text-center 
+                        .col-md-8.text-center 
+                          %h2.center_text.white
+                            Visión  
+                          %h4.center_text.white
+                            Ser reconocidos por nuestros colegiados como la única organización que vela por el permanente perfeccionamiento y desempeño profesional de los mismos.
+                  .item
+                    / %img.slide-image.center{:alt => "", :src => "http://placehold.it/350x150"}/
+                    .carrusel-block
+                      %row
+                        .col-md-2.text-center 
+                        .col-md-8.text-center 
+                          %h2.center_text.white
+                            Valores  
+                          %h4.center_text.white
+                            Proteger a nuestros asociados, tanto en el aspecto económico como en el social.
+                            %br
+                            Velar por el permanente perfeccionamiento de nuestros colegiados.
+                            %br
+                            Supervisar el correcto desempeño profesional de nuestros colegiados.
+                            %br
+                            Defender el derecho a la salud, como principio inquebrantable de nuestra organización.
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+                  %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+                  %span.glyphicon.glyphicon-chevron-right
+      %br       
+      .container 
+        .landing_content 
+          .row                    
+            .center
+              = link_to new_inscription_path, class: 'btn btn_pill btn-block' do
+                %i.glyphicon.glyphicon-user
+                Colégiate
+        %br
+        %br
+        %br
+        %br
 
 
 .bkg-blue
@@ -202,9 +246,7 @@
         .center
           = link_to image_tag("logo_cie2017.png"), "http://www.icnbarcelona2017.com/es/"
       .col-md-4
-        .center
-          %iframe{:frameborder => "0", :src => "http://www.youtube.com/embed/It7EKeSrqIY"}       
-          %br
+ 
       .col-md-4
         .center
           = link_to image_tag("logo_CIE_es.png"), "http://www.icn.ch/es/"    
@@ -212,178 +254,186 @@
     %br
     %br
     %br    
-     
+ 
+
 .suero-bkg-pub
-  .container
 
-    %br     
-    .row
-      %h1.page-header
-        NOTICIAS 
-    %br
-    %br 
-    .col-md-12 
-      .row   
-        .col-md-12 
-          .row.carousel-holder
-            #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
-              %ol.carousel-indicators
-                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
-                / %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
-                / %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
-              .carousel-inner
-                / .item.active
-                /   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
-                /   %h2.white
-                /     Maqueta de Noticia
-                /   %h4.white  
-                /     Esta es una maqueta de noticia
-                - @publication_news.each do |publication_new|
-                  - if @publication_news.first.id==publication_new.id
-                    .item.active
-                      .col-md-2
-                      .col-md-8 
-                        .carousel-container
-                          .caption
-                            %h3.white.center
-                              =publication_new.titulo
-                            / %h4.white.center  
-                            /   =publication_new.resumen
-                          %br    
-                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+  %section#noticias
+    .container
 
-                  - else      
-                    .item
-                      .col-md-2
-                      .col-md-8
-                        .carousel-container
-                          .caption
-                            %h3.white.center
-                              =publication_new.titulo
-                            / %h4.white.center  
-                            /   =publication_new.resumen 
-                          %br    
-                          = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
-   
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
-                %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
-                %span.glyphicon.glyphicon-chevron-right
-    %br
-    %br
-    %br
-  .container 
-    .row    
-      .col-md-12            
+      %br     
+      .row
+        %h1.page-header
+          NOTICIAS 
       %br
+      %br 
+      .col-md-12 
+        .row   
+          .col-md-12 
+            .row.carousel-holder
+              #carousel-noticias.carousel.slide{"data-ride" => "carousel-noticias"}
+                %ol.carousel-indicators
+                  / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-noticias"}
+                  / %li{"data-slide-to" => "1", "data-target" => "#carousel-noticias"}
+                  / %li{"data-slide-to" => "2", "data-target" => "#carousel-noticias"}
+                .carousel-inner
+                  / .item.active
+                  /   %img.center.slide-image{:alt => "", :src => "http://placehold.it/800x300"}/
+                  /   %h2.white
+                  /     Maqueta de Noticia
+                  /   %h4.white  
+                  /     Esta es una maqueta de noticia
+                  - @publication_news.each do |publication_new|
+                    - if @publication_news.first.id==publication_new.id
+                      .item.active
+                        .col-md-2
+                        .col-md-8 
+                          .carousel-container
+                            .caption
+                              %h3.white.center
+                                =publication_new.titulo
+                              / %h4.white.center  
+                              /   =publication_new.resumen
+                            %br    
+                            = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+
+                    - else      
+                      .item
+                        .col-md-2
+                        .col-md-8
+                          .carousel-container
+                            .caption
+                              %h3.white.center
+                                =publication_new.titulo
+                              / %h4.white.center  
+                              /   =publication_new.resumen 
+                            %br    
+                            = link_to image_tag(publication_new.imagen_url(:normal)), publication_new, class: "center slide-image img-responsive"
+     
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-noticias"}
+                  %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-noticias"}
+                  %span.glyphicon.glyphicon-chevron-right
+      %br
+      %br
+      %br
+    .container 
+      .row    
+        .col-md-12            
+        %br
+          .center  
+            = link_to 'Ver todas las noticias',publications_path(tipo: 'NOTICIA') , class: 'btn btn_pill_small'
+          %br
+
+.bkg-blue
+  %section#yotecuido 
+    %br
+    %br
+    %br
+    .container
+      %br     
+      .row
+        .col-md-2.text-center
+          = image_tag("yotecuido.png")
+        .col-md-10    
+          %h1.page-header
+            Yo Te Cuido 
+      %br
+      %br 
+      .col-md-12 
+        .row   
+          .col-md-12 
+            .row.carousel-holder
+              #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
+                %ol.carousel-indicators
+                  / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
+                  / %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
+                  / %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
+                .carousel-inner
+                  - @publication_yotecuido.each do |publication_yotecuido|
+                    - if @publication_yotecuido.first.id==publication_yotecuido.id
+                      .item.active
+                        .col-md-2
+                        .col-md-8 
+                          .carousel-container
+                            %h3.white.center
+                              =publication_yotecuido.titulo
+                            / %h4.white.center  
+                            /   =publication_yotecuido.resumen
+                            %br
+                            = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
+                    - else      
+                      .item
+                        .col-md-2
+                        .col-md-8 
+                          .carousel-container
+                            %h2.white.center
+                              =publication_yotecuido.titulo
+                            / %h4.white.center  
+                            /   =publication_yotecuido.resumen 
+                            %br
+                            = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
+     
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
+                  %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
+                  %span.glyphicon.glyphicon-chevron-right
+        %br
         .center  
-          = link_to 'Ver todas las noticias',publications_path(tipo: 'NOTICIA') , class: 'btn btn_pill_small'
+          = link_to 'Ver todo Yo Te Cuido',publications_path(tipo: 'YO_TE_CUIDO') , class: 'btn btn_pill_small'
         %br
 
-.bkg-blue 
-  .container
-    %br     
-    .row
-      .col-md-2.text-center
-        = image_tag("yotecuido.png")
-      .col-md-10    
-        %h1.page-header
-          Yo Te Cuido 
-    %br
-    %br 
-    .col-md-12 
-      .row   
-        .col-md-12 
-          .row.carousel-holder
-            #carousel-yotecuido.carousel.slide{"data-ride" => "carousel-yotecuido"}
-              %ol.carousel-indicators
-                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-yotecuido"}
-                / %li{"data-slide-to" => "1", "data-target" => "#carousel-yotecuido"}
-                / %li{"data-slide-to" => "2", "data-target" => "#carousel-yotecuido"}
-              .carousel-inner
-                - @publication_yotecuido.each do |publication_yotecuido|
-                  - if @publication_yotecuido.first.id==publication_yotecuido.id
-                    .item.active
-                      .col-md-2
-                      .col-md-8 
-                        .carousel-container
-                          %h3.white.center
-                            =publication_yotecuido.titulo
-                          / %h4.white.center  
-                          /   =publication_yotecuido.resumen
-                          %br
-                          = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
-                  - else      
-                    .item
-                      .col-md-2
-                      .col-md-8 
-                        .carousel-container
-                          %h2.white.center
-                            =publication_yotecuido.titulo
-                          / %h4.white.center  
-                          /   =publication_yotecuido.resumen 
-                          %br
-                          = link_to image_tag(publication_yotecuido.imagen_url(:normal)), publication_yotecuido, class: "center slide-image img-responsive"
-   
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-yotecuido"}
-                %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-yotecuido"}
-                %span.glyphicon.glyphicon-chevron-right
-      %br
-      .center  
-        = link_to 'Ver todo Yo Te Cuido',publications_path(tipo: 'YO_TE_CUIDO') , class: 'btn btn_pill_small'
-      %br
-
 .pasillo-bkg 
-  .container
-    %br     
-    .row
-      %h1.page-header
-        EVENTOS 
-    %br
-    %br 
-    .col-md-12 
-      .row   
-        .col-md-12 
-          .row.carousel-holder
-            #carousel-eventos.carousel.slide{"data-ride" => "carousel-eventos"}
-              %ol.carousel-indicators
-                / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
-                / %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
-                / %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
-              .carousel-inner
-                - @publication_eventos.each do |publication_eventos|
-                  - if @publication_eventos.first.id==publication_eventos.id
-                    .item.active
-                      .col-md-2
-                      .col-md-8 
-                        .carousel-container
-                          %h3.white.center
-                            =publication_eventos.titulo
-                          / %h4.white.center  
-                          /   =publication_eventos.resumen
-                          %br                        
-                          = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
-                  - else      
-                    .item
-                      .col-md-2
-                      .col-md-8 
-                        .carousel-container
-                          %h3.white.center
-                            =publication_eventos.titulo
-                          / %h4.white.center  
-                          / =publication_eventos.resumen 
-                          %br
-                          = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
-   
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
-                %span.glyphicon.glyphicon-chevron-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
-                %span.glyphicon.glyphicon-chevron-right
+  %section#eventos
+    .container
+      %br     
+      .row
+        %h1.page-header
+          EVENTOS 
       %br
-      .center  
-        = link_to 'Ver todas los eventos',publications_path(tipo: 'EVENTO') , class: 'btn btn_pill_small'
-      %br
+      %br 
+      .col-md-12 
+        .row   
+          .col-md-12 
+            .row.carousel-holder
+              #carousel-eventos.carousel.slide{"data-ride" => "carousel-eventos"}
+                %ol.carousel-indicators
+                  / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-eventos"}
+                  / %li{"data-slide-to" => "1", "data-target" => "#carousel-eventos"}
+                  / %li{"data-slide-to" => "2", "data-target" => "#carousel-eventos"}
+                .carousel-inner
+                  - @publication_eventos.each do |publication_eventos|
+                    - if @publication_eventos.first.id==publication_eventos.id
+                      .item.active
+                        .col-md-2
+                        .col-md-8 
+                          .carousel-container
+                            %h3.white.center
+                              =publication_eventos.titulo
+                            / %h4.white.center  
+                            /   =publication_eventos.resumen
+                            %br                        
+                            = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
+                    - else      
+                      .item
+                        .col-md-2
+                        .col-md-8 
+                          .carousel-container
+                            %h3.white.center
+                              =publication_eventos.titulo
+                            / %h4.white.center  
+                            / =publication_eventos.resumen 
+                            %br
+                            = link_to image_tag(publication_eventos.imagen_url(:normal)), publication_eventos, class: "center slide-image img-responsive"
+     
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-eventos"}
+                  %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-eventos"}
+                  %span.glyphicon.glyphicon-chevron-right
+        %br
+        .center  
+          = link_to 'Ver todas los eventos',publications_path(tipo: 'EVENTO') , class: 'btn btn_pill_small'
+        %br
             
  
 .bkg-blue
@@ -411,24 +461,27 @@
   %br
   %br
 .suero-bkg 
-  .container
-    .row
-      .col-lg-12
-        %h1.page-header
-          Sociedades Cientificas
-        %p El Colegio de Enfermeras de Chile A.G. ha promovido la creación de Sociedades Científicas para otorgar a sus colegiados la posibilidad de especializarse en el área de salud que se desempeñan profesionalmente.
-    .row
-      - n = 0
-      - @scientific_societies.each do |scientific_society|
-        - if n==4
-          - n = 0
-          .row
-        .col-lg-3.text-center
-          .society-container 
-            = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
-            %h4.center.white
-              =scientific_society.nombre
-        - n+= 1
+  %section#sociedades
+    %br
+    %br
+    .container
+      .row
+        .col-lg-12
+          %h1.page-header
+            Sociedades Cientificas
+          %p El Colegio de Enfermeras de Chile A.G. ha promovido la creación de Sociedades Científicas para otorgar a sus colegiados la posibilidad de especializarse en el área de salud que se desempeñan profesionalmente.
+      .row
+        - n = 0
+        - @scientific_societies.each do |scientific_society|
+          - if n==4
+            - n = 0
+            .row
+          .col-lg-3.text-center
+            .society-container 
+              = link_to image_tag(scientific_society.logo_url, class: "center img-circle img-responsive img-center"), scientific_society_path(scientific_society)
+              %h4.center.white
+                =scientific_society.nombre
+          - n+= 1
             
 .bkg-blue
   .container 
