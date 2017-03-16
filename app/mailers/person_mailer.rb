@@ -63,15 +63,9 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      # fileExtension = File.extname("#{Rails.root}/public#{@reserva.deposito_url}")
-      # attachments["deposito#{fileExtension}"] = File.read("#{Rails.root}/public#{@reserva.deposito_url}")
+ 
 
-      # if @reserva.preaprob_url.present?
-      #   fileExtension = File.extname("#{Rails.root}/public#{@reserva.preaprob_url}")
-      #   attachments["preaprobacion#{fileExtension}"] = File.read("#{Rails.root}/public#{@reserva.preaprob_url}")
-      # end  
-
-      emails = [@person.email]
+      emails = [@person.workplace.office.email]
 
       mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", bcc: "osvaldo.omiranda@gmail.com",)
 

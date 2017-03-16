@@ -5,6 +5,8 @@ class Person < ActiveRecord::Base
   require 'prawn'
   require 'prawn/table'
 
+  after_save :send_email
+
   belongs_to :workplace
 
   has_many :previousjob, dependent: :destroy
@@ -232,5 +234,8 @@ class Person < ActiveRecord::Base
     w.office
   end
 
+  def send_email
+    PersonMailer.send_user(self.rut).deliver
+  end
 
 end

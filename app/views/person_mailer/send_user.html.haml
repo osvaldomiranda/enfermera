@@ -1,23 +1,19 @@
-%h3= "Señor(a): #{@person.fullname}"
+%h3= "Señor(a): #{@person.workplace.office.nombre}"
 %br
 
-%p El sistema de administración de colegiadas le da la bienvenida.
-
-
-%h4= link_to 'Para entrar al sistema Click aquí', "http://45.79.158.208"
+%h3 Registro de Colegiada
 %br
-
-%p= "Su password es: #{@person.rut}"
-
-%p Atento a sus comentarios. 
-
-%p saludos
-
+%p  Comunicamos a usted , la siguiente inscripción en el Sistema de Administración de Colegiadas.  
+%h4= @person.fullname
+%p= @person.email
+%p= @person.workplace.nombre
+%h4= link_to 'Certificado de Superintendencia de Salud', "#{@person.url}"
+%br
 %br
 %br
 %p Colegio de Enfermeras de Chile A.G. 
 %p Miraflores 563, Santiago
-%p Fono contacto téctnico 90880320
+%p Fono contacto téctnico 990880320
 %p Mail:  osvaldo.omiranda@gmail.com
 %br
 %br
