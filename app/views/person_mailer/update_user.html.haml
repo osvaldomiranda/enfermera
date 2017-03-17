@@ -1,0 +1,16 @@
+%h3= "USUARIO CABIO SUS DATOS"
+%br
+%br
+%p  Comunicamos a usted , los siguientes cambios en los datos del usuario  
+%h4= @person.fullname
+%p= @person.nro_registro
+%p= @person.email
+%p= @person.workplace.nombre
+%br
+%br
+- @changes.each do |attr|
+  %p= "Cambia: #{attr} de: #{@person.changed_attributes[attr]}  a: #{@person.attributes[attr]} "
+%br
+%br
+%br
+%br

@@ -63,11 +63,9 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
- 
-
       emails = [@person.workplace.office.email]
 
-      mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", bcc: "osvaldo.omiranda@gmail.com",)
+      mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", cc: "contabilidad1@colegiodeenfermeras.cl" ,bcc: "osvaldo.omiranda@gmail.com")
 
 # cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
     rescue
@@ -76,4 +74,24 @@ class PersonMailer < ActionMailer::Base
       puts "***********************"
     end
   end  
+
+  def update_user(person, changes)
+    begin
+      @changes = changes
+      @person = person
+
+      @url  = 'http://www.colegioenfermerasdechile.cl'
+
+      emails = ["contabilidad1@colegiodeenfermeras.cl"]
+
+      mail(to:emails ,subject: "Datos cambiados por el Usuario, Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com",bcc: "osvaldo.omiranda@gmail.com")
+
+# cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
+    rescue
+      puts "********* person_mailer **************"
+      puts "Error  send #{$!}"
+      puts "***********************"
+    end
+  end  
+
 end

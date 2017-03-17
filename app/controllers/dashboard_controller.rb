@@ -12,6 +12,8 @@ class DashboardController < ApplicationController
 
     @persondocuments = @person.persondocuments
     @head_dailies = HeadDaily.where(rut: @person.rut) 
+
+    @head_dailies_wp = HeadDaily.where(workplace_id: @person.workplace_id).where(id: Daily.select(:head_daily_id).where(account_id: Account.where(codigo:'2040105'))) 
   end
 
 end

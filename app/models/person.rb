@@ -5,7 +5,8 @@ class Person < ActiveRecord::Base
   require 'prawn'
   require 'prawn/table'
 
-  after_save :send_email
+  before_save :log_changed
+  after_create :send_email
 
   belongs_to :workplace
 
@@ -237,5 +238,13 @@ class Person < ActiveRecord::Base
   def send_email
     PersonMailer.send_user(self.rut).deliver
   end
+
+
+  def log_changed
+    if self.changed?
+      PersonMailer.update_user(self, self.changed ).deliver
+    end
+  end  
+
 
 end

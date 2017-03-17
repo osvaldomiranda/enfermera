@@ -77,6 +77,6 @@ class HeadDailiesController < ApplicationController
     end
 
     def head_daily_params
-      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode, :numcheque, :documento, :fecha_contable, :rut)
+      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode, :numcheque, :documento, :fecha_contable, :rut, :workplace_id)
     end
 end

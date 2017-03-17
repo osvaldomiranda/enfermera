@@ -12,6 +12,7 @@
             - else  
               = f.input :recibidode
               = f.input :rut
+              = f.input :workplace_id, collection: Workplace.workplaces_option_for_code
 
             = f.input :mediopago
             = f.input :numcheque
