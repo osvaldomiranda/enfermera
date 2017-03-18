@@ -57,7 +57,7 @@
                 .form-group    
                   %label.col-sm-2.control-label{:for => "textinput"} Lugar Trabajo
                   .col-sm-4
-                    = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_code   
+                    = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_code(current_user)   
                   %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato
                   .col-sm-4
                     = f.input :tipo_contrato, label: false, collection: Person.tipocontrato_options_for_select

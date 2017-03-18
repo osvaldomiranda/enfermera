@@ -151,6 +151,7 @@ class Inscription < ActiveRecord::Base
         @person.telefono = self.telefono
         @person.celular = self.celular
         @person.origen = self.origen
+        @person.forma_pago = self.forma_pago
         @person.url = ''
         @person.certificado_html = ''
         if  @person.save

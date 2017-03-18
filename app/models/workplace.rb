@@ -15,9 +15,13 @@ class Workplace < ActiveRecord::Base
     Workplace.all.order(nombre: :asc).map {|t| [t.nombre, t.id]}
   end  
 
-  def self.workplaces_option_for_code
+  def self.workplaces_option_for_code(user)
     # filtrar por ciudad
-    Workplace.all.order(cod_wp: :asc).map {|t| ["#{t.cod_wp} #{t.nombre}", t.id]}
+    if user.rol > 7
+      Workplace.all.order(cod_wp: :asc).map {|t| ["#{t.cod_wp} #{t.nombre}", t.id]}
+    else
+      Workplace.where(office_id: user.office.id).order(cod_wp: :asc).map {|t| ["#{t.cod_wp} #{t.nombre}", t.id]}
+    end  
   end  
 
   def self.workplaces_for_office(regional)

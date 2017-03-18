@@ -46,6 +46,11 @@ class User < ActiveRecord::Base
     }
     return result
   end
+
+  def rol
+    self.roles_mask
+  end
+
   ## End ROLES 
 
   def person

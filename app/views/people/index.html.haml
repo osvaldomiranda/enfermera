@@ -11,12 +11,13 @@
             %h1
               Colegiadas
               %span.badge= @people.count
-        %hr      
-        .row
-          .col-md-12
-            .form-inline
-              = label_tag :filter_office, 'Regional'
-              = select_tag :filter_office, options_for_select(Office.office_option_for_select, @office), prompt: 'Todos', class: "form-control"
+        %hr
+        - if current_user.rol > 7      
+          .row
+            .col-md-12
+              .form-inline
+                = label_tag :filter_office, 'Regional'
+                = select_tag :filter_office, options_for_select(Office.office_option_for_select, @office), prompt: 'Todos', class: "form-control"
         %br      
         .row
           .col-md-12
@@ -25,7 +26,7 @@
               = select_tag :filter_estado, options_for_select(Person::ESTADOS.map{|e| [e[1], e[0]]}, @estado), prompt: 'Todos', class: "form-control"
           
               = label_tag :filter_lugar_trabajo, 'Lugar de Trabajo'
-              = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_code, @lugar_trabajo), prompt: 'Todos', class: "form-control"  
+              = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_code(current_user), @lugar_trabajo), prompt: 'Todos', class: "form-control"  
         .row
           .col-md-12
             = simple_form_for(people_path,:method => :get ) do |f|
@@ -48,62 +49,6 @@
         %hr 
 
 
-        / - if current_user.rut=="11367176-9"
-        /   %h3 importar colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag import_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-
-        /   %h3 update colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag import_update_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-
-          / %h3 update emails 
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag import_update_email_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar"               
-
-          / %h3 crear cuotas colegiadas 
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag create_fee_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar" 
-
-          / %h3 crear usuarios colegiadas 
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag create_user_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar" 
-
-          / %h3 crear head daily Ingreso
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag create_head_daily_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar" 
-
-          / %h3 crear head daily Egreso
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag create_head_daily_egreso_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar"               
-
-          / %h3 crear daily 
-          / .form-group   
-          /   %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-          /   = form_tag create_daily_people_path, multipart: true do 
-          /     = file_field_tag :file 
-          /     = submit_tag "Importar" 
 
  
 

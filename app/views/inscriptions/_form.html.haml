@@ -92,7 +92,7 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Lugar de trabajo 
                   .col-sm-4
                     - if current_user.present?
-                      = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_code 
+                      = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_code(current_user) 
                     -else
                       = f.input :workplace_id, label: false, collection: Workplace.workplaces_option_for_name   
                 %h3 Forma pago cuota social   
