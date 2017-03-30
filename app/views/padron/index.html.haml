@@ -45,8 +45,10 @@
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
         %br
         %br
+        - if current_user.rol > 7 
+          = link_to "Exportar a Excel",padron_toxls_path(format: :xls),  class: 'btn btn-info'
 
-        = link_to "Exportar a Excel",padron_toxls_path(format: :xls),  class: 'btn btn-info'
+
         = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
         %br
         %br
