@@ -1,0 +1,20 @@
+%table
+  %thead
+    %tr
+      %th N Registro
+      %th Rut
+      %th Nombre
+      %th Lugar de Trabajo
+      %th 
+      %th
+      %th
+  %tbody
+    - @people.each do |person|
+      %tr
+        %td= person.nro_registro
+        %td= person.rut
+        %td= person.fullname
+        - if person.workplace.present?
+          %td= person.workplace.nombre
+        - else
+          %td  

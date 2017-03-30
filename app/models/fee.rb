@@ -1,5 +1,6 @@
 class Fee < ActiveRecord::Base
   belongs_to :person
+  after_save :mescuota_todate
 
   MES      = ['1', '2', '3','4', '5', '6','7', '8', '9','10', '11', '12']
   def self.mescuota_options_for_select
@@ -7,6 +8,20 @@ class Fee < ActiveRecord::Base
     MES.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
+  def mescuota_todate
+    if self.mes_cuota.present?
+      if self.mes_cuota.include? "-"
+        m=self.mes_cuota[0..self.mes_cuota.index("-")-1]
+        a=self.mes_cuota[self.mes_cuota.index("-")+1..100]
+        self.update(mescuota: "1-#{m}-#{a})".to_date)
+        "1-#{m}-#{a})".to_date
+      else
+        nil
+      end  
+    else
+      nil
+    end
+  end
 
 
   def self.import(file)

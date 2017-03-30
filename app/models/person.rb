@@ -22,6 +22,7 @@ class Person < ActiveRecord::Base
   validates :nombres, :apellido_paterno, presence: true
   validates :rut, :rut_format => true
 
+  scope :padron, -> estado { where("id IN (?) OR  workplace_id IN (?)" ,Fee.select(:person_id).where("mescuota > ? ", 3.month.ago), HeadDaily.select(:workplace_id).where(id: Daily.select(:head_daily_id).where(account_id: Account.where(codigo:'2040105')))) } 
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
 
@@ -213,7 +214,7 @@ class Person < ActiveRecord::Base
   end
 
   def workplace
-    workplace = Workplace.find(self.workplace_id)
+    workplace = Workplace.where(id: self.workplace_id).first || nil
   end
 
   def workplace_name

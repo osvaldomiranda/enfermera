@@ -1,4 +1,9 @@
 Enfermera::Application.routes.draw do
+  get "padron/index"
+  get "padron/toxls"
+  get "welcome/index"
+  root to: "home#index"
+
   resources :countries
 
   resources :benefits
@@ -11,7 +16,7 @@ Enfermera::Application.routes.draw do
 
   resources :magazines
 
-  get "welcome/index"
+  
   resources :national_councils
 
   resources :scientific_societies
@@ -20,7 +25,7 @@ Enfermera::Application.routes.draw do
 
   resources :publications do
     collection do
-      post :froala_upload
+      post :froala_uploa
     end
   end
 
@@ -67,7 +72,7 @@ Enfermera::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  root to: "home#index"
+  
 
   resources :home, only: :index do
     collection do
