@@ -66,7 +66,6 @@ Enfermera::Application.routes.draw do
   resources :regions
   resources :offices
   resources :fees
-  resources :inscriptions
   resources :wpdocuments
   resources :previousjobs
 
@@ -81,6 +80,12 @@ Enfermera::Application.routes.draw do
       get :obligaciones
       get :estatutos
       get :reglamento
+    end
+  end
+
+  resources :inscriptions do
+    collection do
+      get :change_state
     end
   end
 
@@ -193,6 +198,7 @@ Enfermera::Application.routes.draw do
       post :create_head_daily_egreso
       post :create_daily
       get :filter
+      get :enviar
     end 
   end
 

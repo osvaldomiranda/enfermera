@@ -1,51 +1,77 @@
-%h1 Listing inscriptions
-
-%table
-  %thead
-    %tr
-      %th Nro registro
-      %th Rut
-      %th Nombres
-      %th Apellido paterno
-      %th Apellido materno
-      %th Sexo
-      %th Nacionalidad
-      %th Fecha inscripcion
-      %th Direccion
-      %th Ciudad
-      %th Universidad
-      %th Fecha titulo
-      %th Tipo contrato
-      %th Estado
-      %th Fecha solicitud
-      %th
-      %th
-      %th
-
-  %tbody
-    - @inscriptions.each do |inscription|
-      %tr
-        %td= inscription.nro_registro
-        %td= inscription.rut
-        %td= inscription.nombres
-        %td= inscription.apellido_paterno
-        %td= inscription.apellido_materno
-        %td= inscription.sexo
-        %td= inscription.nacionalidad
-        %td= inscription.fecha_inscripcion
-        %td= inscription.direccion
-        %td= inscription.ciudad
-        %td= inscription.universidad
-        %td= inscription.fecha_titulo
-        %td= inscription.tipo_contrato
-        %td= inscription.estado
-        %td= inscription.fecha_solicitud
-        - if inscription.estado == "OK"
-          %td= link_to 'Show', inscription
-        - else
-          %td= link_to 'Edit', edit_inscription_path(inscription)
-        / %td= link_to 'Destroy', inscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
 %br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Solicitudes de Colegiatura
+              %span.badge= @inscriptions.count
 
-= link_to 'New Inscription', new_inscription_path
+            - if current_user.rol > 7      
+              .row
+                .col-md-12
+                  .form-inline
+                    = label_tag :filter_office, 'Regional'
+                    = select_tag :filter_office, options_for_select(Office.office_option_for_select, @office), prompt: 'Todos', class: "form-control"
+            %br      
+            .row
+              .col-md-12
+                .form-inline
+                  = label_tag :filter_estado, 'Estado'
+                  = select_tag :filter_estado, options_for_select(Inscription::ESTADOS.map{|e| [e[1], e[0]]}, @estado), prompt: 'Todos', class: "form-control"
+              
+                  = label_tag :filter_lugar_trabajo, 'Lugar de Trabajo'
+                  = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_code(current_user), @lugar_trabajo), prompt: 'Todos', class: "form-control"  
+            .row
+              .col-md-12
+                = simple_form_for(people_path,:method => :get ) do |f|
+                  .form-group  
+                    .col-sm-4
+                      = f.input :apellido_paterno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
+                    .col-sm-4
+                      = f.input :apellido_materno, label: false, placeholder: "Apellido Materno", :input_html => {:style=> 'width: 350px'} 
+                  .form-group  
+                    .col-sm-4
+                      = f.input :rut, label: false, placeholder: "Rut", :input_html => {:style=> 'width: 150px'} 
+                  .col-sm-4  
+                    = f.button :submit, "Buscar",  class: "btn btn-primary"
+            %br
+            %br
+        
+        = will_paginate @inscriptions, previous_label: h("<  "), next_label: h("  >")    
+        %hr
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Rut
+              %th Nombre
+              %th Tipo contrato
+              %th Fecha solicitud
+              %th Certificado
+              %th Estado
+              %th Revisado por
+              %th  
+          %tbody
+            - @inscriptions.each do |inscription|
+              %tr
+                %td= inscription.rut
+                %td= inscription.fullname
+                %td= inscription.tipo_contrato
+                %td= inscription.fecha_solicitud
+                - if inscription.url.present?
+                  %td= link_to ' Mostrar Certificado ', inscription.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                -else
+                  %td  
+                %td= inscription.estado
+                - if inscription.estado == "SOLICITADA" || inscription.estado == nil
+                  %td= link_to 'Aprobar', change_state_inscriptions_path(id: inscription.id, change_state: 'APROBADA'), class: 'btn btn-warning btn-xs'
+                  %td= link_to 'Rechazar', change_state_inscriptions_path(id: inscription.id, change_state: 'RECHAZADA'), class: 'btn btn-warning btn-xs'
+                - else
+                  - if inscription.user.present?
+                    %td= inscription.user.email
+                    %td    

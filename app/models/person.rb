@@ -6,7 +6,6 @@ class Person < ActiveRecord::Base
   require 'prawn/table'
 
   before_save :log_changed
-  after_create :send_email
 
   belongs_to :workplace
 
@@ -234,10 +233,6 @@ class Person < ActiveRecord::Base
   def office
     w = self.workplace
     w.office
-  end
-
-  def send_email
-    PersonMailer.send_user(self.rut).deliver
   end
 
 

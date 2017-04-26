@@ -50,6 +50,9 @@
 
 
         - if current_user.rut=="11367176-9"
+
+          = link_to 'Enviar noticias', enviar_people_path
+
           %h3 importar colegiadas 
           .form-group   
             %label.col-sm-2.control-label{:for => "textinput"}  Importar 
@@ -98,7 +101,9 @@
             = form_tag create_daily_people_path, multipart: true do 
               = file_field_tag :file 
               = submit_tag "Importar" 
- 
+
+        
+   
 
 .container{:role => "main"}
   .col-md-12
@@ -141,12 +146,12 @@
                     - else
                       - if person.certificado_file
                         %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
-                  - else
-                    - if person.estado == "CANCELADO"
-                      %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 
-                    - else  
-                      %td= link_to 'Confirmar', certificado_person_path(person.id), data: { modal: true },class: 'btn btn-warning btn-xs' 
-                      %td= link_to 'Cancelar', cancel_person_path(person.id), class: 'btn btn-warning btn-xs'
+                  / - else
+                  /   - if person.estado == "CANCELADO"
+                  /     %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 
+                  /   - else  
+                  /     %td= link_to 'Confirmar', certificado_person_path(person.id), data: { modal: true },class: 'btn btn-warning btn-xs' 
+                  /     %td= link_to 'Cancelar', cancel_person_path(person.id), class: 'btn btn-warning btn-xs'
                            
                   / %td= link_to 'Edit', edit_person_path(person)
                   / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }

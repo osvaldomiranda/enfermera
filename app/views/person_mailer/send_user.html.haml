@@ -1,13 +1,14 @@
-%h3= "Señor(a): #{@person.workplace.office.nombre}"
+%h3= "Señor(a): #{@inscription.workplace.office.nombre}"
 %br
 
-%h3 Registro de Colegiada
+%h3 Solicitud de Colegiatura
 %br
 %p  Comunicamos a usted , la siguiente inscripción en el Sistema de Administración de Colegiadas.  
-%h4= @person.fullname
-%p= @person.email
-%p= @person.workplace.nombre
-%h4= link_to 'Certificado de Superintendencia de Salud', "#{@person.url}"
+%h4= @inscription.fullname
+%p= @inscription.email
+%p= @inscription.workplace.nombre
+%h2= "Estado: #{@inscription.estado}"
+%h4= link_to 'Certificado de Superintendencia de Salud', "#{@inscription.url}"
 %br
 %br
 %br

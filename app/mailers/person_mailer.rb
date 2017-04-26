@@ -59,13 +59,13 @@ class PersonMailer < ActionMailer::Base
     begin
 
       @user = User.find_by_rut(rut)
-      @person = Person.find_by_rut(rut)
+      @inscription = Inscription.find_by_rut(rut)
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      emails = [@person.workplace.office.email]
+      emails = [@inscription.workplace.office.email]
 
-      mail(to:emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", cc: "contabilidad1@colegiodeenfermeras.cl" ,bcc: "osvaldo.omiranda@gmail.com")
+      mail(to: emails ,subject: "Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com", cc: "contabilidad1@colegiodeenfermeras.cl" ,bcc: "osvaldo.omiranda@gmail.com")
 
 # cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
     rescue
@@ -93,5 +93,23 @@ class PersonMailer < ActionMailer::Base
       puts "***********************"
     end
   end  
+
+  def send_news(email)
+    begin
+
+      @user = User.where(email: email).first
+
+      @url  = 'http://www.colegioenfermerasdechile.cl'
+
+      emails = [@user.email]
+
+      mail(to: emails ,subject: "Postgrados Facsalud www.ucentral.cl", from:  "colegioenfermeras@gmail.com")
+
+    rescue
+      puts "********* person_mailer **************"
+      puts "Error  send #{$!}"
+      puts "***********************"
+    end
+  end
 
 end

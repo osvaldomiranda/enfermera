@@ -79,7 +79,7 @@
               %th Estado
               %th Monto
           %tbody
-            - @person.fees.order(mes_cuota: :desc).limit(6).each do |pago|
+            - @person.fees.order(mescuota: :desc).limit(6).each do |pago|
               %tr
                 %td= pago.pagador
                 %td= pago.mes_cuota

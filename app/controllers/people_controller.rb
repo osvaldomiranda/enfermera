@@ -374,6 +374,30 @@ class PeopleController < ApplicationController
     end
   end  
 
+  def enviar
+    users = User.where.not(email: nil )
+    # users = User.where(email: 'osvaldo.omiranda@gmail.com')
+
+    @c = 0
+    @e = 0
+
+    users.each do |user|
+      if !user.email.include? "sin" 
+        begin
+          PersonMailer.send_news(user.email).deliver
+          @c=@c+1
+        rescue
+          puts "******************"
+          puts "******************"
+          puts user.rut
+          puts user.email
+          puts "******************"
+          puts "******************"
+          @e=@e+1
+        end  
+      end
+    end
+  end
 
   private
     def set_person

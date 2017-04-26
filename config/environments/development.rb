@@ -38,8 +38,8 @@ Enfermera::Application.configure do
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            'osvaldo.omiranda@gmail.com',
-  password:             'osva1234',
+  user_name:            'enviar@colegiodeenfermeras.cl',
+  password:             'osvaldo1249',
   authentication:       'plain',
   enable_starttls_auto: true  }
 end
