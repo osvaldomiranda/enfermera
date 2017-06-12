@@ -13,7 +13,7 @@
               %span.badge= @people.count
           .col-xs-12
             %h3
-              Cuotas al día con holgura de 3 meses
+              Cuotas al día con holgura de 6 meses
         %hr
         - if current_user.rol > 7      
           .row
@@ -46,7 +46,7 @@
         %br
         %br
         - if current_user.rol > 7 
-          = link_to "Exportar a Excel",padron_toxls_path(format: :xls),  class: 'btn btn-info'
+          = link_to "Exportar a Excel",padron_toxls_path(office: @office,format: :xls),  class: 'btn btn-info'
 
 
         = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'

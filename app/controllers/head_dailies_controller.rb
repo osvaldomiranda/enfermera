@@ -13,11 +13,14 @@ class HeadDailiesController < ApplicationController
       @numero = params["/head_dailies"][:numero] || nil
     end
 
+    @page = params[:page] || 1
+
     @head_dailies = HeadDaily.with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(params[:page]).per_page(20) 
     respond_with(@head_dailies)
   end
 
   def show
+    @page = params[:page] || 1
     respond_with(@head_daily)
   end
 
@@ -62,7 +65,7 @@ class HeadDailiesController < ApplicationController
   def confirmar
     @head_daily.confirmar
 
-    redirect_to head_dailies_path
+    redirect_to "/head_dailies?page=#{params[:page]}"
   end
 
   def showtopdf

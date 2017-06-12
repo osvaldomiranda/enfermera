@@ -1,6 +1,6 @@
 class Fee < ActiveRecord::Base
   belongs_to :person
-  after_save :mescuota_todate
+  # after_save :mescuota_todate
 
   MES      = ['1', '2', '3','4', '5', '6','7', '8', '9','10', '11', '12']
   def self.mescuota_options_for_select
@@ -9,20 +9,51 @@ class Fee < ActiveRecord::Base
   end 
 
   def mescuota_todate
-    if self.mes_cuota.present?
-      if self.mes_cuota.include? "-"
-        m=self.mes_cuota[0..self.mes_cuota.index("-")-1]
-        a=self.mes_cuota[self.mes_cuota.index("-")+1..100]
-        self.update(mescuota: "1-#{m}-#{a})".to_date)
-        "1-#{m}-#{a})".to_date
+    begin
+      if self.mes_cuota.present?
+        if self.mes_cuota.include? "-"
+          m=self.mes_cuota[0..self.mes_cuota.index("-")-1]
+          a=self.mes_cuota[self.mes_cuota.index("-")+1..100]
+          self.update(mescuota: "1-#{m}-#{a})".to_date)
+          "1-#{m}-#{a})".to_date
+        else
+          nil
+        end  
       else
         nil
-      end  
-    else
+      end
+    rescue
       nil
     end
   end
 
+
+  def self.import_valpo(file)
+    CSV.foreach(file.path, col_sep: ',', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+
+      if rowHash["nro_registro"].present?
+        @person = Person.where(nro_registro: rowHash["nro_registro"]).first 
+      else   
+        @person = Person.where(rut: rowHash["rut"]).first if rowHash["rut"].present?
+      end
+
+      if @person.present?
+        puts "******* #{rowHash["fch_ene"]} *********"
+        fee = Fee.new
+        fee.fecha_pago = Date.parse(rowHash["fecha"])
+        fee.mes = rowHash["mes"]
+        fee.mes_cuota = rowHash["mes"]
+        fee.monto = rowHash["monto"]
+        fee.person_id = @person.id
+        fee.rut = @person.rut
+        fee.estado = "PAGADO"
+        fee.nro_registro = @person.nro_registro
+        fee.pagador = "ProcesoSistema"
+        fee.save
+      end    
+    end
+  end  
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|

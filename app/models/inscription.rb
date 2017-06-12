@@ -152,6 +152,7 @@ class Inscription < ActiveRecord::Base
       @person.origen = self.origen
       @person.forma_pago = self.forma_pago
       @person.url = self.url
+      @person.estado = 'OK'
       @person.certificado_html = self.certificado_html
       @person.save
     end  

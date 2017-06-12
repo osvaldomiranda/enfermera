@@ -229,6 +229,11 @@ Enfermera::Application.routes.draw do
       resources :people do
         collection do
           get :iscollegiate
+        end  
+      end
+      resources :fee do
+        collection do
+          get :update_mescuota
         end
       end
     end

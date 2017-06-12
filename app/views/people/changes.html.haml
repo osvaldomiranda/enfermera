@@ -1,0 +1,42 @@
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Colegiadas
+      .panel-body
+        .container-fluid
+
+          %hr
+          = will_paginate @people, previous_label: h("<  "), next_label: h("  >")
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th N Registro
+                %th Email
+                %th Rut
+                %th Nombre
+                %th Fecha Creación
+                %th Origen
+                %th 
+                %th
+                %th
+            %tbody
+              - @people.each do |person|
+                %tr
+                  %td= person.nro_registro
+                  %td= person.email
+                  %td= person.rut
+                  %td= person.fullname
+                  %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+                  %td= person.origen.present? ? person.origen : "SISTEMA"
+                  %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
+                  %td= link_to 'Modificar', edit_person_path(person.id),class: 'btn btn-info btn-xs'
+
+                  - if person.estado == "OK"
+                    - if person.url.present?
+                      %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                    - else
+                      - if person.certificado_file
+                        %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs' 

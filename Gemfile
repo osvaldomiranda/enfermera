@@ -9,13 +9,8 @@ gem 'sass',  '~> 3.2.0'
 
 gem 'bootstrap-sass'
 
-
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
-
-
-
 
 # For haml syntax
 gem 'haml'

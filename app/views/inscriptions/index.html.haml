@@ -62,7 +62,7 @@
                 %td= inscription.rut
                 %td= inscription.fullname
                 %td= inscription.tipo_contrato
-                %td= inscription.fecha_solicitud
+                %td= inscription.created_at
                 - if inscription.url.present?
                   %td= link_to ' Mostrar Certificado ', inscription.url , :target => '_blank', class: 'btn btn-info btn-xs'
                 -else

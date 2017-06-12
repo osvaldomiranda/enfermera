@@ -73,7 +73,7 @@
               = submit_tag "Importar"               
           %h3 crear cuotas colegiadas 
           .form-group   
-            %label.col-sm-2.control-label{:for => "textinput"}  Importar 
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
             = form_tag create_fee_people_path, multipart: true do 
               = file_field_tag :file 
               = submit_tag "Importar" 

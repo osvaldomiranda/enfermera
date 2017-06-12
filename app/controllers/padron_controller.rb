@@ -28,6 +28,7 @@ class PadronController < ApplicationController
   def toxls
     require 'csv'
 
+    
     if params["/people"].present?
       @apellido_paterno = params["/people"][:apellido_paterno]
       @apellido_materno = params["/people"][:apellido_materno]
@@ -49,7 +50,7 @@ class PadronController < ApplicationController
     if (current_user.rol <= 7)
       office_id = current_user.office.id
     end
-    @people = Person.padron(@estado).office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
+    @people = Person.padron(@estado).office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc)
   
 
     respond_to do |format|

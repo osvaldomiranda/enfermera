@@ -36,7 +36,7 @@
           =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
           =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning'
           - if  @head_daily.estado == 'PENDIENTE'
-            =link_to 'CONFIRMAR', confirmar_head_daily_path(@head_daily.id), class: 'btn btn-danger' 
+            =link_to 'CONFIRMAR', confirmar_head_daily_path(@head_daily.id, page: @page), class: 'btn btn-danger' 
         %br
         %br
         %hr 

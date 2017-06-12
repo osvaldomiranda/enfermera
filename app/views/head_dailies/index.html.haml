@@ -40,7 +40,9 @@
         %br
         %br
         %hr
-        = will_paginate @head_dailies, previous_label: h("<  "), next_label: h("  >")
+        .digg_pagination
+          = will_paginate @head_dailies,  previous_label: h("<--"), next_label: h("-->"),:container => false
+
         %table.table.table-striped
           %thead
             %tr
@@ -65,7 +67,8 @@
                   - if head_daily.estado=='CONFIRMADO'
                     %td= link_to 'Ver', head_daily
                   - else
-                    %td= link_to 'Por Revisar', head_daily, class: 'btn btn-danger' 
+                    %td= link_to 'Por Revisar', head_daily_path(id: head_daily.id, page: @page), class: 'btn btn-danger' 
+
                   %td= link_to 'Documento', head_daily.documento_url
                   %td= link_to 'PDF', showtopdf_head_daily_path(head_daily.id), class: 'btn btn-success', :target => '_blank'
 

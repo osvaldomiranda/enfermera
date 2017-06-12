@@ -103,7 +103,7 @@ class PersonMailer < ActionMailer::Base
 
       emails = [@user.email]
 
-      mail(to: emails ,subject: "Postgrados Facsalud www.ucentral.cl", from:  "colegioenfermeras@gmail.com")
+      mail(to: emails ,subject: "Curso liderazgo y gestión de equipos", from:  "colegioenfermeras@gmail.com")
 
     rescue
       puts "********* person_mailer **************"
