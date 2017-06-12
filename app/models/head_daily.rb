@@ -7,8 +7,12 @@ class HeadDaily < ActiveRecord::Base
   # before_save :set_numero
   
   scope :with_tipo, -> with_tipo { where(tipo: with_tipo) if with_tipo.present?}
+  scope :with_origen, -> with_origen { where(user_id: with_origen) if with_origen.present?}
   scope :with_estado, -> with_estado { where(estado: with_estado) if with_estado.present?}
   scope :with_numero, -> with_numero { where(numero: with_numero) if with_numero.present?}
+
+
+
 
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
@@ -61,6 +65,10 @@ class HeadDaily < ActiveRecord::Base
   def confirmar
     self.estado='CONFIRMADO'
     self.save
+  end
+
+  def self.user_creation
+    User.where(id: HeadDaily.select(:user_id).distinct).where('roles_mask>4').map{|u| [u.email,u.id]}
   end
 
   def self.next_ingreso    

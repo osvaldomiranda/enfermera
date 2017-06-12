@@ -8,6 +8,7 @@ class HeadDailiesController < ApplicationController
     HeadDaily.where.not(id: Daily.uniq(:head_daily_id).pluck(:head_daily_id)).destroy_all
 
     @tipo = params[:tipo] || nil
+    @origen = params[:origen] || nil
     @estado = params[:estado] || nil
     if params["/head_dailies"].present?
       @numero = params["/head_dailies"][:numero] || nil
@@ -15,7 +16,7 @@ class HeadDailiesController < ApplicationController
 
     @page = params[:page] || 1
 
-    @head_dailies = HeadDaily.with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(params[:page]).per_page(20) 
+    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(params[:page]).per_page(20) 
     respond_with(@head_dailies)
   end
 

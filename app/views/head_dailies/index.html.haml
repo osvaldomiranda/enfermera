@@ -18,6 +18,8 @@
 
               = select_tag :filter_estado, options_for_select([['POR REVISAR', 'PENDIENTE'],['CONFIRMADOS', 'CONFIRMADO']], @estado), prompt: 'Todos los estados', class: "form-control"
 
+              = select_tag :filter_origen, options_for_select(HeadDaily.user_creation, @origen), prompt: 'Todos los origenes', class: "form-control"
+
         .row
           .col-md-12
             = simple_form_for(head_dailies_path,:method => :get ) do |f|
@@ -67,7 +69,10 @@
                   - if head_daily.estado=='CONFIRMADO'
                     %td= link_to 'Ver', head_daily
                   - else
-                    %td= link_to 'Por Revisar', head_daily_path(id: head_daily.id, page: @page), class: 'btn btn-danger' 
+                    -if head_daily.user_id==711
+                      %td= link_to 'Por Revisar', head_daily_path(id: head_daily.id, page: @page), class: 'btn btn-warning' 
+                    - else
+                      %td= link_to 'Por Revisar', head_daily_path(id: head_daily.id, page: @page), class: 'btn btn-danger' 
 
                   %td= link_to 'Documento', head_daily.documento_url
                   %td= link_to 'PDF', showtopdf_head_daily_path(head_daily.id), class: 'btn btn-success', :target => '_blank'
