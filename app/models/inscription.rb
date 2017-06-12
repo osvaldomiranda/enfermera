@@ -47,6 +47,9 @@ class Inscription < ActiveRecord::Base
   validates :ciudad, presence: true
   validates :celular, presence: true
   validates :email, presence: true
+  validates :universidad, presence: true
+  validates :fecha_titulo, presence: true
+
   
 
   # Validamos que el telefono solo sea numerico
