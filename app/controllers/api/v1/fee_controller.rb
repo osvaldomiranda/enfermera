@@ -8,3 +8,4 @@ class Api::V1::FeeController < ApplicationController
 
   	render :json=> {updated: :true}, :status => :ok
   end
+end  
