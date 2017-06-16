@@ -10,13 +10,22 @@ class HeadDailiesController < ApplicationController
     @tipo = params[:tipo] || nil
     @origen = params[:origen] || nil
     @estado = params[:estado] || nil
-    if params["/head_dailies"].present?
-      @numero = params["/head_dailies"][:numero] || nil
-    end
+
 
     @page = params[:page] || 1
 
-    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(params[:page]).per_page(20) 
+    if params["/head_dailies"].present?
+      @numero = params["/head_dailies"][:numero] || nil
+      if params[:page].present?
+        @page = params[:page]
+      else  
+        @page = params["/head_dailies"][:page] || 1
+      end  
+    end
+
+
+
+    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(@page).per_page(20) 
     respond_with(@head_dailies)
   end
 

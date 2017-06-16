@@ -10,6 +10,7 @@ class PeopleController < ApplicationController
       @apellido_paterno = params["/people"][:apellido_paterno]
       @apellido_materno = params["/people"][:apellido_materno]
       @rut = params["/people"][:rut] || nil
+      @nro_registro = params["/people"][:nro_registro] || nil
     end  
  
     @estado = params[:estado] || nil
@@ -27,7 +28,7 @@ class PeopleController < ApplicationController
     if (current_user.rol <= 7)
       office_id = current_user.office.id
     end
-    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).order(created_at: :desc).page(params[:page]).per_page(20)  
+    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc).page(params[:page]).per_page(20)  
     respond_with(@people)
   end
 

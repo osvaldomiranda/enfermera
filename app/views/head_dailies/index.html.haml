@@ -19,13 +19,15 @@
               = select_tag :filter_estado, options_for_select([['POR REVISAR', 'PENDIENTE'],['CONFIRMADOS', 'CONFIRMADO']], @estado), prompt: 'Todos los estados', class: "form-control"
 
               = select_tag :filter_origen, options_for_select(HeadDaily.user_creation, @origen), prompt: 'Todos los origenes', class: "form-control"
-
         .row
           .col-md-12
             = simple_form_for(head_dailies_path,:method => :get ) do |f|
               .form-group  
                 .col-sm-4
                   = f.input :numero, label: false, placeholder: "Numero Comprobante", :input_html => {:style=> 'width: 350px'} 
+
+                .col-sm-4
+                  = f.input :page, label: false, placeholder: "Numero Pagina", :input_html => {:style=> 'width: 350px'} 
               .col-sm-4  
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
         %br

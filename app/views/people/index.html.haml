@@ -38,6 +38,9 @@
               .form-group  
                 .col-sm-4
                   = f.input :rut, label: false, placeholder: "Rut", :input_html => {:style=> 'width: 150px'} 
+              .form-group  
+                .col-sm-4
+                  = f.input :nro_registro, label: false, placeholder: "Numero Registro", :input_html => {:style=> 'width: 150px'} 
               .col-sm-4  
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
         %br
@@ -114,7 +117,8 @@
         .container-fluid
 
           %hr
-          = will_paginate @people, previous_label: h("<  "), next_label: h("  >")
+          .digg_pagination
+            = will_paginate @people, previous_label: h("<  "), next_label: h("  >")
 
           %table.table.table-striped
             %thead
