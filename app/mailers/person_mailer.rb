@@ -16,7 +16,7 @@ class PersonMailer < ActionMailer::Base
       #   attachments["preaprobacion#{fileExtension}"] = File.read("#{Rails.root}/public#{@reserva.preaprob_url}")
       # end  
 
-      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegiodeenfermeras.cl" ]
+      emails = ["osvaldo.omiranda@gmail.com" ]
 
       mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")
 

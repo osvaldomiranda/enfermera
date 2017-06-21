@@ -1,0 +1,19 @@
+.panel-footer
+  %h3 Registro de pagos
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Pago realizado por
+          %th Mes
+          %th Fecha Pago
+          %th Estado
+          %th Monto
+      %tbody
+        - @person.fees.order(mescuota: :desc).each do |pago|
+          %tr
+            %td= pago.pagador
+            %td= pago.mes_cuota
+            %td= pago.fecha_pago.strftime('%d/%m/%Y %H:%M')
+            %td= pago.estado
+            %td= pago.monto

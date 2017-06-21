@@ -1,0 +1,26 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Envío Manual Planillas de Descuento
+      .panel-body
+        %h3= "Estimados Señores: #{@workplace.nombre}"
+        %h3= "Adjunto nomina de descuentos"
+
+        %td= link_to "<-- Volver",senddiscount_index_path(page:@page), class: 'btn btn-warning'
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Nro.Registro
+              %th Nombre
+              %th Rut
+              %th Email
+              %th Cuota
+          %tbody
+            - @workplace.people.each do |person|
+              %tr
+                %td= person.id
+                %td= person.fullname  
+                %td= person.rut
+                %td= person.email

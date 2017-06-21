@@ -19,24 +19,30 @@
                 = select_tag :filter_regional, options_for_select(Office.options_for_select(current_user), @regional), class: "form-control"
         %br
         %br
-        = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
+        .digg_pagination
+          = will_paginate @workplaces, previous_label: h("<  "), next_label: h("  >")
         %br      
         %br
         %table.table.table-striped
           %thead
             %tr
               %th Nombre
-              %th Ciudad
-              %th Region
+              %th Regional
+              %th Colegiadas
               %th
               %th
           %tbody
             - @workplaces.each do |workplace|
               %tr
-                %td= workplace.nombre
-                %td= workplace.ciudad
-                %td= workplace.region
-                %td= link_to 'Enviar Decuento', "/senddiscount/sendemail/#{workplace.id}", class: 'btn btn-info'
-                %td= link_to 'Enviar Cobranza', "/senddiscount/sendretrieve/#{workplace.id}", class: 'btn btn-info'
+                - if workplace.people.count > 0
+                  %td= workplace.nombre
+                  - if workplace.office.present?
+                    %td= workplace.office.nombre
+                  - else
+                    %td
+                  %td= link_to "#{workplace.people.count}",people_senddiscount_path(id: workplace,page:@page), class: 'btn btn-warning'
+                  %td= link_to 'Enviar Decuento',sendemail_senddiscount_path(workplace.id), class: 'btn btn-info'
+                  %td= link_to 'Enviar Cobranza', "/senddiscount/sendretrieve/#{workplace.id}", class: 'btn btn-info'
+
 
  

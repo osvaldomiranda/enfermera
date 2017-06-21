@@ -14,6 +14,7 @@ class HeadDailiesController < ApplicationController
 
     @page = params[:page] || 1
 
+
     if params["/head_dailies"].present?
       @numero = params["/head_dailies"][:numero] || nil
       if params[:page].present?
@@ -23,7 +24,7 @@ class HeadDailiesController < ApplicationController
       end  
     end
 
-
+    @page = nil if @page == ""
 
     @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(@page).per_page(20) 
     respond_with(@head_dailies)

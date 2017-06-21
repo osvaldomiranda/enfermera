@@ -49,6 +49,13 @@ class Income < ActiveRecord::Base
   CUOTAS[2] = ["3 Cuotas $#{valor*3}.-", valor*3]
   CUOTAS[3] = ["4 Cuotas $#{valor*4}.-", valor*4]
   CUOTAS[4] = ["5 Cuotas $#{valor*5}.-", valor*5]
+  CUOTAS[5] = ["6 Cuotas $#{valor*5}.-", valor*6]
+  CUOTAS[6] = ["7 Cuotas $#{valor*5}.-", valor*7]
+  CUOTAS[7] = ["8 Cuotas $#{valor*5}.-", valor*8]
+  CUOTAS[8] = ["9 Cuotas $#{valor*5}.-", valor*9]
+  CUOTAS[9] = ["10 Cuotas $#{valor*5}.-", valor*10]
+  CUOTAS[10] = ["11 Cuotas $#{valor*5}.-", valor*11]
+  CUOTAS[11] = ["12 Cuotas $#{valor*5}.-", valor*12]
 
   def self.cuotas_options_for_select(admin)
     if admin == 'SI'
@@ -57,6 +64,13 @@ class Income < ActiveRecord::Base
       CUOTAS[7] = ["3 Cuotas $#{6000*3}.-", 6000*3]
       CUOTAS[8] = ["4 Cuotas $#{6000*4}.-", 6000*4]
       CUOTAS[9] = ["5 Cuotas $#{6000*5}.-", 6000*5]
+      CUOTAS[10] = ["6 Cuotas $#{6000*6}.-", 6000*6]
+      CUOTAS[11] = ["7 Cuotas $#{6000*7}.-", 6000*7]
+      CUOTAS[12] = ["8 Cuotas $#{6000*8}.-", 6000*8]
+      CUOTAS[13] = ["9 Cuotas $#{6000*9}.-", 6000*9]
+      CUOTAS[14] = ["10 Cuotas $#{6000*10}.-", 6000*10]
+      CUOTAS[15] = ["11 Cuotas $#{6000*11}.-", 6000*11]
+      CUOTAS[16] = ["12 Cuotas $#{6000*12}.-", 6000*12]
     end
 
     #GENDERS.to_enum.with_index(0).to_a

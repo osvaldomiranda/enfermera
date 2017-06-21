@@ -127,6 +127,7 @@ Enfermera::Application.routes.draw do
     member do
       get :sendemail
       get :sendretrieve
+      get :people
     end
   end
   
