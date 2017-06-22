@@ -71,6 +71,7 @@ class DailiesController < ApplicationController
   end
 
   def edit
+    @head_daily = @daily.head_daily
     respond_modal_with(@daily)
   end
 
