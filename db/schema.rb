@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416121521) do
+ActiveRecord::Schema.define(version: 20170702150306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20170416121521) do
     t.datetime "fecha_contable"
     t.string   "rut"
     t.string   "estado"
+    t.integer  "folio_office"
   end
 
   add_index "head_dailies", ["office_id"], name: "index_head_dailies_on_office_id", using: :btree

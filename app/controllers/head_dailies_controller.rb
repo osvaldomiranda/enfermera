@@ -26,7 +26,7 @@ class HeadDailiesController < ApplicationController
 
     @page = nil if @page == ""
 
-    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).order(numero: :desc).page(@page).per_page(20) 
+    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).where(folio_office:nil).order(numero: :desc).page(@page).per_page(20) 
     respond_with(@head_dailies)
   end
 
@@ -91,6 +91,6 @@ class HeadDailiesController < ApplicationController
     end
 
     def head_daily_params
-      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode, :numcheque, :documento, :fecha_contable, :rut, :workplace_id)
+      params.require(:head_daily).permit(:numero, :user_id, :tipo, :paguesea, :por, :mediopago, :banco, :recibidode, :numcheque, :documento, :fecha_contable, :rut, :workplace_id, :folio_office)
     end
 end

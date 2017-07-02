@@ -91,6 +91,13 @@ class Income < ActiveRecord::Base
       head_daily.mediopago = self.mediopago
       head_daily.documento = self.document
 
+      if workplace.present?
+        head_daily.office_id = workplace.office.id
+        if workplace.office.codigo != "VPO"
+          head_daily.folio_office = HeadDaily.next_ingreso_office
+        end
+      end
+      
       user = User.find(self.user_id)
       if user.role?(:admin)
         head_daily.estado = 'CONFIRMADO'

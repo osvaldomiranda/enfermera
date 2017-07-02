@@ -71,17 +71,27 @@ class HeadDaily < ActiveRecord::Base
     User.where(id: HeadDaily.select(:user_id).distinct).where('roles_mask>4').map{|u| [u.email,u.id]}
   end
 
-  def self.next_ingreso    
-    h = HeadDaily.where(tipo: 'INGRESO').order("numero ASC").last   
+  def self.next_ingreso
+    h = HeadDaily.where(tipo: 'INGRESO').where(folio_office: nil).order("numero ASC").last   
     if h.present?   
       n = h.numero + 1    
     else    
       n = 1     
     end     
     return n    
-  end   
+  end
+
+  def self.next_ingreso_office
+    h = HeadDaily.where(tipo: 'INGRESO').where.not(folio_office: nil).order("numero ASC").last   
+    if h.present?   
+      n = h.folio_office + 1    
+    else    
+      n = 1     
+    end     
+    return n    
+  end     
     
-  def self.next_egreso    
+  def self.next_egreso   
     h = HeadDaily.where(tipo: 'EGRESO').order("numero ASC").last    
     if h.present?   
       n = h.numero + 1    
