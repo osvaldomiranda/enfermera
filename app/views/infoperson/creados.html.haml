@@ -41,10 +41,17 @@
               .form-group  
                 .col-sm-4
                   = f.input :nro_registro, label: false, placeholder: "Numero Registro", :input_html => {:style=> 'width: 150px'} 
+
+              .form-group  
+                .col-sm-4
+                  = f.text_field :fecha, id: 'datepicker', placeholder: "Mes"
+
+
               .col-sm-4  
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
         %br
         %br
+
 
         = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
         %br
