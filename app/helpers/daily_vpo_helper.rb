@@ -1,0 +1,2 @@
+module DailyVpoHelper
+end

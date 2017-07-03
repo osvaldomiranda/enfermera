@@ -1,4 +1,8 @@
 Enfermera::Application.routes.draw do
+
+  get "infoperson/creados"
+  get "infoperson/modificados"
+  get "daily_vpo/index"
   get "padron/index"
   get "padron/toxls"
   get "welcome/index"

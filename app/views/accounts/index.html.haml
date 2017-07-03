@@ -9,6 +9,8 @@
               Cuentas contables
               %span.badge= @accounts.count
 
+            = link_to 'Agregar Cuenta', new_account_path,class: 'btn btn-info'
+
             %table.table.table-striped
               %thead
                 %tr
@@ -27,4 +29,4 @@
 
             %br
 
-            = link_to 'Agregar Cuenta', new_account_path
+            

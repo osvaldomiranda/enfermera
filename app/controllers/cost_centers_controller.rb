@@ -24,12 +24,15 @@ class CostCentersController < ApplicationController
   def create
     @cost_center = CostCenter.new(cost_center_params)
     @cost_center.save
-    respond_with(@cost_center)
+
+    @cost_centers = CostCenter.all
+    render "index"
   end
 
   def update
     @cost_center.update(cost_center_params)
-    respond_with(@cost_center)
+    @cost_centers = CostCenter.all
+    render "index"
   end
 
   def destroy

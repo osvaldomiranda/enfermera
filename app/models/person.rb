@@ -21,6 +21,10 @@ class Person < ActiveRecord::Base
   validates :nombres, :apellido_paterno, presence: true
   validates :rut, :rut_format => true
 
+  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
+  scope :update_this_month, -> { where(updated_at: Time.now.beginning_of_month..Time.now.end_of_month) }
+
+
   scope :padron, -> estado { where("id IN (?) OR  workplace_id IN (?)" ,Fee.select(:person_id).where("mescuota > ? ", 6.month.ago), HeadDaily.select(:workplace_id).where(id: Daily.select(:head_daily_id).where(account_id: Account.where(codigo:'2040105')))) } 
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}

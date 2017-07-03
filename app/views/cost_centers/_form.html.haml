@@ -1,9 +1,21 @@
-= simple_form_for(@cost_center) do |f|
-  = f.error_notification
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        Centro de Costo
+      .panel-body
+        .row
+          .col-xs-12
 
-  .form-inputs
-    = f.input :codigo
-    = f.input :nombre
+            = simple_form_for(@cost_center) do |f|
+              = f.error_notification
 
-  .form-actions
-    = f.button :submit
+              .form-inputs
+                = f.input :codigo
+                = f.input :nombre
+
+              .form-actions
+                = f.button :submit, "Guardar Centro de Costo"
+            %br
+            %br    
+

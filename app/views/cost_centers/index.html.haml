@@ -9,6 +9,8 @@
               Centros de Costo
               %span.badge= @cost_centers.count
 
+            = link_to 'Agregar Centro de Costo', new_cost_center_path ,class: 'btn btn-info'  
+
             %table.table.table-striped
               %thead
                 %tr
@@ -28,4 +30,4 @@
 
             %br
 
-            = link_to 'Agregar Centro de Costo', new_cost_center_path
+            

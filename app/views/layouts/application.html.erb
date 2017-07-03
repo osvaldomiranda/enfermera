@@ -244,6 +244,22 @@
               <% end %>
             </li>
 
+             <li role="separator" class="divider"></li>
+
+            <li>
+              <%= link_to infoperson_creados_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Colegiadas Creadas
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to infoperson_modificados_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Colegiadas Modificadas
+              <% end %>
+            </li>
+
+            
+
           </ul>
         </li>
         <% end %>
@@ -276,6 +292,15 @@
                 <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Detalle libro diario
               <% end %>
             </li>
+
+             <li>
+              <%= link_to daily_vpo_index_path do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Libro diario Valparaiso
+              <% end %>
+            </li>
+
+
+
           </ul>
         </li>
         <% end %>

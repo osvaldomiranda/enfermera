@@ -1,0 +1,109 @@
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Colegiadas Creadas Presente Mes
+              %span.badge= @people.count
+        %hr
+        - if current_user.rol > 7      
+          .row
+            .col-md-12
+              .form-inline
+                = label_tag :filter_office, 'Regional'
+                = select_tag :filter_office, options_for_select(Office.office_option_for_select, @office), prompt: 'Todos', class: "form-control"
+        %br      
+        .row
+          .col-md-12
+            .form-inline
+              = label_tag :filter_estado, 'Estado'
+              = select_tag :filter_estado, options_for_select(Person::ESTADOS.map{|e| [e[1], e[0]]}, @estado), prompt: 'Todos', class: "form-control"
+          
+              = label_tag :filter_lugar_trabajo, 'Lugar de Trabajo'
+              = select_tag :filter_lugar_trabajo, options_for_select(Workplace.workplaces_option_for_code(current_user), @lugar_trabajo), prompt: 'Todos', class: "form-control"  
+        .row
+          .col-md-12
+            = simple_form_for(people_path,:method => :get ) do |f|
+              .form-group  
+                .col-sm-4
+                  = f.input :apellido_paterno, label: false, placeholder: "Apellido Paterno", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4
+                  = f.input :apellido_materno, label: false, placeholder: "Apellido Materno", :input_html => {:style=> 'width: 350px'} 
+              .form-group  
+                .col-sm-4
+                  = f.input :rut, label: false, placeholder: "Rut", :input_html => {:style=> 'width: 150px'} 
+              .form-group  
+                .col-sm-4
+                  = f.input :nro_registro, label: false, placeholder: "Numero Registro", :input_html => {:style=> 'width: 150px'} 
+              .col-sm-4  
+                = f.button :submit, "Buscar",  class: "btn btn-primary"
+        %br
+        %br
+
+        = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
+        %br
+        %br
+        %hr 
+
+        
+   
+
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Colegiadas
+      .panel-body
+        .container-fluid
+
+          %hr
+          .digg_pagination
+            = will_paginate @people, previous_label: h("<  "), next_label: h("  >")
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th N Registro
+                %th Email
+                %th Rut
+                %th Nombre
+                %th Fecha Creación
+                %th Origen
+                %th 
+                %th
+                %th
+            %tbody
+              - @people.each do |person|
+                %tr
+                  %td= person.nro_registro
+                  %td= person.email
+                  %td= person.rut
+                  %td= person.fullname
+                  %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+                  %td= person.origen.present? ? person.origen : "SISTEMA"
+                  %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
+                  %td= link_to 'Modificar', edit_person_path(person.id),class: 'btn btn-info btn-xs'
+
+                  - if person.estado == "OK"
+                    - if person.url.present?
+                      %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                    - else
+                      - if person.certificado_file
+                        %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
+                  / - else
+                  /   - if person.estado == "CANCELADO"
+                  /     %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 
+                  /   - else  
+                  /     %td= link_to 'Confirmar', certificado_person_path(person.id), data: { modal: true },class: 'btn btn-warning btn-xs' 
+                  /     %td= link_to 'Cancelar', cancel_person_path(person.id), class: 'btn btn-warning btn-xs'
+                           
+                  / %td= link_to 'Edit', edit_person_path(person)
+                  / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }
+
+        %br

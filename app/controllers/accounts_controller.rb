@@ -24,12 +24,16 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     @account.save
-    respond_with(@account)
+
+    @accounts = Account.all
+    render "index"
   end
 
   def update
     @account.update(account_params)
-    respond_with(@account)
+    
+    @accounts = Account.all
+    render "index"
   end
 
   def destroy
