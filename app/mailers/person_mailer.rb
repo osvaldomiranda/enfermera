@@ -47,7 +47,6 @@ class PersonMailer < ActionMailer::Base
 
       mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")
 
-# cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
     rescue
       puts "********* person_mailer **************"
       puts "Error  send #{$!}"
@@ -101,9 +100,9 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      emails = [@user.email]
+      emails =  [@user.email]
 
-      mail(to: emails ,subject: "Curso liderazgo y gestión de equipos", from:  "colegioenfermeras@gmail.com")
+      mail(to: emails ,subject: "Últimos días de Inscripción - Programa de Alta Dirección para enfermeros ESE Business School", from:  "colegioenfermeras@gmail.com")
 
     rescue
       puts "********* person_mailer **************"

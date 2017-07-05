@@ -376,8 +376,10 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    users = User.where.not(email: nil )
-    # users = User.where(email: 'osvaldo.omiranda@gmail.com')
+    # users = User.where.not(email: nil )
+    users = User.where(email: "marragni@gmail.com")
+
+    
 
     @c = 0
     @e = 0

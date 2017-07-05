@@ -93,7 +93,7 @@ class Income < ActiveRecord::Base
 
       if workplace.present?
         head_daily.office_id = workplace.office.id
-        if workplace.office.codigo != "VPO"
+        if workplace.office.codigo == "VPO"
           head_daily.folio_office = HeadDaily.next_ingreso_office
         end
       end

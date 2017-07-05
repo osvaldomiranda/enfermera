@@ -57,7 +57,7 @@
             - @head_dailies.each do |head_daily|
               - if head_daily.dailies.present?
                 %tr
-                  %td= head_daily.numero
+                  %td= head_daily.folio_office
                   %td= head_daily.dailies.first.fecha
                   %th= head_daily.tipo
                   %th= head_daily.dailies.first.por
