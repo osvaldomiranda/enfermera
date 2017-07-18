@@ -1,0 +1,23 @@
+%h1 Listing user_votes
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Vote
+      %th
+      %th
+      %th
+
+  %tbody
+    - @user_votes.each do |user_vote|
+      %tr
+        %td= user_vote.user
+        %td= user_vote.vote
+        %td= link_to 'Show', user_vote
+        %td= link_to 'Edit', edit_user_vote_path(user_vote)
+        %td= link_to 'Destroy', user_vote, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User vote', new_user_vote_path

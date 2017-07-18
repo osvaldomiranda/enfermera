@@ -1,0 +1,25 @@
+%h1 Listing wpdiscounts
+
+%table
+  %thead
+    %tr
+      %th Discountfile
+      %th Email
+      %th Workplace
+      %th
+      %th
+      %th
+
+  %tbody
+    - @wpdiscounts.each do |wpdiscount|
+      %tr
+        %td= wpdiscount.discountfile
+        %td= wpdiscount.email
+        %td= wpdiscount.workplace
+        %td= link_to 'Show', wpdiscount
+        %td= link_to 'Edit', edit_wpdiscount_path(wpdiscount)
+        %td= link_to 'Destroy', wpdiscount, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Wpdiscount', new_wpdiscount_path

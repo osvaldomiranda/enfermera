@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Discountfile:
+  = @wpdiscount.discountfile
+%p
+  %b Email:
+  = @wpdiscount.email
+%p
+  %b Workplace:
+  = @wpdiscount.workplace
+
+= link_to 'Edit', edit_wpdiscount_path(@wpdiscount)
+\|
+= link_to 'Back', wpdiscounts_path

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702150306) do
+ActiveRecord::Schema.define(version: 20170711194828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -484,6 +484,19 @@ ActiveRecord::Schema.define(version: 20170702150306) do
 
   add_index "states", ["name"], name: "index_states_on_name", unique: true, using: :btree
 
+  create_table "user_votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "vote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
+    t.string   "xmlfile"
+    t.string   "pngfile"
+  end
+
+  add_index "user_votes", ["user_id"], name: "index_user_votes_on_user_id", using: :btree
+  add_index "user_votes", ["vote_id"], name: "index_user_votes_on_vote_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -532,6 +545,7 @@ ActiveRecord::Schema.define(version: 20170702150306) do
     t.integer  "workplace_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "vowfile"
   end
 
   add_index "vows", ["candidate_id"], name: "index_vows_on_candidate_id", using: :btree
@@ -555,6 +569,16 @@ ActiveRecord::Schema.define(version: 20170702150306) do
   end
 
   add_index "workplaces", ["office_id"], name: "index_workplaces_on_office_id", using: :btree
+
+  create_table "wpdiscounts", force: true do |t|
+    t.string   "discountfile"
+    t.string   "email"
+    t.integer  "workplace_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wpdiscounts", ["workplace_id"], name: "index_wpdiscounts_on_workplace_id", using: :btree
 
   create_table "wpdocuments", force: true do |t|
     t.string   "nombre"

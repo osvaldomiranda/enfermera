@@ -10,12 +10,11 @@ class VotesController < ApplicationController
   end
 
   def votar
-    @votes = Vote.where(estado:'Abierta')
+    @votes = Vote.where(estado:'ACTIVA')
     respond_with(@votes)
   end
 
   def show
-
     @votacion_votos = @vote.vows.group(:candidate).count
     @votacion_votos = @votacion_votos.map {|k, v| [ k.candidato, v] }
     respond_with(@vote)

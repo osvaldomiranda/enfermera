@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    = wicked_pdf_stylesheet_link_tag "pdf"
+  %body
+    .container
+      .row
+        .col-xl-12.text-center
+          = wicked_pdf_image_tag("logo-top.png")
+      .row    
+        .col-md-12
+          %h3 Sistema de Votaciones Colegio Enfermeras
+          .row
+            %h2 Comprobante de Votación
+            %h1= @vow.vote.votacion
+            %h3 Tu voto ha sido emitido 
+
+            %h4
+              %b Codigo de Seguridad:
+              %b= @vow.token
+            %p= @vow.created_at.strftime("%d/%m/%Y")
+            %br
+            = image_tag @imageurl
+            %br
+            %br
+            %br

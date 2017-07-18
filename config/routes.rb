@@ -1,5 +1,9 @@
 Enfermera::Application.routes.draw do
 
+  resources :user_votes
+
+  resources :wpdiscounts
+
   get "infoperson/creados"
   get "infoperson/modificados"
   get "daily_vpo/index"
@@ -41,7 +45,11 @@ Enfermera::Application.routes.draw do
     end
   end
 
-  resources :vows 
+  resources :vows do 
+    member do
+      get :showtopdf
+    end  
+  end    
 
   resources :candidates
 
@@ -236,6 +244,13 @@ Enfermera::Application.routes.draw do
           get :iscollegiate
         end  
       end
+
+      resources :inscriptions do
+        collection do
+          get :change_state
+        end
+      end
+
       resources :fee do
         collection do
           get :update_mescuota

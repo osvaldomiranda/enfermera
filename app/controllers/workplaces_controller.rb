@@ -132,7 +132,11 @@ class WorkplacesController < ApplicationController
 
   def change_person
     person = Person.find(params[:person_id])
-    
+  end
+
+  def create_txt_public_wp
+    w = Workplace.first
+    w.create_file
   end
 
   private
@@ -141,6 +145,6 @@ class WorkplacesController < ApplicationController
     end
 
     def workplace_params
-      params.require(:workplace).permit(:nombre, :ciudad, :region)
+      params.require(:workplace).permit(:nombre, :ciudad, :region,  :codigo, :telefono, :email, :calle, :numero, :office_id, :cod_wp)
     end
 end

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
+  has_many :uservotes      
 
   #********************************************************
  #Begin roles
@@ -52,6 +52,17 @@ class User < ActiveRecord::Base
   end
 
   ## End ROLES 
+
+  def vow?(vote_id)
+    user_vow = UserVote.where(vote_id: vote_id, user_id: self.id).first
+    user_vow.present?
+  end
+
+  def user_vote(vote_id)
+    user_vote = UserVote.where(vote_id: vote_id, user_id: self.id).first
+    vow = Vow.find_by_token(user_vote.token)
+    vow.id
+  end
 
   def person
     Person.find_by_rut(self.rut) || nil

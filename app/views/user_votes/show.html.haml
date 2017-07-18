@@ -1,0 +1,27 @@
+%p#notice= notice
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Sistema de Votaciones Colegio Enfermeras
+      .panel-body
+        %h2 Comprobante de Votación
+        %h1= @user_vote.vote.votacion
+        %h3 Tu voto ha sido emitido 
+
+        %h4
+          %b Codigo de Seguridad:
+          %b= @user_vote.token
+        %p= @user_vote.created_at.strftime("%d/%m/%Y")
+        %br
+        = image_tag @user_vote.pngfile
+        %br
+        %h3 * Es su obligación guardar este comprobante mientras dure el periodo eleccionario
+        %br
+        %br  
+        = link_to 'Ir a Votación', vote_path(id: @user_vote.vote_id), class: 'btn btn-warning'
+        %br
+        %br

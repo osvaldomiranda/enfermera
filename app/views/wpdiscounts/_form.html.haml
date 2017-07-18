@@ -1,0 +1,10 @@
+= simple_form_for(@wpdiscount) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :discountfile
+    = f.input :email
+    = f.association :workplace
+
+  .form-actions
+    = f.button :submit

@@ -40,7 +40,7 @@
           %thead
             %tr
               %th Candidato
-              %th Cargo
+           
               %th
               %th
               %th
@@ -49,13 +49,14 @@
             - @vote.candidates.each do |candidate|
               %tr
                 %td= candidate.candidato
-                %td= candidate.position
-                %td= link_to 'Show', candidate
-                %td= link_to 'Edit', edit_candidate_path(candidate)
-                %td= link_to 'Eliminar', candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              
+                - if current_user.role?(:national_admin)
+                  %td= link_to 'Show', candidate
+                  %td= link_to 'Edit', edit_candidate_path(candidate)
+                  %td= link_to 'Eliminar', candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
         %br
-
-        = link_to 'Nuevo Candidato', new_candidate_path
+        - if current_user.role?(:national_admin)
+          = link_to 'Nuevo Candidato', new_candidate_path
 
 

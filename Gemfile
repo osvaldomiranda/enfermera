@@ -59,6 +59,9 @@ gem 'prawn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+#Timbre Electronico
+gem 'pdf417'
+gem 'chunky_png'
 
 # for charts
 gem "chartkick"

@@ -82,7 +82,7 @@ class HeadDaily < ActiveRecord::Base
   end
 
   def self.next_ingreso_office
-    h = HeadDaily.where(tipo: 'INGRESO').where.not(folio_office: nil).order("numero ASC").last   
+    h = HeadDaily.where(tipo: 'INGRESO').where.not(folio_office: nil).order("folio_office ASC").last   
     if h.present?   
       n = h.folio_office + 1    
     else    

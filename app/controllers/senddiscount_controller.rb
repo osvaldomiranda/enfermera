@@ -21,6 +21,8 @@ class SenddiscountController < ApplicationController
   end
 
   def sendemail
+    @workplace = Workplace.find(params[:id])
+    @workplace.create_file
     PersonMailer.send_discount(params[:id]).deliver
   end
 

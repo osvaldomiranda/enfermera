@@ -49,6 +49,7 @@ class Inscription < ActiveRecord::Base
   validates :email, presence: true
   validates :universidad, presence: true
   validates :fecha_titulo, presence: true
+  validates_length_of :password, :minimum => 8
 
   
 
@@ -127,7 +128,7 @@ class Inscription < ActiveRecord::Base
 
   def create_person_user
     email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
-    password = self.password.present? ? self.password : self.rut
+    password = self.password.present? ? self.password.length>=8 ? self.password : self.rut : self.rut
     user = User.new
     user.email = email
     user.password = password

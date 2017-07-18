@@ -15,33 +15,50 @@
         %h4=  "Inicio: #{@vote.inicio}"
         %h4=  "Esta votación cerrará: #{@vote.termino}"
         %hr
+        - if current_user.vow?(@vote.id)
           .col-md-12.text-center
             = pie_chart @votacion_votos 
-        %hr
-
-        %table.table.table-striped
-          %thead
-            %tr
-              %td Opción
-              %td Total
-              %td
-          %tbody
-            - @votacion_votos.each do |k,v|
+          %hr
+          %br
+          %h3 Ya has emitido tu voto
+          = link_to "Comprobante PDF", showtopdf_vow_path(id: current_user.user_vote(@vote.id)),class: 'btn btn-info'
+          %br
+          %br
+          %table.table.table-striped
+            %thead
               %tr
-                %td= k
-                %td= v  
-        %hr
-        %br
-        %h2 Elije tu preferencia y emite tu voto
+                %td Opción
+                %td Total
+                %td
+            %tbody
+              - @votacion_votos.each do |k,v|
+                %tr
+                  %td= k
+                  %td= v  
+        - else
 
-        = simple_form_for(@vow) do |f|
-          = f.error_notification
+          %table.table.table-striped
+            %thead
+              %tr
+                %td Opción
+                %td
+            %tbody
+              - @votacion_votos.each do |k,v|
+                %tr
+                  %td= k
+          
+          %hr
+          %br
+          %h2 Elije tu preferencia y emite tu voto
 
-          .form-inputs
-            = f.input :vote_id, :as => :hidden, :input_html => { :value => @vote_id }
-            = f.input :candidate_id, label: 'Opciones', collection: Candidate.candidatos_options_for_select(@vote_id)
+          = simple_form_for(@vow) do |f|
+            = f.error_notification
 
-          .form-actions
-            = f.button :submit, 'Emtir Voto', class: 'btn btn-warning'
-        %br
-        %br
+            .form-inputs
+              = f.input :vote_id, :as => :hidden, :input_html => { :value => @vote_id }
+              = f.input :candidate_id, label: 'Opciones', collection: Candidate.candidatos_options_for_select(@vote_id)
+
+            .form-actions
+              = f.button :submit, 'Emtir Voto', class: 'btn btn-warning'
+          %br
+          %br

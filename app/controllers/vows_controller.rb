@@ -1,6 +1,7 @@
+
 class VowsController < ApplicationController
   before_filter :authenticate_user! 
-  before_action :set_vow, only: [:show, :edit, :update, :destroy]
+  before_action :set_vow, only: [:show, :edit, :update, :destroy, :showtopdf]
 
   respond_to :html
 
@@ -9,12 +10,19 @@ class VowsController < ApplicationController
     respond_with(@vows)
   end
 
-  def show
+  def show    
+    @vowuser = UserVote.find_by_token(@vow.token)
     respond_with(@vow)
   end
 
-  def new
+  def showtopdf
+    vowuser = UserVote.find_by_token(@vow.token)
+    @imageurl = vowuser.pngfile_url
 
+    render pdf: "pdf",  orientation: 'Landscape'
+  end
+
+  def new
     @vote_id = params[:vote]
     @vote = Vote.find(@vote_id )
     @votacion_votos = @vote.vows.group(:candidate).count
@@ -28,13 +36,17 @@ class VowsController < ApplicationController
   end
 
   def create
-    puts params
-
     @vow = Vow.new
-    @vow.vote_id = vow_params[:vote_id]
-    @vow.candidate_id = vow_params[:candidate_id]
-    @vow.save
-    respond_with(@vow)
+    if !current_user.vow?(vow_params[:vote_id])
+      @vow.vote_id = vow_params[:vote_id]
+      @vow.candidate_id = vow_params[:candidate_id]
+      if @vow.save
+        @vow.create_user_vote(current_user)  
+      end
+      respond_with(@vow)
+    else
+      respond_with(@vow)  
+    end
   end
 
   def update

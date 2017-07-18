@@ -3,24 +3,25 @@ class PersonMailer < ActionMailer::Base
 
   def send_discount(workplace_id)
     begin
-
+      require 'open-uri'
       @workplace = Workplace.find(workplace_id)
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      # fileExtension = File.extname("#{Rails.root}/public#{@reserva.deposito_url}")
-      # attachments["deposito#{fileExtension}"] = File.read("#{Rails.root}/public#{@reserva.deposito_url}")
+      open('nomina.txt', 'wb') do |file|
+        file << open("#{@workplace.wpdiscounts.last.discountfile_url}").read
+      end
 
-      # if @reserva.preaprob_url.present?
-      #   fileExtension = File.extname("#{Rails.root}/public#{@reserva.preaprob_url}")
-      #   attachments["preaprobacion#{fileExtension}"] = File.read("#{Rails.root}/public#{@reserva.preaprob_url}")
-      # end  
+      attachments["nomina.txt"] = File.read("#{Rails.root}/nomina.txt")
 
-      emails = ["osvaldo.omiranda@gmail.com" ]
+      attachments["nomina.rtf"] = File.read("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
+
+      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegioenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl" ]
 
       mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")
 
-# cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
+      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
+
     rescue
       puts "********* person_mailer **************"
       puts "Error  send #{$!}"
