@@ -36,22 +36,18 @@
         %hr
         %br  
 
-        %table.table.table-striped
-          %thead
-            %tr
-              %th Candidato
-           
-              %th
-              %th
-              %th
 
-          %tbody
-            - @vote.candidates.each do |candidate|
+        - if current_user.role?(:national_admin)
+          %table.table.table-striped
+            %thead
               %tr
-                %td= candidate.candidato
-              
-                - if current_user.role?(:national_admin)
-                  %td= link_to 'Show', candidate
+                %th Candidato
+                %th
+                %th
+            %tbody
+              - @vote.candidates.each do |candidate|
+                %tr
+                  %td= candidate.candidato
                   %td= link_to 'Edit', edit_candidate_path(candidate)
                   %td= link_to 'Eliminar', candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

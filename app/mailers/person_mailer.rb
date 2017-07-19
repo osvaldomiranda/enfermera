@@ -101,10 +101,9 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      emails =  [@user.email]
+      emails = [@user.email]
 
-      mail(to: emails ,subject: "Últimos días de Inscripción - Programa de Alta Dirección para enfermeros ESE Business School", from:  "colegioenfermeras@gmail.com")
-
+      mail(to: emails ,subject: "Fortalece tu Auto-Liderazgo y Gestiona los Mejores Equipos - Curso de Liderazgo y Gestión de Equipos 2017")
     rescue
       puts "********* person_mailer **************"
       puts "Error  send #{$!}"

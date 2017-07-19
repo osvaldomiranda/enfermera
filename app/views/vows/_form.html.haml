@@ -14,6 +14,7 @@
         %h3= @vote.descripcion
         %h4=  "Inicio: #{@vote.inicio}"
         %h4=  "Esta votación cerrará: #{@vote.termino}"
+        =link_to 'Votos', vows_path(vote: @vote.id), class: 'btn btn-info'
         %hr
         - if current_user.vow?(@vote.id)
           .col-md-12.text-center

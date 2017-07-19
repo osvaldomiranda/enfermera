@@ -30,10 +30,10 @@
                 %td= vote.inicio
                 %td= vote.termino
                 %td= vote.estado
-                %td= link_to 'Candidatos', vote_path(vote)
-                %td= link_to 'Editar', edit_vote_path(vote)
-                %td= link_to 'Eliminar', vote, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                %td= link_to 'Candidatos', vote_path(vote), class: 'btn btn-info btn-xs'
+                %td= link_to 'Editar', edit_vote_path(vote),class: 'btn btn-info btn-xs'
+                %td= link_to 'Eliminar', vote, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-info btn-xs'
 
         %br
 
-        = link_to 'Nueva Elección', new_vote_path
+        = link_to 'Nueva Elección', new_vote_path, class: 'btn btn-info btn-xs'

@@ -10,6 +10,9 @@ class Vow < ActiveRecord::Base
 
   validates :candidate_id, :vote_id, presence: true
 
+  scope :with_vote, -> with_vote { where(vote_id: with_vote) if with_vote.present?}
+  scope :with_candidate, -> with_candidate { where(candidate_id: with_candidate) if with_candidate.present?}
+
 
   def create_user_vote(user)
   	user_vote = UserVote.new()

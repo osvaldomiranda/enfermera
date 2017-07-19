@@ -6,7 +6,10 @@ class VowsController < ApplicationController
   respond_to :html
 
   def index
-    @vows = Vow.all
+    @vote = params[:vote] || nil
+    @candidate = params[:candidate] || nil
+
+    @vows = Vow.with_vote(@vote).with_candidate(@candidate)
     respond_with(@vows)
   end
 
