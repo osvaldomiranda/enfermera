@@ -59,17 +59,7 @@ class Vow < ActiveRecord::Base
     doc = File.open "doc-signed#{self.token}.xml"
 
     user_vote.xmlfile = doc
-  
-    barcode = PDF417.new(xmltopdf417)
-   
-    file = File.open("pdf#{self.token}.png", 'wb') 
-    file.puts barcode.to_png
-    file.close
-
-    user_vote.pngfile = File.open "pdf#{self.token}.png"
-  	user_vote.save
-
-    system("rm pdf#{self.token}.png")
+    user_vote.save
     system("rm tosign_xml#{self.token}.xml") 
     system("rm doc-signed#{self.token}.xml")
   end
