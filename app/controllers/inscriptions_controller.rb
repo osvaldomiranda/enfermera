@@ -36,7 +36,9 @@ class InscriptionsController < ApplicationController
       @inscription.estado = params[:change_state]
       @inscription.user_id = current_user.id
       if @inscription.save
-        @inscription.create_person_user
+        if @inscription.estado = "APROBADA"
+          @inscription.create_person_user
+        end
       end
     end
 

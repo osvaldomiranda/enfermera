@@ -20,8 +20,6 @@ class VowsController < ApplicationController
 
   def showtopdf
     vowuser = UserVote.find_by_token(@vow.token)
-    @imageurl = vowuser.pngfile_url
-
     render pdf: "pdf",  orientation: 'Landscape'
   end
 

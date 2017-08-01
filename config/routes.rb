@@ -1,5 +1,7 @@
 Enfermera::Application.routes.draw do
 
+  resources :user_alow_votes
+
   resources :user_votes
 
   resources :wpdiscounts

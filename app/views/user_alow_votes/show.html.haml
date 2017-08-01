@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @user_alow_vote.user
+%p
+  %b Vote:
+  = @user_alow_vote.vote
+
+= link_to 'Edit', edit_user_alow_vote_path(@user_alow_vote)
+\|
+= link_to 'Back', user_alow_votes_path

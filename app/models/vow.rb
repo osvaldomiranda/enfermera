@@ -3,6 +3,7 @@ class Vow < ActiveRecord::Base
 
   mount_uploader :vowfile, WpfileUploader 
 
+
   belongs_to :candidate
   belongs_to :position
   belongs_to :vote

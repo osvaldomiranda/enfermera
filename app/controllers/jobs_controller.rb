@@ -27,6 +27,8 @@ class JobsController < ApplicationController
 
   def create
     jp = job_params
+
+
     jp[:fecha_desde] = job_params[:fecha_desde].present? ? Date.strptime(job_params[:fecha_desde], '%d-%m-%Y') : DateTime.now.to_date  
     jp[:fecha_hasta] = job_params[:fecha_hasta].present? ? Date.strptime(job_params[:fecha_hasta], '%d-%m-%Y') : Date.strptime('31-12-2099', '%d-%m-%Y') 
     @job = Job.new(jp)
@@ -36,8 +38,8 @@ class JobsController < ApplicationController
 
   def update
     jp = job_params
-    jp[:fecha_desde] = job_params[:fecha_desde].present? ? Date.strptime(job_params[:fecha_desde], '%d-%m-%Y') : DateTime.now.to_date  
-    jp[:fecha_hasta] = job_params[:fecha_hasta].present? ? Date.strptime(job_params[:fecha_hasta], '%d-%m-%Y') : Date.strptime('31-12-2099', '%d-%m-%Y') 
+    jp[:fecha_desde] = job_params[:fecha_desde].present? ? Date.strptime(job_params[:fecha_desde], '%Y-%m-%d') : DateTime.now.to_date  
+    jp[:fecha_hasta] = job_params[:fecha_hasta].present? ? Date.strptime(job_params[:fecha_hasta], '%Y-%m-%d') : Date.strptime('31-12-2099', '%d-%m-%Y') 
     @job.update(jp)
     respond_with(@job)
   end

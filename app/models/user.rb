@@ -64,6 +64,11 @@ class User < ActiveRecord::Base
     vow.id
   end
 
+  def allow_to_vote?(vote_id)
+    user_allow_vote = UserAlowVote.where(vote_id: vote_id, user_id: self.id).first
+    user_allow_vote.present?
+  end
+
   def person
     Person.find_by_rut(self.rut) || nil
   end

@@ -21,7 +21,7 @@
             = pie_chart @votacion_votos 
           %hr
           %br
-          %h3 Ya has emitido tu voto
+          %h1 Ya has emitido tu voto
           = link_to "Comprobante PDF", showtopdf_vow_path(id: current_user.user_vote(@vote.id)),class: 'btn btn-info'
           %br
           %br
@@ -50,16 +50,22 @@
           
           %hr
           %br
-          %h2 Elije tu preferencia y emite tu voto
 
-          = simple_form_for(@vow) do |f|
-            = f.error_notification
+          - if current_user.allow_to_vote?(@vote_id)
 
-            .form-inputs
-              = f.input :vote_id, :as => :hidden, :input_html => { :value => @vote_id }
-              = f.input :candidate_id, label: 'Opciones', collection: Candidate.candidatos_options_for_select(@vote_id)
+            %h2 Elije tu preferencia y emite tu voto
 
-            .form-actions
-              = f.button :submit, 'Emtir Voto', class: 'btn btn-warning'
+            = simple_form_for(@vow) do |f|
+              = f.error_notification
+
+              .form-inputs
+                = f.input :vote_id, :as => :hidden, :input_html => { :value => @vote_id }
+                = f.input :candidate_id, label: 'Opciones', collection: Candidate.candidatos_options_for_select(@vote_id)
+
+              .form-actions
+                = f.button :submit, 'Emtir Voto', class: 'btn btn-warning'
+
+          - else
+            %h2 No estas habilitado para votar     
           %br
           %br
