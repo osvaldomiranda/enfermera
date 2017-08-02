@@ -1,0 +1,18 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th N Registro
+      %th Email
+      %th Rut
+      %th Nombre
+      %th Fecha Creación
+      %th Origen
+  %tbody
+    - @people.each do |person|
+      %tr
+        %td= person.nro_registro
+        %td= person.email
+        %td= person.rut
+        %td= person.fullname
+        %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+        %td= person.origen.present? ? person.origen : "SISTEMA"

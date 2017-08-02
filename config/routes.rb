@@ -214,9 +214,11 @@ Enfermera::Application.routes.draw do
       post :create_daily
       get :filter
       get :enviar
+      get :toxls
     end 
   end
 
+ 
   # get "/workplaces/pay/payregister", to: 'workplaces#payregister'
   # post "/workplaces/pay/pay", to: 'workplaces#pay'
   resources :workplaces do
