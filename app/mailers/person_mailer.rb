@@ -8,19 +8,24 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      open('nomina.txt', 'wb') do |file|
-        file << open("#{@workplace.wpdiscounts.last.discountfile_url}").read
-      end
-
-      attachments["nomina.txt"] = File.read("#{Rails.root}/nomina.txt")
+      if @workplace.cod_serv_salud.present? 
+        open('nomina.txt', 'wb') do |file|
+          file << open("#{@workplace.wpdiscounts.last.discountfile_url}").read
+        end
+        attachments["nomina.txt"] = File.read("#{Rails.root}/nomina.txt")
+      end  
 
       attachments["nomina.rtf"] = File.read("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
 
-      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegioenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl" ]
+      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegioenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl", "contabilidad@colegiodeenfermeras.cl" ]
+
+      if @workplace.email.present?
+        emails << @workplace.email
+      end  
 
       mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")
 
-      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
+      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf") if @workplace.cod_serv_salud.present?
 
     rescue
       puts "********* person_mailer **************"

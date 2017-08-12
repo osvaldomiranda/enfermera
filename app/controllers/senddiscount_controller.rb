@@ -2,6 +2,7 @@ class SenddiscountController < ApplicationController
   before_filter :authenticate_user!    
   def index
     @regional = params[:regional] || nil
+    @publico = params[:publico] || nil
     @page = params[:page] || 1
     
     if @regional.present?
@@ -12,6 +13,14 @@ class SenddiscountController < ApplicationController
       else
         @workplaces = Workplace.where(office_id: current_user.office.id).order(created_at: :desc).page(params[:page]).per_page(20)
       end    
+    end
+    
+    if @publico.present?
+      if @publico == 'SI'
+        @workplaces = @workplaces.publicos('SI')
+      else
+        @workplaces = @workplaces.privados('SI')
+      end
     end
   end
 

@@ -10,13 +10,14 @@
       .panel-body
         .container-fluid
           %h1 Publicaciones 
-          - if current_user.role?(:web)
-            %br
-            = link_to 'Crear Publicación', new_publication_path, class: 'btn btn-info' 
-            %br
-            %br
+          - if current_user.present?
+            - if current_user.role?(:web)
+              %br
+              = link_to 'Crear Publicación', new_publication_path, class: 'btn btn-info' 
+              %br
+              %br
           - else
-            = link_to 'Volver', '/'  
+            = link_to 'Volver', '/', class: 'btn btn-info' 
           - @publications.each do |publication|
             %hr
             %br
@@ -34,9 +35,10 @@
                     %p= "Desde:#{publication.fecha_desde} Hasta:#{publication.fecha_hasta}" if publication.estado=="VISIBLE"
                   .row
                     = link_to 'Ver', publication, class: 'btn btn-warning'
-                    - if current_user.role?(:web)
-                      = link_to 'Editar', edit_publication_path(publication), class: 'btn btn-info'
-                      = link_to 'Eliminar', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
+                    - if current_user.present?
+                      - if current_user.role?(:web)
+                        = link_to 'Editar', edit_publication_path(publication), class: 'btn btn-info'
+                        = link_to 'Eliminar', publication, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
                       
             %br
             %br
