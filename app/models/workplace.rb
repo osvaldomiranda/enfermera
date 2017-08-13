@@ -4,9 +4,12 @@ class Workplace < ActiveRecord::Base
 
   has_many :wpdocument, dependent: :destroy
   has_many :wpdiscounts, dependent: :destroy
+  has_many :wpemails, dependent: :destroy
   has_many :people, dependent: :destroy
+  
   has_many :incomes
   has_many :fees, through: :people
+
 
   scope :with_codwp, -> with_codwp { where(cod_wp: with_codwp) if with_codwp.present?}
   scope :publicos, ->publicos { where.not(cod_serv_salud: nil) if publicos=='SI' }

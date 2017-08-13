@@ -19,8 +19,11 @@ class PersonMailer < ActionMailer::Base
 
       emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegioenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl", "contabilidad@colegiodeenfermeras.cl" ]
 
-      if @workplace.email.present?
-        emails << @workplace.email
+      @workplace.wpemails.each do |wpemail|
+        puts "******************"
+        puts wpemail.email
+        puts "******************"
+        emails << wpemail.email
       end  
 
       mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")

@@ -1,0 +1,20 @@
+%p#notice= notice
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 
+      .panel-body
+      
+        %p
+          %b Email:
+          = @wpemail.email
+        %p
+          %b Workplace:
+          = @wpemail.workplace.nombre
+
+
+        = link_to 'Volver', wpemails_path(workplace_id: @wpemail.workplace.id), class: 'btn btn-info btn-xs' 

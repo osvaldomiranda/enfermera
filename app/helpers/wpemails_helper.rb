@@ -1,0 +1,2 @@
+module WpemailsHelper
+end

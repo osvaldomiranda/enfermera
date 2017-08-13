@@ -1,0 +1,37 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Correos lugar de trabajo
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Correos lugar de trabajo
+              %span.badge= @wpemails.count
+            
+
+            %hr    
+            %br
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Correo
+                  %th Lugar de trabajo
+                  %th
+                  %th
+
+              %tbody
+                - @wpemails.each do |wpemail|
+                  %tr
+                    %td= wpemail.email
+                    %td= wpemail.workplace.nombre 
+                    %td= link_to 'Editar', edit_wpemail_path(wpemail),class: 'btn btn-info btn-xs' 
+                    %td= link_to 'Eliminar', wpemail, :method => :delete, :data => { :confirm => 'Are you sure?' },class: 'btn btn-info btn-xs' 
+
+            %br
+
+            = link_to 'Agregar Correo', new_wpemail_path(workplace_id: @workplace_id),class: 'btn btn-info'
+            = link_to 'Volver', senddiscount_index_path,class: 'btn btn-info' 
+            %br
+            %br

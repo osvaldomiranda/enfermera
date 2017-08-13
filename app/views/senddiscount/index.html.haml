@@ -33,7 +33,7 @@
             %tr
               %th Nombre
               %th Regional
-              %th Colegiadas
+              %th 
               %th
               %th
           %tbody
@@ -45,9 +45,10 @@
                     %td= workplace.office.nombre
                   - else
                     %td
-                  %td= link_to "#{workplace.people.count}",people_senddiscount_path(id: workplace,page:@page), class: 'btn btn-warning'
-                  %td= link_to 'Enviar Decuento',sendemail_senddiscount_path(workplace.id), class: 'btn btn-info'
-                  %td= link_to 'Enviar Cobranza', "/senddiscount/sendretrieve/#{workplace.id}", class: 'btn btn-info'
+                  %td= link_to "Correos: #{workplace.wpemails.count}", wpemails_path(workplace_id: workplace.id),class: 'btn btn-info'
 
+                  %td= link_to "#{workplace.people.count}",people_senddiscount_path(id: workplace,page:@page), class: 'btn btn-warning'
+                  %td= link_to 'Enviar Planilla Descuento',sendemail_senddiscount_path(workplace.id), class: 'btn btn-info'
+ 
 
  
