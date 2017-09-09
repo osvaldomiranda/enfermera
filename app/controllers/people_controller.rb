@@ -261,7 +261,7 @@ class PeopleController < ApplicationController
     puts params
     puts "*****************"
     @people = Person.all
-    @msg = Fee.import_valpo(params[:file]).force_encoding('utf-8')
+    @msg = Fee.import(params[:file]).force_encoding('utf-8')
     respond_to do |format|
       format.html {
         if @msg == " "

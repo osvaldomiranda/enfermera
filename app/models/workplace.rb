@@ -61,13 +61,13 @@ class Workplace < ActiveRecord::Base
       end
       wpfile.close
 
-      # wpDiscount = Wpdiscount.new()
-      # data = File.open("#{Rails.root}/#{self.cod_wp}_wp_file.txt")
-      # wpDiscount.discountfile = data
-      # wpDiscount.workplace_id = self.id
-      # if wpDiscount.save
-      #   File.delete("#{Rails.root}/#{self.cod_wp}_wp_file.txt")
-      # end
+      wpDiscount = Wpdiscount.new()
+      data = File.open("#{Rails.root}/#{self.cod_wp}_wp_file.txt")
+      wpDiscount.discountfile = data
+      wpDiscount.workplace_id = self.id
+      if wpDiscount.save
+        File.delete("#{Rails.root}/#{self.cod_wp}_wp_file.txt")
+      end
     end    
 
 

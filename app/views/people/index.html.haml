@@ -55,6 +55,12 @@
           %br
           %br
 
+          .form-group   
+            %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
+            = form_tag create_fee_people_path, multipart: true do 
+              = file_field_tag :file 
+              = submit_tag "Importar" 
+
         / - if current_user.rut=="11367176-9"
 
         /   = link_to 'Enviar noticias', enviar_people_path
