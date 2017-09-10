@@ -247,5 +247,9 @@ class Person < ActiveRecord::Base
     end
   end  
 
+  def fees_continuity(year)
+    self.fees.where(mescuota: Date.parse('01/01/'+year)..Date.parse('31/12/'+year)).count
+  end
+
 
 end

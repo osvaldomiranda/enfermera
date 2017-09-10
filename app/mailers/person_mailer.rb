@@ -111,7 +111,7 @@ class PersonMailer < ActionMailer::Base
 
       emails = [@user.email]
 
-      mail(to: emails ,subject: "Fortalece tu Auto-Liderazgo y Gestiona los Mejores Equipos - Curso de Liderazgo y Gestión de Equipos 2017")
+      mail(to: emails ,subject: "Fortalece tu Auto-Liderazgo y Gestiona los Mejores Equipos - Curso de Liderazgo y Gestion de Equipos 2017")
     rescue
       puts "********* person_mailer **************"
       puts "Error  send #{$!}"

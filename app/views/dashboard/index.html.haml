@@ -74,6 +74,8 @@
     .panel-footer
       %h3 Registro de pagos últimos 6 pagos
       .panel-body
+
+        = link_to 'Todas las cuotas', fees_dashboard_index_path(person_id: @person.id ), class: "btn btn-primary btn-xs"
         %table.table.table-striped
           %thead
             %tr

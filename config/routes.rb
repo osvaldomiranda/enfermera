@@ -180,7 +180,13 @@ Enfermera::Application.routes.draw do
   resources :home, only: :index
 
   # get "dashboard/index"
-  resources :dashboard, only: :index
+  resources :dashboard do 
+    collection do
+      get :index
+      get :fees
+    end
+   
+  end   
   
   # get "credential/index"
   resources :credential, only: :index
@@ -217,6 +223,8 @@ Enfermera::Application.routes.draw do
       get :filter
       get :enviar
       get :toxls
+      get :continuity
+      get :continuity_toxls
     end 
   end
 

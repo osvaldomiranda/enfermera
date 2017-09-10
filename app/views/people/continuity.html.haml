@@ -46,70 +46,14 @@
         %br
         %br
 
-        = link_to "Limpiar Busqueda",people_path,  class: 'btn btn-info'
+        = link_to "Limpiar Busqueda",continuity_people_path,  class: 'btn btn-info'
         %br
         %br
         %hr 
         - if current_user.rol > 7 
-          = link_to 'Exportar Excel', toxls_people_path(format: :xls),class: 'btn btn-info'
+          = link_to 'Exportar Excel', continuity_toxls_people_path(format: :xls),class: 'btn btn-info'
           %br
           %br
-
-
-        / - if current_user.rut=="11367176-9"
-
-        /   = link_to 'Enviar noticias', enviar_people_path
-
-        /   %h3 importar colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag import_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-        /   %h3 update colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag import_update_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-        /   %h3 update emails 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag import_update_email_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar"               
-        /   %h3 crear cuotas colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
-        /     = form_tag create_fee_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-        /   %h3 crear usuarios colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag create_user_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-        /   %h3 crear head daily Ingreso
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag create_head_daily_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-        /   %h3 crear head daily Egreso
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag create_head_daily_egreso_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar"               
-        /   %h3 crear daily 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
-        /     = form_tag create_daily_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
-
-        
    
 
 .container{:role => "main"}
@@ -131,11 +75,14 @@
                 %th Email
                 %th Rut
                 %th Nombre
-                %th Fecha Creación
-                %th Origen
+                %th Cuotas 2013
+                %th Cuotas 2014
+                %th Cuotas 2015
+                %th Cuotas 2016
+                %th Cuotas 2017
                 %th 
                 %th
-                %th
+
             %tbody
               - @people.each do |person|
                 %tr
@@ -143,17 +90,15 @@
                   %td= person.email
                   %td= person.rut
                   %td= person.fullname
-                  %td= person.created_at.strftime('%d/%m/%Y %H:%M')
-                  %td= person.origen.present? ? person.origen : "SISTEMA"
-                  %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
-                  %td= link_to 'Modificar', edit_person_path(person.id),class: 'btn btn-info btn-xs'
+                  %td= person.fees_continuity('2013')
+                  %td= person.fees_continuity('2014')
+                  %td= person.fees_continuity('2015')
+                  %td= person.fees_continuity('2016')
+                  %td= person.fees_continuity('2017')
 
-                  - if person.estado == "OK"
-                    - if person.url.present?
-                      %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
-                    - else
-                      - if person.certificado_file
-                        %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
+                  %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
+                  %td= link_to 'Todas las cuotas', fees_dashboard_index_path(person_id: person.id ), class: "btn btn-info btn-xs"
+  
                   / - else
                   /   - if person.estado == "CANCELADO"
                   /     %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 
@@ -165,6 +110,3 @@
                   / %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Estas seguro ?' }
 
         %br
-
-
-
