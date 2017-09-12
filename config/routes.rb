@@ -96,6 +96,7 @@ Enfermera::Application.routes.draw do
       get :obligaciones
       get :estatutos
       get :reglamento
+      get :vademecum
     end
   end
 
@@ -210,6 +211,7 @@ Enfermera::Application.routes.draw do
       post :pay
       get :terms
       get :termstopdf
+      post :resetpass
     end
     collection do
       post :import 

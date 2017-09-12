@@ -30,6 +30,9 @@ class HomeController < ApplicationController
 
   def obligaciones
   end
+  
+  def vademecum
+  end
 
   def estatutos
 

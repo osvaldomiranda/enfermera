@@ -32,6 +32,20 @@ class PeopleController < ApplicationController
     respond_with(@people)
   end
 
+  def resetpass
+
+    person = Person.find(params[:id])
+
+    user = User.where(rut: person.rut).first
+
+    if user.present?
+      user.password = user.rut
+      user.save
+    end
+
+    redirect_to people_path    
+  end
+
 
   def continuity
     if params["/people"].present?

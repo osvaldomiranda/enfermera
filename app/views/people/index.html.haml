@@ -147,13 +147,14 @@
                   %td= person.origen.present? ? person.origen : "SISTEMA"
                   %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
                   %td= link_to 'Modificar', edit_person_path(person.id),class: 'btn btn-info btn-xs'
+                  %td= link_to 'Reset Pass', resetpass_person_path(person.id), :method => :post, :data => { :confirm => "Seguro que desea resetear la password de #{person.fullname} ?" }, class: 'btn btn-info btn-xs'
 
                   - if person.estado == "OK"
                     - if person.url.present?
-                      %td= link_to ' Mostrar Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
+                      %td= link_to 'Certificado ', person.url , :target => '_blank', class: 'btn btn-info btn-xs'
                     - else
                       - if person.certificado_file
-                        %td= link_to ' Mostrar Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
+                        %td= link_to 'Certificado ', person.certificado_file_url , :target => '_blank', class: 'btn btn-info btn-xs'  
                   / - else
                   /   - if person.estado == "CANCELADO"
                   /     %td= link_to 'CANCELADA', '', class: 'btn btn-danger btn-xs' 

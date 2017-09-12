@@ -68,21 +68,21 @@ class Fee < ActiveRecord::Base
       if @person.present?
 
         # Enero
-        if rowHash["ene-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "01-2014").first
+        if rowHash["ene-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "01-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else  
-            puts "******* #{rowHash["fch_ene_14"]} *********"
+            puts "******* #{rowHash["fch_ene_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_ene_14"].present? ? Date.parse(rowHash["fch_ene_14"]) : DateTime.now 
-            fee.mes = "ENERO-2014"
-            fee.mes_cuota = "01-2014"
-            fee.monto = rowHash["ene-14"]
+            fee.fecha_pago = rowHash["fch_ene_13"].present? ? Date.parse(rowHash["fch_ene_13"]) : DateTime.now 
+            fee.mes = "ENERO-2013"
+            fee.mes_cuota = "01-2013"
+            fee.monto = rowHash["ene-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -92,21 +92,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Febrero
-        if rowHash["feb-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "02-2014").first
+        if rowHash["feb-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "02-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else  
-            puts "******* #{rowHash["fch_feb_14"]} *********"
+            puts "******* #{rowHash["fch_feb_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_feb_14"].present? ? Date.parse(rowHash["fch_feb_14"]) : DateTime.now 
-            fee.mes = "FEBRERO-2014"
-            fee.mes_cuota = "02-2014"
-            fee.monto = rowHash["feb-14"]
+            fee.fecha_pago = rowHash["fch_feb_13"].present? ? Date.parse(rowHash["fch_feb_13"]) : DateTime.now 
+            fee.mes = "FEBRERO-2013"
+            fee.mes_cuota = "02-2013"
+            fee.monto = rowHash["feb-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -116,21 +116,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Marzo
-        if rowHash["mar-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "03-2014").first
+        if rowHash["mar-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "03-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_mar_14"]} *********"
+            puts "******* #{rowHash["fch_mar_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_mar_14"].present? ? Date.parse(rowHash["fch_mar_14"]) : DateTime.now 
-            fee.mes = "MARZO-2014"
-            fee.mes_cuota = "03-2014"
-            fee.monto = rowHash["mar-14"]
+            fee.fecha_pago = rowHash["fch_mar_13"].present? ? Date.parse(rowHash["fch_mar_13"]) : DateTime.now 
+            fee.mes = "MARZO-2013"
+            fee.mes_cuota = "03-2013"
+            fee.monto = rowHash["mar-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -140,21 +140,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Abril
-        if rowHash["abr-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "04-2014").first
+        if rowHash["abr-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "04-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_abr_14"]} *********"
+            puts "******* #{rowHash["fch_abr_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_abr_14"].present? ? Date.parse(rowHash["fch_abr_14"]) : DateTime.now 
-            fee.mes = "ABRIL-2014"
-            fee.mes_cuota = "04-2014"
-            fee.monto = rowHash["abr-14"]
+            fee.fecha_pago = rowHash["fch_abr_13"].present? ? Date.parse(rowHash["fch_abr_13"]) : DateTime.now 
+            fee.mes = "ABRIL-2013"
+            fee.mes_cuota = "04-2013"
+            fee.monto = rowHash["abr-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -164,21 +164,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # MAYO
-        if rowHash["may-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "05-2014").first
+        if rowHash["may-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "05-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_may_14"]} *********"
+            puts "******* #{rowHash["fch_may_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_may_14"].present? ? Date.parse(rowHash["fch_may_14"]) : DateTime.now 
-            fee.mes = "MAYO-2014"
-            fee.mes_cuota = "05-2014"
-            fee.monto = rowHash["may-14"]
+            fee.fecha_pago = rowHash["fch_may_13"].present? ? Date.parse(rowHash["fch_may_13"]) : DateTime.now 
+            fee.mes = "MAYO-2013"
+            fee.mes_cuota = "05-2013"
+            fee.monto = rowHash["may-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -188,21 +188,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # JUNIO
-        if rowHash["jun-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "06-2014").first
+        if rowHash["jun-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "06-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_jun_14"]} *********"
+            puts "******* #{rowHash["fch_jun_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_jun_14"].present? ? Date.parse(rowHash["fch_jun_14"]) : DateTime.now 
-            fee.mes = "JUNIO-2014"
-            fee.mes_cuota = "06-2014"
-            fee.monto = rowHash["jun-14"]
+            fee.fecha_pago = rowHash["fch_jun_13"].present? ? Date.parse(rowHash["fch_jun_13"]) : DateTime.now 
+            fee.mes = "JUNIO-2013"
+            fee.mes_cuota = "06-2013"
+            fee.monto = rowHash["jun-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -212,21 +212,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Julio
-        if rowHash["jul-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "07-2014").first
+        if rowHash["jul-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "07-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_jul_14"]} *********"
+            puts "******* #{rowHash["fch_jul_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_jul_14"].present? ? Date.parse(rowHash["fch_jul_14"]) : DateTime.now 
-            fee.mes = "JULIO-2014"
-            fee.mes_cuota = "07-2014"
-            fee.monto = rowHash["jul-14"]
+            fee.fecha_pago = rowHash["fch_jul_13"].present? ? Date.parse(rowHash["fch_jul_13"]) : DateTime.now 
+            fee.mes = "JULIO-2013"
+            fee.mes_cuota = "07-2013"
+            fee.monto = rowHash["jul-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -235,21 +235,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Agosto
-        if rowHash["ago-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "08-2014").first
+        if rowHash["ago-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "08-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_ago_14"]} *********"
+            puts "******* #{rowHash["fch_ago_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_ago_14"].present? ? Date.parse(rowHash["fch_ago_14"]) : DateTime.now 
-            fee.mes = "AGOSTO-2014"
-            fee.mes_cuota = "08-2014"
-            fee.monto = rowHash["ago-14"]
+            fee.fecha_pago = rowHash["fch_ago_13"].present? ? Date.parse(rowHash["fch_ago_13"]) : DateTime.now 
+            fee.mes = "AGOSTO-2013"
+            fee.mes_cuota = "08-2013"
+            fee.monto = rowHash["ago-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -259,21 +259,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Septiembre
-        if rowHash["sep-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "09-2014").first
+        if rowHash["sep-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "09-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_sep_14"]} *********"
+            puts "******* #{rowHash["fch_sep_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_sep_14"].present? ? Date.parse(rowHash["fch_sep_14"]) : DateTime.now 
-            fee.mes = "SEPTIEMBRE-2014"
-            fee.mes_cuota = "09-2014"
-            fee.monto = rowHash["sep-14"]
+            fee.fecha_pago = rowHash["fch_sep_13"].present? ? Date.parse(rowHash["fch_sep_13"]) : DateTime.now 
+            fee.mes = "SEPTIEMBRE-2013"
+            fee.mes_cuota = "09-2013"
+            fee.monto = rowHash["sep-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -283,21 +283,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Octubre
-        if rowHash["oct-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "10-2014").first
+        if rowHash["oct-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "10-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_oct_14"]} *********"
+            puts "******* #{rowHash["fch_oct_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_oct_14"].present? ? Date.parse(rowHash["fch_oct_14"]) : DateTime.now 
-            fee.mes = "OCTUBRE-2014"
-            fee.mes_cuota = "10-2014"
-            fee.monto = rowHash["oct-14"]
+            fee.fecha_pago = rowHash["fch_oct_13"].present? ? Date.parse(rowHash["fch_oct_13"]) : DateTime.now 
+            fee.mes = "OCTUBRE-2013"
+            fee.mes_cuota = "10-2013"
+            fee.monto = rowHash["oct-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -307,21 +307,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Noviembre
-        if rowHash["nov-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "11-2014").first
+        if rowHash["nov-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "11-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_nov_14"]} *********"
+            puts "******* #{rowHash["fch_nov_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_nov_14"].present? ? Date.parse(rowHash["fch_nov_14"]) : DateTime.now 
-            fee.mes = "NOVIEMBRE-2014"
-            fee.mes_cuota = "11-2014"
-            fee.monto = rowHash["nov-14"]
+            fee.fecha_pago = rowHash["fch_nov_13"].present? ? Date.parse(rowHash["fch_nov_13"]) : DateTime.now 
+            fee.mes = "NOVIEMBRE-2013"
+            fee.mes_cuota = "11-2013"
+            fee.monto = rowHash["nov-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -331,21 +331,21 @@ class Fee < ActiveRecord::Base
           end  
         end 
         # Diciembre
-        if rowHash["dic-14"].present?
-          fee_actual = @person.fees.where(mes_cuota: "12-2014").first
+        if rowHash["dic-13"].present?
+          fee_actual = @person.fees.where(mes_cuota: "12-2013").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_dic_14"]} *********"
+            puts "******* #{rowHash["fch_dic_13"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_dic_14"].present? ? Date.parse(rowHash["fch_dic_14"]) : DateTime.now 
-            fee.mes = "DICIEMBRE-2014"
-            fee.mes_cuota = "12-2014"
-            fee.monto = rowHash["dic-14"]
+            fee.fecha_pago = rowHash["fch_dic_13"].present? ? Date.parse(rowHash["fch_dic_13"]) : DateTime.now 
+            fee.mes = "DICIEMBRE-2013"
+            fee.mes_cuota = "12-2013"
+            fee.monto = rowHash["dic-13"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -357,21 +357,21 @@ class Fee < ActiveRecord::Base
 # ***********************
 
         # Enero
-        if rowHash["ene-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "01-2015").first
+        if rowHash["ene-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "01-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else  
-            puts "******* #{rowHash["fch_ene_15"]} *********"
+            puts "******* #{rowHash["fch_ene_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_ene_15"].present? ? Date.parse(rowHash["fch_ene_15"]) : DateTime.now 
-            fee.mes = "ENERO-2015"
-            fee.mes_cuota = "01-2015"
-            fee.monto = rowHash["ene-15"]
+            fee.fecha_pago = rowHash["fch_ene_12"].present? ? Date.parse(rowHash["fch_ene_12"]) : DateTime.now 
+            fee.mes = "ENERO-2012"
+            fee.mes_cuota = "01-2012"
+            fee.monto = rowHash["ene-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -381,21 +381,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Febrero
-        if rowHash["feb-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "02-2015").first
+        if rowHash["feb-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "02-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else  
-            puts "******* #{rowHash["fch_feb_15"]} *********"
+            puts "******* #{rowHash["fch_feb_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_feb_15"].present? ? Date.parse(rowHash["fch_feb_15"]) : DateTime.now 
-            fee.mes = "FEBRERO-2015"
-            fee.mes_cuota = "02-2015"
-            fee.monto = rowHash["feb-15"]
+            fee.fecha_pago = rowHash["fch_feb_12"].present? ? Date.parse(rowHash["fch_feb_12"]) : DateTime.now 
+            fee.mes = "FEBRERO-2012"
+            fee.mes_cuota = "02-2012"
+            fee.monto = rowHash["feb-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -405,21 +405,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Marzo
-        if rowHash["mar-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "03-2015").first
+        if rowHash["mar-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "03-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_mar_15"]} *********"
+            puts "******* #{rowHash["fch_mar_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_feb_15"].present? ? Date.parse(rowHash["fch_feb_15"]) : DateTime.now 
-            fee.mes = "MARZO-2015"
-            fee.mes_cuota = "03-2015"
-            fee.monto = rowHash["mar-15"]
+            fee.fecha_pago = rowHash["fch_feb_12"].present? ? Date.parse(rowHash["fch_feb_12"]) : DateTime.now 
+            fee.mes = "MARZO-2012"
+            fee.mes_cuota = "03-2012"
+            fee.monto = rowHash["mar-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -429,21 +429,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Abril
-        if rowHash["abr-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "04-2015").first
+        if rowHash["abr-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "04-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_abr_15"]} *********"
+            puts "******* #{rowHash["fch_abr_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_abr_15"].present? ? Date.parse(rowHash["fch_abr_15"]) : DateTime.now 
-            fee.mes = "ABRIL-2015"
-            fee.mes_cuota = "04-2015"
-            fee.monto = rowHash["abr-15"]
+            fee.fecha_pago = rowHash["fch_abr_12"].present? ? Date.parse(rowHash["fch_abr_12"]) : DateTime.now 
+            fee.mes = "ABRIL-2012"
+            fee.mes_cuota = "04-2012"
+            fee.monto = rowHash["abr-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -453,21 +453,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # MAYO
-        if rowHash["may-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "05-2015").first
+        if rowHash["may-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "05-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_may_15"]} *********"
+            puts "******* #{rowHash["fch_may_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_may_15"].present? ? Date.parse(rowHash["fch_may_15"]) : DateTime.now 
-            fee.mes = "MAYO-2015"
-            fee.mes_cuota = "05-2015"
-            fee.monto = rowHash["may-15"]
+            fee.fecha_pago = rowHash["fch_may_12"].present? ? Date.parse(rowHash["fch_may_12"]) : DateTime.now 
+            fee.mes = "MAYO-2012"
+            fee.mes_cuota = "05-2012"
+            fee.monto = rowHash["may-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -477,21 +477,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # JUNIO
-        if rowHash["jun-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "06-2015").first
+        if rowHash["jun-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "06-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_jun_15"]} *********"
+            puts "******* #{rowHash["fch_jun_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_jun_15"].present? ? Date.parse(rowHash["fch_jun_15"]) : DateTime.now 
-            fee.mes = "JUNIO-2015"
-            fee.mes_cuota = "06-2015"
-            fee.monto = rowHash["jun-15"]
+            fee.fecha_pago = rowHash["fch_jun_12"].present? ? Date.parse(rowHash["fch_jun_12"]) : DateTime.now 
+            fee.mes = "JUNIO-2012"
+            fee.mes_cuota = "06-2012"
+            fee.monto = rowHash["jun-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -501,21 +501,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Julio
-        if rowHash["jul-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "07-2015").first
+        if rowHash["jul-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "07-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_jul_15"]} *********"
+            puts "******* #{rowHash["fch_jul_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_jul_15"].present? ? Date.parse(rowHash["fch_jul_15"]) : DateTime.now 
-            fee.mes = "JULIO-2015"
-            fee.mes_cuota = "07-2015"
-            fee.monto = rowHash["jul-15"]
+            fee.fecha_pago = rowHash["fch_jul_12"].present? ? Date.parse(rowHash["fch_jul_12"]) : DateTime.now 
+            fee.mes = "JULIO-2012"
+            fee.mes_cuota = "07-2012"
+            fee.monto = rowHash["jul-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -524,21 +524,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Agosto
-        if rowHash["ago-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "08-2015").first
+        if rowHash["ago-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "08-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_ago_15"]} *********"
+            puts "******* #{rowHash["fch_ago_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_ago_15"].present? ? Date.parse(rowHash["fch_ago_15"]) : DateTime.now 
-            fee.mes = "AGOSTO-2015"
-            fee.mes_cuota = "08-2015"
-            fee.monto = rowHash["ago-15"]
+            fee.fecha_pago = rowHash["fch_ago_12"].present? ? Date.parse(rowHash["fch_ago_12"]) : DateTime.now 
+            fee.mes = "AGOSTO-2012"
+            fee.mes_cuota = "08-2012"
+            fee.monto = rowHash["ago-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -548,21 +548,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Septiembre
-        if rowHash["sep-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "09-2015").first
+        if rowHash["sep-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "09-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_sep_15"]} *********"
+            puts "******* #{rowHash["fch_sep_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_sep_15"].present? ? Date.parse(rowHash["fch_sep_15"]) : DateTime.now 
-            fee.mes = "SEPTIEMBRE-2015"
-            fee.mes_cuota = "09-2015"
-            fee.monto = rowHash["sep-15"]
+            fee.fecha_pago = rowHash["fch_sep_12"].present? ? Date.parse(rowHash["fch_sep_12"]) : DateTime.now 
+            fee.mes = "SEPTIEMBRE-2012"
+            fee.mes_cuota = "09-2012"
+            fee.monto = rowHash["sep-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -572,21 +572,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Octubre
-        if rowHash["oct-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "10-2015").first
+        if rowHash["oct-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "10-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_oct_15"]} *********"
+            puts "******* #{rowHash["fch_oct_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_oct_15"].present? ? Date.parse(rowHash["fch_oct_15"]) : DateTime.now 
-            fee.mes = "OCTUBRE-2015"
-            fee.mes_cuota = "10-2015"
-            fee.monto = rowHash["oct-15"]
+            fee.fecha_pago = rowHash["fch_oct_12"].present? ? Date.parse(rowHash["fch_oct_12"]) : DateTime.now 
+            fee.mes = "OCTUBRE-2012"
+            fee.mes_cuota = "10-2012"
+            fee.monto = rowHash["oct-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -596,21 +596,21 @@ class Fee < ActiveRecord::Base
           end  
         end  
         # Noviembre
-        if rowHash["nov-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "11-2015").first
+        if rowHash["nov-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "11-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_nov_15"]} *********"
+            puts "******* #{rowHash["fch_nov_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_nov_15"].present? ? Date.parse(rowHash["fch_nov_15"]) : DateTime.now 
-            fee.mes = "NOVIEMBRE-2015"
-            fee.mes_cuota = "11-2015"
-            fee.monto = rowHash["nov-15"]
+            fee.fecha_pago = rowHash["fch_nov_12"].present? ? Date.parse(rowHash["fch_nov_12"]) : DateTime.now 
+            fee.mes = "NOVIEMBRE-2012"
+            fee.mes_cuota = "11-2012"
+            fee.monto = rowHash["nov-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
@@ -620,21 +620,21 @@ class Fee < ActiveRecord::Base
           end  
         end 
         # Diciembre
-        if rowHash["dic-15"].present?
-          fee_actual = @person.fees.where(mes_cuota: "12-2015").first
+        if rowHash["dic-12"].present?
+          fee_actual = @person.fees.where(mes_cuota: "12-2012").first
           if fee_actual.present?
             puts "****************"
             puts "EXISTE"
             puts @person.nro_registro
             puts "****************"
           else 
-            puts "******* #{rowHash["fch_dic_15"]} *********"
+            puts "******* #{rowHash["fch_dic_12"]} *********"
             puts @person.nro_registro
             fee = Fee.new
-            fee.fecha_pago = rowHash["fch_dic_15"].present? ? Date.parse(rowHash["fch_dic_15"]) : DateTime.now 
-            fee.mes = "DICIEMBRE-2015"
-            fee.mes_cuota = "12-2015"
-            fee.monto = rowHash["dic-15"]
+            fee.fecha_pago = rowHash["fch_dic_12"].present? ? Date.parse(rowHash["fch_dic_12"]) : DateTime.now 
+            fee.mes = "DICIEMBRE-2012"
+            fee.mes_cuota = "12-2012"
+            fee.monto = rowHash["dic-12"]
             fee.person_id = @person.id
             fee.rut = @person.rut
             fee.estado = "PAGADO"
