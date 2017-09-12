@@ -75,6 +75,7 @@
                 %th Email
                 %th Rut
                 %th Nombre
+                %th Cuotas 2012
                 %th Cuotas 2013
                 %th Cuotas 2014
                 %th Cuotas 2015
@@ -90,6 +91,7 @@
                   %td= person.email
                   %td= person.rut
                   %td= person.fullname
+                  %td= person.fees_continuity('2012')
                   %td= person.fees_continuity('2013')
                   %td= person.fees_continuity('2014')
                   %td= person.fees_continuity('2015')

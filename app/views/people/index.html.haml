@@ -55,6 +55,13 @@
           %br
           %br
 
+        %h3 crear cuotas colegiadas 
+        .form-group   
+          %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
+          = form_tag create_fee_people_path, multipart: true do 
+            = file_field_tag :file 
+            = submit_tag "Importar" 
+
 
         / - if current_user.rut=="11367176-9"
 
@@ -78,12 +85,12 @@
         /     = form_tag import_update_email_people_path, multipart: true do 
         /       = file_field_tag :file 
         /       = submit_tag "Importar"               
-        /   %h3 crear cuotas colegiadas 
-        /   .form-group   
-        /     %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
-        /     = form_tag create_fee_people_path, multipart: true do 
-        /       = file_field_tag :file 
-        /       = submit_tag "Importar" 
+        / %h3 crear cuotas colegiadas 
+        / .form-group   
+        /   %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
+        /   = form_tag create_fee_people_path, multipart: true do 
+        /     = file_field_tag :file 
+        /     = submit_tag "Importar" 
         /   %h3 crear usuarios colegiadas 
         /   .form-group   
         /     %label.col-sm-2.control-label{:for => "textinput"}  Importar 
