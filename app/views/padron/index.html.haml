@@ -13,7 +13,7 @@
               %span.badge= @people.count
           .col-xs-12
             %h3
-              Cuotas al día con holgura de 6 meses
+              Cuotas al día con holgura de 3 meses
         %hr
         - if current_user.rol > 7      
           .row
@@ -72,7 +72,7 @@
                 %th Rut
                 %th Nombre
                 %th Lugar de Trabajo
-                %th 
+                %th Ultimo Pago
                 %th
                 %th
             %tbody
@@ -85,6 +85,7 @@
                     %td= person.workplace.nombre
                   - else
                     %td  
+                  %td= person.fees.last.mescuota
 
                  
                  
