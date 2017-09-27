@@ -13,10 +13,16 @@
       .container
       .pull-left
         =link_to image_tag("yotecuido2.png"), "#yotecuido"
+        %ul.nav.navbar-nav
+          %li
+            = link_to "#yotecuido" do
+              YO te CUIDO
       .pull-right
         =link_to  new_user_session_path, class: 'btn btn-warning' do
           %i.glyphicon.glyphicon-log-in
           Ingreso colegiadas
+
+
 
 
         %ul.nav.navbar-nav
@@ -39,17 +45,6 @@
               %span.iconos>
                 %i.fa.fa-user.fa-fw
               Eventos
-
-        %ul.nav.navbar-nav
-          %li
-            = link_to vademecum_home_index_path do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Vademecum
-
-              
-
-
 
         %ul.nav.navbar-nav
           %li
