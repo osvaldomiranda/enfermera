@@ -139,6 +139,7 @@ class WorkplacesController < ApplicationController
     w.create_file
   end
 
+
   private
     def set_workplace
       @workplace = Workplace.find(params[:id])

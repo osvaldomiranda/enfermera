@@ -55,13 +55,19 @@
           %br
           %br
 
-        %h3 crear cuotas colegiadas 
+        %h3 crear emails lugares de trabajo Privados
         .form-group   
-          %label.col-sm-2.control-label{:for => "textinput"}  Importar cuotas
-          = form_tag create_fee_people_path, multipart: true do 
+          %label.col-sm-2.control-label{:for => "textinput"}  Importar wpEmail
+          = form_tag import_wpemail_people_path, multipart: true do 
             = file_field_tag :file 
             = submit_tag "Importar" 
 
+        %h3 crear emails lugares de trabajo Publicos
+        .form-group   
+          %label.col-sm-2.control-label{:for => "textinput"}  Importar wpEmailSS
+          = form_tag import_wpemailss_people_path, multipart: true do 
+            = file_field_tag :file 
+            = submit_tag "Importar" 
 
         / - if current_user.rut=="11367176-9"
 

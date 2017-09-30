@@ -194,6 +194,8 @@ class Person < ActiveRecord::Base
       end
   end
 
+
+
   def usernew
     u = User.where(rut: self.rut).first
     if !u.present?

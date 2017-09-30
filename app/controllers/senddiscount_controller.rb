@@ -17,9 +17,9 @@ class SenddiscountController < ApplicationController
     
     if @publico.present?
       if @publico == 'SI'
-        @workplaces = @workplaces.publicos('SI')
+        @workplaces = @workplaces.publicos('SI').order(created_at: :desc).page(params[:page]).per_page(20)
       else
-        @workplaces = @workplaces.privados('SI')
+        @workplaces = @workplaces.privados('SI').order(created_at: :desc).page(params[:page]).per_page(20)
       end
     end
   end

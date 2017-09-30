@@ -215,6 +215,8 @@ Enfermera::Application.routes.draw do
     end
     collection do
       post :import 
+      post :import_wpemail 
+      post :import_wpemailss 
       post :import_update 
       post :import_update_email
       post :create_user
@@ -241,6 +243,7 @@ Enfermera::Application.routes.draw do
       post :pay
       get :topasive
     end  
+ 
   end
 
 

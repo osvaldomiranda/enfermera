@@ -278,6 +278,40 @@ class PeopleController < ApplicationController
     end   
   end
 
+  def import_wpemail
+    puts "*****************"
+    puts params
+    puts "*****************"
+    @people = Person.all
+    @msg = Workplace.import_email(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "WP Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end
+
+  def import_wpemailss
+    puts "*****************"
+    puts params
+    puts "*****************"
+    @people = Person.all
+    @msg = Workplace.import_emailss(params[:file]).force_encoding('utf-8')
+    respond_to do |format|
+      format.html {
+        if @msg == " "
+          render action: 'index', notice: "WP Ok"
+        else
+          render '/people/error'
+        end  
+      }
+    end   
+  end
+
   def import_update
     puts "*****************"
     puts params

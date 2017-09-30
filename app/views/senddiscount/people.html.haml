@@ -13,14 +13,13 @@
           %thead
             %tr
               %th Nro.Registro
+              %th Lugar de Trabajo
               %th Nombre
               %th Rut
-              %th Email
-              %th Cuota
           %tbody
-            - @workplace.people.each do |person|
+            - @workplace.people_for_ss.each do |person|
               %tr
-                %td= person.id
+                %td= person.nro_registro
+                %td= person.workplace.nombre
                 %td= person.fullname  
                 %td= person.rut
-                %td= person.email

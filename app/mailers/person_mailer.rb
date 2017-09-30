@@ -8,16 +8,19 @@ class PersonMailer < ActionMailer::Base
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 
-      if @workplace.cod_serv_salud.present? 
+      if @workplace.serv_salud == 'SI' 
         open('nomina.txt', 'wb') do |file|
           file << open("#{@workplace.wpdiscounts.last.discountfile_url}").read
         end
         attachments["nomina.txt"] = File.read("#{Rails.root}/nomina.txt")
-      end  
+        attachments["nomina.rtf"] = File.read("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
+      else
+        attachments["nomina.xls"] = File.read("#{Rails.root}/#{@workplace.cod_wp}_wp_file.xls")
+      end
 
-      attachments["nomina.rtf"] = File.read("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
 
-      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegioenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl", "contabilidad@colegiodeenfermeras.cl" ]
+      emails = ["osvaldo.omiranda@gmail.com", "tesoreria@colegiodeenfermeras.cl", "contabilidad1@colegiodeenfermeras.cl", "contabilidad@colegiodeenfermeras.cl"]
+
 
       @workplace.wpemails.each do |wpemail|
         puts "******************"
@@ -26,9 +29,10 @@ class PersonMailer < ActionMailer::Base
         emails << wpemail.email
       end  
 
-      mail(to:emails ,subject: "Prueba de Envio", from:  "colegioenfermeras@gmail.com")
+      mail(to:emails ,subject: "Nomina Descuentos" , from:  "colegioenfermeras@gmail.com")
 
-      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf") if @workplace.cod_serv_salud.present?
+      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.xls")
+      File.delete("#{Rails.root}/#{@workplace.cod_wp}_wp_file.rtf")
 
     rescue
       puts "********* person_mailer **************"

@@ -86,8 +86,6 @@ gem "font-awesome-rails"
 #for page editor
 gem "wysiwyg-rails"
 
-
-
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 4.0.0'
   #gem 'sass-rails', '~> 5.0.0'
