@@ -44,7 +44,7 @@ class Workplace < ActiveRecord::Base
     if self.serv_salud == "SI"
       people_ss = Person.where(workplace_id: Workplace.select(:id).where(cod_serv_salud: self.cod_serv_salud))
       fecha = Time.now.strftime("%Y%m")
-      rut = "7700296008"
+      rut = "700296008"
       uno = "1" 
       person_count = people_ss.count()
       cuotas = person_count * 6500  
