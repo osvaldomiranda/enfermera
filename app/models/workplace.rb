@@ -14,7 +14,7 @@ class Workplace < ActiveRecord::Base
 
   scope :with_codwp, -> with_codwp { where(cod_wp: with_codwp) if with_codwp.present?}
   scope :publicos, ->publicos { where(serv_salud: 'SI') if publicos=='SI' }
-  scope :privados, ->privados { where(serv_salud: nil) if privados=='SI' }
+  scope :privados, ->privados { where(serv_salud: 'NO') if privados=='SI' }
 
  
   def self.workplaces_option_for_name
@@ -43,7 +43,7 @@ class Workplace < ActiveRecord::Base
   def create_file 
     if self.serv_salud == "SI"
       people_ss = Person.where(workplace_id: Workplace.select(:id).where(cod_serv_salud: self.cod_serv_salud))
-      fecha = Time.now.strftime("%Y%m%d")
+      fecha = Time.now.strftime("%Y%m")
       rut = "7700296008"
       uno = "1" 
       person_count = people_ss.count()
@@ -52,14 +52,14 @@ class Workplace < ActiveRecord::Base
       total =  cuotas.to_s.rjust(12, '0')
 
       code1 = self.cod_wp
-      code2 = '00' + self.cod_serv_salud
-      head  = fecha + rut + uno + people + total + "00"
+      code2 = self.cod_serv_salud
+      head  = fecha + code2 + rut + uno + people + total + "00"
       
       wpfile = File.new("#{self.cod_wp}_wp_file.txt", "w") 
       wpfile.puts head
 
       people_ss.each do |person| 
-        body = fecha + rut + code1 + person.rut.gsub('-','').to_s.rjust(9, '0') + code2 + "0000000000000P" + "00000650000       10102011"
+        body = fecha + code2 + rut + code1 + person.rut.gsub('-','').to_s.rjust(9, '0') + '0232' + "0000000000000P" + "00000650000       10102011"
         wpfile.puts body
       end
       wpfile.close
