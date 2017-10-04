@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
   scope :update_this_month, -> fecha { where(updated_at: fecha.beginning_of_month..fecha.end_of_month) }
 
 
-  scope :padron, -> estado { where("id IN (?) OR  workplace_id IN (?)" ,Fee.select(:person_id).where("mescuota > ? ", 3.month.ago), HeadDaily.select(:workplace_id).where(id: Daily.select(:head_daily_id).where(account_id: Account.where(codigo:'2040105')))) } 
+  scope :padron, -> estado { where("id IN (?)" ,Fee.select(:person_id).where(mescuota: Date.parse("01-01-2017")..Date.parse("31-12-2017")))} 
   scope :active, ->estado { where.not(rut: nil) if estado=='A' }
   scope :workplace, -> workplace { where('workplace_id = ?', workplace) if workplace.present?}
 
@@ -253,5 +253,20 @@ class Person < ActiveRecord::Base
     self.fees.where(mescuota: Date.parse('01/01/'+year)..Date.parse('31/12/'+year)).count
   end
 
+  def fee_padron(month, year)
+    if month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12'
+      day='31'
+    end
+
+    if month == '04' || month == '06' || month == '09' || month == '11' 
+      day='30'
+    end
+
+    if month == '02'
+      day='28'
+    end
+
+    self.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).first
+  end
 
 end

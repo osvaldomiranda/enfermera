@@ -31,6 +31,8 @@
         %table.table.table-striped
           %thead
             %tr
+              %th Cod Servicio
+              %th Cod Institución
               %th Nombre
               %th Regional
               %th 
@@ -41,6 +43,8 @@
               %tr
                 - if workplace.people.count > 0
                   %td= workplace.nombre
+                  %td= workplace.cod_serv_salud
+                  %td= workplace.cod_wp
                   - if workplace.office.present?
                     %td= workplace.office.nombre
                   - else

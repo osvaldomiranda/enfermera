@@ -51,7 +51,7 @@ class Workplace < ActiveRecord::Base
       people = person_count.to_s.rjust(10, '0')
       total =  cuotas.to_s.rjust(12, '0')
 
-      code1 = self.cod_wp
+      
       code2 = self.cod_serv_salud
       head  = fecha + code2 + rut + uno + people + total + "00"
       
@@ -59,7 +59,8 @@ class Workplace < ActiveRecord::Base
       wpfile.puts head
 
       people_ss.each do |person| 
-        body = fecha + code2 + rut + code1 + person.rut.gsub('-','').to_s.rjust(9, '0') + '0232' + "0000000000000P" + "00000650000       10102011"
+        code1 = person.workplace.cod_wp
+        body = fecha + code2 + rut + code1 + person.rut.gsub('-','').to_s.rjust(9, '0') + '0232' + uno + "0000000000000P" + "00000650000       10102011"
         wpfile.puts body
       end
       wpfile.close
