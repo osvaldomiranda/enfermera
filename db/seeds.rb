@@ -789,26 +789,28 @@
 # Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '999-12', nombre: 'pago directo punta arenas')
 # Workplace.find_or_create_by(codigo: 'STG', cod_wp: '999-13', nombre: 'pago directo santiago')
 
-# Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '888-01-01', nombre: 'Pasivo arica')
-# Workplace.find_or_create_by(codigo: 'IQQ', cod_wp: '888-01-02', nombre: 'Pasivo iquique')
-# Workplace.find_or_create_by(codigo: 'ANT', cod_wp: '888-02', nombre: 'Pasivo antofagasta')
-# Workplace.find_or_create_by(codigo: 'COP', cod_wp: '888-03', nombre: 'Pasivo copiapo')
-# Workplace.find_or_create_by(codigo: 'LAS', cod_wp: '888-04', nombre: 'Pasivo la serena')
-# Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '888-05', nombre: 'Pasivo valparaiso')
-# Workplace.find_or_create_by(codigo: 'RAN', cod_wp: '888-06', nombre: 'Pasivo rancagua ')
-# Workplace.find_or_create_by(codigo: 'TCA', cod_wp: '888-07-01', nombre: 'Pasivo talca')
-# Workplace.find_or_create_by(codigo: 'LIN', cod_wp: '888-07-02', nombre: 'Pasivo s. s. linares')
-# Workplace.find_or_create_by(codigo: 'CON', cod_wp: '888-08-01', nombre: 'Pasivo concepcion')
-# Workplace.find_or_create_by(codigo: 'CHI', cod_wp: '888-08-02', nombre: 'Pasivo chillan')
-# Workplace.find_or_create_by(codigo: 'BIO', cod_wp: '888-08-03', nombre: 'Pasivo bio bio ')
-# Workplace.find_or_create_by(codigo: 'TEM', cod_wp: '888-09', nombre: 'Pasivo temuco')
-# Workplace.find_or_create_by(codigo: 'VDI', cod_wp: '888-10-01', nombre: 'Pasivo valdivia')
-# Workplace.find_or_create_by(codigo: 'OSO', cod_wp: '888-10-02', nombre: 'Pasivo osorno')
-# Workplace.find_or_create_by(codigo: 'PMO', cod_wp: '888-10-03', nombre: 'Pasivo puerto montt')
-# Workplace.find_or_create_by(codigo: 'CHL', cod_wp: '888-10-04', nombre: 'Pasivo chiloe')
-# Workplace.find_or_create_by(codigo: 'COY', cod_wp: '888-11', nombre: 'Pasivo aysen')
-# Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '888-12', nombre: 'Pasivo punta arenas')
-# Workplace.find_or_create_by(codigo: 'STG', cod_wp: '888-13', nombre: 'Pasivo santiago')
+# Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '000-01-01', nombre: 'JUBILADAS arica')
+# Workplace.find_or_create_by(codigo: 'IQQ', cod_wp: '000-01-02', nombre: 'JUBILADAS iquique')
+# Workplace.find_or_create_by(codigo: 'ANT', cod_wp: '000-02', nombre: 'JUBILADAS antofagasta')
+# Workplace.find_or_create_by(codigo: 'COP', cod_wp: '000-03', nombre: 'JUBILADAS copiapo')
+# Workplace.find_or_create_by(codigo: 'LAS', cod_wp: '000-04', nombre: 'JUBILADAS la serena')
+# Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '000-05', nombre: 'JUBILADAS valparaiso')
+# Workplace.find_or_create_by(codigo: 'RAN', cod_wp: '000-06', nombre: 'JUBILADAS rancagua ')
+# Workplace.find_or_create_by(codigo: 'TCA', cod_wp: '000-07-01', nombre: 'JUBILADAS talca')
+# Workplace.find_or_create_by(codigo: 'LIN', cod_wp: '000-07-02', nombre: 'JUBILADAS s. s. linares')
+# Workplace.find_or_create_by(codigo: 'CON', cod_wp: '000-08-01', nombre: 'JUBILADAS concepcion')
+# Workplace.find_or_create_by(codigo: 'CHI', cod_wp: '000-08-02', nombre: 'JUBILADAS chillan')
+# Workplace.find_or_create_by(codigo: 'BIO', cod_wp: '000-08-03', nombre: 'JUBILADAS bio bio ')
+# Workplace.find_or_create_by(codigo: 'TEM', cod_wp: '000-09', nombre: 'JUBILADAS temuco')
+# Workplace.find_or_create_by(codigo: 'VDI', cod_wp: '000-10-01', nombre: 'JUBILADAS valdivia')
+# Workplace.find_or_create_by(codigo: 'OSO', cod_wp: '000-10-02', nombre: 'JUBILADAS osorno')
+# Workplace.find_or_create_by(codigo: 'PMO', cod_wp: '000-10-03', nombre: 'JUBILADAS puerto montt')
+# Workplace.find_or_create_by(codigo: 'CHL', cod_wp: '000-10-04', nombre: 'JUBILADAS chiloe')
+# Workplace.find_or_create_by(codigo: 'COY', cod_wp: '000-11', nombre: 'JUBILADAS aysen')
+# Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '000-12', nombre: 'JUBILADAS punta arenas')
+# Workplace.find_or_create_by(codigo: 'STG', cod_wp: '000-13', nombre: 'JUBILADAS santiago')
+
+# Workplace.where(office_id:nil).where.not(codigo:nil).map {|w| w.office_id=Office.find_by_codigo(w.codigo).id; w.save }
 
 # Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '0529', nombre: 'CESFAM OLMUE')
 # Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '0523', nombre: 'I.MUNICIPALIDAD PUCHUNCAVI')
@@ -1469,431 +1471,474 @@
 # Country.find_or_create_by(nombre: 'Zimbabue')
 
 
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ENERO-2014", mes_cuota: "01-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"FEBRERO-2014", mes_cuota: "02-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MARZO-2014", mes_cuota: "03-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ABRIL-2014", mes_cuota: "04-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MAYO-2014", mes_cuota: "05-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JUNIO-2014", mes_cuota: "06-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JULIO-2014", mes_cuota: "07-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"AGOSTO-2014", mes_cuota: "08-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"SEPTIEMBRE-2014", mes_cuota: "09-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"OCTUBRE-2014", mes_cuota: "10-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"NOVIEMBRE-2014", mes_cuota: "11-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"DICIEMBRE-2014", mes_cuota: "12-2014", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
 
-Workplace.where(cod_wp:"0101").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0125").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0201").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0301").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0401").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0501").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0525").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0550").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0601").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0701").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0801").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0825").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0840").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0850").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0875").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0880").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0901").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"0950").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1001").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1025").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1050").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1059").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1101").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1201").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1301").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1315").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1330").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1345").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1360").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1390").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1320").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1394").update_all(serv_salud:"SI");
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ENERO-2015", mes_cuota: "01-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"FEBRERO-2015", mes_cuota: "02-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MARZO-2015", mes_cuota: "03-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ABRIL-2015", mes_cuota: "04-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MAYO-2015", mes_cuota: "05-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JUNIO-2015", mes_cuota: "06-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JULIO-2015", mes_cuota: "07-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"AGOSTO-2015", mes_cuota: "08-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"SEPTIEMBRE-2015", mes_cuota: "09-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"OCTUBRE-2015", mes_cuota: "10-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"NOVIEMBRE-2015", mes_cuota: "11-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"DICIEMBRE-2015", mes_cuota: "12-2015", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
 
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ENERO-2016", mes_cuota: "01-2016", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"FEBRERO-2016", mes_cuota: "02-2016", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MARZO-2016", mes_cuota: "03-2016", monto: 5000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"ABRIL-2016", mes_cuota: "04-2016", monto: 6000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"MAYO-2016", mes_cuota: "05-2016", monto: 6000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"OCTUBRE-2016", mes_cuota: "10-2016", monto: 6000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"DICIEMBRE-2016", mes_cuota: "12-2016", monto: 6000, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
 
-Workplace.where(cod_wp:"9601").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"9623").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1330").update_all(serv_salud:"SI");
-Workplace.where(cod_wp:"1390").update_all(serv_salud:"SI");
-
-Workplace.where(cod_wp:"9601").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9602").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9603").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9604").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9605").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9606").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9607").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9608").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9609").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9610").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9611").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9612").update_all(cod_serv_salud:"006");
-Workplace.where(cod_wp:"9613").update_all(cod_serv_salud:"006");
-
-Workplace.where(cod_wp:"9623").update_all(cod_serv_salud:"007");
-Workplace.where(cod_wp:"9624").update_all(cod_serv_salud:"007");
-Workplace.where(cod_wp:"9701").update_all(cod_serv_salud:"007");
-Workplace.where(cod_wp:"9702").update_all(cod_serv_salud:"007");
-Workplace.where(cod_wp:"9705").update_all(cod_serv_salud:"007");
-
-Workplace.where(cod_wp:"1330").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1332").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1334").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1338").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1339").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1340").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1341").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1390").update_all(cod_serv_salud:"137");
-Workplace.where(cod_wp:"1392").update_all(cod_serv_salud:"137");
-Workplace.where(cod_wp:"1394").update_all(cod_serv_salud:"137");
-Workplace.where(cod_wp:"1396").update_all(cod_serv_salud:"137");
-Workplace.where(cod_wp:"1397").update_all(cod_serv_salud:"137");
-
-Workplace.where(cod_wp:"0101").update_all(cod_serv_salud:"011");
-Workplace.where(cod_wp:"0103").update_all(cod_serv_salud:"011");
-Workplace.where(cod_wp:"0125").update_all(cod_serv_salud:"012");
-Workplace.where(cod_wp:"0126").update_all(cod_serv_salud:"012");
-Workplace.where(cod_wp:"0127").update_all(cod_serv_salud:"012");
-Workplace.where(cod_wp:"0130").update_all(cod_serv_salud:"012");
-Workplace.where(cod_wp:"0201").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0203").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0211").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0212").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0216").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0217").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0221").update_all(cod_serv_salud:"021");
-Workplace.where(cod_wp:"0301").update_all(cod_serv_salud:"031");
-Workplace.where(cod_wp:"0306").update_all(cod_serv_salud:"031");
-Workplace.where(cod_wp:"0307").update_all(cod_serv_salud:"031");
-Workplace.where(cod_wp:"0318").update_all(cod_serv_salud:"031");
-Workplace.where(cod_wp:"0401").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0406").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0407").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0408").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0411").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0416").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0417").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0418").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0419").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0420").update_all(cod_serv_salud:"041");
-Workplace.where(cod_wp:"0501").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0502").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0503").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0505").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0506").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0507").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0510").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0511").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0512").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0516").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0517").update_all(cod_serv_salud:"051");
-Workplace.where(cod_wp:"0525").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0526").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0527").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0530").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0531").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0540").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0541").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0543").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0544").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0545").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0546").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0547").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0548").update_all(cod_serv_salud:"053");
-Workplace.where(cod_wp:"0550").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0551").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0555").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0556").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0560").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0565").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0566").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0567").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0568").update_all(cod_serv_salud:"055");
-Workplace.where(cod_wp:"0601").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0621").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0603").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0606").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0611").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0616").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0617").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0618").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0619").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0620").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0622").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0642").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0647").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0648").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0649").update_all(cod_serv_salud:"061");
-Workplace.where(cod_wp:"0701").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0703").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0704").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0706").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0711").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0717").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0718").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0719").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0720").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0721").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0722").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0723").update_all(cod_serv_salud:"071");
-Workplace.where(cod_wp:"0801").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0802").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0803").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0806").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0817").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0819").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0820").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0821").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0824").update_all(cod_serv_salud:"081");
-Workplace.where(cod_wp:"0825").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0827").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0829").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0830").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0831").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0834").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0836").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0837").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0838").update_all(cod_serv_salud:"082");
-Workplace.where(cod_wp:"0840").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0843").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0844").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0845").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0846").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0846").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0847").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0847").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0848").update_all(cod_serv_salud:"083");
-Workplace.where(cod_wp:"0850").update_all(cod_serv_salud:"084");
-Workplace.where(cod_wp:"0852").update_all(cod_serv_salud:"084");
-Workplace.where(cod_wp:"0865").update_all(cod_serv_salud:"084");
-Workplace.where(cod_wp:"0866").update_all(cod_serv_salud:"084");
-Workplace.where(cod_wp:"0875").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0876").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0881").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0890").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0891").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0892").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0893").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0895").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0896").update_all(cod_serv_salud:"085");
-Workplace.where(cod_wp:"0880").update_all(cod_serv_salud:"088");
-Workplace.where(cod_wp:"0901").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0906").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0907").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0911").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0915").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0916").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0917").update_all(cod_serv_salud:"091");
-Workplace.where(cod_wp:"0950").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0953").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0962").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0963").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0971").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0972").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0973").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0974").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0990").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0992").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"0998").update_all(cod_serv_salud:"092");
-Workplace.where(cod_wp:"1001").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1002").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1003").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1004").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1005").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1016").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1017").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1018").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1019").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1020").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1021").update_all(cod_serv_salud:"101");
-Workplace.where(cod_wp:"1025").update_all(cod_serv_salud:"102");
-Workplace.where(cod_wp:"1041").update_all(cod_serv_salud:"102");
-Workplace.where(cod_wp:"1042").update_all(cod_serv_salud:"102");
-Workplace.where(cod_wp:"1044").update_all(cod_serv_salud:"102");
-Workplace.where(cod_wp:"1050").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1055").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1065").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1066").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1067").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1068").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1069").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1070").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1071").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1074").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1090").update_all(cod_serv_salud:"103");
-Workplace.where(cod_wp:"1059").update_all(cod_serv_salud:"104");
-Workplace.where(cod_wp:"1060").update_all(cod_serv_salud:"104");
-Workplace.where(cod_wp:"1061").update_all(cod_serv_salud:"104");
-Workplace.where(cod_wp:"1072").update_all(cod_serv_salud:"104");
-Workplace.where(cod_wp:"1073").update_all(cod_serv_salud:"104");
-Workplace.where(cod_wp:"1101").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1102").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1106").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1116").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1118").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1119").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1120").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1121").update_all(cod_serv_salud:"111");
-Workplace.where(cod_wp:"1201").update_all(cod_serv_salud:"121");
-Workplace.where(cod_wp:"1202").update_all(cod_serv_salud:"121");
-Workplace.where(cod_wp:"1206").update_all(cod_serv_salud:"121");
-Workplace.where(cod_wp:"1216").update_all(cod_serv_salud:"121");
-Workplace.where(cod_wp:"1217").update_all(cod_serv_salud:"121");
-Workplace.where(cod_wp:"1301").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1303").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1305").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1306").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1307").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1308").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1309").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1313").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1314").update_all(cod_serv_salud:"131");
-Workplace.where(cod_wp:"1315").update_all(cod_serv_salud:"132");
-Workplace.where(cod_wp:"1316").update_all(cod_serv_salud:"132");
-Workplace.where(cod_wp:"1317").update_all(cod_serv_salud:"132");
-Workplace.where(cod_wp:"1319").update_all(cod_serv_salud:"132");
-Workplace.where(cod_wp:"1325").update_all(cod_serv_salud:"132");
-Workplace.where(cod_wp:"1330").update_all(cod_serv_salud:"133");
-Workplace.where(cod_wp:"1345").update_all(cod_serv_salud:"134");
-Workplace.where(cod_wp:"1349").update_all(cod_serv_salud:"134");
-Workplace.where(cod_wp:"1351").update_all(cod_serv_salud:"134");
-Workplace.where(cod_wp:"1352").update_all(cod_serv_salud:"134");
-Workplace.where(cod_wp:"1357").update_all(cod_serv_salud:"134");
-Workplace.where(cod_wp:"1360").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1362").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1364").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1365").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1368").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1369").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1374").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1376").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1379").update_all(cod_serv_salud:"135");
-Workplace.where(cod_wp:"1390").update_all(cod_serv_salud:"137");
-Workplace.where(cod_wp:"1394").update_all(cod_serv_salud:"184");
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JUNIO-2017", mes_cuota: "06-2017", monto: 6500, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"JULIO-2017", mes_cuota: "07-2017", monto: 6500, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"AGOSTO-2017", mes_cuota: "08-2017", monto: 6500, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
+Fee.find_or_create_by(fecha_pago: DateTime.now, mes:"SEPTIEMBRE-2017", mes_cuota: "09-2017", monto: 6500, person_id: 32969, estado:'PAGADO',nro_registro: '14861', pagador:"ProcesoSistema" )
 
 
+# Workplace.where(cod_wp:"0101").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0125").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0201").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0301").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0401").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0501").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0525").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0550").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0601").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0701").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0801").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0825").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0840").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0850").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0875").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0880").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0901").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"0950").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1001").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1025").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1050").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1059").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1101").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1201").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1301").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1315").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1330").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1345").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1360").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1390").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1320").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1394").update_all(serv_salud:"SI");
 
-Workplace.where(cod_wp:"0104").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0105").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0119").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0128").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0132").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0133").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0136").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0218").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0220").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0308").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0413").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0415").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0422").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0423").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0424").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0605").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0709").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0710").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0723").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0747").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0749").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0750").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0752").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0753").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0754").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0755").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0757").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0758").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0759").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0760").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0763").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0764").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0804").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0805").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0807").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0808").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0808-01").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0809").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0810").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0811").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0816").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0812").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0814").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0815").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0822").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0823").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0824").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0828").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0838").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0841").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0853").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0854").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0855").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0867").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0868").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0869").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0870").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0871").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0874").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0878").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0879").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0884").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0886").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0887").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0889").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0894").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0897").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0898").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0899").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0949").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0956").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0959").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0964").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0966").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0967").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0971").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0976").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"0999").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1006").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1007-03").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1023").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1024").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1028").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1054").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1057").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1075").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1076").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1077").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1080").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1094").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1095").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1096").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1098").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1218").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1221").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1222").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1302").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1310").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1311").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1312").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1314").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1318").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1321").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1322").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1323").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1325").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1327").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1329").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1331").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1335").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1333").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1343").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1346").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1347").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1350").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1354").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1359").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1363").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1371").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1380").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1384").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1387").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1389").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1393").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1395_13").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1404").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1406").update_all(serv_salud:"NO");
-Workplace.where(cod_wp:"1408").update_all(serv_salud:"NO");
+
+# Workplace.where(cod_wp:"9601").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"9623").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1330").update_all(serv_salud:"SI");
+# Workplace.where(cod_wp:"1390").update_all(serv_salud:"SI");
+
+# Workplace.where(cod_wp:"9601").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9602").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9603").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9604").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9605").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9606").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9607").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9608").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9609").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9610").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9611").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9612").update_all(cod_serv_salud:"006");
+# Workplace.where(cod_wp:"9613").update_all(cod_serv_salud:"006");
+
+# Workplace.where(cod_wp:"9623").update_all(cod_serv_salud:"007");
+# Workplace.where(cod_wp:"9624").update_all(cod_serv_salud:"007");
+# Workplace.where(cod_wp:"9701").update_all(cod_serv_salud:"007");
+# Workplace.where(cod_wp:"9702").update_all(cod_serv_salud:"007");
+# Workplace.where(cod_wp:"9705").update_all(cod_serv_salud:"007");
+
+# Workplace.where(cod_wp:"1330").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1332").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1334").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1338").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1339").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1340").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1341").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1390").update_all(cod_serv_salud:"137");
+# Workplace.where(cod_wp:"1392").update_all(cod_serv_salud:"137");
+# Workplace.where(cod_wp:"1394").update_all(cod_serv_salud:"137");
+# Workplace.where(cod_wp:"1396").update_all(cod_serv_salud:"137");
+# Workplace.where(cod_wp:"1397").update_all(cod_serv_salud:"137");
+
+# Workplace.where(cod_wp:"0101").update_all(cod_serv_salud:"011");
+# Workplace.where(cod_wp:"0103").update_all(cod_serv_salud:"011");
+# Workplace.where(cod_wp:"0125").update_all(cod_serv_salud:"012");
+# Workplace.where(cod_wp:"0126").update_all(cod_serv_salud:"012");
+# Workplace.where(cod_wp:"0127").update_all(cod_serv_salud:"012");
+# Workplace.where(cod_wp:"0130").update_all(cod_serv_salud:"012");
+# Workplace.where(cod_wp:"0201").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0203").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0211").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0212").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0216").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0217").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0221").update_all(cod_serv_salud:"021");
+# Workplace.where(cod_wp:"0301").update_all(cod_serv_salud:"031");
+# Workplace.where(cod_wp:"0306").update_all(cod_serv_salud:"031");
+# Workplace.where(cod_wp:"0307").update_all(cod_serv_salud:"031");
+# Workplace.where(cod_wp:"0318").update_all(cod_serv_salud:"031");
+# Workplace.where(cod_wp:"0401").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0406").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0407").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0408").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0411").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0416").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0417").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0418").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0419").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0420").update_all(cod_serv_salud:"041");
+# Workplace.where(cod_wp:"0501").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0502").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0503").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0505").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0506").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0507").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0510").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0511").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0512").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0516").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0517").update_all(cod_serv_salud:"051");
+# Workplace.where(cod_wp:"0525").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0526").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0527").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0530").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0531").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0540").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0541").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0543").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0544").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0545").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0546").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0547").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0548").update_all(cod_serv_salud:"053");
+# Workplace.where(cod_wp:"0550").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0551").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0555").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0556").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0560").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0565").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0566").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0567").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0568").update_all(cod_serv_salud:"055");
+# Workplace.where(cod_wp:"0601").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0621").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0603").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0606").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0611").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0616").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0617").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0618").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0619").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0620").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0622").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0642").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0647").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0648").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0649").update_all(cod_serv_salud:"061");
+# Workplace.where(cod_wp:"0701").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0703").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0704").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0706").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0711").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0717").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0718").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0719").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0720").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0721").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0722").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0723").update_all(cod_serv_salud:"071");
+# Workplace.where(cod_wp:"0801").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0802").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0803").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0806").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0817").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0819").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0820").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0821").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0824").update_all(cod_serv_salud:"081");
+# Workplace.where(cod_wp:"0825").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0827").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0829").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0830").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0831").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0834").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0836").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0837").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0838").update_all(cod_serv_salud:"082");
+# Workplace.where(cod_wp:"0840").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0843").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0844").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0845").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0846").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0846").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0847").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0847").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0848").update_all(cod_serv_salud:"083");
+# Workplace.where(cod_wp:"0850").update_all(cod_serv_salud:"084");
+# Workplace.where(cod_wp:"0852").update_all(cod_serv_salud:"084");
+# Workplace.where(cod_wp:"0865").update_all(cod_serv_salud:"084");
+# Workplace.where(cod_wp:"0866").update_all(cod_serv_salud:"084");
+# Workplace.where(cod_wp:"0875").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0876").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0881").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0890").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0891").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0892").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0893").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0895").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0896").update_all(cod_serv_salud:"085");
+# Workplace.where(cod_wp:"0880").update_all(cod_serv_salud:"088");
+# Workplace.where(cod_wp:"0901").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0906").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0907").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0911").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0915").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0916").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0917").update_all(cod_serv_salud:"091");
+# Workplace.where(cod_wp:"0950").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0953").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0962").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0963").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0971").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0972").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0973").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0974").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0990").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0992").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"0998").update_all(cod_serv_salud:"092");
+# Workplace.where(cod_wp:"1001").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1002").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1003").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1004").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1005").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1016").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1017").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1018").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1019").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1020").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1021").update_all(cod_serv_salud:"101");
+# Workplace.where(cod_wp:"1025").update_all(cod_serv_salud:"102");
+# Workplace.where(cod_wp:"1041").update_all(cod_serv_salud:"102");
+# Workplace.where(cod_wp:"1042").update_all(cod_serv_salud:"102");
+# Workplace.where(cod_wp:"1044").update_all(cod_serv_salud:"102");
+# Workplace.where(cod_wp:"1050").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1055").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1065").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1066").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1067").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1068").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1069").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1070").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1071").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1074").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1090").update_all(cod_serv_salud:"103");
+# Workplace.where(cod_wp:"1059").update_all(cod_serv_salud:"104");
+# Workplace.where(cod_wp:"1060").update_all(cod_serv_salud:"104");
+# Workplace.where(cod_wp:"1061").update_all(cod_serv_salud:"104");
+# Workplace.where(cod_wp:"1072").update_all(cod_serv_salud:"104");
+# Workplace.where(cod_wp:"1073").update_all(cod_serv_salud:"104");
+# Workplace.where(cod_wp:"1101").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1102").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1106").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1116").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1118").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1119").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1120").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1121").update_all(cod_serv_salud:"111");
+# Workplace.where(cod_wp:"1201").update_all(cod_serv_salud:"121");
+# Workplace.where(cod_wp:"1202").update_all(cod_serv_salud:"121");
+# Workplace.where(cod_wp:"1206").update_all(cod_serv_salud:"121");
+# Workplace.where(cod_wp:"1216").update_all(cod_serv_salud:"121");
+# Workplace.where(cod_wp:"1217").update_all(cod_serv_salud:"121");
+# Workplace.where(cod_wp:"1301").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1303").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1305").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1306").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1307").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1308").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1309").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1313").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1314").update_all(cod_serv_salud:"131");
+# Workplace.where(cod_wp:"1315").update_all(cod_serv_salud:"132");
+# Workplace.where(cod_wp:"1316").update_all(cod_serv_salud:"132");
+# Workplace.where(cod_wp:"1317").update_all(cod_serv_salud:"132");
+# Workplace.where(cod_wp:"1319").update_all(cod_serv_salud:"132");
+# Workplace.where(cod_wp:"1325").update_all(cod_serv_salud:"132");
+# Workplace.where(cod_wp:"1330").update_all(cod_serv_salud:"133");
+# Workplace.where(cod_wp:"1345").update_all(cod_serv_salud:"134");
+# Workplace.where(cod_wp:"1349").update_all(cod_serv_salud:"134");
+# Workplace.where(cod_wp:"1351").update_all(cod_serv_salud:"134");
+# Workplace.where(cod_wp:"1352").update_all(cod_serv_salud:"134");
+# Workplace.where(cod_wp:"1357").update_all(cod_serv_salud:"134");
+# Workplace.where(cod_wp:"1360").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1362").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1364").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1365").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1368").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1369").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1374").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1376").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1379").update_all(cod_serv_salud:"135");
+# Workplace.where(cod_wp:"1390").update_all(cod_serv_salud:"137");
+# Workplace.where(cod_wp:"1394").update_all(cod_serv_salud:"184");
+
+
+
+# Workplace.where(cod_wp:"0104").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0105").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0119").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0128").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0132").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0133").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0136").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0218").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0220").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0308").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0413").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0415").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0422").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0423").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0424").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0605").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0709").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0710").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0723").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0747").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0749").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0750").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0752").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0753").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0754").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0755").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0757").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0758").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0759").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0760").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0763").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0764").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0804").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0805").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0807").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0808").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0808-01").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0809").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0810").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0811").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0816").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0812").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0814").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0815").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0822").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0823").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0824").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0828").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0838").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0841").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0853").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0854").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0855").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0867").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0868").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0869").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0870").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0871").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0874").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0878").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0879").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0884").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0886").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0887").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0889").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0894").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0897").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0898").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0899").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0949").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0956").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0959").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0964").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0966").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0967").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0971").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0976").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"0999").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1006").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1007-03").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1023").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1024").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1028").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1054").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1057").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1075").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1076").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1077").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1080").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1094").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1095").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1096").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1098").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1218").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1221").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1222").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1302").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1310").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1311").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1312").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1314").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1318").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1321").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1322").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1323").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1325").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1327").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1329").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1331").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1335").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1333").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1343").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1346").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1347").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1350").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1354").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1359").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1363").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1371").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1380").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1384").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1387").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1389").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1393").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1395_13").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1404").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1406").update_all(serv_salud:"NO");
+# Workplace.where(cod_wp:"1408").update_all(serv_salud:"NO");
+
+
+
+
 
 
 

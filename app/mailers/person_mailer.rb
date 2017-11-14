@@ -106,6 +106,24 @@ class PersonMailer < ActionMailer::Base
     end
   end  
 
+  def pay_user(person)
+    begin
+      @person = person
+
+      @url  = 'http://www.colegioenfermerasdechile.cl'
+
+      emails = ["contabilidad@colegiodeenfermeras.cl"]
+
+      mail(to:emails ,subject: "Cuotas pagadas por el Usuario, Sistema Colegio de Enfermeras de Chile", from:  "colegioenfermeras@gmail.com",bcc: "osvaldo.omiranda@gmail.com")
+
+# cc: "reservas@capitalizarme.com", bcc: "logistica@capitalizarme.com" 
+    rescue
+      puts "********* person_mailer **************"
+      puts "Error  send #{$!}"
+      puts "***********************"
+    end
+  end  
+
   def send_news(email)
     begin
 

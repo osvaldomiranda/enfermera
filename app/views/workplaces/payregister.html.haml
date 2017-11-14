@@ -70,6 +70,7 @@
                         %thead
                           %tr
                             %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{@Currentfee})"}  
+                            %th Nro.Registro
                             %th Nombre
                             %th Rut
                             %th Email
@@ -78,6 +79,7 @@
                           - @workplace.people.order('apellido_paterno, apellido_materno, nombres  DESC').each do |person|
                             %tr
                               %td= check_box_tag "person_ids[]", person.id , {:checked => "checked"}, {:onchange => "toggleCheckbox(this, #{@Currentfee})"} 
+                              %td= person.nro_registro 
                               %td= person.fullname  
                               %td= person.rut
                               %td= person.email

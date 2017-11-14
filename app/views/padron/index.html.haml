@@ -13,7 +13,7 @@
               %span.badge= @people.count
           .col-xs-12
             %h3
-              Cuotas al día con holgura de 3 meses
+              Continuidad de cuotas registradas
         %hr
         - if current_user.rol > 7      
           .row
@@ -68,7 +68,6 @@
           %table.table.table-striped
             %thead
               %tr
-                %th N Registro
                 %th Rut
                 %th Nombre
                 %th Lugar de Trabajo
@@ -89,7 +88,6 @@
             %tbody
               - @people.each do |person|
                 %tr
-                  %td= person.nro_registro
                   %td= link_to "#{person.rut}", person,class: 'btn btn-info btn-xs'
                   %td= person.fullname
                   - if person.workplace.present?

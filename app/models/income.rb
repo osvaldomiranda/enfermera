@@ -49,13 +49,13 @@ class Income < ActiveRecord::Base
   CUOTAS[2] = ["3 Cuotas $#{valor*3}.-", valor*3]
   CUOTAS[3] = ["4 Cuotas $#{valor*4}.-", valor*4]
   CUOTAS[4] = ["5 Cuotas $#{valor*5}.-", valor*5]
-  CUOTAS[5] = ["6 Cuotas $#{valor*5}.-", valor*6]
-  CUOTAS[6] = ["7 Cuotas $#{valor*5}.-", valor*7]
-  CUOTAS[7] = ["8 Cuotas $#{valor*5}.-", valor*8]
-  CUOTAS[8] = ["9 Cuotas $#{valor*5}.-", valor*9]
-  CUOTAS[9] = ["10 Cuotas $#{valor*5}.-", valor*10]
-  CUOTAS[10] = ["11 Cuotas $#{valor*5}.-", valor*11]
-  CUOTAS[11] = ["12 Cuotas $#{valor*5}.-", valor*12]
+  CUOTAS[5] = ["6 Cuotas $#{valor*6}.-", valor*6]
+  CUOTAS[6] = ["7 Cuotas $#{valor*7}.-", valor*7]
+  CUOTAS[7] = ["8 Cuotas $#{valor*8}.-", valor*8]
+  CUOTAS[8] = ["9 Cuotas $#{valor*9}.-", valor*9]
+  CUOTAS[9] = ["10 Cuotas $#{valor*10}.-", valor*10]
+  CUOTAS[10] = ["11 Cuotas $#{valor*11}.-", valor*11]
+  CUOTAS[11] = ["12 Cuotas $#{valor*12}.-", valor*12]
 
   def self.cuotas_options_for_select(admin)
     if admin == 'SI'
@@ -71,6 +71,32 @@ class Income < ActiveRecord::Base
       CUOTAS[14] = ["10 Cuotas $#{6000*10}.-", 6000*10]
       CUOTAS[15] = ["11 Cuotas $#{6000*11}.-", 6000*11]
       CUOTAS[16] = ["12 Cuotas $#{6000*12}.-", 6000*12]
+      
+      CUOTAS[17] = ["1 Cuotas $5000.-", 5000]
+      CUOTAS[18] = ["2 Cuotas $#{5000*2}.-", 5000*2]
+      CUOTAS[19] = ["3 Cuotas $#{5000*3}.-", 5000*3]
+      CUOTAS[20] = ["4 Cuotas $#{5000*4}.-", 5000*4]
+      CUOTAS[21] = ["5 Cuotas $#{5000*5}.-", 5000*5]
+      CUOTAS[22] = ["6 Cuotas $#{5000*6}.-", 5000*6]
+      CUOTAS[23] = ["7 Cuotas $#{5000*7}.-", 5000*7]
+      CUOTAS[24] = ["8 Cuotas $#{5000*8}.-", 5000*8]
+      CUOTAS[25] = ["9 Cuotas $#{5000*9}.-", 5000*9]
+      CUOTAS[26] = ["10 Cuotas $#{5000*10}.-", 5000*10]
+      CUOTAS[27] = ["11 Cuotas $#{5000*11}.-", 5000*11]
+      CUOTAS[28] = ["12 Cuotas $#{5000*12}.-", 5000*12]
+
+      CUOTAS[29] = ["1 Cuotas $7000.-", 7000]
+      CUOTAS[30] = ["2 Cuotas $#{7000*2}.-", 7000*2]
+      CUOTAS[31] = ["3 Cuotas $#{7000*3}.-", 7000*3]
+      CUOTAS[32] = ["4 Cuotas $#{7000*4}.-", 7000*4]
+      CUOTAS[33] = ["5 Cuotas $#{7000*5}.-", 7000*5]
+      CUOTAS[34] = ["6 Cuotas $#{7000*6}.-", 7000*6]
+      CUOTAS[35] = ["7 Cuotas $#{7000*7}.-", 7000*7]
+      CUOTAS[36] = ["8 Cuotas $#{7000*8}.-", 7000*8]
+      CUOTAS[37] = ["9 Cuotas $#{7000*9}.-", 7000*9]
+      CUOTAS[38] = ["10 Cuotas $#{7000*10}.-", 7000*10]
+      CUOTAS[39] = ["11 Cuotas $#{7000*11}.-", 7000*11]
+      CUOTAS[40] = ["12 Cuotas $#{7000*12}.-", 7000*12]
     end
 
     #GENDERS.to_enum.with_index(0).to_a
@@ -149,14 +175,21 @@ class Income < ActiveRecord::Base
 
       if self.tipo == "Colegiada"
         daily.por = "Pago cuotas: #{person.fullname}" 
+        PersonMailer.pay_user(user.person).deliver
       else  
         daily.por = "Pago cuotas: #{workplace.nombre}"
       end  
       daily.save
     # end  
-
-
   end 
 
+  def head_daily
+    daily = Daily.where(income_id: self.id).first
+    if daily.present?
+      daily.head_daily.numero
+    else
+      nil  
+    end
+  end
 
 end

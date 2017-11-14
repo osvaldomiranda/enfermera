@@ -458,11 +458,26 @@ class PeopleController < ApplicationController
     @income.estado      = "CONFIRMADO"
 
     if @income.save
-      valorcuota = Currentfee.last.valor
-      n = params[:income][:monto].to_i/valorcuota
       
       mes = params[:income][:mes_cuota][0..1].gsub('-','').to_i
-      year = params[:income][:mes_cuota][2..6].gsub('-','').to_i
+      year = params[:income][:mes_cuota][2..6].gsub('-','').to_i      
+
+     
+      valorcuota = Currentfee.last.valor 
+    
+      if (year == 2016) 
+        valorcuota = 6000 
+      end
+      if (year == 2018 ) 
+        valorcuota = 7000 
+      end
+
+
+      n = params[:income][:monto].to_i/valorcuota
+      if (n<1) 
+        n=1
+      end
+      
 
       @person = Person.find(params[:income][:person_id])
       (1..n).each do |i|
