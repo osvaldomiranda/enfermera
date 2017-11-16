@@ -14,7 +14,11 @@ class Income < ActiveRecord::Base
   def self.mescuota_options_for_select
     fecha = DateTime.now.year
     mes = [1,2,3,4,5,6,7,8,9,10,11,12]
-    mespago = mes.map{|m| "#{m}-#{fecha-1}"}
+    mespago= mes.map{|m| "#{m}-#{fecha-5}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha-4}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha-3}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha-2}"}
+    mespago+= mes.map{|m| "#{m}-#{fecha-1}"}
     mespago+= mes.map{|m| "#{m}-#{fecha}"}
     mespago+= mes.map{|m| "#{m}-#{fecha+1}"}
     mespago.each.map { |t| [t, t] }
@@ -59,44 +63,48 @@ class Income < ActiveRecord::Base
 
   def self.cuotas_options_for_select(admin)
     if admin == 'SI'
-      CUOTAS[5] = ["1 Cuotas $6000.-", 6000]
-      CUOTAS[6] = ["2 Cuotas $#{6000*2}.-", 6000*2]
-      CUOTAS[7] = ["3 Cuotas $#{6000*3}.-", 6000*3]
-      CUOTAS[8] = ["4 Cuotas $#{6000*4}.-", 6000*4]
-      CUOTAS[9] = ["5 Cuotas $#{6000*5}.-", 6000*5]
-      CUOTAS[10] = ["6 Cuotas $#{6000*6}.-", 6000*6]
-      CUOTAS[11] = ["7 Cuotas $#{6000*7}.-", 6000*7]
-      CUOTAS[12] = ["8 Cuotas $#{6000*8}.-", 6000*8]
-      CUOTAS[13] = ["9 Cuotas $#{6000*9}.-", 6000*9]
-      CUOTAS[14] = ["10 Cuotas $#{6000*10}.-", 6000*10]
-      CUOTAS[15] = ["11 Cuotas $#{6000*11}.-", 6000*11]
-      CUOTAS[16] = ["12 Cuotas $#{6000*12}.-", 6000*12]
+      CUOTAS[12] = ["1 Cuotas $6000.-", 6000]
+      CUOTAS[13] = ["2 Cuotas $#{6000*2}.-", 6000*2]
+      CUOTAS[14] = ["3 Cuotas $#{6000*3}.-", 6000*3]
+      CUOTAS[15] = ["4 Cuotas $#{6000*4}.-", 6000*4]
+      CUOTAS[16] = ["5 Cuotas $#{6000*5}.-", 6000*5]
+      CUOTAS[17] = ["6 Cuotas $#{6000*6}.-", 6000*6]
+      CUOTAS[18] = ["7 Cuotas $#{6000*7}.-", 6000*7]
+      CUOTAS[19] = ["8 Cuotas $#{6000*8}.-", 6000*8]
+      CUOTAS[20] = ["9 Cuotas $#{6000*9}.-", 6000*9]
+      CUOTAS[21] = ["10 Cuotas $#{6000*10}.-", 6000*10]
+      CUOTAS[22] = ["11 Cuotas $#{6000*11}.-", 6000*11]
+      CUOTAS[23] = ["12 Cuotas $#{6000*12}.-", 6000*12]
       
-      CUOTAS[17] = ["1 Cuotas $5000.-", 5000]
-      CUOTAS[18] = ["2 Cuotas $#{5000*2}.-", 5000*2]
-      CUOTAS[19] = ["3 Cuotas $#{5000*3}.-", 5000*3]
-      CUOTAS[20] = ["4 Cuotas $#{5000*4}.-", 5000*4]
-      CUOTAS[21] = ["5 Cuotas $#{5000*5}.-", 5000*5]
-      CUOTAS[22] = ["6 Cuotas $#{5000*6}.-", 5000*6]
-      CUOTAS[23] = ["7 Cuotas $#{5000*7}.-", 5000*7]
-      CUOTAS[24] = ["8 Cuotas $#{5000*8}.-", 5000*8]
-      CUOTAS[25] = ["9 Cuotas $#{5000*9}.-", 5000*9]
-      CUOTAS[26] = ["10 Cuotas $#{5000*10}.-", 5000*10]
-      CUOTAS[27] = ["11 Cuotas $#{5000*11}.-", 5000*11]
-      CUOTAS[28] = ["12 Cuotas $#{5000*12}.-", 5000*12]
+      CUOTAS[24] = ["1 Cuotas $5000.-", 5000]
+      CUOTAS[25] = ["2 Cuotas $#{5000*2}.-", 5000*2]
+      CUOTAS[26] = ["3 Cuotas $#{5000*3}.-", 5000*3]
+      CUOTAS[27] = ["4 Cuotas $#{5000*4}.-", 5000*4]
+      CUOTAS[28] = ["5 Cuotas $#{5000*5}.-", 5000*5]
+      CUOTAS[29] = ["6 Cuotas $#{5000*6}.-", 5000*6]
+      CUOTAS[30] = ["7 Cuotas $#{5000*7}.-", 5000*7]
+      CUOTAS[31] = ["8 Cuotas $#{5000*8}.-", 5000*8]
+      CUOTAS[32] = ["9 Cuotas $#{5000*9}.-", 5000*9]
+      CUOTAS[33] = ["10 Cuotas $#{5000*10}.-", 5000*10]
+      CUOTAS[34] = ["11 Cuotas $#{5000*11}.-", 5000*11]
+      CUOTAS[35] = ["12 Cuotas $#{5000*12}.-", 5000*12]
 
-      CUOTAS[29] = ["1 Cuotas $7000.-", 7000]
-      CUOTAS[30] = ["2 Cuotas $#{7000*2}.-", 7000*2]
-      CUOTAS[31] = ["3 Cuotas $#{7000*3}.-", 7000*3]
-      CUOTAS[32] = ["4 Cuotas $#{7000*4}.-", 7000*4]
-      CUOTAS[33] = ["5 Cuotas $#{7000*5}.-", 7000*5]
-      CUOTAS[34] = ["6 Cuotas $#{7000*6}.-", 7000*6]
-      CUOTAS[35] = ["7 Cuotas $#{7000*7}.-", 7000*7]
-      CUOTAS[36] = ["8 Cuotas $#{7000*8}.-", 7000*8]
-      CUOTAS[37] = ["9 Cuotas $#{7000*9}.-", 7000*9]
-      CUOTAS[38] = ["10 Cuotas $#{7000*10}.-", 7000*10]
-      CUOTAS[39] = ["11 Cuotas $#{7000*11}.-", 7000*11]
-      CUOTAS[40] = ["12 Cuotas $#{7000*12}.-", 7000*12]
+      CUOTAS[36] = ["1 Cuotas $7000.-", 7000]
+      CUOTAS[37] = ["2 Cuotas $#{7000*2}.-", 7000*2]
+      CUOTAS[38] = ["3 Cuotas $#{7000*3}.-", 7000*3]
+      CUOTAS[39] = ["4 Cuotas $#{7000*4}.-", 7000*4]
+      CUOTAS[40] = ["5 Cuotas $#{7000*5}.-", 7000*5]
+      CUOTAS[41] = ["6 Cuotas $#{7000*6}.-", 7000*6]
+      CUOTAS[42] = ["7 Cuotas $#{7000*7}.-", 7000*7]
+      CUOTAS[43] = ["8 Cuotas $#{7000*8}.-", 7000*8]
+      CUOTAS[44] = ["9 Cuotas $#{7000*9}.-", 7000*9]
+      CUOTAS[45] = ["10 Cuotas $#{7000*10}.-", 7000*10]
+      CUOTAS[46] = ["11 Cuotas $#{7000*11}.-", 7000*11]
+      CUOTAS[47] = ["12 Cuotas $#{7000*12}.-", 7000*12]
+
+     CUOTAS[48] = [" 2012 - 2013 Cuota $3.750"]
+     
+
     end
 
     #GENDERS.to_enum.with_index(0).to_a
@@ -175,7 +183,7 @@ class Income < ActiveRecord::Base
 
       if self.tipo == "Colegiada"
         daily.por = "Pago cuotas: #{person.fullname}" 
-        PersonMailer.pay_user(user.person).deliver
+        PersonMailer.pay_user(user.person, head_daily).deliver
       else  
         daily.por = "Pago cuotas: #{workplace.nombre}"
       end  

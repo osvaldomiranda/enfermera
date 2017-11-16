@@ -228,6 +228,7 @@ Enfermera::Application.routes.draw do
       get :enviar
       get :toxls
       get :continuity
+      get :continuity2
       get :continuity_toxls
     end 
   end

@@ -106,9 +106,10 @@ class PersonMailer < ActionMailer::Base
     end
   end  
 
-  def pay_user(person)
+  def pay_user(person, head_daily)
     begin
       @person = person
+      @head_daily = head_daily
 
       @url  = 'http://www.colegioenfermerasdechile.cl'
 

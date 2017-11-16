@@ -35,7 +35,8 @@ class Person < ActiveRecord::Base
   scope :with_materno, -> with_materno { where('lower(apellido_materno) = ?', with_materno.downcase) if with_materno.present?}
   scope :with_rut, -> with_rut { where(rut: with_rut) if with_rut.present?}
   scope :with_registro, -> with_registro { where(nro_registro: with_registro) if with_registro.present?}
-  scope :member, -> member { where.not(nro_registro: nil) if member }
+  scope :member, -> member { where.not(nro_registro: nil) if member.present? }
+  scope :candidate, -> candidate { where(candidate: :true) if candidate.present? }
 
   ESTADOS = { "A" => "Con Rut"}
 

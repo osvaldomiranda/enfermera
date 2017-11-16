@@ -49,6 +49,10 @@
         %br
         %br
         %hr 
+        - if current_user.rut == '11367176-9' 
+          = link_to 'Exportar Excel', continuity_toxls_people_path(format: :xls),class: 'btn btn-info'
+          %br
+          %br
 .container{:role => "main"}
   .col-md-12
     .panel.panel-default
