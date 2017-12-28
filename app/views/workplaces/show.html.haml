@@ -13,11 +13,11 @@
         .row
           .col-md-12.text-center
             %hr
-            %h3 Total Cuotas/Mes 2016
+            %h3 Total Cuotas/Mes
             = column_chart @wp_monto_mes
             %h4 Mes - Año
             %hr
-        %h4= "Total cuotas 2016: $#{@workplace.fees.sum(:monto)}"
+        %h4= "Total cuotas: $#{@workplace.fees.sum(:monto)}"
         %br
         %table.table.table-striped
           %thead

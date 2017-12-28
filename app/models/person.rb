@@ -177,6 +177,41 @@ class Person < ActiveRecord::Base
     Person.where.not(lugar_trabajo: nil).map {|p| p.workplace_id=Workplace.find_by_cod_wp(p.lugar_trabajo).id if Workplace.find_by_cod_wp(p.lugar_trabajo).present?; p.save}
   end  
 
+
+  def self.import_update_fechainscripcion(file)
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
+      rowHash = row.to_hash
+      
+      if rowHash["rut"].present?
+        person = Person.where(rut: rowHash["rut"]).first
+      end
+      if !person.present? 
+        if rowHash["nro_registro"].present?
+          person = Person.where(nro_registro: rowHash["nro_registro"]).first
+        end  
+      end    
+
+
+
+      if person.present?
+        person.fecha_inscripcion = Date.parse(rowHash["fecha_inscripcion"])   
+        person.save
+        puts "************************"
+        puts person.fecha_inscripcion
+        puts person.nro_registro
+        puts "************************"
+        # PersonMailer.send_user(person.rut).deliver
+      else
+        puts "************************"  
+        puts "************************"  
+        puts   rowHash
+        puts "************************"  
+        puts "************************"  
+      end    
+    end 
+  end  
+
+
   def self.create_user(file)
 
       CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
@@ -240,18 +275,30 @@ class Person < ActiveRecord::Base
 
   def office
     w = self.workplace
-    w.office
+    if w.present?
+      w.office
+    else
+     nil
+    end   
   end
 
 
   def log_changed
     if self.changed?
-      PersonMailer.update_user(self, self.changed ).deliver
+      # PersonMailer.update_user(self, self.changed ).deliver
     end
   end  
 
   def fees_continuity(year)
     self.fees.where(mescuota: Date.parse('01/01/'+year)..Date.parse('31/12/'+year)).count
+  end
+
+  def isretired?
+    if self.workplace.cod_wp[0..2] == "000"
+      true
+    else
+      false
+    end    
   end
 
   def fee_padron(month, year)

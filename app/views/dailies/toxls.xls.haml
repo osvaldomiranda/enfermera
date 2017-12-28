@@ -19,36 +19,38 @@
       %th Paguesea        
   %tbody
     - @dailies.each do |daily|
-      %tr
-        %td= daily.tipo
-        %td= daily.numero
-        %td= daily.fecha
-        -if daily.cost_center.present?
-          %td= daily.cost_center.codigo
-          %td= daily.cost_center.nombre
-        - else
-          %td
-          %td
-        - if daily.account.present?    
-          %td= daily.account.codigo
-          %td= daily.account.nombre
-        - else 
-          %td
-          %td 
-        - if daily.income.present?
-          - if daily.income.workplace.present?
-            %td= daily.income.workplace.cod_wp
-            %td= daily.income.workplace.codigo
+      - if daily.head_daily.present?
+        %tr
+          %td= daily.tipo
+          %td= daily.numero
+          %td= daily.fecha
+          -if daily.cost_center.present?
+            %td= daily.cost_center.codigo
+            %td= daily.cost_center.nombre
           - else
             %td
             %td
-        - else
-          %td
-          %td      
-        %td= daily.debe
-        %td= daily.haber
-        %td= daily.por
-        %td= daily.head_daily.mediopago
-        %td= daily.head_daily.numcheque
-        %td= daily.head_daily.banco
-        %td= daily.head_daily.paguesea
+          - if daily.account.present?    
+            %td= daily.account.codigo
+            %td= daily.account.nombre
+          - else 
+            %td
+            %td 
+          - if daily.income.present?
+            - if daily.income.workplace.present?
+              %td= daily.income.workplace.cod_wp
+              %td= daily.income.workplace.codigo
+            - else
+              %td
+              %td
+          - else
+            %td
+            %td     
+
+          %td= daily.debe
+          %td= daily.haber
+          %td= daily.por
+          %td= daily.head_daily.mediopago
+          %td= daily.head_daily.numcheque
+          %td= daily.head_daily.banco
+          %td= daily.head_daily.paguesea

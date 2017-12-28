@@ -103,6 +103,7 @@ class PeopleController < ApplicationController
 
 
   def continuity_toxls
+
     if params["/people"].present?
       @apellido_paterno = params["/people"][:apellido_paterno]
       @apellido_materno = params["/people"][:apellido_materno]
@@ -310,7 +311,7 @@ class PeopleController < ApplicationController
     puts params
     puts "*****************"
     @people = Person.all
-    @msg = Workplace.import_email(params[:file]).force_encoding('utf-8')
+    @msg = Person.import_update_fechainscripcion(params[:file]).force_encoding('utf-8')
     respond_to do |format|
       format.html {
         if @msg == " "
@@ -436,7 +437,7 @@ class PeopleController < ApplicationController
     end   
   end  
 
-    def create_daily
+  def create_daily
     @people = Person.all
     @msg = Daily.import(params[:file]).force_encoding('utf-8')
     respond_to do |format|
@@ -453,97 +454,125 @@ class PeopleController < ApplicationController
 
   def payregister
     @income = Income.new
-    respond_modal_with(@income)
   end
 
   def pay
 
-    if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
-      fecha_pago = DateTime.now.strftime("%d-%m-%Y")
-      fecha_contable = DateTime.now.strftime("%d-%m-%Y")
-    else  
-      fecha_pago     = params[:income][:fecha_pago]
-      fecha_contable = params[:income][:fecha_contable]
-    end
+    if params[:income][:document].present? 
 
-    workplace = Workplace.where(id:params[:income][:workplace_id]).first
+      if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
+        fecha_pago = DateTime.now.strftime("%d-%m-%Y")
+        fecha_contable = DateTime.now.strftime("%d-%m-%Y")
+      else  
+        fecha_pago     = params[:income][:fecha_pago]
+        fecha_contable = params[:income][:fecha_contable]
+      end
 
-    @income = Income.new
-    @income.monto       =  params[:income][:monto]
-    @income.person_id   =  params[:income][:person_id]
-    @income.workplace_id=  params[:income][:workplace_id]
-    @income.office_id   =  workplace.office_id
-    @income.tipo        = "Colegiada"
-    @income.user_id     =  params[:income][:user_id]
-    @income.document    =  params[:income][:document]
-    @income.banco       =  params[:income][:banco]
-    @income.mediopago   =  params[:income][:mediopago]
-    @income.fecha_pago  =  Date.parse(fecha_pago)
-    @income.fecha_contable  = Date.parse( fecha_contable)
-    @income.mes_cuota   = params[:income][:mes_cuota]
-    @income.fecha       =  DateTime.now
-    @income.estado      = "CONFIRMADO"
+      workplace = Workplace.where(id:params[:income][:workplace_id]).first
 
-    if @income.save
-      
       mes = params[:income][:mes_cuota][0..1].gsub('-','').to_i
       year = params[:income][:mes_cuota][2..6].gsub('-','').to_i      
 
-     
+       
       valorcuota = Currentfee.last.valor 
-    
+
+      if (year == 2012) 
+        valorcuota = 3750 
+      end
+      if (year == 2013) 
+        valorcuota = 3750 
+      end    
+      if (year == 2014) 
+        valorcuota = 5000 
+      end
+      if (year == 2015) 
+        valorcuota = 5000 
+      end
       if (year == 2016) 
-        valorcuota = 6000 
+        if (mes==1) || (mes==2) || (mes==3)
+          valorcuota = 5000
+        else
+          valorcuota = 6000
+        end  
       end
       if (year == 2018 ) 
         valorcuota = 7000 
       end
 
+      @person = Person.find(params[:income][:person_id])
+      if @person.isretired?
+        valorcuota = 1500
+      end  
 
-      n = params[:income][:monto].to_i/valorcuota
-      if (n<1) 
-        n=1
+      @income = Income.new
+      @income.monto       =  valorcuota
+      @income.person_id   =  params[:income][:person_id]
+      @income.workplace_id=  params[:income][:workplace_id]
+      @income.office_id   =  workplace.office_id
+      @income.tipo        = "Colegiada"
+      @income.user_id     =  params[:income][:user_id]
+      @income.document    =  params[:income][:document]
+      @income.banco       =  params[:income][:banco]
+      @income.mediopago   =  params[:income][:mediopago]
+      @income.fecha_pago  =  Date.parse(fecha_pago)
+      @income.fecha_contable  = Date.parse( fecha_contable)
+      @income.mes_cuota   = params[:income][:mes_cuota]
+      @income.fecha       =  DateTime.now
+      @income.estado      = "CONFIRMADO"
+
+      if @income.save
+        
+        n = params[:income][:monto].to_i/valorcuota
+        if (n<1) 
+          n=1
+        end
+
+        (1..n).each do |i|
+          fee = Fee.new
+          fee.rut = @person.rut
+          fee.email = @person.email
+          fee.fecha_pago = Date.parse(fecha_pago)
+          fee.mes = i
+          fee.monto = valorcuota
+          fee.mes_cuota = "#{mes}-#{year}"
+          fee.person_id = @person.id
+
+          if current_user.role?(:finance)
+            fee.pagador = "Pago Registrado Admin"
+            fee.estado = "Confirmado"
+          else
+            fee.pagador = "Pago Directo Colegiada"
+            fee.estado = "Por Confirmar"
+          end
+          
+          fee.income_id = @income.id
+          fee.mescuota = Date.parse("01-#{fee.mes_cuota}")
+          fee.save
+
+          mes += 1
+          if mes > 12
+            mes = mes-12
+            year = year+1
+          end
+        end
       end
       
+      @persondocuments = Persondocument.all
 
-      @person = Person.find(params[:income][:person_id])
-      (1..n).each do |i|
-        fee = Fee.new
-        fee.rut = @person.rut
-        fee.email = @person.email
-        fee.fecha_pago = Date.parse(fecha_pago)
-        fee.mes = i
-        fee.monto = valorcuota
-        fee.mes_cuota = "#{mes}-#{year}"
-        fee.person_id = @person.id
 
-        if current_user.role?(:finance)
-          fee.pagador = "Pago Registrado Admin"
-          fee.estado = "Confirmado"
-        else
-          fee.pagador = "Pago Directo Colegiada"
-          fee.estado = "Por Confirmar"
-        end
-        
-        fee.income_id = @income.id
-        fee.save
 
-        mes += 1
-        if mes > 12
-          mes = mes-12
-          year = year+1
-        end
+      if current_user.rut ==   @income.person.rut
+        redirect_to dashboard_index_path
+      else
+        redirect_to person_path(params[:income][:person_id])
       end
-    end
-
-    @persondocuments = Persondocument.all
-
-    if current_user.rut ==   @income.person.rut
-      redirect_to dashboard_index_path
     else
-      redirect_to person_path(params[:income][:person_id])
+      redirect_to error_pay_person_path  
     end
   end
+
+  def error_pay
+  end  
 
   def senduser
     users = Person.where( rut: ['14103369-7','12212569-6','6728168-3','7525652-3','11825249-7','8055506-7','5591066-9','6460909-2','12690706-0','10544097-9','13069397-0','6157085-3','8263904-7','6504308-4','7034287-1','15217726-7','4269924-1','6653259-3','10543350-6','8622387-2','7068787-9','8263053-8','6793711-2','13169430-K','7906858-6','11691652-5','13125329-K','5615757-3'])
@@ -557,8 +586,6 @@ class PeopleController < ApplicationController
   def enviar
     users = User.where.not(email: nil )
     #users = User.where(email: "marragni@gmail.com")
-
-    
 
     @c = 0
     @e = 0

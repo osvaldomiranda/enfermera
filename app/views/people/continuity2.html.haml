@@ -67,22 +67,26 @@
             %thead
               %tr
                 %th N Registro
-                %th Email
                 %th Rut
                 %th Nombre
-                %th Cuotas 2012
-                %th Cuotas 2013
-                %th Cuotas 2014
-                %th Cuotas 2015
-                %th Cuotas 2016
-                %th Cuotas 2017
+                %th 2012
+                %th 2013
+                %th 2014
+                %th 2015
+                %th 2016
+                %th 2017
+                %th Jun
+                %th Jul
+                %th Ago
+                %th Sep
+                %th Oct
+                %th Nov
                 %th 
                 %th
             %tbody
               - @people.each do |person|
                 %tr
                   %td= person.nro_registro
-                  %td= person.email
                   %td= person.rut
                   %td= person.fullname
                   %td= person.fees_continuity('2012')
@@ -91,7 +95,36 @@
                   %td= person.fees_continuity('2015')
                   %td= person.fees_continuity('2016')
                   %td= person.fees_continuity('2017')
-
+                  - if person.fee_padron('06','2017').present?
+                    %td= person.fee_padron('06','2017').monto
+                  - else
+                    %td
+             
+                  - if person.fee_padron('07','2017').present?
+                    %td= person.fee_padron('07','2017').monto
+                  - else
+                    %td
+           
+                  - if person.fee_padron('08','2017').present?
+                    %td= person.fee_padron('08','2017').monto
+                  - else
+                    %td
+         
+                  - if person.fee_padron('09','2017').present?
+                    %td= person.fee_padron('09','2017').monto
+                  - else
+                    %td
+       
+                  - if person.fee_padron('10','2017').present?
+                    %td= person.fee_padron('10','2017').monto
+                  - else
+                    %td
+           
+                  - if person.fee_padron('11','2017').present?
+                    %td= person.fee_padron('11','2017').monto
+                  - else
+                    %td
+           
                   %td= link_to 'Ver', person,class: 'btn btn-info btn-xs'
                   %td= link_to 'Todas las cuotas', fees_dashboard_index_path(person_id: person.id ), class: "btn btn-info btn-xs"
         %br

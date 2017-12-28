@@ -8,6 +8,8 @@ class Income < ActiveRecord::Base
 
   mount_uploader :document, DocumentUploader 
 
+  validates :document, presence: true
+
   after_save :dailycreate
 
 
@@ -102,8 +104,21 @@ class Income < ActiveRecord::Base
       CUOTAS[46] = ["11 Cuotas $#{7000*11}.-", 7000*11]
       CUOTAS[47] = ["12 Cuotas $#{7000*12}.-", 7000*12]
 
-     CUOTAS[48] = [" 2012 - 2013 Cuota $3.750"]
+     CUOTAS[48] = [" 2012 - 2013 Cuota $3.750", 3750]
+     CUOTAS[49] = [" Jubilada 1 Cuota $1.500", 1500]
      
+     CUOTAS[50] = [" Jubilada 2 Cuota $3000", 3000]
+     CUOTAS[51] = [" Jubilada 3 Cuota $4500", 4500]
+     CUOTAS[52] = [" Jubilada 4 Cuota $6000", 6000]
+     CUOTAS[53] = [" Jubilada 5 Cuota $7500", 7500]
+     CUOTAS[54] = [" Jubilada 6 Cuota $9000", 9000]
+     CUOTAS[55] = [" Jubilada 7 Cuota $10500", 10500]
+     CUOTAS[56] = [" Jubilada 8 Cuota $12000", 12000]
+     CUOTAS[57] = [" Jubilada 9 Cuota $13500", 13500]
+     CUOTAS[58] = [" Jubilada 10 Cuota $15000", 15000]
+     CUOTAS[59] = [" Jubilada 11 Cuota $16500", 16500]
+     CUOTAS[60] = [" Jubilada 12 Cuota $18000", 18000]
+
 
     end
 
@@ -183,7 +198,7 @@ class Income < ActiveRecord::Base
 
       if self.tipo == "Colegiada"
         daily.por = "Pago cuotas: #{person.fullname}" 
-        PersonMailer.pay_user(user.person, head_daily).deliver
+        # PersonMailer.pay_user(user.person, head_daily).deliver
       else  
         daily.por = "Pago cuotas: #{workplace.nombre}"
       end  

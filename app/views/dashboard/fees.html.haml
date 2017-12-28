@@ -11,6 +11,7 @@
           %table.table.table-striped
             %thead
               %tr
+                %th Ingreso Nº
                 %th Pago realizado por
                 %th Mes
                 %th Fecha Registro Pago
@@ -18,6 +19,7 @@
             %tbody
               - @person.fees.order(mescuota: :desc).each do |pago|
                 %tr
+                  %td= pago.head_daily
                   %td= pago.pagador
                   %td= pago.mes_cuota
                   %td= pago.created_at.strftime('%d/%m/%Y %H:%M')

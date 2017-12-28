@@ -8,6 +8,15 @@ class Fee < ActiveRecord::Base
     MES.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
+  def head_daily
+    daily = Daily.where(income_id: Income.where(id: self.income_id).first).first
+    if daily.present?
+      daily.numero
+    else
+      0
+    end
+  end
+
   def mescuota_todate
     begin
       if self.mes_cuota.present?

@@ -1,68 +1,80 @@
-.container-fluid
-  %h2 Registro de pago
-  .container-fluid
-    .row
-      .col-md-12
-        %form.form-horizontal{:role => "form"}
-        = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
-          = f.error_notification
-          .form-inputs
-            / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
-            = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
-            = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
-            = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
-
-            - if current_user.role?(:regional_admin)
-              .form-group
-                %label.col-sm-2.control-label{:for => "textinput"} Fecha Pago
-                .col-sm-4  
-                  = f.text_field :fecha_pago, label: false , input_html: {value:  DateTime.now.strftime("%d-%m-%Y")}    
-                %label.col-sm-2.control-label{:for => "textinput"} Fecha Contable
-                .col-sm-4
-                  = f.text_field :fecha_contable, label: false , :input_html => {:value => DateTime.now.strftime("%d-%m-%Y")} 
-            - else
-              = f.input :fecha_pago, :as => :hidden, :input_html => { :value => DateTime.now } 
-              = f.input :fecha_contable, :as => :hidden, :input_html => { :value => DateTime.now } 
-    
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title MI PERFIL
+      .panel-body
 
 
+        .container-fluid
+          %h2 Registro de pago
+          .container-fluid
+            .row
+              .col-md-12
+                %form.form-horizontal{:role => "form"}
+                = simple_form_for(@income, :url => "/people/pay/pay", :method => :post, html: { class: 'form-horizontal' }) do |f|
+                  = f.error_notification
+                  .form-inputs
+                    / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
+                    = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
+                    = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
+                    = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota
-              .col-sm-4
-                = f.input :mes_cuota, label: false  , collection: Income.mescuota_options_for_select, selected: 1
-            .form-group
-              %label.col-sm-2.control-label{:for => "textinput"} Monto
-              .col-sm-4
-                - if current_user.role?(:finance)
-                  = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('SI'), selected: 1
-                - else
-                  = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('NO'), selected: 1
-                   
-                
-            .form-group    
-              %label.col-sm-2.control-label{:for => "textinput"} banco
-              .col-sm-4  
-                = f.input :banco, label: false , collection: Income.banco_options_for_select 
-            .form-group    
-              %label.col-sm-2.control-label{:for => "textinput"} Medio Pago
-              .col-sm-4
-                = f.input :mediopago, label: false, collection: Income.mediopago_options_for_select  
- 
-            .row   
-              .col-md-8 
-                .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
-                  .form-control{"data-trigger" => "fileinput"}
-                    %i.glyphicon.glyphicon-file.fileinput-exists
-                    %span.fileinput-filename
-                  %span.input-group-addon.btn.btn-default.btn-file
-                    %span.fileinput-new Comprobante de Deposito
-                    %span.fileinput-exists Cambiar
-                    =f.file_field :document
-                  %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+                    - if current_user.role?(:regional_admin)
+                      .form-group
+                        %label.col-sm-2.control-label{:for => "textinput"} Fecha Pago
+                        .col-sm-4  
+                          = f.text_field :fecha_pago, label: false , input_html: {value:  DateTime.now.strftime("%d-%m-%Y")}    
+                        %label.col-sm-2.control-label{:for => "textinput"} Fecha Contable
+                        .col-sm-4
+                          = f.text_field :fecha_contable, label: false , :input_html => {:value => DateTime.now.strftime("%d-%m-%Y")} 
+                    - else
+                      = f.input :fecha_pago, :as => :hidden, :input_html => { :value => DateTime.now } 
+                      = f.input :fecha_contable, :as => :hidden, :input_html => { :value => DateTime.now } 
+            
 
+
+
+                    .form-group
+                      %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota
+                      .col-sm-4
+                        = f.input :mes_cuota, label: false  , collection: Income.mescuota_options_for_select, selected: 1
+                    .form-group
+                      %label.col-sm-2.control-label{:for => "textinput"} Monto
+                      .col-sm-4
+                        - if current_user.role?(:finance)
+                          = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('SI'), selected: 1
+                        - else
+                          = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('NO'), selected: 1
+                           
+                        
+                    .form-group    
+                      %label.col-sm-2.control-label{:for => "textinput"} banco
+                      .col-sm-4  
+                        = f.input :banco, label: false , collection: Income.banco_options_for_select 
+                    .form-group    
+                      %label.col-sm-2.control-label{:for => "textinput"} Medio Pago
+                      .col-sm-4
+                        = f.input :mediopago, label: false, collection: Income.mediopago_options_for_select  
          
-            .form-group
-              .col-sm-offset-2.col-sm-10
-                .pull-right
-                  %button.btn.btn-success{:type => "submit"} Guardar
+                    .row   
+                      .col-md-8 
+                        %p * Obligatorio
+                        .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                          .form-control{"data-trigger" => "fileinput"}
+                            %i.glyphicon.glyphicon-file.fileinput-exists
+                            %span.fileinput-filename
+                          %span.input-group-addon.btn.btn-default.btn-file
+                            %span.fileinput-new Comprobante de Deposito
+                            %span.fileinput-exists Cambiar
+                            =f.file_field :document
+                          %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+                 
+                    .form-group
+                      .col-sm-offset-2.col-sm-10
+                        .pull-right
+                          %button.btn.btn-success{:type => "submit"} Guardar

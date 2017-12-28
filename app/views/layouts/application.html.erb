@@ -104,8 +104,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informes <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li>
-              <%= link_to reports_path do %>
-                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Resumen Nacional
+              <%= link_to reports_path( origen: 2016) do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Resumen Nacional 2016
+              <% end %>
+            </li>
+            <li>
+              <%= link_to reports_path( origen: 2017) do %>
+                <span class="iconos"><i class="fa fa-user fa-fw"></i></span>Resumen Nacional 2017
               <% end %>
             </li>
             <li>

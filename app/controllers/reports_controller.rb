@@ -1,19 +1,21 @@
 class ReportsController < ApplicationController
   before_filter :authenticate_user! 
   def index
+    @origen = params[:origen]
+
     @offices = Office.all
-    @selected_enero = DateTime.parse("01/01/2016")
-    @selected_febrero = DateTime.parse("01/02/2016")
-    @selected_marzo = DateTime.parse("01/03/2016")
-    @selected_abril = DateTime.parse("01/04/2016")
-    @selected_mayo = DateTime.parse("01/05/2016")
-    @selected_junio = DateTime.parse("01/06/2016")
-    @selected_julio = DateTime.parse("01/07/2016")
-    @selected_agosto = DateTime.parse("01/08/2016")
-    @selected_septiembre = DateTime.parse("01/09/2016")
-    @selected_octubre = DateTime.parse("01/10/2016")
-    @selected_noviembre = DateTime.parse("01/11/2016")
-    @selected_diciembre = DateTime.parse("01/12/2016")  
+    @selected_enero = DateTime.parse("01/01/#{@origen}")
+    @selected_febrero = DateTime.parse("01/02/#{@origen}")
+    @selected_marzo = DateTime.parse("01/03/#{@origen}")
+    @selected_abril = DateTime.parse("01/04/#{@origen}")
+    @selected_mayo = DateTime.parse("01/05/#{@origen}")
+    @selected_junio = DateTime.parse("01/06/#{@origen}")
+    @selected_julio = DateTime.parse("01/07/#{@origen}")
+    @selected_agosto = DateTime.parse("01/08/#{@origen}")
+    @selected_septiembre = DateTime.parse("01/09/#{@origen}")
+    @selected_octubre = DateTime.parse("01/10/#{@origen}")
+    @selected_noviembre = DateTime.parse("01/11/#{@origen}")
+    @selected_diciembre = DateTime.parse("01/12/#{@origen}")  
   end
 
   def gastos_cc

@@ -1,24 +1,75 @@
 %table.table.table-striped
   %thead
     %tr
+      %th CodRegional
+      %th Regional
+      %th cod. Lugar de trabajo
+      %th Lugar de trabajo
       %th N Registro
       %th Email
       %th Rut
       %th Nombre
+      %th Fecha Inscrip.
+      %th Cuotas 2012
       %th Cuotas 2013
       %th Cuotas 2014
       %th Cuotas 2015
       %th Cuotas 2016
       %th Cuotas 2017
+      %th Jun
+      %th Jul
+      %th Ago
+      %th Sep
+      %th Oct
+      %th Nov
   %tbody
     - @people.each do |person|
       %tr
+        - if person.present?
+          - if person.office.present?
+            %td= person.office.codigo
+            %td= person.office.nombre
+          - else
+            %td
+            %td 
+          - if person.workplace.present?
+            %td= person.workplace.cod_wp
+            %td= person.workplace.nombre
+          - else
+            %td
+            %td    
         %td= person.nro_registro
         %td= person.email
         %td= person.rut
         %td= person.fullname
+        %td= person.fecha_inscripcion
+        %td= person.fees_continuity('2012')
         %td= person.fees_continuity('2013')
         %td= person.fees_continuity('2014')
         %td= person.fees_continuity('2015')
         %td= person.fees_continuity('2016')
         %td= person.fees_continuity('2017')
+        - if person.fee_padron('06','2017').present?
+          %td= person.fee_padron('06','2017').monto
+        - else
+          %td  
+        - if person.fee_padron('07','2017').present?
+          %td= person.fee_padron('07','2017').monto
+        - else
+          %td
+        - if person.fee_padron('08','2017').present?
+          %td= person.fee_padron('08','2017').monto
+        - else
+          %td
+        - if person.fee_padron('09','2017').present?
+          %td= person.fee_padron('09','2017').monto
+        - else
+          %td
+        - if person.fee_padron('10','2017').present?
+          %td= person.fee_padron('10','2017').monto
+        - else
+          %td
+        - if person.fee_padron('11','2017').present?
+          %td= person.fee_padron('11','2017').monto
+        - else
+          %td

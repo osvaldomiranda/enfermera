@@ -209,6 +209,7 @@ Enfermera::Application.routes.draw do
       get :cancel
       get :payregister
       post :pay
+      get :error_pay
       get :terms
       get :termstopdf
       post :resetpass
