@@ -14,7 +14,7 @@
 
               %p#notice= notice
 
-              %h2 Tu Solicitud de inscripción a quedado en estado
+              %h2 Solicitud de inscripción en estado:
               %h1= @inscription.estado
               %br
               %br
@@ -32,14 +32,14 @@
                 = @inscription.apellido_materno
 
               - if @inscription.estado== 'SOLICITADA'
-                %h3 El proceso de revición de tu solicitud está en manos del colegio
-                %h3 tendremos una respuesta en los próximos dias 
+                %h3 Su solicitud ha ingresado al proceso de revisión, 
+                %h3 en un plazo de 10 días tendremos una respuesta para usted. 
               - if @inscription.estado== 'RUT YA EXISTE'
-                %h3 Tu rut ya existe en el sistema de colegiadas, comunicate con 
+                %h3 Rut ya existe en el sistema de colegiadas, comuniquese con 
                 %h3 soporteti@colegiodeenfermeras.cl para solicitar ayuda.
               - if @inscription.estado== 'RECHAZADA'
-                %h3 No hemos podido rescatar tu certificado de la superintendencia de salud 
-                %h3 por favor comunicate con nosotros para mayor información
+                %h3 No hemos podido rescatar su certificado de la superintendencia de salud 
+                %h3 por favor comuniquese con nosotros para mayor información
 
               %br
               %br

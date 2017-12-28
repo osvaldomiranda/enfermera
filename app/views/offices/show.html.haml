@@ -13,7 +13,7 @@
         .row
           .col-md-12.text-center
             = pie_chart @colegiada_office 
-        %h4= "Total cuotas 2016: $#{@office.fees.sum(:monto)}"
+        %h4= "Total cuotas: $#{@office.fees.sum(:monto)}"
         %br
         %table.table.table-striped
           %thead

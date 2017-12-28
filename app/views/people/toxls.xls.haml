@@ -7,6 +7,16 @@
       %th Nombre
       %th Fecha Creación
       %th Origen
+      %th Cod.Regional
+      %th Regional
+      %th Cod.Lugar de Trabajo
+      %th Lugar de Trabajo
+      %th Tipo Contrato
+      %th Fecha Titulo
+      %th Celular
+      %th Universidad
+      %th Direccion
+      %th Ciudad
   %tbody
     - @people.each do |person|
       %tr
@@ -16,3 +26,15 @@
         %td= person.fullname
         %td= person.created_at.strftime('%d/%m/%Y %H:%M')
         %td= person.origen.present? ? person.origen : "SISTEMA"
+        
+        %td= person.office.present? ? person.office.codigo : " "
+        %td= person.office.present? ? person.office.nombre : " "
+
+        %td= person.workplace.present? ? person.workplace.cod_wp : " "
+        %td= person.workplace.present? ? person.workplace.nombre : " "
+        %td= person.tipo_contrato
+        %td= person.fecha_titulo
+        %td= person.celular
+        %td= person.universidad
+        %td= person.direccion
+        %td= person.ciudad

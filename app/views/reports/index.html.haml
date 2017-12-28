@@ -5,6 +5,7 @@
         %h3.panel-title Resumen Nacional
       .panel-body
         %br
+        %h1= @origen
         %p * Los montos mensuales corresponden a lo valores contabilizados de las cuotas recaudadas en las fechas que se indican
         %hr
         - @offices.each do |office|
@@ -115,7 +116,7 @@
                   %tr
                     %td= workplace.nombre
                     %td= workplace.people.count
-                    %td= workplace.fees.sum(:monto)
+                    %td= workplace.fees.where( :fecha_pago => @selected_enero.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto)
             %br  
             %hr        
           %br

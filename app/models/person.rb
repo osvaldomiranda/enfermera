@@ -57,7 +57,7 @@ class Person < ActiveRecord::Base
     NACIONALIDAD.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
-  TIPOCONTRATO      = ['Planta', 'Palzo Fijo', 'Honorarios']
+  TIPOCONTRATO      = ['Planta', 'Plazo Fijo', 'Honorarios']
   def self.tipocontrato_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     TIPOCONTRATO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }

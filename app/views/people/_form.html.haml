@@ -61,13 +61,7 @@
                   %label.col-sm-2.control-label{:for => "textinput"} Tipo Contrato
                   .col-sm-4
                     = f.input :tipo_contrato, label: false, collection: Person.tipocontrato_options_for_select
-                %h3 Forma pago cuota social 
-                %p= "Actualmente la cuota se paga mensualmente y es hasta Diciembre 2016 de $#{@valorcuota}.-  El período de Enero a Diciembre 2017 será de $ 6.500.-"
-                %p Pago directo implica que usted deberá realizar el pago en nuestra cuenta corriente,
-                %p luego registrar su pago en su pagina de inicio, o enviar el comprobante vía email
-                %p indicando su nombre completo rut y periodo de pago.
-                %p contabilidad@colegiodeenfermeras.cl - tesoreria@colegiodeenfermeras.cl 
-                %p Si usted tiene un contrato a honorarios, debe elegir la forma de pago DIRECTO.    
+   
                 .form-group
                   %label.col-sm-2.control-label{:for => "textinput"} Forma de Pago 
                   .col-sm-4
@@ -84,6 +78,19 @@
                     %br
                   .col-sm-2
                   = submit_tag "Importar" 
+
+                %h3 Forma pago cuota social 
+ 
+                %p Actualmente el período de Enero a Diciembre 2018 será de $7.000.-
+                %p Pago directo implica que usted deberá realizar el pago en nuestra cuenta corriente:
+                %br
+                %p Banco Chile, N° 182100104
+                %br
+                %p Luego registrar su pago en su pagina de inicio o enviar el comprobante vía e-mail, indicando su nombre completo, RUT y periodo que pago.
+                %p E-Mails: contabilidad@colegiodeenfermeras.cl, tesoreria@colegiodeenfermeras.cl
+                %br
+                %p Si usted va a pagar cuotas atrasadas se les recuerda que las cuotas del año 2015 es de $5.000; para el año 2016 es de $6.000; y para el año 2017 es de $6.500
+
                 .form-group
                   .col-sm-offset-2.col-sm-10
                     .pull-right

@@ -79,8 +79,12 @@
                       - else
                         %td
                         %td  
-                      %td= daily.account.codigo
-                      %td= daily.account.nombre
+                      - if daily.account.present?  
+                        %td= daily.account.codigo
+                        %td= daily.account.nombre
+                      - else
+                        %td
+                        %td
                       - if daily.income.present?
                         - if daily.income.workplace.present?
                           %td= daily.income.workplace.cod_wp
