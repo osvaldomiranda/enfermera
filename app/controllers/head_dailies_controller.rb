@@ -1,6 +1,6 @@
 class HeadDailiesController < ApplicationController
   before_filter :authenticate_user! 
-  before_action :set_head_daily, only: [:show, :edit, :update, :destroy, :eliminar, :confirmar]
+  before_action :set_head_daily, only: [:show, :edit, :update, :destroy, :eliminar, :confirmar, :guardar]
 
   respond_to :html
 
@@ -11,9 +11,7 @@ class HeadDailiesController < ApplicationController
     @origen = params[:origen] || nil
     @estado = params[:estado] || nil
 
-
     @page = params[:page] || 1
-
 
     if params["/head_dailies"].present?
       @numero = params["/head_dailies"][:numero] || nil
@@ -52,6 +50,11 @@ class HeadDailiesController < ApplicationController
     else
       @head_daily.estado = 'PENDIENTE'
     end  
+
+    if @head_daily.dailies.sum(:debe) !=  @head_daily.dailies.sum(:haber)
+      @head_daily.estado = 'NO CUADRA'
+    end         
+
     @head_daily.user_id = current_user.id
     @head_daily.save
     respond_with(@head_daily)
@@ -59,12 +62,32 @@ class HeadDailiesController < ApplicationController
 
   def update
     @head_daily.update(head_daily_params)
+
+    if @head_daily.dailies.sum(:debe) !=  @head_daily.dailies.sum(:haber)
+      @head_daily.estado = 'NO CUADRA'
+      @head_daily.save
+    end  
     respond_with(@head_daily)
   end
 
   def destroy
     @head_daily.destroy
     respond_with(@head_daily)
+  end
+
+  def guardar
+    if @head_daily.dailies.sum(:debe) !=  @head_daily.dailies.sum(:haber)
+      @head_daily.estado = 'NO CUADRA'
+      @head_daily.save
+    else  
+      if current_user.role?(:admin)
+        @head_daily.estado = 'CONFIRMADO'
+      else
+        @head_daily.estado = 'PENDIENTE'
+      end  
+      @head_daily.save      
+    end  
+    redirect_to head_dailies_path
   end
 
   def eliminar

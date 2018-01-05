@@ -57,9 +57,12 @@ class HeadDaily < ActiveRecord::Base
         end
         daily.income.delete
       end  
-      daily.delete
+      daily.detalle = "COMPROBANTE NULO"
+      daily.estado = "NULO"
+      daily.save
     end
-    self.delete
+    self.estado = "NULO"
+    self.save
   end
 
   def confirmar

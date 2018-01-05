@@ -72,7 +72,11 @@ Enfermera::Application.routes.draw do
   end
 
   resources :cost_centers
-  resources :accounts
+  resources :accounts do
+    collection do
+      get :mayor
+    end  
+  end
 
   resources :blogs
   resources :officeaccounts
@@ -133,6 +137,7 @@ Enfermera::Application.routes.draw do
     member do
       get :showtopdf
       get :eliminar
+      get :guardar
       get :confirmar
     end
   end

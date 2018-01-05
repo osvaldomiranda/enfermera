@@ -11,6 +11,8 @@
             = image_tag("logo-top.png")
             %h1
               = "Libro Diario #{@head_daily.tipo} #{@head_daily.numero}"
+
+
             - if @head_daily.tipo == "INGRESO"  
               %p= "Recibido de: #{@head_daily.recibidode}"
               %p= "Medio de Pago: #{@head_daily.mediopago}"
@@ -32,8 +34,13 @@
 
         %p#notice= notice
         - if current_user.role?(:admin)
-          =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info' 
-          =link_to 'Guardar', head_dailies_path, class: 'btn btn-info' 
+          =link_to 'Editar', edit_head_daily_path(@head_daily.id), data: { modal: true },class: 'btn btn-info'
+          - if @head_daily.estado == "NULO" 
+            =link_to 'ReAbrir/Guardar', guardar_head_daily_path(id: @head_daily.id, page: @page), class: 'btn btn-info'
+          - else
+            =link_to 'Guardar', guardar_head_daily_path(id: @head_daily.id, page: @page), class: 'btn btn-info'  
+          - if @head_daily.dailies.sum(:debe) !=  @head_daily.dailies.sum(:haber)
+            =link_to 'COMPROBANTE NO CUADRA', "", class: 'btn btn-danger'
           =link_to 'Cancelar/Eliminar', eliminar_head_daily_path(@head_daily.id), class: 'btn btn-warning'
           - if  @head_daily.estado == 'PENDIENTE'
             =link_to 'CONFIRMAR', confirmar_head_daily_path(@head_daily.id, page: @page), class: 'btn btn-danger' 

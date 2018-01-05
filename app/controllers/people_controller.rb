@@ -453,12 +453,94 @@ class PeopleController < ApplicationController
 
 
   def payregister
+    @monto = 0
+    fees_array = []
+    current_year = Time.now.year
+    past_year = current_year - 1
+
+    if @person.isretired?
+      current_value = 1500
+      past_value = 1500
+    else  
+      current_value = Currentfee.where(year: current_year).present? ? Currentfee.where(year: current_year).first.valor : 0
+      past_value = Currentfee.where(year: past_year).present? ? Currentfee.where(year: past_year).first.valor : 0
+    end  
+
+    inscription =  @person.fecha_inscripcion.present? ? @person.fecha_inscripcion : Time.now
+
+    if inscription.year <= past_year
+      month_past_year = inscription.year == past_year ? inscription.month : 0
+      1.upto(12) do |i|
+        if i > month_past_year
+          if @person.fees.where(mes_cuota:"#{i}-#{past_year}").present?
+            fees_array << [mes: "#{i}-#{past_year}", monto: past_value, estado: 'Pagado']
+          else  
+            fees_array << [mes: "#{i}-#{past_year}", monto: past_value, estado: 'Impago']
+            @monto = @monto + past_value
+          end
+        end    
+      end
+    end  
+
+    month_current_year = inscription.year == current_year ? inscription.month : 0
+    1.upto(12) do |i|
+      if i >= month_current_year
+        if @person.fees.where(mes_cuota:"#{i}-#{current_year}").present?
+          fees_array << [mes: "#{i}-#{current_year}", monto: current_value, estado: 'Pagado']
+        else  
+          fees_array << [mes: "#{i}-#{current_year}", monto: current_value, estado: 'Impago']
+          @monto = @monto + current_value
+        end
+      end    
+    end
+
+    @fees = Hash[fees_array]
+
     @income = Income.new
   end
 
   def pay
+    @fees = eval(params[:income][:fees])
+    @person = Person.find(params[:income][:person_id])
+    n = params[:person_ids].present? ? params[:person_ids].count : 0
+    msg = ""
 
-    if params[:income][:document].present? 
+    msg+= n <= 0 ? "No se han elegido cuotas a cancelar  "  : ""
+    msg+= params[:income][:monto].to_i <= 0 ? "El monto a pagar no puede ser cero  "  : ""
+    msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
+
+
+    #validar que no haya lagunas
+    if params[:person_ids].present?
+      next_month = params[:person_ids][0][0..1].gsub('-','').to_i + 1
+      (1..n-1).each do |i|
+        mes  = params[:person_ids][i][0..1].gsub('-','').to_i
+        if mes != next_month
+          msg += "El pago de las cuotas debe ser continuo, no puede haber lagunas impagas"
+          break
+        end 
+        next_month += 1
+        if next_month >= 13
+          next_month = 1
+        end  
+      end
+    end
+
+    #verifica que se pague el mas antiguo pendiente
+    if msg == ""
+      @fees.each do |fee|
+        if Hash[fee[0]][:estado] == "Impago"
+          if params[:person_ids][0] !=  Hash[fee[0]][:mes]
+            msg += "El pago de las cuotas debe ser continuo, no puede haber 'lagunas' impagas"
+            break
+          end  
+        end  
+      end  
+    end  
+
+    if msg != ""
+      redirect_to error_pay_person_path(msg: msg)  
+    else 
 
       if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
         fecha_pago = DateTime.now.strftime("%d-%m-%Y")
@@ -467,45 +549,10 @@ class PeopleController < ApplicationController
         fecha_pago     = params[:income][:fecha_pago]
         fecha_contable = params[:income][:fecha_contable]
       end
-
       workplace = Workplace.where(id:params[:income][:workplace_id]).first
 
-      mes = params[:income][:mes_cuota][0..1].gsub('-','').to_i
-      year = params[:income][:mes_cuota][2..6].gsub('-','').to_i      
-
-       
-      valorcuota = Currentfee.last.valor 
-
-      if (year == 2012) 
-        valorcuota = 3750 
-      end
-      if (year == 2013) 
-        valorcuota = 3750 
-      end    
-      if (year == 2014) 
-        valorcuota = 5000 
-      end
-      if (year == 2015) 
-        valorcuota = 5000 
-      end
-      if (year == 2016) 
-        if (mes==1) || (mes==2) || (mes==3)
-          valorcuota = 5000
-        else
-          valorcuota = 6000
-        end  
-      end
-      if (year == 2018 ) 
-        valorcuota = 7000 
-      end
-
-      @person = Person.find(params[:income][:person_id])
-      if @person.isretired?
-        valorcuota = 1500
-      end  
-
       @income = Income.new
-      @income.monto       =  valorcuota
+      @income.monto       =  params[:income][:monto]
       @income.person_id   =  params[:income][:person_id]
       @income.workplace_id=  params[:income][:workplace_id]
       @income.office_id   =  workplace.office_id
@@ -516,25 +563,29 @@ class PeopleController < ApplicationController
       @income.mediopago   =  params[:income][:mediopago]
       @income.fecha_pago  =  Date.parse(fecha_pago)
       @income.fecha_contable  = Date.parse( fecha_contable)
-      @income.mes_cuota   = params[:income][:mes_cuota]
+      @income.mes_cuota   = ""
       @income.fecha       =  DateTime.now
       @income.estado      = "CONFIRMADO"
 
       if @income.save
-        
-        n = params[:income][:monto].to_i/valorcuota
-        if (n<1) 
-          n=1
-        end
 
-        (1..n).each do |i|
+        params[:person_ids].each do |mes_cuota|
+          mes  = mes_cuota[0..1].gsub('-','').to_i
+          year = mes_cuota[2..6].gsub('-','').to_i  
+
+          valorcuota = Currentfee.where(year: year).present? ? Currentfee.where(year: year).first.valor : nil
+
+          if @person.isretired?
+            valorcuota = 1500
+          end  
+
           fee = Fee.new
           fee.rut = @person.rut
           fee.email = @person.email
           fee.fecha_pago = Date.parse(fecha_pago)
-          fee.mes = i
+          fee.mes = mes
           fee.monto = valorcuota
-          fee.mes_cuota = "#{mes}-#{year}"
+          fee.mes_cuota = mes_cuota
           fee.person_id = @person.id
 
           if current_user.role?(:finance)
@@ -546,32 +597,23 @@ class PeopleController < ApplicationController
           end
           
           fee.income_id = @income.id
-          fee.mescuota = Date.parse("01-#{fee.mes_cuota}")
+          fee.mescuota = Date.parse("01-#{mes_cuota}")
           fee.save
-
-          mes += 1
-          if mes > 12
-            mes = mes-12
-            year = year+1
-          end
         end
       end
       
       @persondocuments = Persondocument.all
-
-
 
       if current_user.rut ==   @income.person.rut
         redirect_to dashboard_index_path
       else
         redirect_to person_path(params[:income][:person_id])
       end
-    else
-      redirect_to error_pay_person_path  
     end
   end
 
   def error_pay
+    @msg = params[:msg] 
   end  
 
   def senduser
@@ -584,8 +626,8 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    users = User.where.not(email: nil )
-    #users = User.where(email: "marragni@gmail.com")
+    #users = User.where.not(email: nil )
+    users = User.where(email: "marragni@gmail.com")
 
     @c = 0
     @e = 0
@@ -593,8 +635,10 @@ class PeopleController < ApplicationController
     users.each do |user|
       if !user.email.include? "sin" 
         begin
-          PersonMailer.send_news(user.email).deliver
-          @c=@c+1
+          if c >=506
+            PersonMailer.send_news(user.email).deliver
+            @c=@c+1
+          end  
         rescue
           puts "******************"
           puts "******************"
@@ -617,7 +661,7 @@ class PeopleController < ApplicationController
       params.require(:person).permit( :email, :rut, :created_at, :updated_at, :picture, :phone, :terms, :fechaterms, :completeeduc, :nombres, :nro_registro, :apellido_paterno, :apellido_materno, :sexo, :nacionalidad, :fecha_inscripcion, :direccion, :ciudad, :universidad, :fecha_titulo, :lugar_trabajo, :tipo_contrato, :workplace_id, :forma_pago, :telefono, :celular, :certificado_file )
     end
     def income_params
-      params.require(:income).permit( :fecha, :tipo, :person_id, :workplace_id, :user_id, :monto , :banco, :mediopago, :document )
+      params.require(:income).permit( :fees, :fecha, :tipo, :person_id, :workplace_id, :user_id, :monto , :banco, :mediopago, :document )
     end
 
  

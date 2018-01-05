@@ -134,7 +134,7 @@ class PersonMailer < ActionMailer::Base
 
       emails = [@user.email]
 
-      mail(to: emails ,subject: "Fortalece tu Auto-Liderazgo y Gestiona los Mejores Equipos - Curso de Liderazgo y Gestion de Equipos 2017")
+      mail(to: emails ,subject: "Diplomado en: Prevención y control de infecciones asociadas a la atención de salud (IAAS)")
     rescue
       puts "********* person_mailer **************"
       puts "Error  send #{$!}"

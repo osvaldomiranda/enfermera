@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116170010) do
+ActiveRecord::Schema.define(version: 20180103135505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20171116170010) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
   end
 
   create_table "dailies", force: true do |t|
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 20171116170010) do
     t.string   "banco"
     t.integer  "head_daily_id"
     t.integer  "workplace_id"
+    t.string   "estado"
   end
 
   add_index "dailies", ["account_id"], name: "index_dailies_on_account_id", using: :btree

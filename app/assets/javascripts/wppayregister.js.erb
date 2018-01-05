@@ -16,7 +16,7 @@ function toggleAllCheckbox(divid, element, valor)
     if (checkboxes[i].type == 'checkbox')   {
       if (element.checked){
         checkboxes[i].checked = true;
-        document.getElementById("income_monto").value = (checkboxes.length-1) * valor;
+        document.getElementById("income_monto").value = valor;
       } else {
         checkboxes[i].checked = false;
         document.getElementById("income_monto").value = 0;

@@ -66,7 +66,8 @@
                     %th MedioPago
                     %th NumCheque
                     %th Banco
-                    %th Paguesea           
+                    %th Paguesea 
+                    %th Detalle           
                 %tbody
                   - @dailies.each do |daily|
                     %tr
@@ -102,6 +103,7 @@
                       %td= daily.head_daily.numcheque
                       %td= daily.head_daily.banco
                       %td= daily.head_daily.paguesea
+                      %td= daily.detalle
                     
 
             %br

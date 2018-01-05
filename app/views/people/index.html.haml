@@ -69,9 +69,8 @@
             = file_field_tag :file 
             = submit_tag "Importar" 
 
-        / - if current_user.rut=="11367176-9"
-
-        /   = link_to 'Enviar noticias', enviar_people_path
+        - if current_user.rut=="11367176-9"
+          = link_to 'Enviar noticias', enviar_people_path
 
         /   %h3 importar colegiadas 
         /   .form-group   

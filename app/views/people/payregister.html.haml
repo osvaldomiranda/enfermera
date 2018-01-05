@@ -20,6 +20,7 @@
                   .form-inputs
                     / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
                     = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
+                    = f.input :fees, :as => :hidden, :input_html => { :value => @fees } 
                     = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
                     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
@@ -27,28 +28,19 @@
                       .form-group
                         %label.col-sm-2.control-label{:for => "textinput"} Fecha Pago
                         .col-sm-4  
-                          = f.text_field :fecha_pago, label: false , input_html: {value:  DateTime.now.strftime("%d-%m-%Y")}    
+                          = f.text_field :fecha_pago, label: false, id: 'datepicker',  input_html: {value:  DateTime.now.strftime("%d-%m-%Y")}    
                         %label.col-sm-2.control-label{:for => "textinput"} Fecha Contable
                         .col-sm-4
-                          = f.text_field :fecha_contable, label: false , :input_html => {:value => DateTime.now.strftime("%d-%m-%Y")} 
+                          = f.text_field :fecha_contable, label: false, id: 'datepicker1', :input_html => {:value => DateTime.now.strftime("%d-%m-%Y")} 
                     - else
                       = f.input :fecha_pago, :as => :hidden, :input_html => { :value => DateTime.now } 
                       = f.input :fecha_contable, :as => :hidden, :input_html => { :value => DateTime.now } 
             
 
-
-
-                    .form-group
-                      %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota
-                      .col-sm-4
-                        = f.input :mes_cuota, label: false  , collection: Income.mescuota_options_for_select, selected: 1
                     .form-group
                       %label.col-sm-2.control-label{:for => "textinput"} Monto
                       .col-sm-4
-                        - if current_user.role?(:finance)
-                          = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('SI'), selected: 1
-                        - else
-                          = f.input :monto, label: false  , collection: Income.cuotas_options_for_select('NO'), selected: 1
+                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @monto }   
                            
                         
                     .form-group    
@@ -72,6 +64,34 @@
                             %span.fileinput-exists Cambiar
                             =f.file_field :document
                           %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Limpiar  
+
+
+                    .form-group 
+                      %label.col-sm-2.control-label{:for => "textinput"}    
+                      .col-sm-12{id: "person_ids"}
+                        %hr
+                        %h3 Registrar cuotas      
+                        %table.table.table-striped
+                          %thead
+                            %tr
+                              %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{@monto})"}  
+                              %th Mes
+                              %th Monto
+                              %th Estado
+                          
+                          %tbody
+                            - @fees.each do |fee|
+                              %tr
+                                - if Hash[fee[0]][:estado] == "Impago"
+                                  %td= check_box_tag "person_ids[]", Hash[fee[0]][:mes] , {:checked => "checked"}, {:onchange => "toggleCheckbox(this, #{Hash[fee[0]][:monto]})"} 
+                                - else
+                                  %td  
+
+                                %td= Hash[fee[0]][:mes]
+                                %td= Hash[fee[0]][:monto]
+                                %td= Hash[fee[0]][:estado]
+
+
 
                  
                     .form-group

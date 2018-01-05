@@ -9,6 +9,16 @@ class AccountsController < ApplicationController
     respond_with(@accounts)
   end
 
+  def mayor
+    @year = params[:year] || Time.current.year
+    @desde = Date.parse("01/01/#{@year}")
+    @hasta = Date.parse("31/12/#{@year}")   
+
+    @accounts = Account.all
+    @dailies = Daily.all
+    respond_with(@accounts)
+  end
+
   def show
     respond_with(@account)
   end

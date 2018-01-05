@@ -1,0 +1,42 @@
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Mayor Cuentas Contables
+              %span.badge= @accounts.count
+
+        .row
+          .col-md-12
+            .form-inline
+              = select_tag :filter_year, options_for_select([['2016', '2016'],['2017', '2017'],['2018', '2018']], @year), prompt: "#{Time.current.year}", class: "form-control"
+
+
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Codigo
+                  %th Nombre
+                  %th DEBE
+                  %th HABER
+                  %th SALDO
+
+              %tbody
+                - @accounts.each do |account|
+                  %tr
+                    %td= account.codigo
+                    %td= account.nombre
+                    %th= number_with_delimiter(account.dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:debe), delimiter: '.')
+                    %th= number_with_delimiter(account.dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:haber), delimiter: '.')
+                    %th= number_with_delimiter(account.dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:debe) -account.dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:haber), delimiter: '.')
+                %tr
+                  %td
+                  %td
+                  %td= number_with_delimiter(@dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:debe), delimiter: '.')
+                  %td= number_with_delimiter(@dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:haber), delimiter: '.')    
+                  %td= number_with_delimiter(@dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:debe) - @dailies.where(estado: 'ACTIVO').where(fecha: @desde..@hasta).sum(:haber), delimiter: '.')  
+
+            %br

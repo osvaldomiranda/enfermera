@@ -35,7 +35,8 @@
                   .form-group
                     %label.col-sm-2.control-label{:for => "textinput"} Monto
                     .col-sm-4
-                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count* @Currentfee }    
+                      = f.input :monto, label: false, readonly: true, :input_html => {:style=> 'width: 230px', :value => @workplace.people.count * @Currentfee }   
+
                     %label.col-sm-2.control-label{:for => "textinput"} Mes Cuota 
                     .col-sm-4
                       = f.input :mes_cuota, label: false, collection:  Income.mescuota_options_for_select
@@ -69,7 +70,7 @@
                       %table.table.table-striped
                         %thead
                           %tr
-                            %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{@Currentfee})"}  
+                            %th= check_box_tag "", 1, {:checked => "checked"}, {:onchange => "toggleAllCheckbox('person_ids',this, #{@workplace.people.count * @Currentfee })"}  
                             %th Nro.Registro
                             %th Nombre
                             %th Rut

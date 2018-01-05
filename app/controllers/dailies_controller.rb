@@ -22,6 +22,8 @@ class DailiesController < ApplicationController
     respond_with(@dailies)
   end
 
+  
+
   def toxls
     require 'csv'
     @cuenta = params[:cuenta] || nil
@@ -72,6 +74,7 @@ class DailiesController < ApplicationController
 
   def edit
     @head_daily = @daily.head_daily
+    @tipo = @head_daily.tipo
     respond_modal_with(@daily)
   end
 

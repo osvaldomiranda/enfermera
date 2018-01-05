@@ -14,6 +14,8 @@
         .col-xl-12.text-center
           %h1
             = "Comprobante de #{@head_daily.tipo} #{@head_daily.numero}"
+          - if @head_daily.estado == 'NULO'
+            %h1 ************ COMPROBANTE NULO **************  
         - if @head_daily.tipo == "INGRESO"  
           %p= "Recibido de: #{@head_daily.recibidode}"
           %p= "Medio de Pago: #{@head_daily.mediopago}"
@@ -31,7 +33,9 @@
               %tr
                 %th Fecha
                 %th Centro de costo
+                %th
                 %th Cuenta
+                %th
                 %th Debe
                 %th Haber
                 %th Glosa
@@ -40,12 +44,16 @@
                 %tr
                   %td= daily.fecha
                   - if daily.cost_center.present?
+                    %td= daily.cost_center.nombre
                     %td= daily.cost_center.codigo
                   - else
                     %td
-                  -if  daily.account.present?   
+                    %td
+                  -if  daily.account.present?
+                    %td= daily.account.nombre   
                     %td= daily.account.codigo
                   - else
+                    %td
                     %td  
                   %td= daily.debe
                   %td= daily.haber
