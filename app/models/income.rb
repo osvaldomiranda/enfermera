@@ -8,7 +8,6 @@ class Income < ActiveRecord::Base
 
   mount_uploader :document, DocumentUploader 
 
-  validates :document, presence: true
 
   after_save :dailycreate
 
@@ -26,7 +25,7 @@ class Income < ActiveRecord::Base
     mespago.each.map { |t| [t, t] }
   end  
 
-  TIPOPAGO      = ['Deposito', 'Cheque', 'Transferencia']
+  TIPOPAGO      = ['Deposito', 'Cheque', 'Transferencia', 'Web Pay']
   def self.tipopago_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     TIPOPAGO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
@@ -42,7 +41,7 @@ class Income < ActiveRecord::Base
     BANCO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
   end 
 
-  MEDIOPAGO      = ['Deposito', 'Cheque', 'Transferencia']
+  MEDIOPAGO      = ['Deposito', 'Cheque', 'Transferencia', 'Web Pay']
   def self.mediopago_options_for_select
     #GENDERS.to_enum.with_index(0).to_a
     MEDIOPAGO.each.map { |t| [t, t.upcase.gsub(' ', '_')] }
@@ -130,8 +129,7 @@ class Income < ActiveRecord::Base
     # Acá se debe crear un asiento contable si el ingreso no es de Valpo
 
     workplace = Workplace.find(self.workplace_id)
-
-    # if workplace.office.codigo != "VPO"
+  
       head_daily = HeadDaily.new
       head_daily.user_id = self.user_id
       head_daily.tipo = "INGRESO"
@@ -154,11 +152,16 @@ class Income < ActiveRecord::Base
         head_daily.estado = 'PENDIENTE'
       end    
 
+      person = Person.find(self.person_id)
       if self.tipo == "Colegiada"
-        person = Person.find(self.person_id)
         head_daily.recibidode = person.fullname
-      else  
-        head_daily.recibidode = workplace.nombre 
+      else
+        if  self.tipo == "Incompleta"
+          head_daily.recibidode = person.fullname
+          head_daily.rut = person.rut
+        else 
+          head_daily.recibidode = workplace.nombre
+        end  
       end   
 
       head_daily.save
@@ -174,7 +177,11 @@ class Income < ActiveRecord::Base
       if self.tipo == "Colegiada"
         daily.por = "Pago cuotas: #{person.fullname}" 
       else  
-        daily.por = "Pago cuotas: #{workplace.nombre}"
+        if self.tipo == "Incompleta"
+          daily.por = "Pago cuotas incompletas: #{person.fullname}" 
+        else  
+          daily.por = "Pago cuotas: #{workplace.nombre}"
+        end
       end  
       daily.tipo = "INGRESO"
       daily.office_id = workplace.office.id 
@@ -186,7 +193,11 @@ class Income < ActiveRecord::Base
       daily = Daily.new
       daily.numero = head_daily.numero
       daily.fecha = self.fecha_contable
-      daily.account_id = Account.find_by_codigo('2040102').id
+      if self.tipo == "Incompleta"
+        daily.account_id = Account.find_by_codigo('2040103').id
+      else  
+        daily.account_id = Account.find_by_codigo('2040102').id
+      end
       daily.debe  = 0
       daily.haber = self.monto
       daily.detalle = "Ingreso #{self.id}"
@@ -200,10 +211,14 @@ class Income < ActiveRecord::Base
         daily.por = "Pago cuotas: #{person.fullname}" 
         # PersonMailer.pay_user(user.person, head_daily).deliver
       else  
-        daily.por = "Pago cuotas: #{workplace.nombre}"
+        if self.tipo == "Incompleta"
+          daily.por = "Pago cuotas incompletas: #{person.fullname}" 
+        else  
+          daily.por = "Pago cuotas: #{workplace.nombre}"
+        end
       end  
       daily.save
-    # end  
+ 
   end 
 
   def head_daily
