@@ -453,8 +453,7 @@ class PeopleController < ApplicationController
 
 
   def payregister
-    @m
-    nto = 0
+    @monto = 0
     fees_array = []
     current_year = Time.now.year
     past_year = current_year - 1
@@ -509,7 +508,7 @@ class PeopleController < ApplicationController
     msg+= n <= 0 ? "No se han elegido cuotas a cancelar  "  : ""
     msg+= params[:income][:monto].to_i <= 0 ? "El monto a pagar no puede ser cero  "  : ""
 
-    if current_user.role?("regional_admin") 
+    if !current_user.role?("regional_admin") 
       msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
     end  
 

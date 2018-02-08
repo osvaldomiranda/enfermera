@@ -84,14 +84,18 @@ Enfermera::Application.routes.draw do
   resources :currentfees
   resources :rols
   resources :regions
-  resources :offices
+  
   resources :fees
   resources :wpdocuments
   resources :previousjobs
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  
+  resources :offices do
+    collection do
+      get :totalfees
+    end
+  end
 
   resources :home, only: :index do
     collection do

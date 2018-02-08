@@ -294,11 +294,16 @@ class Person < ActiveRecord::Base
   end
 
   def isretired?
-    if self.workplace.cod_wp[0..2] == "000"
-      true
+
+    if self.workplace.present?
+      if self.workplace.cod_wp[0..2] == "000"
+        true
+      else
+        false
+      end
     else
       false
-    end    
+    end      
   end
 
   def fee_padron(month, year)
