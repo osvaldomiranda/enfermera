@@ -34,32 +34,32 @@
               %tbody
                 %tr
                   %td Cuotas Registradas
-                  %td= office.fees.where(:fecha_pago => @selected_enero.beginning_of_month..@selected_enero.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_febrero.beginning_of_month..@selected_febrero.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_marzo.beginning_of_month..@selected_marzo.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_abril.beginning_of_month..@selected_abril.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_mayo.beginning_of_month..@selected_mayo.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_junio.beginning_of_month..@selected_junio.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_julio.beginning_of_month..@selected_julio.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_agosto.beginning_of_month..@selected_agosto.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_septiembre.beginning_of_month..@selected_septiembre.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_octubre.beginning_of_month..@selected_octubre.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_noviembre.beginning_of_month..@selected_noviembre.end_of_month).sum(:monto).round(1)
-                  %td= office.fees.where(:fecha_pago => @selected_diciembre.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_enero.beginning_of_month..@selected_enero.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_febrero.beginning_of_month..@selected_febrero.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_marzo.beginning_of_month..@selected_marzo.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_abril.beginning_of_month..@selected_abril.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_mayo.beginning_of_month..@selected_mayo.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_junio.beginning_of_month..@selected_junio.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_julio.beginning_of_month..@selected_julio.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_agosto.beginning_of_month..@selected_agosto.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_septiembre.beginning_of_month..@selected_septiembre.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_octubre.beginning_of_month..@selected_octubre.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_noviembre.beginning_of_month..@selected_noviembre.end_of_month).sum(:monto).round(1)
+                  %td= office.fees.where(:mescuota => @selected_diciembre.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto).round(1)
                 %tr
                   %td 35%
-                  %td= ((office.fees.where(:fecha_pago => @selected_enero.beginning_of_month..@selected_enero.end_of_month).sum(:monto)) * 0.35 ).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_febrero.beginning_of_month..@selected_febrero.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_marzo.beginning_of_month..@selected_marzo.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_abril.beginning_of_month..@selected_abril.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_mayo.beginning_of_month..@selected_mayo.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_junio.beginning_of_month..@selected_junio.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_julio.beginning_of_month..@selected_julio.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_agosto.beginning_of_month..@selected_agosto.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_septiembre.beginning_of_month..@selected_septiembre.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_octubre.beginning_of_month..@selected_octubre.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_noviembre.beginning_of_month..@selected_noviembre.end_of_month).sum(:monto) * 0.35).round(1)
-                  %td= (office.fees.where(:fecha_pago => @selected_diciembre.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= ((office.fees.where(:mescuota => @selected_enero.beginning_of_month..@selected_enero.end_of_month).sum(:monto)) * 0.35 ).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_febrero.beginning_of_month..@selected_febrero.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_marzo.beginning_of_month..@selected_marzo.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_abril.beginning_of_month..@selected_abril.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_mayo.beginning_of_month..@selected_mayo.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_junio.beginning_of_month..@selected_junio.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_julio.beginning_of_month..@selected_julio.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_agosto.beginning_of_month..@selected_agosto.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_septiembre.beginning_of_month..@selected_septiembre.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_octubre.beginning_of_month..@selected_octubre.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_noviembre.beginning_of_month..@selected_noviembre.end_of_month).sum(:monto) * 0.35).round(1)
+                  %td= (office.fees.where(:mescuota => @selected_diciembre.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto) * 0.35).round(1)
                 %tr
                   %td Remesas
                   %td= Daily.where(tipo: "EGRESO").where(account_id: office.numero.to_i).where(:fecha => @selected_enero.beginning_of_month..@selected_enero.end_of_month).sum(:debe)
@@ -116,7 +116,7 @@
                   %tr
                     %td= workplace.nombre
                     %td= workplace.people.count
-                    %td= workplace.fees.where( :fecha_pago => @selected_enero.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto)
+                    %td= workplace.fees.where( :mescuota => @selected_enero.beginning_of_month..@selected_diciembre.end_of_month).sum(:monto)
             %br  
             %hr        
           %br

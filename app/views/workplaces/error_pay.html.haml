@@ -1,0 +1,10 @@
+.container{:role => "main"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title ERROR REGISTRO DE PAGO
+    .panel-body
+      - @msgs.each do |msg|
+        %h3= msg
+
+      %br
+      %br

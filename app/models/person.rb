@@ -273,6 +273,12 @@ class Person < ActiveRecord::Base
     self.save
   end
 
+  def to_deceased
+    wp = Workplace.where(cod_wp: '0000').first
+    self.workplace_id = wp.id
+    self.save
+  end  
+
   def office
     w = self.workplace
     if w.present?
@@ -304,6 +310,10 @@ class Person < ActiveRecord::Base
     else
       false
     end      
+  end
+
+  def self.withincompletepay
+    Person.where(id: Income.select(:person_id).where(tipo:"Incompleta"))
   end
 
   def fee_padron(month, year)
