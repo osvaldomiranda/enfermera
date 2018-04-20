@@ -332,4 +332,20 @@ class Person < ActiveRecord::Base
     self.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).first
   end
 
+  def fee_padron_count(month, year)
+    if month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12'
+      day='31'
+    end
+
+    if month == '04' || month == '06' || month == '09' || month == '11' 
+      day='30'
+    end
+
+    if month == '02'
+      day='28'
+    end
+
+    self.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).count
+  end
+
 end

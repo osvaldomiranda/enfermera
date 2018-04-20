@@ -127,7 +127,7 @@ class PeopleController < ApplicationController
       office_id = current_user.office.id
     end
 
-    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
+    @people = Person.office(@office).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
     respond_to do |format|
       format.xls 
     end

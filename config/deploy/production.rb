@@ -9,9 +9,24 @@ server "#{ip}", :web, :app, :db, primary: true,
   }
 
 
-# pg_dump enfermera_production -h localhost -U enfermera -W > ~/respaldo.dump
+# Fee.where("date_part('day', mescuota) != ?", 1).where.not(mes_cuota: nil).map {|f| f.mescuota = Date.parse("01-#{f.mes_cuota}"); f.save}
 
+# pg_dump enfermera_production -h localhost -U enfermera -W > ~/respaldo.dump
 # scp  deployer@52.33.58.120:/home/ubuntu/respaldo.dump /Users/Osvaldo/colegiodeenfermeras/respaldo.dump
+
+# require 'csv'
+ 
+# file = "#{Rails.root}/public/data.csv"
+ 
+# schools = School.where(state_code: 'CO').order('name ASC')
+ 
+# CSV.open( file, 'w' ) do |writer|
+#   schools.each do |s|
+#     writer << [s.name, s.zipcode, s.id]
+#   end
+# end
+
+
 
 # 35.160.119.161 Staging
 
