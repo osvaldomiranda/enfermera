@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termstopdf, :payregister, :certificado]
+  before_action :set_person, only: [:show, :edit, :cancel, :update, :destroy, :picture, :terms, :termstopdf, :payregister, :certificado, :incomplete_fee]
 
   respond_to :html
 
@@ -453,7 +453,8 @@ class PeopleController < ApplicationController
 
 
   def payregister
-    @monto = 0
+    @m
+    nto = 0
     fees_array = []
     current_year = Time.now.year
     past_year = current_year - 1
@@ -507,8 +508,10 @@ class PeopleController < ApplicationController
 
     msg+= n <= 0 ? "No se han elegido cuotas a cancelar  "  : ""
     msg+= params[:income][:monto].to_i <= 0 ? "El monto a pagar no puede ser cero  "  : ""
-    msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
 
+    if current_user.role?("regional_admin") 
+      msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
+    end  
 
     #validar que no haya lagunas
     if params[:person_ids].present?
@@ -531,10 +534,10 @@ class PeopleController < ApplicationController
       @fees.each do |fee|
         if Hash[fee[0]][:estado] == "Impago"
           if params[:person_ids][0] !=  Hash[fee[0]][:mes]
-            msg += "El pago de las cuotas debe ser continuo, no puede haber 'lagunas' impagas"
-            break
-          end  
-        end  
+            msg += "El pago de las cuotas debe ser continuo, no puede haber 'lagunas' impagas"            
+          end
+          break  
+        end 
       end  
     end  
 
@@ -601,6 +604,62 @@ class PeopleController < ApplicationController
           fee.save
         end
       end
+      
+      @persondocuments = Persondocument.all
+
+      if current_user.rut ==   @income.person.rut
+        redirect_to dashboard_index_path
+      else
+        redirect_to person_path(params[:income][:person_id])
+      end
+    end
+  end
+
+
+  def incomplete_fee
+    @income = Income.new
+  end
+
+  def incomplete_pay
+
+    @person = Person.find(params[:income][:person_id])
+    msg = ""
+
+    msg+= @person.present? ? ""  : "No se encontró colegiada  "
+    msg+= params[:income][:monto].to_i <= 0 ? "El monto a pagar no puede ser cero  "  : ""
+
+ 
+    if msg != ""
+      redirect_to error_pay_person_path(msg: msg)  
+    else 
+
+      if params[:income][:fecha_pago] == '' || params[:income][:fecha_contable] ==''
+        fecha_pago = DateTime.now.strftime("%d-%m-%Y")
+        fecha_contable = DateTime.now.strftime("%d-%m-%Y")
+      else  
+        fecha_pago     = params[:income][:fecha_pago]
+        fecha_contable = params[:income][:fecha_contable]
+      end
+      workplace = Workplace.where(id:params[:income][:workplace_id]).first
+
+      @income = Income.new
+      @income.monto       =  params[:income][:monto]
+      @income.person_id   =  params[:income][:person_id]
+      @income.workplace_id=  params[:income][:workplace_id]
+      @income.office_id   =  workplace.office_id
+      @income.tipo        = "Incompleta"
+      @income.user_id     =  params[:income][:user_id]
+      @income.document    =  params[:income][:document]
+      @income.banco       =  params[:income][:banco]
+      @income.mediopago   =  params[:income][:mediopago]
+      @income.fecha_pago  =  Date.parse(fecha_pago)
+      @income.fecha_contable  = Date.parse( fecha_contable)
+      @income.mes_cuota   = ""
+      @income.fecha       =  DateTime.now
+      @income.estado      = "CONFIRMADO"
+
+      @income.save
+
       
       @persondocuments = Persondocument.all
 

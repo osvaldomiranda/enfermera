@@ -9,6 +9,9 @@ server "#{ip}", :web, :app, :db, primary: true,
   }
 
 
+# pg_dump enfermera_production -h localhost -U enfermera -W > ~/respaldo.dump
+
+# scp  deployer@52.33.58.120:/home/ubuntu/respaldo.dump /Users/Osvaldo/colegiodeenfermeras/respaldo.dump
 
 # 35.160.119.161 Staging
 

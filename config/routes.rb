@@ -214,6 +214,8 @@ Enfermera::Application.routes.draw do
       get :cancel
       get :payregister
       post :pay
+      get :incomplete_fee
+      post :incomplete_pay
       get :error_pay
       get :terms
       get :termstopdf
@@ -250,7 +252,6 @@ Enfermera::Application.routes.draw do
       post :pay
       get :topasive
     end  
- 
   end
 
 

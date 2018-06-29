@@ -62,6 +62,7 @@
                 %td= workplace.people.count
                 %td= link_to 'Registrar pago 2016', payregister_workplace_path(workplace.id, valorcuota: 6000), class: 'btn btn-info'
                 %td= link_to 'Registrar pago 2017', payregister_workplace_path(workplace.id, valorcuota: 6500), class: 'btn btn-info'
+                %td= link_to 'Registrar pago 2018', payregister_workplace_path(workplace.id, valorcuota: 7000), class: 'btn btn-info'
                 %td= link_to 'Editar', edit_workplace_path(workplace),  class: 'btn btn-info', data: { modal: true }
                 %td= link_to 'Ver Pagos', incomes_workplace_path(workplace),  class: 'btn btn-info'
                 
