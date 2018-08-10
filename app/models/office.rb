@@ -23,5 +23,19 @@ class Office < ActiveRecord::Base
   def self.region_options_for_select
     Region.all.map { |r| [r.nombre, r.nombre] }
   end   
+
+  def totalfees
+    total = 0
+    self.workplaces.each do |workplace|
+      workplace.fees.each do |fee|
+        if fee.mescuota.present?
+          if fee.mescuota.year==2017
+            total +=  fee.monto 
+          end
+        end
+      end
+    end  
+    return total
+  end              
  
 end

@@ -2110,31 +2110,50 @@
 # Person.where(rut: "17035472-9").update_all(candidate: true);
 
 
-Office.where(codigo: "NAC").update_all(numero: "1");
-Office.where(codigo: "IQQ").update_all(numero: "2");
-Office.where(codigo: "ANT").update_all(numero: "3");
-Office.where(codigo: "LAS").update_all(numero: "4");
-Office.where(codigo: "VPO").update_all(numero: "5");
-Office.where(codigo: "STG").update_all(numero: "6");
-Office.where(codigo: "RAN").update_all(numero: "7");
-Office.where(codigo: "TCA").update_all(numero: "8");
-Office.where(codigo: "CON").update_all(numero: "9");
-Office.where(codigo: "TEM").update_all(numero: "10");
-Office.where(codigo: "VDI").update_all(numero: "11");
-Office.where(codigo: "PMO").update_all(numero: "12");
-Office.where(codigo: "PAR").update_all(numero: "13");
-Office.where(codigo: "COP").update_all(numero: "14");
-Office.where(codigo: "OSO").update_all(numero: "15");
-Office.where(codigo: "ARI").update_all(numero: "16");
-Office.where(codigo: "COY").update_all(numero: "17");
-Office.where(codigo: "CHL").update_all(numero: "18");
-Office.where(codigo: "CHI").update_all(numero: "19");
-Office.where(codigo: "LIN").update_all(numero: "21");
-Office.where(codigo: "BIO").update_all(numero: "22");
+# Office.where(codigo: "NAC").update_all(numero: "1");
+# Office.where(codigo: "IQQ").update_all(numero: "2");
+# Office.where(codigo: "ANT").update_all(numero: "3");
+# Office.where(codigo: "LAS").update_all(numero: "4");
+# Office.where(codigo: "VPO").update_all(numero: "5");
+# Office.where(codigo: "STG").update_all(numero: "6");
+# Office.where(codigo: "RAN").update_all(numero: "7");
+# Office.where(codigo: "TCA").update_all(numero: "8");
+# Office.where(codigo: "CON").update_all(numero: "9");
+# Office.where(codigo: "TEM").update_all(numero: "10");
+# Office.where(codigo: "VDI").update_all(numero: "11");
+# Office.where(codigo: "PMO").update_all(numero: "12");
+# Office.where(codigo: "PAR").update_all(numero: "13");
+# Office.where(codigo: "COP").update_all(numero: "14");
+# Office.where(codigo: "OSO").update_all(numero: "15");
+# Office.where(codigo: "ARI").update_all(numero: "16");
+# Office.where(codigo: "COY").update_all(numero: "17");
+# Office.where(codigo: "CHL").update_all(numero: "18");
+# Office.where(codigo: "CHI").update_all(numero: "19");
+# Office.where(codigo: "LIN").update_all(numero: "21");
+# Office.where(codigo: "BIO").update_all(numero: "22");
 
 
 
-
+Workplace.find_or_create_by(codigo: 'ARI', cod_wp: '9999-01-01', nombre: 'DESEMPLEADAS arica')
+Workplace.find_or_create_by(codigo: 'IQQ', cod_wp: '9999-01-02', nombre: 'DESEMPLEADAS iquique')
+Workplace.find_or_create_by(codigo: 'ANT', cod_wp: '9999-02', nombre: 'DESEMPLEADAS antofagasta')
+Workplace.find_or_create_by(codigo: 'COP', cod_wp: '9999-03', nombre: 'DESEMPLEADAS copiapo')
+Workplace.find_or_create_by(codigo: 'LAS', cod_wp: '9999-04', nombre: 'DESEMPLEADAS la serena')
+Workplace.find_or_create_by(codigo: 'VPO', cod_wp: '9999-05', nombre: 'DESEMPLEADAS valparaiso')
+Workplace.find_or_create_by(codigo: 'RAN', cod_wp: '9999-06', nombre: 'DESEMPLEADAS rancagua ')
+Workplace.find_or_create_by(codigo: 'TCA', cod_wp: '9999-07-01', nombre: 'DESEMPLEADAS talca')
+Workplace.find_or_create_by(codigo: 'LIN', cod_wp: '9999-07-02', nombre: 'DESEMPLEADAS s. s. linares')
+Workplace.find_or_create_by(codigo: 'CON', cod_wp: '9999-08-01', nombre: 'DESEMPLEADAS concepcion')
+Workplace.find_or_create_by(codigo: 'CHI', cod_wp: '9999-08-02', nombre: 'DESEMPLEADAS chillan')
+Workplace.find_or_create_by(codigo: 'BIO', cod_wp: '9999-08-03', nombre: 'DESEMPLEADAS bio bio ')
+Workplace.find_or_create_by(codigo: 'TEM', cod_wp: '9999-09', nombre: 'DESEMPLEADAS temuco')
+Workplace.find_or_create_by(codigo: 'VDI', cod_wp: '9999-10-01', nombre: 'DESEMPLEADAS valdivia')
+Workplace.find_or_create_by(codigo: 'OSO', cod_wp: '9999-10-02', nombre: 'DESEMPLEADAS osorno')
+Workplace.find_or_create_by(codigo: 'PMO', cod_wp: '9999-10-03', nombre: 'DESEMPLEADAS puerto montt')
+Workplace.find_or_create_by(codigo: 'CHL', cod_wp: '9999-10-04', nombre: 'DESEMPLEADAS chiloe')
+Workplace.find_or_create_by(codigo: 'COY', cod_wp: '9999-11', nombre: 'DESEMPLEADAS aysen')
+Workplace.find_or_create_by(codigo: 'PAR', cod_wp: '9999-12', nombre: 'DESEMPLEADAS punta arenas')
+Workplace.find_or_create_by(codigo: 'STG', cod_wp: '9999-13', nombre: 'DESEMPLEADAS santiago')
 
 
 

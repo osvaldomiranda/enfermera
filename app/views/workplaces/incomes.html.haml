@@ -16,15 +16,15 @@
                   %th Fecha
                   %th Nro.Ingreso
                   %th Monto
+                  %th Mes  
+                  %th Cod.Lugar de Trabajo
+                  %th Lugar de Trabajo
+                  %th Cuotas de este pago
+                  %th Usuario Transaccion
                   %th Tipo
                   %th Documento
                   %th Banco
-                  %th Medio Pago
-                  %th Pagador
-                  %th Lugar de Trabajo
-                  %th Usuario Transaccion
-                  %th Confirmar en Cta.Cte.
-                  %th Cuotas de este pago
+                  %th Medio Pago                  
 
               %tbody
                 - @workplace.incomes.each do |income|
@@ -32,16 +32,18 @@
                     %td= income.fecha.strftime('%d/%m/%Y %H:%M')
                     %th= income.head_daily
                     %td= income.monto
-                    %td= income.tipo
-                    %td= link_to "Comprobante", income.document_url, class: 'btn btn-info'
-                    %td= income.banco
-                    %td= income.mediopago
-                    - if income.person.present?
+                    %td= income.mes_cuota
+                    - unless income.workplace.present?
+                      %td= income.person.nro_registro
                       %td= income.person.fullname
                     - else
-                      %td= income.workplace.nombre  
-                    %td= income.workplace.nombre
-                    %td= income.user.email
-                    %td= link_to "#{income.estado}", "", class: 'btn btn-info'
+                      %td= income.workplace.cod_wp
+                      %td= income.workplace.nombre 
                     %td= link_to "Ver", feeforincome_incomes_path(id: income.id), data: { modal: true },class: 'btn btn-info'
+                    %td= income.user.email  
+                    %td= income.tipo
+                    %td= link_to "Ver", income.document_url, class: 'btn btn-info'
+                    %td= income.banco
+                    %td= income.mediopago
+
             %br

@@ -85,7 +85,8 @@
                               %td= person.rut
                               %td= person.email
                               %td= "$#{@Currentfee}"
-                              %td= link_to 'Enviar a pasivo', topasive_workplace_path(id: person.workplace.id, person_id: person.id), class: 'btn btn-warning'
+                              %td= link_to 'Enviar a pasivo', topasive_workplace_path(id: person.workplace.id, person_id: person.id, valorcuota: @Currentfee), class: 'btn btn-warning'
+                              %td= link_to 'Fallecida', todeceased_workplace_path(id: person.workplace.id, person_id: person.id, valorcuota: @Currentfee), class: 'btn btn-warning'
                   .form-group
                     .col-sm-offset-2.col-sm-10
                       .pull-right

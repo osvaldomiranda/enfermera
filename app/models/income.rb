@@ -152,7 +152,8 @@ class Income < ActiveRecord::Base
         head_daily.estado = 'PENDIENTE'
       end    
 
-      person = Person.find(self.person_id)
+
+      person = Person.where(id:self.person_id).first
       if self.tipo == "Colegiada"
         head_daily.recibidode = person.fullname
       else

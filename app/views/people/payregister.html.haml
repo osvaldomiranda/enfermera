@@ -21,7 +21,7 @@
                     / = f.input :tipo, :as => :hidden, :input_html => { :value => "Pago Colegiada" } 
                     = f.input :person_id, :as => :hidden, :input_html => { :value => @person.id } 
                     = f.input :fees, :as => :hidden, :input_html => { :value => @fees } 
-                    = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.id  } 
+                    = f.input :workplace_id, :as => :hidden, :input_html => { :value => @person.workplace.present? ? @person.workplace.id : 565  } 
                     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } 
 
                     - if current_user.role?(:regional_admin)

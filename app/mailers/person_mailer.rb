@@ -126,7 +126,7 @@ class PersonMailer < ActionMailer::Base
   end  
 
   def send_news(email)
-    begin
+    # begin
 
       @user = User.where(email: email).first
 
@@ -134,12 +134,15 @@ class PersonMailer < ActionMailer::Base
 
       emails = [@user.email]
 
-      mail(to: emails ,subject: "Diplomado en: Prevención y control de infecciones asociadas a la atención de salud (IAAS)")
-    rescue
-      puts "********* person_mailer **************"
-      puts "Error  send #{$!}"
-      puts "***********************"
-    end
+      # attachments["afiche_diplomados_2018.jpg"] = File.read("#{Rails.root}/afiche_diplomados_2018.jpg")
+
+
+      mail(to: emails ,subject: "Diplomado en Farmacología")
+    # rescue
+    #   puts "********* person_mailer **************"
+    #   puts "Error  send #{$!}"
+    #   puts "***********************"
+    # end
   end
 
 end

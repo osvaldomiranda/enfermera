@@ -127,7 +127,7 @@ class PeopleController < ApplicationController
       office_id = current_user.office.id
     end
 
-    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
+    @people = Person.office(@office).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
     respond_to do |format|
       format.xls 
     end
@@ -467,6 +467,12 @@ class PeopleController < ApplicationController
       past_value = Currentfee.where(year: past_year).present? ? Currentfee.where(year: past_year).first.valor : 0
     end  
 
+    if @person.isunemployed?
+      current_value = 1000
+      past_value = 1000
+    end
+
+
     inscription =  @person.fecha_inscripcion.present? ? @person.fecha_inscripcion : Time.now
 
     if inscription.year <= past_year
@@ -509,7 +515,8 @@ class PeopleController < ApplicationController
     msg+= n <= 0 ? "No se han elegido cuotas a cancelar  "  : ""
     msg+= params[:income][:monto].to_i <= 0 ? "El monto a pagar no puede ser cero  "  : ""
 
-    if current_user.role?("regional_admin") 
+
+    if !current_user.role?("regional_admin") 
       msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
     end  
 
@@ -580,6 +587,10 @@ class PeopleController < ApplicationController
 
           if @person.isretired?
             valorcuota = 1500
+          end 
+
+          if @person.isunemployed?
+            valorcuota = 1000
           end  
 
           fee = Fee.new
@@ -685,8 +696,10 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    #users = User.where.not(email: nil )
-    users = User.where(email: "marragni@gmail.com")
+    # users = User.where.not(email: nil).order('id DESC')
+    users = User.where.not(email: nil).where('id < 10358').order('id DESC')
+    #users = User.where(email: "denise.pichara@gmail.com")
+    #users = User.where(email: "osvaldo.omiranda@gmail.com")
 
     @c = 0
     @e = 0
@@ -694,14 +707,21 @@ class PeopleController < ApplicationController
     users.each do |user|
       if !user.email.include? "sin" 
         begin
-          if c >=506
+          # if c >=506
             PersonMailer.send_news(user.email).deliver
             @c=@c+1
-          end  
-        rescue
-          puts "******************"
+          # end  
           puts "******************"
           puts user.rut
+          puts user.id
+          puts user.email
+          puts "******************"
+        rescue
+          puts "******************"
+          puts "*** ERROR ERROR **"
+          puts "******************"
+          puts user.rut
+          puts user.id
           puts user.email
           puts "******************"
           puts "******************"

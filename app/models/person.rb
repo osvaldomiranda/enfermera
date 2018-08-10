@@ -273,6 +273,12 @@ class Person < ActiveRecord::Base
     self.save
   end
 
+  def to_deceased
+    wp = Workplace.where(cod_wp: '0000').first
+    self.workplace_id = wp.id
+    self.save
+  end  
+
   def office
     w = self.workplace
     if w.present?
@@ -294,11 +300,33 @@ class Person < ActiveRecord::Base
   end
 
   def isretired?
-    if self.workplace.cod_wp[0..2] == "000"
-      true
+
+    if self.workplace.present?
+      if self.workplace.cod_wp[0..2] == "000"
+        true
+      else
+        false
+      end
     else
       false
-    end    
+    end      
+  end
+
+  def isunemployed?
+    if self.workplace.present?
+      if self.workplace.cod_wp[0..3] == "9999"
+        true
+      else
+        false
+      end
+    else
+      false
+    end 
+  end
+
+
+  def self.withincompletepay
+    Person.where(id: Income.select(:person_id).where(tipo:"Incompleta"))
   end
 
   def fee_padron(month, year)
@@ -315,6 +343,22 @@ class Person < ActiveRecord::Base
     end
 
     self.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).first
+  end
+
+  def fee_padron_count(month, year)
+    if month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12'
+      day='31'
+    end
+
+    if month == '04' || month == '06' || month == '09' || month == '11' 
+      day='30'
+    end
+
+    if month == '02'
+      day='28'
+    end
+
+    self.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).count
   end
 
 end

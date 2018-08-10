@@ -84,14 +84,18 @@ Enfermera::Application.routes.draw do
   resources :currentfees
   resources :rols
   resources :regions
-  resources :offices
+  
   resources :fees
   resources :wpdocuments
   resources :previousjobs
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  
+  resources :offices do
+    collection do
+      get :totalfees
+    end
+  end
 
   resources :home, only: :index do
     collection do
@@ -241,6 +245,11 @@ Enfermera::Application.routes.draw do
     end 
   end
 
+  resources :incomplete_pay do
+    member do
+      post :index
+    end
+  end
  
   # get "/workplaces/pay/payregister", to: 'workplaces#payregister'
   # post "/workplaces/pay/pay", to: 'workplaces#pay'
@@ -250,7 +259,9 @@ Enfermera::Application.routes.draw do
       get :payregister
       get :change_person
       post :pay
+      get :error_pay
       get :topasive
+      get :todeceased
     end  
   end
 

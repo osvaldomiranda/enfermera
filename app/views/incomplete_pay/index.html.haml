@@ -1,0 +1,32 @@
+%br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Colegiadas con pagos incompletos
+        
+        %br      
+        .row
+          .col-md-12
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th NroRegistro
+                  %th Nombre
+              %tbody
+                - @people.each do |person|
+                  %tr
+                    %td= person.nro_registro
+                    %td= person.full_name
+                    
+
+
+
+
+
