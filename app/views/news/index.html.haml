@@ -16,7 +16,7 @@
                   - if blog.imagen.present?
                     %img{:alt => "...", :src =>"#{blog.imagen_url}"}
               .col-sm-8
-                %p= blog.descripcion
+                %p= raw(blog.descripcion)
               = link_to "Ver Documento",blog.documento_url,  class: 'btn btn-info'
           %br
           %br   

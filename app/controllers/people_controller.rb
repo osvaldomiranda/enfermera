@@ -453,8 +453,7 @@ class PeopleController < ApplicationController
 
 
   def payregister
-    @m
-    nto = 0
+    @monto = 0
     fees_array = []
     current_year = Time.now.year
     past_year = current_year - 1
@@ -521,18 +520,20 @@ class PeopleController < ApplicationController
     end  
 
     #validar que no haya lagunas
-    if params[:person_ids].present?
-      next_month = params[:person_ids][0][0..1].gsub('-','').to_i + 1
-      (1..n-1).each do |i|
-        mes  = params[:person_ids][i][0..1].gsub('-','').to_i
-        if mes != next_month
-          msg += "El pago de las cuotas debe ser continuo, no puede haber lagunas impagas"
-          break
-        end 
-        next_month += 1
-        if next_month >= 13
-          next_month = 1
-        end  
+    if !current_user.role?("regional_admin") 
+      if params[:person_ids].present?
+        next_month = params[:person_ids][0][0..1].gsub('-','').to_i + 1
+        (1..n-1).each do |i|
+          mes  = params[:person_ids][i][0..1].gsub('-','').to_i
+          if mes != next_month
+            msg += "El pago de las cuotas debe ser continuo, no puede haber lagunas impagas"
+            break
+          end 
+          next_month += 1
+          if next_month >= 13
+            next_month = 1
+          end  
+        end
       end
     end
 
@@ -696,8 +697,8 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    # users = User.where.not(email: nil).order('id DESC')
-    users = User.where.not(email: nil).where('id < 10358').order('id DESC')
+    #users = User.where.not(email: nil).order('id DESC')
+    users = User.where.not(email: nil).where('id < 10359').order('id DESC')
     #users = User.where(email: "denise.pichara@gmail.com")
     #users = User.where(email: "osvaldo.omiranda@gmail.com")
 
@@ -710,6 +711,7 @@ class PeopleController < ApplicationController
           # if c >=506
             PersonMailer.send_news(user.email).deliver
             @c=@c+1
+            sleep()
           # end  
           puts "******************"
           puts user.rut
