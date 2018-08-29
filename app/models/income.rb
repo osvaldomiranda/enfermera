@@ -210,7 +210,7 @@ class Income < ActiveRecord::Base
 
       if self.tipo == "Colegiada"
         daily.por = "Pago cuotas: #{person.fullname}" 
-        # PersonMailer.pay_user(user.person, head_daily).deliver
+        PersonMailer.pay_user(user.person, head_daily).deliver
       else  
         if self.tipo == "Incompleta"
           daily.por = "Pago cuotas incompletas: #{person.fullname}" 

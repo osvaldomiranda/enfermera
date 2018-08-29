@@ -519,8 +519,9 @@ class PeopleController < ApplicationController
       msg+= params[:income][:document].present? ? "" : "Por favor, adjunte comprobante de pago o deposito  " 
     end  
 
-    #validar que no haya lagunas
+    
     if !current_user.role?("regional_admin") 
+      #validar que no haya lagunas
       if params[:person_ids].present?
         next_month = params[:person_ids][0][0..1].gsub('-','').to_i + 1
         (1..n-1).each do |i|
@@ -535,18 +536,19 @@ class PeopleController < ApplicationController
           end  
         end
       end
-    end
+    
 
-    #verifica que se pague el mas antiguo pendiente
-    if msg == ""
-      @fees.each do |fee|
-        if Hash[fee[0]][:estado] == "Impago"
-          if params[:person_ids][0] !=  Hash[fee[0]][:mes]
-            msg += "El pago de las cuotas debe ser continuo, no puede haber 'lagunas' impagas"            
-          end
-          break  
-        end 
-      end  
+      #verifica que se pague el mas antiguo pendiente
+      if msg == ""
+        @fees.each do |fee|
+          if Hash[fee[0]][:estado] == "Impago"
+            if params[:person_ids][0] !=  Hash[fee[0]][:mes]
+              msg += "El pago de las cuotas debe ser continuo, no puede haber 'lagunas' impagas"            
+            end
+            break  
+          end 
+        end  
+      end
     end  
 
     if msg != ""
