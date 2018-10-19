@@ -3,7 +3,16 @@ class ReportsController < ApplicationController
   def index
     @origen = params[:origen]
 
-    @offices = Office.all
+    office = params[:office]
+
+
+    if params[:office].present?
+      @offices = Office.where(nombre:params[:office])
+    else  
+      @offices = nil
+    end  
+    @office = params[:office] || nil
+
     @selected_enero = DateTime.parse("01/01/#{@origen}")
     @selected_febrero = DateTime.parse("01/02/#{@origen}")
     @selected_marzo = DateTime.parse("01/03/#{@origen}")

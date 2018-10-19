@@ -24,15 +24,26 @@ class Office < ActiveRecord::Base
     Region.all.map { |r| [r.nombre, r.nombre] }
   end   
 
-  def totalfees
+  def totalfees(month, year)
+    if month == '01' || month == '03' || month == '05' || month == '07' || month == '08' || month == '10' || month == '12'
+      day='31'
+    end
+
+    if month == '04' || month == '06' || month == '09' || month == '11' 
+      day='30'
+    end
+
+    if month == '02'
+      day='28'
+    end
+
     total = 0
     self.workplaces.each do |workplace|
-      workplace.fees.each do |fee|
-        if fee.mescuota.present?
-          if fee.mescuota.year==2017
-            total +=  fee.monto 
-          end
-        end
+      workplace.people.each do |people|
+        fee = people.fees.where(mescuota: Date.parse("01-#{month}-#{year}")..Date.parse("#{day}-#{month}-#{year}")).first
+        if fee.present?
+          total +=  fee.monto
+        end   
       end
     end  
     return total

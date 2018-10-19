@@ -17,12 +17,7 @@ class PeopleController < ApplicationController
     @lugar_trabajo = params[:lugar_trabajo] || nil
 
 
-    if params[:office].present?
-      office_id = Office.where(nombre:params[:office]).first.id 
-    else  
-      office_id = nil
-    end  
-    @office = params[:office] || nil
+
     @member = true
 
     if (current_user.rol <= 7)
@@ -104,30 +99,9 @@ class PeopleController < ApplicationController
 
   def continuity_toxls
 
-    if params["/people"].present?
-      @apellido_paterno = params["/people"][:apellido_paterno]
-      @apellido_materno = params["/people"][:apellido_materno]
-      @rut = params["/people"][:rut] || nil
-      @nro_registro = params["/people"][:nro_registro] || nil
-    end  
- 
-    @estado = params[:estado] || nil
-    @lugar_trabajo = params[:lugar_trabajo] || nil
-
-
-    if params[:office].present?
-      office_id = Office.where(nombre:params[:office]).first.id 
-    else  
-      office_id = nil
-    end  
-    @office = params[:office] || nil
     @member = true
 
-    if (current_user.rol <= 7)
-      office_id = current_user.office.id
-    end
-
-    @people = Person.office(@office).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
+    @people = Person.member(@member).order(created_at: :desc) 
     respond_to do |format|
       format.xls 
     end
@@ -157,7 +131,7 @@ class PeopleController < ApplicationController
       office_id = current_user.office.id
     end
 
-    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).order(created_at: :desc) 
+    @people = Person.office(office_id).member(@member).active(@estado).workplace(@lugar_trabajo).with_paterno(@apellido_paterno).with_materno(@apellido_materno).with_rut(@rut).with_registro(@nro_registro).where("fecha_inscripcion < ?", Date.parse('31/12/2017')).order(created_at: :desc) 
     respond_to do |format|
       format.xls 
     end
@@ -457,18 +431,22 @@ class PeopleController < ApplicationController
     fees_array = []
     current_year = Time.now.year
     past_year = current_year - 1
+    next_year = current_year + 1
 
     if @person.isretired?
       current_value = 1500
       past_value = 1500
+      next_value = 1500
     else  
       current_value = Currentfee.where(year: current_year).present? ? Currentfee.where(year: current_year).first.valor : 0
       past_value = Currentfee.where(year: past_year).present? ? Currentfee.where(year: past_year).first.valor : 0
+      next_value = Currentfee.where(year: next_year).present? ? Currentfee.where(year: next_year).first.valor : 7500.0
     end  
 
     if @person.isunemployed?
       current_value = 1000
       past_value = 1000
+      next_value = 1000
     end
 
 
@@ -496,6 +474,18 @@ class PeopleController < ApplicationController
         else  
           fees_array << [mes: "#{i}-#{current_year}", monto: current_value, estado: 'Impago']
           @monto = @monto + current_value
+        end
+      end    
+    end
+
+    month_prox_year = 0
+    1.upto(12) do |i|
+      if i >= month_prox_year
+        if @person.fees.where(mes_cuota:"#{i}-#{current_year + 1}").present?
+          fees_array << [mes: "#{i}-#{current_year + 1}", monto: next_value, estado: 'Pagado']
+        else  
+          fees_array << [mes: "#{i}-#{current_year + 1}", monto: next_value, estado: 'Impago']
+          @monto = @monto + next_value
         end
       end    
     end
@@ -713,7 +703,6 @@ class PeopleController < ApplicationController
           # if c >=506
             PersonMailer.send_news(user.email).deliver
             @c=@c+1
-            sleep()
           # end  
           puts "******************"
           puts user.rut

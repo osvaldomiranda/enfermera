@@ -14,8 +14,20 @@ server "#{ip}", :web, :app, :db, primary: true,
 
 # scp  ubuntu@52.33.58.120:/home/ubuntu/respaldo.dump /Users/osvaldo/respaldodocenfermeras/respaldo.dump
 
-# Fee.where("date_part('day', mescuota) != ?", 1).where.not(mes_cuota: nil).map {|f| f.mescuota = Date.parse("01-#{f.mes_cuota}"); f.save}
 
+
+# * psql -h localhost
+# * create role dtebridge with password 'lubba10580';
+# * create database dtebridge_development with owner=dtebridge encoding='utf8';
+# * grant all privileges on database dtebridge_development to dtebridge;
+# * alter role dtebridge LOGIN;
+
+# Populate database for development, from production dump
+# * psql -h localhost -f dtebridge_production.dump -U dtebridge dtebridge_development
+
+
+
+# Fee.where("date_part('day', mescuota) != ?", 1).where.not(mes_cuota: nil).map {|f| f.mescuota = Date.parse("01-#{f.mes_cuota}"); f.save}
 
 
 # require 'csv'
