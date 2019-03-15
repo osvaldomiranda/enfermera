@@ -1,278 +1,391 @@
 %table.table.table-striped
   %thead
     %tr
-      %th CodRegional
-      %th Regional
-      %th cod. Lugar de trabajo
-      %th Lugar de trabajo
-      %th N Registro
-      %th Rut
-      %th Nombre
-      %th Fecha Inscrip.
-      / %th Cuotas 2012
-      / %th Cuotas 2013
-      / %th Cuotas 2014
-      / %th Cuotas 2015
-      / %th Cuotas 2016
-      / %th Cuotas 2017
-      / %th Cuotas 2018
-      %th Ene
-      %th FechaPagoEne
-      %th Feb
-      %th FechaPagoFeb
-      %th Mar
-      %th FechaPagoMar
-      %th Abr
-      %th FechaPagoAbr
-      %th May
-      %th FechaPagoMay
-      %th Jun
-      %th FechaPagoJun
-      %th Jul
-      %th FechaPagoJul
-      %th Ago
-      %th FechaPagoAgo
-      %th Sep
-      %th FechaPagoSep
-      %th Oct
-      %th FechaPagoOct
-      / %th
-      / %th Nov
-      / %th
-      / %th
-      / %th Dic
-      / %th
-      / %th
-      / %th Ene
-      / %th
-      / %th
-      / %th Feb
-      / %th
-      / %th
-      / %th Mar
-      / %th
-      / %th
-      / %th Abr
-      / %th
-      / %th
-      / %th May
-      / %th
-      / %th
-      / %th Jun
-      / %th
-      / %th
-      / %th Jul
-      / %th
-      / %th
-      / %th Ago
-      / %th
-      / %th
-      / %th Sep
-      / %th
-      / %th
-
+      %th ID ASOCIADO 
+      %th RUT 
+      %th NOMBRES 
+      %th APELLIDOS 
+      %th REGIONAL  
+      %th ENERO 2018  
+      %th FEBRERO 2018  
+      %th MARZO 2018  
+      %th ABRIL 2018
+      %th MAYO 2018
+      %th JUNIO 2018
+      %th JULIO 2018
+      %th AGOSTO 2018
+      %th SEPTIEMBRE 2018
+      %th OCTUBRE 2018
+      %th NOVIEMBRE 2018
+      %th ENERO 2019
+      %th FEBRERO 2019
+      %th MARZO 2019
   %tbody
-    - @people.each do |person|
-      - if person.fees_continuity('2018') > 0
-        %tr
-          - if person.present?
-            - if person.office.present?
-              %td= person.office.codigo
-              %td= person.office.nombre
-            - else
-              %td
-              %td 
-            - if person.workplace.present?
-              %td= person.workplace.cod_wp
-              %td= person.workplace.nombre
-            - else
-              %td
-              %td    
-          %td= person.nro_registro
-          %td= person.rut
-          %td= person.fullname
-          %td= person.fecha_inscripcion
+    - @people.each do |person| 
+      %tr
+        %td= person.nro_registro
+        %td= person.rut
+        %td= person.nombres
+        %td= "#{person.apellido_paterno} #{person.apellido_materno}"
+        - if person.present?
+          - if person.office.present?
+            %td= person.office.nombre
+          - else
+            %td 
+        - if person.fee_padron('01','2018').present?
+          %td= person.fee_padron('01','2018').monto
+        - else
+          %td
+        - if person.fee_padron('02','2018').present?
+          %td= person.fee_padron('02','2018').monto
+        - else
+          %td
+        - if person.fee_padron('03','2018').present?
+          %td= person.fee_padron('03','2018').monto
+        - else
+          %td
+        - if person.fee_padron('04','2018').present?
+          %td= person.fee_padron('04','2018').monto
+        - else
+          %td
+        - if person.fee_padron('05','2018').present?
+          %td= person.fee_padron('05','2018').monto
+        - else
+          %td
+        - if person.fee_padron('06','2018').present?
+          %td= person.fee_padron('06','2018').monto
+        - else
+          %td
+        - if person.fee_padron('07','2018').present?
+          %td= person.fee_padron('07','2018').monto
+        - else
+          %td
+        - if person.fee_padron('08','2018').present?
+          %td= person.fee_padron('08','2018').monto
+        - else
+          %td
+        - if person.fee_padron('09','2018').present?
+          %td= person.fee_padron('09','2018').monto
+        - else
+          %td
+        - if person.fee_padron('10','2018').present?
+          %td= person.fee_padron('10','2018').monto
+        - else
+          %td
+        - if person.fee_padron('11','2018').present?
+          %td= person.fee_padron('11','2018').monto
+        - else
+          %td
+        - if person.fee_padron('12','2018').present?
+          %td= person.fee_padron('12','2018').monto
+        - else
+          %td     
+        - if person.fee_padron('01','2019').present?
+          %td= person.fee_padron('01','2019').monto
+        - else
+          %td    
+        - if person.fee_padron('02','2019').present?
+          %td= person.fee_padron('02','2019').monto
+        - else
+          %td 
+        - if person.fee_padron('03','2019').present?
+          %td= person.fee_padron('03','2019').monto
+        - else
+          %td 
+/ %table.table.table-striped
+/   %thead
+/     %tr
+/       %th CodRegional
+/       %th Regional
+/       %th cod. Lugar de trabajo
+/       %th Lugar de trabajo
+/       %th N Registro
+/       %th Rut
+/       %th Nombre
+/       %th Fecha Inscrip.
+/       / %th Cuotas 2012
+/       / %th Cuotas 2013
+/       / %th Cuotas 2014
+/       / %th Cuotas 2015
+/       / %th Cuotas 2016
+/       / %th Cuotas 2017
+/       / %th Cuotas 2018
+/       %th Ene
+/       %th FechaPagoEne
+/       %th Feb
+/       %th FechaPagoFeb
+/       %th Mar
+/       %th FechaPagoMar
+/       %th Abr
+/       %th FechaPagoAbr
+/       %th May
+/       %th FechaPagoMay
+/       %th Jun
+/       %th FechaPagoJun
+/       %th Jul
+/       %th FechaPagoJul
+/       %th Ago
+/       %th FechaPagoAgo
+/       %th Sep
+/       %th FechaPagoSep
+/       %th Oct
+/       %th FechaPagoOct
+/       %th Nov
+/       %th FechaPagoOct
+/       %th Dic
+/       %th FechaPagoOct
+/       / %th
+/       / %th Nov
+/       / %th
+/       / %th
+/       / %th Dic
+/       / %th
+/       / %th
+/       / %th Ene
+/       / %th
+/       / %th
+/       / %th Feb
+/       / %th
+/       / %th
+/       / %th Mar
+/       / %th
+/       / %th
+/       / %th Abr
+/       / %th
+/       / %th
+/       / %th May
+/       / %th
+/       / %th
+/       / %th Jun
+/       / %th
+/       / %th
+/       / %th Jul
+/       / %th
+/       / %th
+/       / %th Ago
+/       / %th
+/       / %th
+/       / %th Sep
+/       / %th
+/       / %th
 
-          / %td= person.fees_continuity('2012')
-          / %td= person.fees_continuity('2013')
-          / %td= person.fees_continuity('2014')
-          / %td= person.fees_continuity('2015')
-          / %td= person.fees_continuity('2016')
-          / %td= person.fees_continuity('2017')
-          / %td= person.fees_continuity('2018')
+/   %tbody
+/     - @people.each do |person|
+/       - if person.fees_continuity('2018') > 0
+/         %tr
+/           - if person.present?
+/             - if person.office.present?
+/               %td= person.office.codigo
+/               %td= person.office.nombre
+/             - else
+/               %td
+/               %td 
+/             - if person.workplace.present?
+/               %td= person.workplace.cod_wp
+/               %td= person.workplace.nombre
+/             - else
+/               %td
+/               %td    
+/           %td= person.nro_registro
+/           %td= person.rut
+/           %td= person.fullname
+/           %td= person.fecha_inscripcion
 
-          / - if person.fee_padron('01','2017').present?
-          /   %td= person.fee_padron('01','2017').monto
-          /   %td= person.fee_padron('01','2017').fecha_pago
-          /   %td= person.fee_padron_count('01','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('02','2017').present?
-          /   %td= person.fee_padron('02','2017').monto
-          /   %td= person.fee_padron('02','2017').fecha_pago
-          /   %td= person.fee_padron_count('02','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('03','2017').present?
-          /   %td= person.fee_padron('03','2017').monto
-          /   %td= person.fee_padron('03','2017').fecha_pago
-          /   %td= person.fee_padron_count('03','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('04','2017').present?
-          /   %td= person.fee_padron('04','2017').monto
-          /   %td= person.fee_padron('04','2017').fecha_pago
-          /   %td= person.fee_padron_count('04','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('05','2017').present?
-          /   %td= person.fee_padron('05','2017').monto
-          /   %td= person.fee_padron('05','2017').fecha_pago
-          /   %td= person.fee_padron_count('05','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('06','2017').present?
-          /   %td= person.fee_padron('06','2017').monto
-          /   %td= person.fee_padron('06','2017').fecha_pago
-          /   %td= person.fee_padron_count('06','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('07','2017').present?
-          /   %td= person.fee_padron('07','2017').monto
-          /   %td= person.fee_padron('07','2017').fecha_pago
-          /   %td= person.fee_padron_count('07','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td       
-          / - if person.fee_padron('08','2017').present?
-          /   %td= person.fee_padron('08','2017').monto
-          /   %td= person.fee_padron('08','2017').fecha_pago
-          /   %td= person.fee_padron_count('08','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td           
-          / - if person.fee_padron('09','2017').present?
-          /   %td= person.fee_padron('09','2017').monto
-          /   %td= person.fee_padron('09','2017').fecha_pago
-          /   %td= person.fee_padron_count('09','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('10','2017').present?
-          /   %td= person.fee_padron('10','2017').monto
-          /   %td= person.fee_padron('10','2017').fecha_pago
-          /   %td= person.fee_padron_count('10','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('11','2017').present?
-          /   %td= person.fee_padron('11','2017').monto
-          /   %td= person.fee_padron('11','2017').fecha_pago
-          /   %td= person.fee_padron_count('11','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          / - if person.fee_padron('12','2017').present?
-          /   %td= person.fee_padron('12','2017').monto
-          /   %td= person.fee_padron('12','2017').fecha_pago
-          /   %td= person.fee_padron_count('12','2017')
-          / - else
-          /   %td
-          /   %td
-          /   %td
-          - if person.fee_padron('01','2018').present?
-            %td= person.fee_padron('01','2018').monto
-            %td= person.fee_padron('01','2018').fecha_pago
-            / %td= person.fee_padron_count('01','2018')
-          - else
-            %td
-            %td
-          - if person.fee_padron('02','2018').present?
-            %td= person.fee_padron('02','2018').monto
-            %td= person.fee_padron('02','2018').fecha_pago
-            / %td= person.fee_padron_count('02','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('03','2018').present?
-            %td= person.fee_padron('03','2018').monto
-            %td= person.fee_padron('03','2018').fecha_pago
-            / %td= person.fee_padron_count('03','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('04','2018').present?
-            %td= person.fee_padron('04','2018').monto
-            %td= person.fee_padron('04','2018').fecha_pago
-            / %td= person.fee_padron_count('04','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('05','2018').present?
-            %td= person.fee_padron('05','2018').monto
-            %td= person.fee_padron('05','2018').fecha_pago
-            / %td= person.fee_padron_count('05','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('06','2018').present?
-            %td= person.fee_padron('06','2018').monto
-            %td= person.fee_padron('06','2018').fecha_pago
-            / %td= person.fee_padron_count('06','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('07','2018').present?
-            %td= person.fee_padron('07','2018').monto
-            %td= person.fee_padron('07','2018').fecha_pago
-            / %td= person.fee_padron_count('07','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('08','2018').present?
-            %td= person.fee_padron('08','2018').monto
-            %td= person.fee_padron('08','2018').fecha_pago
-            / %td= person.fee_padron_count('08','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('09','2018').present?
-            %td= person.fee_padron('09','2018').monto
-            %td= person.fee_padron('09','2018').fecha_pago
-            / %td= person.fee_padron_count('09','2018')
-          - else
-            %td
-            %td
-            / %td
-          - if person.fee_padron('10','2018').present?
-            %td= person.fee_padron('10','2018').monto
-            %td= person.fee_padron('10','2018').fecha_pago
-            / %td= person.fee_padron_count('10','2018')
-          - else
-            %td
-            %td
-            / %td
+/           / %td= person.fees_continuity('2012')
+/           / %td= person.fees_continuity('2013')
+/           / %td= person.fees_continuity('2014')
+/           / %td= person.fees_continuity('2015')
+/           / %td= person.fees_continuity('2016')
+/           / %td= person.fees_continuity('2017')
+/           / %td= person.fees_continuity('2018')
+
+/           / - if person.fee_padron('01','2017').present?
+/           /   %td= person.fee_padron('01','2017').monto
+/           /   %td= person.fee_padron('01','2017').fecha_pago
+/           /   %td= person.fee_padron_count('01','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('02','2017').present?
+/           /   %td= person.fee_padron('02','2017').monto
+/           /   %td= person.fee_padron('02','2017').fecha_pago
+/           /   %td= person.fee_padron_count('02','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('03','2017').present?
+/           /   %td= person.fee_padron('03','2017').monto
+/           /   %td= person.fee_padron('03','2017').fecha_pago
+/           /   %td= person.fee_padron_count('03','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('04','2017').present?
+/           /   %td= person.fee_padron('04','2017').monto
+/           /   %td= person.fee_padron('04','2017').fecha_pago
+/           /   %td= person.fee_padron_count('04','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('05','2017').present?
+/           /   %td= person.fee_padron('05','2017').monto
+/           /   %td= person.fee_padron('05','2017').fecha_pago
+/           /   %td= person.fee_padron_count('05','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('06','2017').present?
+/           /   %td= person.fee_padron('06','2017').monto
+/           /   %td= person.fee_padron('06','2017').fecha_pago
+/           /   %td= person.fee_padron_count('06','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('07','2017').present?
+/           /   %td= person.fee_padron('07','2017').monto
+/           /   %td= person.fee_padron('07','2017').fecha_pago
+/           /   %td= person.fee_padron_count('07','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td       
+/           / - if person.fee_padron('08','2017').present?
+/           /   %td= person.fee_padron('08','2017').monto
+/           /   %td= person.fee_padron('08','2017').fecha_pago
+/           /   %td= person.fee_padron_count('08','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td           
+/           / - if person.fee_padron('09','2017').present?
+/           /   %td= person.fee_padron('09','2017').monto
+/           /   %td= person.fee_padron('09','2017').fecha_pago
+/           /   %td= person.fee_padron_count('09','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('10','2017').present?
+/           /   %td= person.fee_padron('10','2017').monto
+/           /   %td= person.fee_padron('10','2017').fecha_pago
+/           /   %td= person.fee_padron_count('10','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('11','2017').present?
+/           /   %td= person.fee_padron('11','2017').monto
+/           /   %td= person.fee_padron('11','2017').fecha_pago
+/           /   %td= person.fee_padron_count('11','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           / - if person.fee_padron('12','2017').present?
+/           /   %td= person.fee_padron('12','2017').monto
+/           /   %td= person.fee_padron('12','2017').fecha_pago
+/           /   %td= person.fee_padron_count('12','2017')
+/           / - else
+/           /   %td
+/           /   %td
+/           /   %td
+/           - if person.fee_padron('01','2018').present?
+/             %td= person.fee_padron('01','2018').monto
+/             %td= person.fee_padron('01','2018').fecha_pago
+/             / %td= person.fee_padron_count('01','2018')
+/           - else
+/             %td
+/             %td
+/           - if person.fee_padron('02','2018').present?
+/             %td= person.fee_padron('02','2018').monto
+/             %td= person.fee_padron('02','2018').fecha_pago
+/             / %td= person.fee_padron_count('02','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('03','2018').present?
+/             %td= person.fee_padron('03','2018').monto
+/             %td= person.fee_padron('03','2018').fecha_pago
+/             / %td= person.fee_padron_count('03','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('04','2018').present?
+/             %td= person.fee_padron('04','2018').monto
+/             %td= person.fee_padron('04','2018').fecha_pago
+/             / %td= person.fee_padron_count('04','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('05','2018').present?
+/             %td= person.fee_padron('05','2018').monto
+/             %td= person.fee_padron('05','2018').fecha_pago
+/             / %td= person.fee_padron_count('05','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('06','2018').present?
+/             %td= person.fee_padron('06','2018').monto
+/             %td= person.fee_padron('06','2018').fecha_pago
+/             / %td= person.fee_padron_count('06','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('07','2018').present?
+/             %td= person.fee_padron('07','2018').monto
+/             %td= person.fee_padron('07','2018').fecha_pago
+/             / %td= person.fee_padron_count('07','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('08','2018').present?
+/             %td= person.fee_padron('08','2018').monto
+/             %td= person.fee_padron('08','2018').fecha_pago
+/             / %td= person.fee_padron_count('08','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('09','2018').present?
+/             %td= person.fee_padron('09','2018').monto
+/             %td= person.fee_padron('09','2018').fecha_pago
+/             / %td= person.fee_padron_count('09','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('10','2018').present?
+/             %td= person.fee_padron('10','2018').monto
+/             %td= person.fee_padron('10','2018').fecha_pago
+/             / %td= person.fee_padron_count('10','2018')
+/           - else
+/             %td
+/             %td
+/             / %td
+/           - if person.fee_padron('11','2018').present?
+/             %td= person.fee_padron('11','2018').monto
+/             %td= person.fee_padron('11','2018').fecha_pago
+/             / %td= person.fee_padron_count('10','2018')
+/           - else
+/             %td
+/             %td
+
+/           - if person.fee_padron('12','2018').present?
+/             %td= person.fee_padron('12','2018').monto
+/             %td= person.fee_padron('12','2018').fecha_pago
+/             / %td= person.fee_padron_count('10','2018')
+/           - else
+/             %td
+/             %td            

@@ -689,10 +689,10 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    #users = User.where.not(email: nil).order('id DESC')
-    users = User.where.not(email: nil).where('id < 10359').order('id DESC')
-    #users = User.where(email: "denise.pichara@gmail.com")
-    #users = User.where(email: "osvaldo.omiranda@gmail.com")
+    users = User.where.not(email: nil).order('id DESC')
+    # users = User.where.not(email: nil).where('id < 10359').order('id DESC')
+    # users = User.where(email: "denise.pichara@gmail.com")
+    # users = User.where(email: "osvaldo.omiranda@gmail.com")
 
     @c = 0
     @e = 0

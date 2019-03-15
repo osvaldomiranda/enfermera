@@ -23,7 +23,7 @@ server "#{ip}", :web, :app, :db, primary: true,
 # * alter role dtebridge LOGIN;
 
 # Populate database for development, from production dump
-# * psql -h localhost -f dtebridge_production.dump -U dtebridge dtebridge_development
+# * psql -h localhost -f respaldo.dump -U dtebridge colegioenfermeras_development
 
 
 
