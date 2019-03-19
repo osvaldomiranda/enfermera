@@ -203,7 +203,10 @@ Enfermera::Application.routes.draw do
   
   # get "/incomes/feeforincome/:id", to: 'incomes#feeforincome'
   resources :incomes do
-    collection { get :feeforincome }
+    collection do
+      get :feeforincome 
+      get :feeforincometoxls 
+    end  
   end
 
   # get "/people/picture/:id", to: 'people#picture'

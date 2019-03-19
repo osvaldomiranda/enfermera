@@ -37,6 +37,13 @@ class IncomesController < ApplicationController
     respond_modal_with(@income)
   end
 
+  def feeforincometoxls
+    @income = Income.find(params[:id])
+    respond_to do |format|
+      format.xls 
+    end
+  end
+
   def destroy
     @income.destroy
     respond_with(@income)

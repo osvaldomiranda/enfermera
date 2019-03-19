@@ -4,18 +4,24 @@
       %table.table.table-striped
         %thead
           %tr
+            %th Nro Registro
             %th Rut
             %th Email
             %th Fecha pago
             %th Mes
             %th Monto
-            %th Person
+            %th Colegiada
         %tbody
           - @income.fees.each do |fee|
             %tr
+              %td= fee.person.nro_registro
               %td= fee.rut
               %td= fee.email
               %td= fee.fecha_pago
               %td= fee.mes
               %td= fee.monto
               %td= fee.person.fullname
+
+    = link_to 'Exportar Excel', feeforincometoxls_incomes_path(format: :xls, id: @income.id),class: 'btn btn-info'
+
+

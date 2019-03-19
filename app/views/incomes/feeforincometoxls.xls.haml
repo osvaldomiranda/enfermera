@@ -1,0 +1,20 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Nro Registro
+      %th Rut
+      %th Email
+      %th Fecha pago
+      %th Mes
+      %th Monto
+      %th Colegiada
+  %tbody
+    - @income.fees.each do |fee|
+      %tr
+        %td= fee.person.nro_registro
+        %td= fee.rut
+        %td= fee.email
+        %td= fee.fecha_pago
+        %td= fee.mes
+        %td= fee.monto
+        %td= fee.person.fullname

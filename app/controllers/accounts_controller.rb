@@ -15,7 +15,8 @@ class AccountsController < ApplicationController
     @hasta = Date.parse("31/12/#{@year}")   
 
     @accounts = Account.all
-    @dailies = Daily.all
+    @dailies = Daily.all 
+
     respond_with(@accounts)
   end
 
