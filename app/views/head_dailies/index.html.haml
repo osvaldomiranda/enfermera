@@ -28,6 +28,12 @@
 
                 .col-sm-4
                   = f.input :page, label: false, placeholder: "Numero Pagina", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4
+                  = f.input :por, label: false, placeholder: "Texto Detalle", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4
+                  = f.input :medio, label: false, placeholder: "Medio Pago", :input_html => {:style=> 'width: 350px'} 
+                .col-sm-4
+                  = f.input :cheque, label: false, placeholder: "Nro. Cheque / Transacción", :input_html => {:style=> 'width: 350px'} 
               .col-sm-4  
                 = f.button :submit, "Buscar",  class: "btn btn-primary"
         %br

@@ -5,7 +5,31 @@
       %th RUT 
       %th NOMBRES 
       %th APELLIDOS 
-      %th REGIONAL  
+      %th REGIONAL
+      %th ENERO 2016  
+      %th FEBRERO 2016  
+      %th MARZO 2016  
+      %th ABRIL 2016
+      %th MAYO 2016
+      %th JUNIO 2016
+      %th JULIO 2016
+      %th AGOSTO 2016
+      %th SEPTIEMBRE 2016
+      %th OCTUBRE 2016
+      %th NOVIEMBRE 2016
+
+      %th ENERO 2017  
+      %th FEBRERO 2017  
+      %th MARZO 2017  
+      %th ABRIL 2017
+      %th MAYO 2017
+      %th JUNIO 2017
+      %th JULIO 2017
+      %th AGOSTO 2017
+      %th SEPTIEMBRE 2017
+      %th OCTUBRE 2017
+      %th NOVIEMBRE 2017  
+
       %th ENERO 2018  
       %th FEBRERO 2018  
       %th MARZO 2018  
@@ -32,6 +56,107 @@
             %td= person.office.nombre
           - else
             %td 
+
+        - if person.fee_padron('01','2016').present?
+          %td= person.fee_padron('01','2016').monto
+        - else
+          %td
+        - if person.fee_padron('02','2016').present?
+          %td= person.fee_padron('02','2016').monto
+        - else
+          %td
+        - if person.fee_padron('03','2016').present?
+          %td= person.fee_padron('03','2016').monto
+        - else
+          %td
+        - if person.fee_padron('04','2016').present?
+          %td= person.fee_padron('04','2016').monto
+        - else
+          %td
+        - if person.fee_padron('05','2016').present?
+          %td= person.fee_padron('05','2016').monto
+        - else
+          %td
+        - if person.fee_padron('06','2016').present?
+          %td= person.fee_padron('06','2016').monto
+        - else
+          %td
+        - if person.fee_padron('07','2016').present?
+          %td= person.fee_padron('07','2016').monto
+        - else
+          %td
+        - if person.fee_padron('08','2016').present?
+          %td= person.fee_padron('08','2016').monto
+        - else
+          %td
+        - if person.fee_padron('09','2016').present?
+          %td= person.fee_padron('09','2016').monto
+        - else
+          %td
+        - if person.fee_padron('10','2016').present?
+          %td= person.fee_padron('10','2016').monto
+        - else
+          %td
+        - if person.fee_padron('11','2016').present?
+          %td= person.fee_padron('11','2016').monto
+        - else
+          %td
+        - if person.fee_padron('12','2016').present?
+          %td= person.fee_padron('12','2016').monto
+        - else
+          %td    
+
+        - if person.fee_padron('01','2017').present?
+          %td= person.fee_padron('01','2017').monto
+        - else
+          %td
+        - if person.fee_padron('02','2017').present?
+          %td= person.fee_padron('02','2017').monto
+        - else
+          %td
+        - if person.fee_padron('03','2017').present?
+          %td= person.fee_padron('03','2017').monto
+        - else
+          %td
+        - if person.fee_padron('04','2017').present?
+          %td= person.fee_padron('04','2017').monto
+        - else
+          %td
+        - if person.fee_padron('05','2017').present?
+          %td= person.fee_padron('05','2017').monto
+        - else
+          %td
+        - if person.fee_padron('06','2017').present?
+          %td= person.fee_padron('06','2017').monto
+        - else
+          %td
+        - if person.fee_padron('07','2017').present?
+          %td= person.fee_padron('07','2017').monto
+        - else
+          %td
+        - if person.fee_padron('08','2017').present?
+          %td= person.fee_padron('08','2017').monto
+        - else
+          %td
+        - if person.fee_padron('09','2017').present?
+          %td= person.fee_padron('09','2017').monto
+        - else
+          %td
+        - if person.fee_padron('10','2017').present?
+          %td= person.fee_padron('10','2017').monto
+        - else
+          %td
+        - if person.fee_padron('11','2017').present?
+          %td= person.fee_padron('11','2017').monto
+        - else
+          %td
+        - if person.fee_padron('12','2017').present?
+          %td= person.fee_padron('12','2017').monto
+        - else
+          %td    
+
+
+
         - if person.fee_padron('01','2018').present?
           %td= person.fee_padron('01','2018').monto
         - else

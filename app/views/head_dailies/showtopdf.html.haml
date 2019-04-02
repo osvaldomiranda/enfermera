@@ -38,7 +38,6 @@
                 %th
                 %th Debe
                 %th Haber
-                %th Glosa
             %tbody
               - @head_daily.dailies.order(:id).each do |daily|
                 %tr
@@ -57,15 +56,17 @@
                     %td  
                   %td= daily.debe
                   %td= daily.haber
-                  %td= daily.por
             %hr      
             %tr
               %td
+              %td
+              %td 
               %td
               %td  
               %td= @head_daily.dailies.sum(:debe)
               %td= @head_daily.dailies.sum(:haber)
               %td 
+      %p= "Glosa: #{@head_daily.dailies.first.por}" 
       %hr 
       .row
         .col-xl-12.text-center

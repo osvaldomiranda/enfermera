@@ -434,9 +434,9 @@ class PeopleController < ApplicationController
     next_year = current_year + 1
 
     if @person.isretired?
-      current_value = 1500
-      past_value = 1500
-      next_value = 1500
+      current_value = 1000
+      past_value = 1000
+      next_value = 1000
     else  
       current_value = Currentfee.where(year: current_year).present? ? Currentfee.where(year: current_year).first.valor : 0
       past_value = Currentfee.where(year: past_year).present? ? Currentfee.where(year: past_year).first.valor : 0

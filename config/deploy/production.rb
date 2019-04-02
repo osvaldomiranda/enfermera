@@ -18,8 +18,8 @@ server "#{ip}", :web, :app, :db, primary: true,
 
 # * psql -h localhost
 # * create role dtebridge with password 'lubba10580';
-# * create database dtebridge_development with owner=dtebridge encoding='utf8';
-# * grant all privileges on database dtebridge_development to dtebridge;
+# * create database colegioenfermeras_development with owner=dtebridge encoding='utf8';
+# * grant all privileges on database colegioenfermeras_development to dtebridge;
 # * alter role dtebridge LOGIN;
 
 # Populate database for development, from production dump

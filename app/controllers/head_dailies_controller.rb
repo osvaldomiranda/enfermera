@@ -10,11 +10,16 @@ class HeadDailiesController < ApplicationController
     @tipo = params[:tipo] || nil
     @origen = params[:origen] || nil
     @estado = params[:estado] || nil
+    
 
     @page = params[:page] || 1
 
     if params["/head_dailies"].present?
       @numero = params["/head_dailies"][:numero] || nil
+      @por = params["/head_dailies"][:por] || nil
+      @medio = params["/head_dailies"][:medio] || nil
+      @cheque = params["/head_dailies"][:cheque] || nil
+
       if params[:page].present?
         @page = params[:page]
       else  
@@ -22,9 +27,12 @@ class HeadDailiesController < ApplicationController
       end  
     end
 
+
     @page = nil if @page == ""
 
-    @head_dailies = HeadDaily.with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).where(folio_office:nil).order(numero: :desc).page(@page).per_page(20) 
+    @head_dailies = HeadDaily.with_medio(@medio).with_cheque(@cheque).with_por(@por).with_origen(@origen).with_estado(@estado).with_tipo(@tipo).with_numero(@numero).where(folio_office:nil).order(numero: :desc).page(@page).per_page(20) 
+    
+
     respond_with(@head_dailies)
   end
 
@@ -105,7 +113,7 @@ class HeadDailiesController < ApplicationController
   def showtopdf
     @head_daily = HeadDaily.find(params[:id])
 
-    render pdf: "#{@head_daily.tipo}#{@head_daily.numero}",  orientation: 'Landscape'
+    render pdf: "#{@head_daily.tipo}#{@head_daily.numero}",  orientation: 'Portrait'
   end
 
   private

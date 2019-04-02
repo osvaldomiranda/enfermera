@@ -10,8 +10,15 @@ class HeadDaily < ActiveRecord::Base
   scope :with_origen, -> with_origen { where(user_id: with_origen) if with_origen.present?}
   scope :with_estado, -> with_estado { where(estado: with_estado) if with_estado.present?}
   scope :with_numero, -> with_numero { where(numero: with_numero) if with_numero.present?}
+  scope :with_por, -> with_por { where('por like ?', '%'+with_por+'%') if with_por.present?}
+  scope :with_medio, -> with_medio { where(' mediopago like ?', '%'+with_medio+'%') if with_medio.present?}
+  scope :with_cheque, -> with_cheque { where(' numcheque like ?', '%'+with_cheque+'%') if with_cheque.present?}
 
 
+
+  def monto
+    self.dailies.sum(:haber)
+  end 
 
 
   def self.import(file)
@@ -47,6 +54,8 @@ class HeadDaily < ActiveRecord::Base
       end
     end
   end
+
+
 
 
   def eliminar
