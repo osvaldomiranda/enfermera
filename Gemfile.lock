@@ -74,7 +74,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
-    excon (0.42.1)
+    excon (0.71.1)
     execjs (2.1.0)
     fog (1.22.1)
       fog-brightbox
