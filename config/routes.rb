@@ -14,6 +14,8 @@ Enfermera::Application.routes.draw do
   get "padron/index"
   get "padron/toxls"
   get "welcome/index"
+  get "inscriptions/prueba"
+
   root to: "home#index"
 
   resources :countries

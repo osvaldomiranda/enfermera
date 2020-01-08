@@ -6,6 +6,22 @@
       %th NOMBRES 
       %th APELLIDOS 
       %th REGIONAL
+
+     
+      %th Email
+      %th Fecha Creación
+      %th Origen
+      %th Cod.Regional
+      %th Regional
+      %th Cod.Lugar de Trabajo
+      %th Lugar de Trabajo
+      %th Tipo Contrato
+      %th Fecha Titulo
+      %th Celular
+      %th Universidad
+      %th Direccion
+      %th Ciudad
+
       %th ENERO 2016  
       %th FEBRERO 2016  
       %th MARZO 2016  
@@ -41,9 +57,12 @@
       %th SEPTIEMBRE 2018
       %th OCTUBRE 2018
       %th NOVIEMBRE 2018
+
       %th ENERO 2019
       %th FEBRERO 2019
       %th MARZO 2019
+      %th ABRIL 2019
+      %th MAYO 2019
   %tbody
     - @people.each do |person| 
       %tr
@@ -56,6 +75,24 @@
             %td= person.office.nombre
           - else
             %td 
+
+
+        %td= person.email
+        %td= person.created_at.strftime('%d/%m/%Y %H:%M')
+        %td= person.origen.present? ? person.origen : "SISTEMA"
+        
+        %td= person.office.present? ? person.office.codigo : " "
+        %td= person.office.present? ? person.office.nombre : " "
+
+        %td= person.workplace.present? ? person.workplace.cod_wp : " "
+        %td= person.workplace.present? ? person.workplace.nombre : " "
+        %td= person.tipo_contrato
+        %td= person.fecha_titulo
+        %td= person.celular
+        %td= person.universidad
+        %td= person.direccion
+        %td= person.ciudad
+
 
         - if person.fee_padron('01','2016').present?
           %td= person.fee_padron('01','2016').monto
@@ -205,6 +242,7 @@
           %td= person.fee_padron('12','2018').monto
         - else
           %td     
+          
         - if person.fee_padron('01','2019').present?
           %td= person.fee_padron('01','2019').monto
         - else
@@ -215,6 +253,14 @@
           %td 
         - if person.fee_padron('03','2019').present?
           %td= person.fee_padron('03','2019').monto
+        - else
+          %td 
+        - if person.fee_padron('04','2019').present?
+          %td= person.fee_padron('04','2019').monto
+        - else
+          %td 
+        - if person.fee_padron('05','2019').present?
+          %td= person.fee_padron('05','2019').monto
         - else
           %td 
 / %table.table.table-striped

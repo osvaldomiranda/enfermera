@@ -689,15 +689,18 @@ class PeopleController < ApplicationController
   end  
 
   def enviar
-    users = User.where.not(email: nil).order('id DESC')
-    # users = User.where.not(email: nil).where('id < 10359').order('id DESC')
+    #users = User.where.not(email: nil).order('id ASC')
+     users = User.where.not(email: nil).where('id > 10220').order('id ASC')
     # users = User.where(email: "denise.pichara@gmail.com")
     # users = User.where(email: "osvaldo.omiranda@gmail.com")
 
     @c = 0
     @e = 0
 
+
     users.each do |user|
+
+      sleep((rand()*10))
       if !user.email.include? "sin" 
         begin
           # if c >=506
@@ -708,6 +711,7 @@ class PeopleController < ApplicationController
           puts user.rut
           puts user.id
           puts user.email
+          puts @c
           puts "******************"
         rescue
           puts "******************"
@@ -716,6 +720,7 @@ class PeopleController < ApplicationController
           puts user.rut
           puts user.id
           puts user.email
+          puts @c
           puts "******************"
           puts "******************"
           @e=@e+1

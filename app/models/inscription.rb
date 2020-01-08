@@ -126,6 +126,61 @@ class Inscription < ActiveRecord::Base
   end
 
 
+def self.certificado(rut)
+    require 'nokogiri'
+    require 'rest-client'
+      numero_rut = rut
+      begin
+
+        url = "http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/%28searchAll2%29/Search?SearchView&Query=%28FIELD%20rut_pres=#{numero_rut}%29&Start=1&count=10"
+
+        response = Nokogiri::HTML(RestClient.get url)
+
+#  ruts.map{|r| [r,Inscription.certificado(r)]}       
+
+# ['25266796',  '16264057', '13114590', '16260160', '14610547', '17408723', '13977160', '13915560', '17411504', '16751681', '16417677', '19098479', '18316929', '19025618', '19071981', '18396114'] 
+# ['18684808', '17958449', '15596373', '16156258', '17716018', '16671582', '18312840', '18766471', '18235492', '13989808', '16540932', '25075349', '18942508', '16927326', '17403438', '18526499'] 
+# ['15671642', '18177125', '17611289', '18719291', '15598849', '17503849', '18262240', '17598397', '13561506', '18712777', '15844023', '17532963', '17748246', '17823203', '17641040', '17263417']
+# ['16996355', '15678546', '15547288', '17405326', '17314413', '18773050', '17517655', '15761822', '16803518', '17247007', '17217198', '18840666', '17759025', '19088869', '15091553', '11749944'] 
+# ['15398450', '18480134', '17729758', '19016979', '17693269', '18860619', '17073584', '18083501', '18318043', '16405696', '15678772', '18329485', '17778685', '16222903', '17350806', '17107952'] 
+# ['16494972', '18738565', '17555600', '17860362', '13996007', '16870884', '18132223', '14080702', '13543635', '18825248', '16805169', '20273385', '17778457', '18721424', '16295449', '18467230'] 
+# ['17337452', '17937557', '17752219', '14374178', '17999210', '5714580',  '17208015', '17811032', '14030498', '24174572', '17038643', '9103429',  '18936557', '18252274', '17343316', '19090881'] 
+# ['17823502', '15827980', '17281982', '18943579', '17693960', '17776967', '17835478', '17843846', '18187838', '16839220', '13266325', '17496199', '17155721', '15825550', '16395483', '16444550'] 
+# ['18808363', '17916226', '18373766', '19205794', '17831488', '16977895', '18655282', '15973405', '16836070', '12312312', '18637507', '18721360', '17417443', '18726988', '25102996', '16770874'] 
+# ['13612079', '17115374', '14041247', '18229566', '16950785', '15718566']
+
+        # puts response
+        # puts ' '
+        # puts '----****----'
+        # puts ' '
+        # puts response.css('td')[0].text
+
+        # puts '***' + response.css('td')[0].text + '***'
+
+      rescue
+      end
+
+      unless response.css('td')[0].nil?
+
+        sTexto1 = response.css("a").first.attr('href').split("/").last
+
+        idEnfermera, sTexto2 = sTexto1.split("?") 
+
+        url = "http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/CertificadoRegistro?openform&pid=#{idEnfermera}"
+
+
+        
+        puts "#{rut} ; #{response.css('td')[0].text} ; http://webhosting.superdesalud.gob.cl/bases/prestadoresindividuales.nsf/CertificadoRegistro?openform&pid=#{idEnfermera}"
+
+        response = RestClient.get(url)
+        return url
+      end 
+  end
+
+
+
+
+
   def create_person_user
     email = self.email.present? ? self.email : "#{self.rut}sin@email.cl"
     password = self.password.present? ? self.password.length>=8 ? self.password : self.rut : self.rut

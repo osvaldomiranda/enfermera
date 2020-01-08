@@ -137,7 +137,7 @@ class PersonMailer < ActionMailer::Base
       # attachments["afiche_diplomados_2018.jpg"] = File.read("#{Rails.root}/afiche_diplomados_2018.jpg")
 
 
-      mail(to: emails ,subject: "Nuevo Diplomado de Enfermería en Cuidado del Paciente Adulto con Cáncer - ¡Conoce más aquí!")
+      mail(to: emails ,subject: "Saludo navidad, Colegio Enfermeras de Chile")
     # rescue
     #   puts "********* person_mailer **************"
     #   puts "Error  send #{$!}"
